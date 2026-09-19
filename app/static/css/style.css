@@ -425,4 +425,117 @@ body {
   transform: translateY(-2px);
 }
 
+/* -------------------------------------------------------------
+   Professional Table Styling & Corner Clarity
+   ------------------------------------------------------------- */
+.portal-table-container {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 16, 32, 0.94);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+}
 
+.portal-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.portal-table th {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.portal-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.82rem;
+  vertical-align: middle;
+}
+
+.portal-table tbody tr {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-table tbody tr:hover {
+  background: rgba(30, 41, 59, 0.55) !important;
+  transform: translateY(-1px);
+}
+
+/* Sticky Action Column on Corner Side */
+.sticky-action-col {
+  position: sticky;
+  right: 0;
+  background: rgba(10, 16, 32, 0.98);
+  box-shadow: -8px 0 16px -4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* -------------------------------------------------------------
+   Smooth Tab & Modal Transitions & Animations
+   ------------------------------------------------------------- */
+@keyframes tabFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-modal-tab-content:not(.hidden) {
+  animation: tabFadeSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.glass-modal, #job-detail-modal > div, #corp-detail-modal > div {
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Elegant Shimmer & Glow Pulses */
+@keyframes subtlePulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.45);
+  }
+}
+
+.pulse-glow-cyan {
+  animation: subtlePulseGlow 3s ease-in-out infinite;
+}
+
+/* Card Hover Elevation */
+.job-card-elevate {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.job-card-elevate:hover {
+  transform: translateY(-3px) scale(1.004);
+  box-shadow: 0 16px 36px -8px rgba(0, 180, 216, 0.16), 0 0 24px -4px rgba(99, 102, 241, 0.12);
+  border-color: rgba(56, 189, 248, 0.45);
+}

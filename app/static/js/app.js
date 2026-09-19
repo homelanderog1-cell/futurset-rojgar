@@ -374,57 +374,78 @@ function renderCardsView(container, jobs) {
 function renderTableView(container, jobs) {
   const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
   let html = `
-    <div class="col-span-full overflow-x-auto glass-panel rounded-2xl border border-slate-800">
-      <table class="w-full text-left text-sm text-slate-300">
-        <thead class="text-xs uppercase bg-slate-900/90 text-slate-400 border-b border-slate-800">
+    <div class="col-span-full portal-table-container">
+      <table class="portal-table">
+        <thead>
           <tr>
-            <th class="px-5 py-4">${isGujaratPage ? 'ભરતી અને બોર્ડ' : 'Job Title & Organization'}</th>
-            <th class="px-4 py-4">${isGujaratPage ? 'કેટેગરી' : 'Board & Level'}</th>
-            <th class="px-4 py-4">${isGujaratPage ? 'જગ્યાઓ' : 'Vacancies'}</th>
-            <th class="px-4 py-4">${isGujaratPage ? 'લાયકાત અને વય' : 'Eligibility'}</th>
-            <th class="px-4 py-4">${isGujaratPage ? 'પગાર ધોરણ' : 'Pay Scale'}</th>
-            <th class="px-4 py-4">${isGujaratPage ? 'અંતિમ તારીખ' : 'Last Date'}</th>
-            <th class="px-5 py-4 text-right">${isGujaratPage ? 'ક્રિયા' : 'Actions'}</th>
+            <th class="min-w-[260px]">${isGujaratPage ? 'ભરતી અને બોર્ડ' : 'Job Title & Organization'}</th>
+            <th class="min-w-[130px]">${isGujaratPage ? 'કેટેગરી' : 'Board & Level'}</th>
+            <th class="min-w-[100px]">${isGujaratPage ? 'જગ્યાઓ' : 'Vacancies'}</th>
+            <th class="min-w-[200px]">${isGujaratPage ? 'લાયકાત અને વય' : 'Eligibility & Age'}</th>
+            <th class="min-w-[180px]">${isGujaratPage ? 'પગાર ધોરણ' : 'Pay Scale / CTC'}</th>
+            <th class="min-w-[140px]">${isGujaratPage ? 'અંતિમ તારીખ' : 'Last Date'}</th>
+            <th class="min-w-[150px] text-right sticky-action-col">${isGujaratPage ? 'ક્રિયા' : 'Actions'}</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-slate-800/60 font-medium">
+        <tbody class="divide-y divide-slate-800/60">
   `;
 
   jobs.forEach(job => {
+    const minAge = parseInt(job.age_min) || 18;
+    const maxAge = parseInt(job.age_max) || 35;
+    const daysLeft = job.days_left !== undefined && job.days_left !== null ? job.days_left : 15;
+    const boardCat = job.board_category || (job.state === 'Gujarat' ? 'OJAS Gujarat' : 'National');
+
     html += `
-      <tr class="hover:bg-slate-800/40 transition-colors">
+      <tr class="hover:bg-slate-800/40 transition-colors group">
         <td class="px-5 py-4">
-          <div class="font-bold text-white leading-snug">${job.title}</div>
-          <div class="text-xs text-cyan-400 mt-0.5">${job.organization}</div>
-          ${job.title_gu ? `<div class="text-xs text-slate-400 font-gujarati mt-0.5">${job.title_gu}</div>` : ''}
+          <div class="font-bold text-white text-sm leading-snug group-hover:text-cyan-300 transition-colors">${job.title}</div>
+          <div class="text-xs text-cyan-400 font-semibold mt-0.5 flex items-center gap-1.5">
+            <i data-lucide="building" class="w-3.5 h-3.5 shrink-0"></i>
+            <span>${job.organization}</span>
+          </div>
+          ${job.title_gu ? `<div class="text-xs text-slate-400 font-gujarati mt-1">${job.title_gu}</div>` : ''}
         </td>
         <td class="px-4 py-4">
-          <span class="inline-block px-2 py-0.5 rounded text-xs font-semibold ${job.state === 'Gujarat' ? 'bg-orange-500/20 text-orange-300' : 'bg-blue-500/20 text-blue-300'}">
-            ${job.board_category}
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${job.state === 'Gujarat' ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30' : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'}">
+            ${boardCat}
           </span>
-          <span class="block text-xs text-slate-400 mt-1">${job.gov_level}</span>
+          <span class="block text-xs text-slate-400 mt-1">${job.gov_level || 'Public Sector'}</span>
         </td>
         <td class="px-4 py-4">
-          <span class="font-bold text-emerald-400">${job.vacancies.toLocaleString()}</span>
+          <span class="inline-flex items-center gap-1 font-extrabold text-emerald-400 text-sm bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-500/30">
+            <i data-lucide="users" class="w-3.5 h-3.5"></i>
+            ${(job.vacancies || 0).toLocaleString()}
+          </span>
         </td>
         <td class="px-4 py-4 text-xs">
-          <div class="text-slate-200">${job.qualification.split('+')[0]}</div>
-          <div class="text-slate-400">${job.age_min}-${job.age_max} yrs</div>
-        </td>
-        <td class="px-4 py-4 text-xs text-slate-300 max-w-[150px] truncate">
-          ${job.salary_text || 'Standard'}
+          <div class="font-semibold text-slate-200 leading-snug">${job.qualification || 'Graduate / 10th / 12th'}</div>
+          <div class="text-slate-400 text-[11px] mt-1 flex items-center gap-1">
+            <i data-lucide="calendar" class="w-3 h-3 text-amber-400"></i>
+            <span>Age: <strong class="text-slate-300">${minAge}-${maxAge} Yrs</strong></span>
+          </div>
         </td>
         <td class="px-4 py-4 text-xs">
-          <span class="${job.days_left <= 3 ? 'text-rose-400 font-bold' : 'text-slate-300'}">${job.last_date}</span>
-          <span class="block text-[11px] text-slate-400">${job.days_left <= 0 ? 'Closed' : job.days_left + 'd left'}</span>
+          <div class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 whitespace-nowrap shadow-sm">
+            <i data-lucide="wallet" class="w-3 h-3 mr-1 text-cyan-400"></i>
+            <span>${job.salary_text || 'Standard 7th Pay'}</span>
+          </div>
         </td>
-        <td class="px-5 py-4 text-right">
+        <td class="px-4 py-4 text-xs">
+          <span class="font-bold ${daysLeft <= 3 ? 'text-rose-400' : 'text-slate-200'}">${job.last_date || 'Closing Soon'}</span>
+          <span class="block text-[11px] font-semibold mt-0.5 ${daysLeft <= 3 ? 'text-rose-400' : 'text-amber-400'}">
+            ${daysLeft <= 0 ? 'Closed' : daysLeft + ' days left'}
+          </span>
+        </td>
+        <td class="px-5 py-4 text-right sticky-action-col">
           <div class="flex items-center justify-end gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300" title="Details">
-              <i data-lucide="info" class="w-4 h-4"></i>
+            <button onclick="openJobDetailModal(${job.id})" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl border border-slate-700 transition-all shadow-sm flex items-center gap-1 text-xs font-bold cursor-pointer" title="View Full Dossier">
+              <i data-lucide="info" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>Details</span>
             </button>
-            <a href="${job.apply_url}" target="_blank" class="px-3 py-1 ${isGujaratPage ? 'bg-orange-600 hover:bg-orange-500' : 'bg-cyan-600 hover:bg-cyan-500'} text-white rounded-lg text-xs font-bold inline-flex items-center gap-1">
-              ${isGujaratPage ? 'અરજી' : 'Apply'} <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 ${isGujaratPage ? 'bg-orange-600 hover:bg-orange-500 shadow-orange-600/20' : 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-600/20'} text-white rounded-xl text-xs font-bold inline-flex items-center gap-1 shadow-md transition-all transform hover:scale-105">
+              <span>${isGujaratPage ? 'અરજી' : 'Apply'}</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
             </a>
           </div>
         </td>
@@ -434,6 +455,7 @@ function renderTableView(container, jobs) {
 
   html += `</tbody></table></div>`;
   container.innerHTML = html;
+  if (window.lucide) lucide.createIcons();
 }
 
 function generateStepByStepGuide(job, isGujaratPage) {
@@ -1319,6 +1341,9 @@ async function openJobDetailModal(jobId) {
     const isGovt = job.gov_level !== 'Private';
     const isGujaratJob = job.state === 'Gujarat';
 
+    const minAge = parseInt(job.age_min, 10) || 18;
+    const maxAge = parseInt(job.age_max, 10) || 35;
+
     modalBody.innerHTML = `
       <div class="space-y-6">
         <!-- Top Header Bar -->
@@ -1388,7 +1413,7 @@ async function openJobDetailModal(jobId) {
 
           <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
             <span class="text-[11px] font-semibold text-slate-400 block">${isGujaratPage ? 'વય મર્યાદા' : 'Age Eligibility'}</span>
-            <span class="text-sm font-black text-slate-100 block mt-0.5">${job.age_min} - ${job.age_max} Years</span>
+            <span class="text-sm font-black text-slate-100 block mt-0.5">${minAge} - ${maxAge} Years</span>
             <span class="text-[10px] text-emerald-400">+Relaxation Applicable</span>
           </div>
 
@@ -1462,46 +1487,58 @@ async function openJobDetailModal(jobId) {
             <h4 class="text-xs uppercase tracking-wider text-amber-400 font-extrabold mb-3 flex items-center gap-2">
               <i data-lucide="shield-alert" class="w-4 h-4"></i> ${isGujaratPage ? 'વય મર્યાદા અને છૂટછાટના નિયમો (Age Relaxation Norms)' : 'Age Eligibility & Relaxation Matrix'}
             </h4>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left text-xs text-slate-300">
-                <thead class="bg-slate-900 text-slate-400 font-bold uppercase">
+            <div class="portal-table-container">
+              <table class="portal-table w-full text-left text-xs">
+                <thead>
                   <tr>
-                    <th class="p-2.5 rounded-l-lg">Candidate Category</th>
-                    <th class="p-2.5">Standard Age Limit</th>
-                    <th class="p-2.5">Age Relaxation</th>
-                    <th class="p-2.5 rounded-r-lg">Effective Maximum Age</th>
+                    <th class="p-3">Candidate Category</th>
+                    <th class="p-3">Standard Age Limit</th>
+                    <th class="p-3">Age Relaxation</th>
+                    <th class="p-3 text-right pr-4">Effective Maximum Age</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-800/80 font-medium">
                   <tr>
-                    <td class="p-2.5 font-bold text-slate-200">General / Unreserved (Male)</td>
-                    <td class="p-2.5">${job.age_min} - ${job.age_max} Yrs</td>
-                    <td class="p-2.5 text-slate-400">None</td>
-                    <td class="p-2.5 font-bold text-slate-200">${job.age_max} Years</td>
+                    <td class="p-3 font-bold text-slate-200">General / Unreserved (Male)</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-slate-400">None</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-200 border border-slate-700 shadow-sm">${maxAge} Years</span></td>
                   </tr>
                   <tr>
-                    <td class="p-2.5 font-bold text-cyan-300">OBC / SEBC / EWS</td>
-                    <td class="p-2.5">${job.age_min} - ${job.age_max} Yrs</td>
-                    <td class="p-2.5 text-emerald-400 font-bold">+3 to +5 Years</td>
-                    <td class="p-2.5 font-bold text-cyan-300">${job.age_max + 3} - ${job.age_max + 5} Years</td>
+                    <td class="p-3 font-bold text-cyan-300">OBC / SEBC / EWS</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-emerald-400 font-bold">+3 to +5 Years</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 shadow-sm">${maxAge + 3} - ${maxAge + 5} Years</span></td>
                   </tr>
                   <tr>
-                    <td class="p-2.5 font-bold text-indigo-300">SC / ST</td>
-                    <td class="p-2.5">${job.age_min} - ${job.age_max} Yrs</td>
-                    <td class="p-2.5 text-emerald-400 font-bold">+5 Years</td>
-                    <td class="p-2.5 font-bold text-indigo-300">${job.age_max + 5} Years</td>
+                    <td class="p-3 font-bold text-indigo-300">SC / ST</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-emerald-400 font-bold">+5 Years</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-950/80 text-indigo-300 border border-indigo-500/30 shadow-sm">${maxAge + 5} Years</span></td>
                   </tr>
                   <tr>
-                    <td class="p-2.5 font-bold text-rose-300">Female Candidates (General)</td>
-                    <td class="p-2.5">${job.age_min} - ${job.age_max} Yrs</td>
-                    <td class="p-2.5 text-emerald-400 font-bold">+5 Years</td>
-                    <td class="p-2.5 font-bold text-rose-300">${job.age_max + 5} Years</td>
+                    <td class="p-3 font-bold text-rose-300">Female Candidates (General)</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-emerald-400 font-bold">+5 Years</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-950/80 text-rose-300 border border-rose-500/30 shadow-sm">${maxAge + 5} Years</span></td>
                   </tr>
                   <tr>
-                    <td class="p-2.5 font-bold text-amber-300">Persons with Benchmark Disabilities (PwD)</td>
-                    <td class="p-2.5">${job.age_min} - ${job.age_max} Yrs</td>
-                    <td class="p-2.5 text-emerald-400 font-bold">+10 Years</td>
-                    <td class="p-2.5 font-bold text-amber-300">${job.age_max + 10} Years</td>
+                    <td class="p-3 font-bold text-purple-300">Female Candidates (Reserved - SC/ST/SEBC)</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-emerald-400 font-bold">+10 Years</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-950/80 text-purple-300 border border-purple-500/30 shadow-sm">${maxAge + 10} Years</span></td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-amber-300">Persons with Benchmark Disabilities (PwD)</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-emerald-400 font-bold">+10 Years</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-950/80 text-amber-300 border border-amber-500/30 shadow-sm">${maxAge + 10} Years</span></td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-bold text-teal-300">Ex-Servicemen (Defence Personnel)</td>
+                    <td class="p-3">${minAge} - ${maxAge} Yrs</td>
+                    <td class="p-3 text-emerald-400 font-bold">Service + 3 Yrs</td>
+                    <td class="p-3 text-right pr-4"><span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-teal-950/80 text-teal-300 border border-teal-500/30 shadow-sm">Up to ${maxAge + 8} Years</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -2674,51 +2711,96 @@ function renderCompareContent(j1, j2) {
   const container = document.getElementById("compare-matrix-body");
   if (!container) return;
 
-  container.innerHTML = `
-    <div class="grid grid-cols-2 gap-4 p-4 text-xs">
-      <!-- Job 1 -->
-      <div class="bg-slate-900/90 border border-cyan-500/40 rounded-xl p-4 flex flex-col justify-between">
-        <div>
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">${j1.board_category}</span>
-          <h4 class="font-extrabold text-sm text-white mt-2">${j1.title}</h4>
-          <p class="text-slate-400 mt-1">${j1.organization}</p>
+  const fee1 = j1.application_fee_text || j1.application_fee || '₹100 (Reserved: Nil)';
+  const fee2 = j2.application_fee_text || j2.application_fee || '₹100 (Reserved: Nil)';
+  const sal1 = j1.salary_text || (j1.ctc_lpa ? `₹${j1.ctc_lpa} LPA` : '7th Pay Commission Scale');
+  const sal2 = j2.salary_text || (j2.ctc_lpa ? `₹${j2.ctc_lpa} LPA` : '7th Pay Commission Scale');
+  const qual1 = j1.qualification || 'Prescribed Degree / Diploma';
+  const qual2 = j2.qualification || 'Prescribed Degree / Diploma';
+  const age1 = (j1.age_min || 18) + ' to ' + (j1.age_max || 35) + ' Years';
+  const age2 = (j2.age_min || 18) + ' to ' + (j2.age_max || 35) + ' Years';
+  const vac1 = (j1.vacancies || 0).toLocaleString();
+  const vac2 = (j2.vacancies || 0).toLocaleString();
 
-          <div class="space-y-2 mt-4 pt-3 border-t border-slate-800">
-            <div><span class="text-slate-500 block">Total Vacancies:</span> <strong class="text-emerald-400 text-sm">${j1.vacancies.toLocaleString()} Posts</strong></div>
-            <div><span class="text-slate-500 block">Required Qualification:</span> <strong class="text-slate-200">${j1.qualification}</strong></div>
-            <div><span class="text-slate-500 block">Age Limit:</span> <strong class="text-slate-200">${j1.age_min} to ${j1.age_max} Years</strong></div>
-            <div><span class="text-slate-500 block">Salary / Scale:</span> <strong class="text-cyan-300">${j1.salary_text}</strong></div>
-            <div><span class="text-slate-500 block">Application Fee:</span> <strong class="text-slate-200">${j1.application_fee_text || 'Standard'}</strong></div>
-            <div><span class="text-slate-500 block">Last Date:</span> <strong class="text-amber-400">${j1.last_date} (${j1.days_left} days left)</strong></div>
+  container.innerHTML = `
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 text-xs">
+      <!-- Job 1 -->
+      <div class="bg-slate-900/95 border border-cyan-500/40 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">${j1.board_category || 'Recruitment'}</span>
+            <span class="text-xs font-bold text-emerald-400">${vac1} Posts</span>
+          </div>
+          <h4 class="font-black text-base text-white mt-1 leading-snug">${j1.title}</h4>
+          <p class="text-slate-400 mt-1 font-medium">${j1.organization}</p>
+
+          <div class="space-y-2.5 mt-4 pt-4 border-t border-slate-800/80">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-slate-400 font-medium">Qualification:</span>
+              <span class="font-bold text-slate-200 text-right max-w-[65%]">${qual1}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Age Limit:</span>
+              <span class="font-bold text-slate-200">${age1}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Salary / Scale:</span>
+              <span class="font-bold text-cyan-300 text-right">${sal1}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Application Fee:</span>
+              <span class="font-bold text-slate-200">${fee1}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Last Date:</span>
+              <span class="font-bold text-amber-400">${j1.last_date || 'Closing Soon'} (${j1.days_left || 0} days left)</span>
+            </div>
           </div>
         </div>
 
-        <div class="mt-5 pt-3 border-t border-slate-800 flex items-center gap-2">
-          <a href="${j1.apply_url}" target="_blank" class="flex-1 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-center">Apply ↗</a>
-          <button onclick="openJobDetailModal(${j1.id}); closeCompareModal();" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Details</button>
+        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-2">
+          <a href="${j1.apply_url || '#'}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-center shadow-lg shadow-cyan-600/30 transition-all">Apply Official ↗</a>
+          <button onclick="openJobDetailModal(${j1.id}); closeCompareModal();" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 transition-all">Full Details</button>
         </div>
       </div>
 
       <!-- Job 2 -->
-      <div class="bg-slate-900/90 border border-orange-500/40 rounded-xl p-4 flex flex-col justify-between">
+      <div class="bg-slate-900/95 border border-orange-500/40 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
         <div>
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 uppercase">${j2.board_category}</span>
-          <h4 class="font-extrabold text-sm text-white mt-2">${j2.title}</h4>
-          <p class="text-slate-400 mt-1">${j2.organization}</p>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 uppercase">${j2.board_category || 'Recruitment'}</span>
+            <span class="text-xs font-bold text-emerald-400">${vac2} Posts</span>
+          </div>
+          <h4 class="font-black text-base text-white mt-1 leading-snug">${j2.title}</h4>
+          <p class="text-slate-400 mt-1 font-medium">${j2.organization}</p>
 
-          <div class="space-y-2 mt-4 pt-3 border-t border-slate-800">
-            <div><span class="text-slate-500 block">Total Vacancies:</span> <strong class="text-emerald-400 text-sm">${j2.vacancies.toLocaleString()} Posts</strong></div>
-            <div><span class="text-slate-500 block">Required Qualification:</span> <strong class="text-slate-200">${j2.qualification}</strong></div>
-            <div><span class="text-slate-500 block">Age Limit:</span> <strong class="text-slate-200">${j2.age_min} to ${j2.age_max} Years</strong></div>
-            <div><span class="text-slate-500 block">Salary / Scale:</span> <strong class="text-orange-300">${j2.salary_text}</strong></div>
-            <div><span class="text-slate-500 block">Application Fee:</span> <strong class="text-slate-200">${j2.application_fee_text || 'Standard'}</strong></div>
-            <div><span class="text-slate-500 block">Last Date:</span> <strong class="text-amber-400">${j2.last_date} (${j2.days_left} days left)</strong></div>
+          <div class="space-y-2.5 mt-4 pt-4 border-t border-slate-800/80">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-slate-400 font-medium">Qualification:</span>
+              <span class="font-bold text-slate-200 text-right max-w-[65%]">${qual2}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Age Limit:</span>
+              <span class="font-bold text-slate-200">${age2}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Salary / Scale:</span>
+              <span class="font-bold text-orange-300 text-right">${sal2}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Application Fee:</span>
+              <span class="font-bold text-slate-200">${fee2}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-400 font-medium">Last Date:</span>
+              <span class="font-bold text-amber-400">${j2.last_date || 'Closing Soon'} (${j2.days_left || 0} days left)</span>
+            </div>
           </div>
         </div>
 
-        <div class="mt-5 pt-3 border-t border-slate-800 flex items-center gap-2">
-          <a href="${j2.apply_url}" target="_blank" class="flex-1 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-center">Apply ↗</a>
-          <button onclick="openJobDetailModal(${j2.id}); closeCompareModal();" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Details</button>
+        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-2">
+          <a href="${j2.apply_url || '#'}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-center shadow-lg shadow-orange-600/30 transition-all">Apply Official ↗</a>
+          <button onclick="openJobDetailModal(${j2.id}); closeCompareModal();" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 transition-all">Full Details</button>
         </div>
       </div>
     </div>
