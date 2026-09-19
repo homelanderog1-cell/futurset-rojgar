@@ -76,22 +76,22 @@
 
   <!-- Header Navigation -->
   <header class="sticky top-0 z-40 w-full glass-panel-corp border-b border-slate-800/80 shadow-2xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <a href="/" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-cyan-500 to-emerald-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+      <div class="flex items-center gap-2 sm:gap-4">
+        <a href="/" class="flex items-center gap-2 group shrink-0">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-cyan-500 to-emerald-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
             <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
               <i data-lucide="building-2" class="w-4 h-4 text-cyan-400"></i>
             </div>
           </div>
           <div>
-            <span class="text-lg font-black tracking-tight text-white flex items-center gap-1.5">
+            <span class="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-1">
               FuturSet <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-300">Enterprise</span>
             </span>
           </div>
         </a>
 
-        <!-- Portal Switcher Links -->
+        <!-- Portal Switcher Links (Desktop) -->
         <nav class="hidden md:flex items-center gap-1.5 text-xs font-semibold">
           <a href="/" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors">
             All India Govt Hub
@@ -105,17 +105,20 @@
           </a>
           <span class="px-3 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/40 font-bold flex items-center gap-1">
             <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>
-            <span>Corporate &amp; Semi-Private Hub</span>
+            <span>Corporate Hub</span>
           </span>
         </nav>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <a href="/" class="md:hidden px-2.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold">
+          Govt Hub
+        </a>
+        <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
           <i data-lucide="target" class="w-3.5 h-3.5 text-cyan-400 animate-pulse"></i>
           <span class="hidden sm:inline">Check Eligibility</span>
         </button>
-        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Toggle Sound">
+        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="hidden sm:flex p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Toggle Sound">
           <i data-lucide="volume-2" class="w-4 h-4 text-indigo-400"></i>
         </button>
         <button onclick="openBookmarksModal()" class="relative p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Saved Jobs">
@@ -127,41 +130,41 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative pt-10 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800/60 overflow-hidden">
-    <div class="max-w-6xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-indigo-500/30 text-xs font-semibold text-indigo-300 mb-4 shadow-lg backdrop-blur-md">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>Adani • BHEL • Linde • Amazon • Flipkart • NPCI/UPI • Reliance • GIFT City</span>
+  <section class="relative pt-8 sm:pt-10 pb-10 sm:pb-12 px-3 sm:px-6 lg:px-8 border-b border-slate-800/60 overflow-hidden">
+    <div class="max-w-6xl mx-auto text-center relative z-10 px-1">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-indigo-500/30 text-[11px] sm:text-xs font-semibold text-indigo-300 mb-3 sm:mb-4 shadow-lg backdrop-blur-md max-w-full overflow-hidden">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
+        <span class="truncate">Adani • BHEL • Linde • Amazon • Flipkart • NPCI/UPI • Reliance</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-3">
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-3 break-words">
         Large, Medium &amp; Semi-Private <br class="hidden sm:inline">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-300">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-300 block sm:inline mt-1 sm:mt-0">
           Enterprise &amp; Corporate Careers 2026
         </span>
       </h1>
 
-      <p class="text-xs sm:text-sm text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
+      <p class="text-xs sm:text-sm text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal px-2">
         All active corporate drives across Indian Conglomerates, Govt-Backed PSUs &amp; Joint Ventures, Global Tech Giants, and GIFT City FinTech. Filter specifically for B.Tech &amp; Graduate eligible roles with verified direct apply links.
       </p>
 
       <!-- Metrics Radar Stats Grid -->
-      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
-        <div class="glass-panel-corp p-3.5 rounded-2xl border border-indigo-500/20 shadow-lg">
-          <div class="text-xl sm:text-2xl font-black text-indigo-400" id="stat-corp-jobs">{{ corp_stats.total_corporate_jobs }}+</div>
-          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Active Enterprise Drives</div>
+      <div class="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-4xl mx-auto">
+        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-indigo-500/20 shadow-lg">
+          <div class="text-lg sm:text-2xl font-black text-indigo-400" id="stat-corp-jobs">{{ corp_stats.total_corporate_jobs }}+</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 font-medium mt-0.5">Enterprise Drives</div>
         </div>
-        <div class="glass-panel-corp p-3.5 rounded-2xl border border-cyan-500/20 shadow-lg">
-          <div class="text-xl sm:text-2xl font-black text-cyan-300" id="stat-corp-vacancies">{{ corp_stats.total_corporate_vacancies | format_vacancies }}</div>
-          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Corporate Openings</div>
+        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-cyan-500/20 shadow-lg">
+          <div class="text-lg sm:text-2xl font-black text-cyan-300" id="stat-corp-vacancies">{{ corp_stats.total_corporate_vacancies | format_vacancies }}</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 font-medium mt-0.5">Openings</div>
         </div>
-        <div class="glass-panel-corp p-3.5 rounded-2xl border border-orange-500/20 shadow-lg">
-          <div class="text-xl sm:text-2xl font-black text-orange-400" id="stat-corp-gujarat">{{ corp_stats.gujarat_corporate_jobs }}</div>
-          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Gujarat Corporate Roles</div>
+        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-orange-500/20 shadow-lg">
+          <div class="text-lg sm:text-2xl font-black text-orange-400" id="stat-corp-gujarat">{{ corp_stats.gujarat_corporate_jobs }}</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 font-medium mt-0.5">Gujarat Roles</div>
         </div>
-        <div class="glass-panel-corp p-3.5 rounded-2xl border border-emerald-500/20 shadow-lg">
-          <div class="text-xl sm:text-2xl font-black text-emerald-400">Up to ₹{{ corp_stats.highest_ctc_lpa }} LPA</div>
-          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Top CTC Packages</div>
+        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-emerald-500/20 shadow-lg">
+          <div class="text-base sm:text-2xl font-black text-emerald-400 truncate">₹{{ corp_stats.highest_ctc_lpa }} LPA</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 font-medium mt-0.5">Top CTC</div>
         </div>
       </div>
 

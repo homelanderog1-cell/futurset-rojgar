@@ -62,87 +62,98 @@
   </div>
 
   <!-- Main Navigation Header -->
-  <header class="sticky top-0 z-40 bg-[#070d1e]/90 backdrop-blur-2xl border-b border-slate-800/80 shadow-2xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
-      <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-3 group shrink-0">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-indigo-600 p-0.5 shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
-          <div class="w-full h-full bg-[#070d1e] rounded-[10px] flex items-center justify-center">
-            <i data-lucide="compass" class="w-6 h-6 text-cyan-400"></i>
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-40 bg-[#070d1e]/95 backdrop-blur-2xl border-b border-slate-800/80 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between py-2.5 md:h-20 gap-2 md:gap-3">
+      <!-- Top Row on Mobile / Left Section on Desktop -->
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <a href="/" class="flex items-center gap-2.5 group shrink-0">
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-indigo-600 p-0.5 shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-[#070d1e] rounded-[10px] flex items-center justify-center">
+              <i data-lucide="compass" class="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400"></i>
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-xl font-black tracking-tight text-white group-hover:text-cyan-300 transition-colors">FuturSet</span>
-            <span class="text-xl font-light text-cyan-400">Rojgar</span>
-            <span class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest">Public Service</span>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-cyan-300 transition-colors">FuturSet</span>
+              <span class="text-lg sm:text-xl font-light text-cyan-400">Rojgar</span>
+              <span class="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-extrabold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest">Public Service</span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide hidden sm:block">Official Central &amp; State Public Recruitment Notice Board</p>
           </div>
-          <p class="text-[11px] text-slate-400 font-medium tracking-wide hidden sm:block">Official Central &amp; State Public Recruitment Notice Board</p>
-        </div>
-      </a>
+        </a>
 
-      <!-- Quick Command Palette Search Launcher -->
-      <button onclick="openCommandPalette()" class="hidden md:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/50 text-slate-400 hover:text-slate-200 text-xs transition-all shadow-inner">
+        <!-- Mobile Quick Icons (Search, Bookmarks) -->
+        <div class="flex items-center gap-1.5 md:hidden">
+          <button onclick="openCommandPalette()" class="p-2 rounded-xl bg-slate-900 border border-slate-700 text-cyan-400" title="Quick Search">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+          <button onclick="openBookmarksModal()" class="relative p-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300" title="Saved Jobs">
+            <i data-lucide="bookmark" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Command Palette Search Launcher (Desktop) -->
+      <button onclick="openCommandPalette()" class="hidden lg:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/50 text-slate-400 hover:text-slate-200 text-xs transition-all shadow-inner">
         <i data-lucide="search" class="w-3.5 h-3.5 text-cyan-400"></i>
         <span>Search gazettes, boards, posts...</span>
         <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-cyan-300 border border-slate-700 font-mono">Ctrl+K</kbd>
       </button>
 
-      <!-- Quick Action Buttons -->
-      <div class="flex items-center gap-2 sm:gap-2.5">
+      <!-- Quick Action Buttons (Touch-scrollable on mobile, flex on desktop) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar w-full md:w-auto pb-1 md:pb-0 shrink-0">
         <!-- Dedicated Gujarat Govt Jobs Hub Button -->
-        <a href="/gujarat" class="relative group px-3.5 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-bold shadow-lg shadow-orange-600/20 transition-all flex items-center gap-1.5">
+        <a href="/gujarat" class="shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-bold shadow-lg shadow-orange-600/20 transition-all flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
           <span>ગુજરાત રોજગાર</span>
-          <span class="hidden lg:inline">(OJAS Hub)</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
 
-        <!-- Dedicated B.Tech CSE & IT Engineering Hub Button -->
-        <a href="/btech-cse" class="relative group px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-bold shadow-lg shadow-blue-600/20 transition-all flex items-center gap-1.5">
+        <!-- Dedicated B.Tech CSE Hub Button -->
+        <a href="/btech-cse" class="shrink-0 px-3 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-bold shadow-lg shadow-blue-600/20 transition-all flex items-center gap-1.5">
           <i data-lucide="laptop" class="w-3.5 h-3.5 text-cyan-300"></i>
-          <span>B.Tech CSE Jobs</span>
+          <span>B.Tech CSE</span>
         </a>
 
-        <!-- Dedicated Corporate & Enterprise Hub Button (Adani, Amazon, BHEL, etc.) -->
-        <a href="/corporate" class="relative group px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-bold shadow-lg shadow-purple-600/25 transition-all flex items-center gap-1.5 ring-1 ring-purple-400/30">
+        <!-- Dedicated Corporate & Enterprise Hub Button -->
+        <a href="/corporate" class="shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-bold shadow-lg shadow-purple-600/25 transition-all flex items-center gap-1.5 ring-1 ring-purple-400/30">
           <i data-lucide="building-2" class="w-3.5 h-3.5 text-yellow-300"></i>
-          <span>🏢 All Companies (Adani, BHEL, Amazon)</span>
+          <span>🏢 All Companies</span>
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
         </a>
 
-
         <!-- 7th Pay Calculator Trigger -->
-        <button onclick="openSalaryCalculator()" class="px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5" title="7th Pay Commission Salary Calculator">
-          <i data-lucide="calculator" class="w-4 h-4 text-emerald-400"></i>
-          <span class="hidden xl:inline">Salary Calc</span>
+        <button onclick="openSalaryCalculator()" class="shrink-0 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5" title="Salary Calculator">
+          <i data-lucide="calculator" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400"></i>
+          <span class="hidden sm:inline">Salary</span>
         </button>
 
         <!-- Eligibility Matcher Trigger -->
-        <button onclick="openMatcherModal()" class="px-3 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5" title="Eligibility &amp; Reservation Matcher">
-          <i data-lucide="user-check" class="w-4 h-4 text-indigo-400"></i>
-          <span class="hidden sm:inline">Eligibility</span>
+        <button onclick="openMatcherModal()" class="shrink-0 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5" title="Eligibility Matcher">
+          <i data-lucide="user-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-400"></i>
+          <span>Eligibility</span>
         </button>
 
         <!-- Live Scanner Trigger -->
-        <button onclick="startLiveScan()" class="px-3 py-2 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5" title="Live Gazette Sync">
+        <button onclick="startLiveScan()" class="hidden sm:flex shrink-0 px-3 py-2 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-semibold transition-all items-center gap-1.5" title="Live Gazette Sync">
           <i data-lucide="radar" class="w-4 h-4 text-cyan-400" id="scanner-radar-icon"></i>
-          <span class="hidden sm:inline">Gazette Sync</span>
+          <span>Sync</span>
         </button>
 
         <!-- Audio Feedback Toggle -->
-        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Toggle Tactile UI Sound">
+        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="hidden sm:flex p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Toggle Tactile UI Sound">
           <i data-lucide="volume-2" class="w-4 h-4 text-cyan-400"></i>
         </button>
 
-        <!-- Bookmarks Drawer Trigger -->
-        <button onclick="openBookmarksModal()" class="relative p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Saved Jobs">
+        <!-- Bookmarks Drawer Trigger (Desktop) -->
+        <button onclick="openBookmarksModal()" class="hidden md:flex relative p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Saved Jobs">
           <i data-lucide="bookmark" class="w-4 h-4"></i>
           <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-500 text-slate-950 font-black text-[10px] flex items-center justify-center">0</span>
         </button>
 
         <!-- Export CSV Button -->
-        <a href="/api/export" download class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Export recruitments as CSV">
+        <a href="/api/export" download class="hidden sm:flex p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Export CSV">
           <i data-lucide="download" class="w-4 h-4"></i>
         </a>
       </div>
@@ -150,47 +161,47 @@
   </header>
 
   <!-- Hero & Unified Search Section -->
-  <section class="relative pt-14 pb-20 px-4 sm:px-6 lg:px-8 border-b border-slate-800/60 overflow-hidden min-h-[460px] flex items-center justify-center">
-    <!-- Interactive Physics Particle Canvas Background (Lusion / Active Theory style) -->
+  <section class="relative pt-8 sm:pt-14 pb-12 sm:pb-20 px-3 sm:px-6 lg:px-8 border-b border-slate-800/60 overflow-hidden min-h-[380px] sm:min-h-[460px] flex items-center justify-center">
+    <!-- Interactive Physics Particle Canvas Background -->
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-auto z-0"></canvas>
 
     <!-- Atmospheric Ambient Glows -->
-    <div class="absolute top-0 left-1/4 w-[32rem] h-[32rem] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
-    <div class="absolute top-10 right-1/4 w-[32rem] h-[32rem] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+    <div class="absolute top-0 left-1/4 w-[20rem] sm:w-[32rem] h-[20rem] sm:h-[32rem] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+    <div class="absolute top-10 right-1/4 w-[20rem] sm:w-[32rem] h-[20rem] sm:h-[32rem] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
 
-    <div class="max-w-5xl mx-auto text-center relative z-10 w-full">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-xs text-cyan-400 font-semibold mb-5 shadow-lg backdrop-blur-md">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-        <span>Official Gazettes &amp; Verified State/Central Employment Notifications 2026</span>
+    <div class="max-w-5xl mx-auto text-center relative z-10 w-full px-2">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-[11px] sm:text-xs text-cyan-400 font-semibold mb-4 sm:mb-5 shadow-lg backdrop-blur-md max-w-full">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping shrink-0"></span>
+        <span class="truncate">Official Gazettes &amp; Verified Employment Notifications 2026</span>
       </div>
 
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.1] mb-4">
+      <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-3 sm:mb-4 break-words">
         Every Public Sector Vacancy.<br class="hidden sm:inline">
-        <span class="text-metallic">
+        <span class="text-metallic block sm:inline mt-1 sm:mt-0">
           Verified Gazettes. Direct Official Apply.
         </span>
       </h1>
 
-      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
+      <p class="text-xs sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal px-2">
         Real-time recruitment intelligence covering OJAS Gujarat, GPSC, GSSSB, Police Bharti, High Court, SSC, Railways, Banking, and Defence with authentic syllabus criteria and direct links.
       </p>
 
       <!-- Search Bar with Glow -->
-      <div class="mt-8 max-w-3xl mx-auto">
-        <div class="relative flex items-center shadow-2xl rounded-2xl group">
-          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-            <i data-lucide="search" class="w-5 h-5 text-cyan-400 group-focus-within:scale-110 transition-transform"></i>
+      <div class="mt-6 sm:mt-8 max-w-3xl mx-auto w-full px-1">
+        <div class="relative flex items-center shadow-2xl rounded-2xl group w-full">
+          <div class="absolute inset-y-0 left-0 pl-3.5 sm:pl-4 flex items-center pointer-events-none text-slate-400">
+            <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 group-focus-within:scale-110 transition-transform"></i>
           </div>
           <input
             type="text"
             id="search-input"
-            placeholder="Search by job title, department (e.g. Police, Clerk, GPSC, RRB, High Court, SBI)..."
-            class="w-full pl-12 pr-28 py-4 bg-slate-950/80 backdrop-blur-xl text-white rounded-2xl border border-slate-700/80 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 text-sm sm:text-base placeholder-slate-500 shadow-2xl transition-all outline-none"
+            placeholder="Search Police, Clerk, GPSC, RRB, High Court, SBI..."
+            class="w-full pl-10 sm:pl-12 pr-20 sm:pr-28 py-3.5 sm:py-4 bg-slate-950/90 backdrop-blur-xl text-white rounded-2xl border border-slate-700/80 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 text-xs sm:text-base placeholder-slate-500 shadow-2xl transition-all outline-none"
           >
-          <div class="absolute inset-y-0 right-2 flex items-center">
-            <button onclick="fetchJobs(); playAudioTick(800, 0.05);" class="px-5 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-cyan-600/30 transition-all flex items-center gap-1.5">
+          <div class="absolute inset-y-0 right-1.5 sm:right-2 flex items-center">
+            <button onclick="fetchJobs(); playAudioTick(800, 0.05);" class="px-3.5 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-cyan-600/30 transition-all flex items-center gap-1">
               <span>Search</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 hidden sm:inline"></i>
             </button>
           </div>
         </div>
