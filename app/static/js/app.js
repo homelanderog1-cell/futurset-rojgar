@@ -3454,3 +3454,14 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Scroll Progress Bar Listener (cross-browser fallback)
+window.addEventListener("scroll", () => {
+  const bar = document.getElementById("scroll-progress-bar");
+  if (!bar) return;
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
+  bar.style.transform = `scaleX(${progress})`;
+}, { passive: true });
+
+
