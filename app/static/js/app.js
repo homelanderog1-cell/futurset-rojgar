@@ -248,133 +248,104 @@ function renderCardsView(container, jobs) {
   jobs.forEach(job => {
     const isBookmarked = bookmarkedJobIds.has(job.id);
     const isGujaratJob = job.state === "Gujarat";
+    const initialLetter = (job.organization || "G").charAt(0).toUpperCase();
 
     let urgencyBadgeHtml = "";
     if (job.urgency_badge === "closed" || job.days_left < 0) {
-      urgencyBadgeHtml = `<span class="bg-slate-800 text-rose-400 border border-rose-500/30 text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"><i data-lucide="x-circle" class="w-3.5 h-3.5"></i> ${isGujaratPage ? 'અરજી બંધ' : 'Application Closed'}</span>`;
+      urgencyBadgeHtml = `<span class="badge-minimal text-rose-400 border-rose-500/30"><i data-lucide="x-circle" class="w-3 h-3"></i> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
     } else if (job.days_left === 0) {
-      urgencyBadgeHtml = `<span class="badge-urgent text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-300"></i> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
+      urgencyBadgeHtml = `<span class="badge-minimal text-amber-300 border-amber-500/40 animate-pulse"><i data-lucide="alert-triangle" class="w-3 h-3"></i> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
     } else if (job.urgency_badge === "urgent" || job.days_left <= 3) {
-      urgencyBadgeHtml = `<span class="badge-urgent text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
-    } else if (job.urgency_badge === "warning" || job.days_left <= 7) {
-      urgencyBadgeHtml = `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1"><i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days'}</span>`;
+      urgencyBadgeHtml = `<span class="badge-minimal text-rose-400 border-rose-500/30"><i data-lucide="clock" class="w-3 h-3"></i> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
     } else {
-      urgencyBadgeHtml = `<span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-full font-medium flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-400"></i> ${isGujaratPage ? 'અંતિમ:' : 'Closes'} ${job.last_date}</span>`;
+      urgencyBadgeHtml = `<span class="badge-minimal text-slate-400"><i data-lucide="calendar" class="w-3 h-3 text-slate-500"></i> ${job.last_date || 'Closing Soon'}</span>`;
     }
 
     const isCompareSelected = selectedCompareIds.includes(job.id);
+    const qualDisplay = (job.qualification || 'Degree / Diploma').split('+')[0].trim();
+    const salaryDisplay = job.salary_text ? job.salary_text.split('->')[0].trim() : (job.ctc_lpa ? `₹${job.ctc_lpa} LPA` : '7th Pay Matrix');
 
     html += `
-      <div class="glass-card-transparent card-hover-tilt rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative group shadow-xl transition-all duration-300 hover:border-cyan-500/50">
+      <div class="job-card-otta group animate-card-entrance">
         <div>
-          <!-- Top row tags & quick actions -->
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${isGujaratJob ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30' : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'}">
-                ${job.gov_level === 'Central' ? '🇮🇳 Central Govt' : '🦁 Gujarat State'}
-              </span>
-              <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
-                ${job.board_category}
-              </span>
-              ${job.district && job.district !== 'All Gujarat' && job.district !== 'All India' ? `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800">📍 ${job.district}</span>` : ''}
-              ${job.selection_mode === 'direct_merit' ? '<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40">⚡ Direct Merit</span>' : ''}
-              ${job.selection_mode === 'walk_in' ? '<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-orange-950/80 text-orange-300 border border-orange-500/40">🤝 Walk-in</span>' : ''}
-              ${job.selection_mode === 'apprenticeship' ? '<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-teal-950/80 text-teal-300 border border-teal-500/40">🛠️ Apprentice</span>' : ''}
-              ${job.selection_mode === 'coding_test' ? '<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-cyan-950/80 text-cyan-300 border border-cyan-500/40">⚡ Coding Drive</span>' : ''}
-              ${job.is_btech_cse ? '<a href="/btech-cse" class="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-950/80 text-cyan-300 border border-blue-500/40 hover:underline">💻 B.Tech CSE</a>' : ''}
-              ${job.featured ? '<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">★ Top Opening</span>' : ''}
+          <!-- Header: Org Avatar + Badges + Actions -->
+          <div class="flex items-start justify-between gap-3 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 flex items-center justify-center font-black text-slate-200 text-sm shadow-inner shrink-0 group-hover:border-cyan-500/40 transition-colors">
+                ${initialLetter}
+              </div>
+              <div class="min-w-0">
+                <span class="text-xs font-bold text-slate-300 block truncate group-hover:text-cyan-300 transition-colors">${job.organization}</span>
+                <span class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-500 shrink-0"></i>
+                  <span class="truncate">${job.district || job.state || 'All India'}</span>
+                </span>
+              </div>
             </div>
 
-            <div class="flex items-center gap-1.5">
-              <!-- Compare Checkbox -->
-              <label class="cursor-pointer text-[11px] font-medium text-slate-400 hover:text-cyan-300 flex items-center gap-1 bg-slate-900/80 px-2 py-1 rounded-md border border-slate-800" title="Add to side-by-side comparison">
-                <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-cyan-500 focus:ring-0 w-3.5 h-3.5 bg-slate-800 border-slate-700">
-                <span class="hidden sm:inline">Compare</span>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <label class="cursor-pointer text-[11px] font-medium text-slate-400 hover:text-cyan-300 flex items-center gap-1 bg-white/[0.03] hover:bg-white/[0.06] px-2 py-1 rounded-lg border border-white/5 transition-colors" title="Compare side-by-side">
+                <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-cyan-500 focus:ring-0 w-3.5 h-3.5 bg-slate-900 border-slate-700">
+                <span class="hidden sm:inline text-[10px]">Compare</span>
               </label>
-
-              <!-- Bookmark button -->
-              <button onclick="toggleBookmark(${job.id}, this)" class="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-cyan-400 transition-colors" title="Bookmark">
-                <i data-lucide="bookmark" class="w-4 h-4 ${isBookmarked ? 'fill-cyan-400 text-cyan-400' : ''}"></i>
+              <button onclick="toggleBookmark(${job.id}, this)" class="p-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] text-slate-400 hover:text-cyan-300 border border-white/5 transition-colors" title="Bookmark">
+                <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isBookmarked ? 'fill-cyan-400 text-cyan-400' : ''}"></i>
               </button>
             </div>
           </div>
 
+          <!-- Authority & Status Pills -->
+          <div class="flex flex-wrap items-center gap-1.5 mb-3">
+            <span class="badge-minimal ${isGujaratJob ? 'badge-minimal-amber' : 'badge-minimal-cyan'}">
+              ${job.gov_level === 'Central' ? '🇮🇳 Central Govt' : '🦁 Gujarat State'}
+            </span>
+            <span class="badge-minimal">
+              ${job.board_category || 'Board'}
+            </span>
+            ${job.is_btech_cse ? '<span class="badge-minimal text-cyan-300 border-cyan-500/30">💻 B.Tech CSE</span>' : ''}
+          </div>
+
           <!-- Title -->
-          <h3 class="text-base font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2 leading-snug cursor-pointer" onclick="openJobDetailModal(${job.id})">
+          <h3 class="text-[0.95rem] font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
             ${job.title}
           </h3>
 
           ${job.title_gu ? `
-            <p class="font-gujarati text-xs text-amber-400/90 font-medium mt-1 line-clamp-1">
+            <p class="font-gujarati text-xs text-amber-400/90 font-medium mb-3 line-clamp-1">
               ${job.title_gu}
             </p>
           ` : ''}
 
-          <!-- Organization & Department -->
-          <p class="text-xs text-cyan-400 font-medium mt-2 flex items-center gap-1.5 truncate">
-            <i data-lucide="building" class="w-3.5 h-3.5 shrink-0"></i>
-            <span class="truncate">${job.organization}</span>
-          </p>
-
-          <!-- Key highlights badge matrix -->
-          <div class="grid grid-cols-2 gap-2 mt-4 p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs">
+          <!-- Clean 3-Item Metrics Bar (Otta Standard) -->
+          <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-950/70 border border-white/[0.04] text-xs mb-4">
             <div>
-              <span class="text-slate-400 block text-[11px]">${isGujaratPage ? 'કુલ જગ્યાઓ' : 'Total Vacancies'}</span>
-              <span class="font-black text-emerald-400 text-sm tracking-wide">${job.vacancies.toLocaleString()} Posts</span>
+              <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Vacancies</span>
+              <span class="font-bold text-emerald-400 text-xs mt-0.5 block">${job.vacancies.toLocaleString()}</span>
             </div>
             <div>
-              <span class="text-slate-400 block text-[11px]">${isGujaratPage ? 'લાયકાત' : 'Qualification'}</span>
-              <span class="font-semibold text-slate-200 truncate block" title="${job.qualification}">${job.qualification.split('+')[0]}</span>
+              <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Pay Scale</span>
+              <span class="font-semibold text-slate-200 text-xs mt-0.5 block truncate" title="${job.salary_text}">${salaryDisplay}</span>
             </div>
             <div>
-              <span class="text-slate-400 block text-[11px]">${isGujaratPage ? 'વય મર્યાદા' : 'Age Limit'}</span>
-              <span class="font-semibold text-slate-200">${job.age_min} - ${job.age_max} Yrs</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[11px] flex items-center justify-between">
-                <span>${isGujaratPage ? 'પગાર ધોરણ' : 'Salary Scale'}</span>
-                <button onclick="openSalaryCalculator('${job.title.replace(/'/g, "\\'")}')" class="text-[10px] text-cyan-400 hover:underline">Calc ↗</button>
-              </span>
-              <span class="font-semibold text-slate-200 truncate block" title="${job.salary_text}">${job.salary_text ? job.salary_text.split('->')[0] : '7th Pay Scale'}</span>
+              <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Eligibility</span>
+              <span class="font-semibold text-slate-300 text-xs mt-0.5 block truncate" title="${job.qualification}">${qualDisplay}</span>
             </div>
           </div>
         </div>
 
-        <!-- Card Footer -->
-        <div class="mt-5 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2.5">
+        <!-- Card Footer: Urgency Pill + Tactile Actions -->
+        <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-2 mt-auto">
           <div class="shrink-0">
             ${urgencyBadgeHtml}
           </div>
 
-          <div class="flex items-center gap-1.5">
-            <!-- Syllabus Button -->
-            <button onclick="openSyllabusModal(${job.id})" class="p-1.5 rounded-lg bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-500/30 text-indigo-300 transition-colors flex items-center gap-1" title="View Exam Pattern & Syllabus">
-              <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-              <span class="hidden sm:inline text-xs font-semibold">${isGujaratPage ? 'પદ્ધતિ' : 'Pattern'}</span>
+          <div class="flex items-center gap-2">
+            <button onclick="openJobDetailModal(${job.id})" class="btn-premium-ghost text-xs" title="View Full Dossier">
+              <span>Dossier</span>
             </button>
-
-            <!-- WhatsApp Share -->
-            <button onclick="shareJobWhatsApp(${job.id}, '${job.title.replace(/'/g, "\\'")}', '${job.vacancies.toLocaleString()}', '${job.last_date}', '${job.apply_url}')" class="p-1.5 rounded-lg bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/30 text-emerald-400 transition-colors" title="Share on WhatsApp">
-              <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-            </button>
-
-            <!-- PDF Download -->
-            ${job.notification_pdf_url ? `
-              <a href="${job.notification_pdf_url}" target="_blank" rel="noopener noreferrer" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors" title="Download Official Notification PDF">
-                <i data-lucide="file-text" class="w-3.5 h-3.5 text-rose-400"></i>
-              </a>
-            ` : ''}
-
-            <!-- Dossier & How to Apply Button -->
-            <button onclick="openJobDetailModal(${job.id})" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-slate-800 hover:bg-cyan-950/70 text-cyan-300 hover:text-cyan-200 border border-slate-700 hover:border-cyan-500/50 transition-all flex items-center gap-1.5 shadow-sm">
-              <i data-lucide="file-text" class="w-3.5 h-3.5 text-cyan-400"></i>
-              <span>${isGujaratPage ? 'વિગત & અરજી રીત' : 'Dossier & How to Apply'}</span>
-            </button>
-
-            <!-- Direct Apply Online -->
-            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 text-xs font-bold rounded-lg ${isGujaratPage ? 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 shadow-orange-600/20' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-cyan-600/20'} text-white shadow-md transition-all flex items-center gap-1">
-              <span>${isGujaratPage ? 'અરજી' : 'Apply'}</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-premium-primary btn-shimmer text-xs">
+              <span>Apply</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
             </a>
           </div>
         </div>
@@ -454,11 +425,11 @@ function renderTableView(container, jobs) {
         </td>
         <td class="px-5 py-4 text-right sticky-action-col">
           <div class="flex items-center justify-end gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl border border-slate-700 transition-all shadow-sm flex items-center gap-1 text-xs font-bold cursor-pointer" title="View Full Dossier">
+            <button onclick="openJobDetailModal(${job.id})" class="btn-premium-ghost text-xs" title="View Full Dossier">
               <i data-lucide="info" class="w-3.5 h-3.5 text-cyan-400"></i>
               <span>Details</span>
             </button>
-            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 ${isGujaratPage ? 'bg-orange-600 hover:bg-orange-500 shadow-orange-600/20' : 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-600/20'} text-white rounded-xl text-xs font-bold inline-flex items-center gap-1 shadow-md transition-all transform hover:scale-105">
+            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-premium-primary text-xs">
               <span>${isGujaratPage ? 'અરજી' : 'Apply'}</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
             </a>

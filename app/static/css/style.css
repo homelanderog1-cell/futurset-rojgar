@@ -529,6 +529,201 @@ body {
   animation: subtlePulseGlow 3s ease-in-out infinite;
 }
 
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(4, 8, 20, 0.85);
+}
+
+/* Tooltip Pill */
+.ui-chip-active {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.4);
+}
+
+.ui-chip-active-gujarat {
+  background: linear-gradient(135deg, #f97316, #d97706);
+  color: #ffffff;
+  box-shadow: 0 4px 15px -3px rgba(249, 115, 22, 0.4);
+}
+
+/* Shimmer scanline effect */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer-sweep 2.5s infinite;
+}
+
+/* Print Friendly Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   Pariksha Samay Chakra / Exam Date Timeline Ticker (144Hz Smooth Marquee)
+   ------------------------------------------------------------- */
+@keyframes ticker-scroll-horizontal {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.timeline-ticker-viewport {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.timeline-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll-horizontal 42s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.timeline-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.timeline-pill-chip {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, background 0.18s ease;
+  transform: translateZ(0);
+}
+
+.timeline-pill-chip:hover {
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------
+   Professional Table Styling & Corner Clarity
+   ------------------------------------------------------------- */
+.portal-table-container {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 16, 32, 0.94);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+.portal-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.portal-table th {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.portal-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.82rem;
+  vertical-align: middle;
+}
+
+.portal-table tbody tr {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-table tbody tr:hover {
+  background: rgba(30, 41, 59, 0.55) !important;
+  transform: translateY(-1px);
+}
+
+/* Sticky Action Column on Corner Side */
+.sticky-action-col {
+  position: sticky;
+  right: 0;
+  background: rgba(10, 16, 32, 0.98);
+  box-shadow: -8px 0 16px -4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* -------------------------------------------------------------
+   Smooth Tab & Modal Transitions & Animations
+   ------------------------------------------------------------- */
+@keyframes tabFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-modal-tab-content:not(.hidden) {
+  animation: tabFadeSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.glass-modal, #job-detail-modal > div, #corp-detail-modal > div {
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Elegant Shimmer & Glow Pulses */
+@keyframes subtlePulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.45);
+  }
+}
+
+.pulse-glow-cyan {
+  animation: subtlePulseGlow 3s ease-in-out infinite;
+}
+
 /* Card Hover Elevation */
 .job-card-elevate {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
@@ -538,4 +733,190 @@ body {
   transform: translateY(-3px) scale(1.004);
   box-shadow: 0 16px 36px -8px rgba(0, 180, 216, 0.16), 0 0 24px -4px rgba(99, 102, 241, 0.12);
   border-color: rgba(56, 189, 248, 0.45);
+}
+
+/* =============================================================
+   TOP 30 MODERN WEB DESIGN SYSTEM (Linear / Raycast / Otta Tier)
+   ============================================================= */
+
+/* 1. Tactile UI Buttons */
+.btn-premium-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 100%), #0284c7;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 14px rgba(2, 132, 199, 0.35), 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.btn-premium-primary:hover {
+  transform: translateY(-1.5px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 100%), #0369a1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 8px 22px rgba(2, 132, 199, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-premium-primary:active {
+  transform: scale(0.98) translateY(0);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+.btn-premium-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-premium-ghost:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.btn-premium-ghost:active {
+  transform: scale(0.98);
+}
+
+/* Button Shimmer Sweep Effect */
+@keyframes buttonShimmerSweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  35%, 100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  animation: buttonShimmerSweep 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 2. Otta / Linear Luxury Job Card Architecture */
+.job-card-otta {
+  position: relative;
+  background: #0d111a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.25rem;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+.job-card-otta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.25rem;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.job-card-otta:hover {
+  background: #111724;
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.38);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 24px -4px rgba(14, 165, 233, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Staggered Card Entrance Animation */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-entrance {
+  animation: cardEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. Refined Monochromatic & Duo-Tone Badges */
+.badge-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+
+.badge-minimal-cyan {
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  color: #38bdf8;
+}
+
+.badge-minimal-amber {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+}
+
+.badge-minimal-emerald {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #34d399;
+}
+
+/* 4. Ambient Mesh & Gradient Masks */
+.headline-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 55%, #64748b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.headline-gradient-subtle {
+  background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
