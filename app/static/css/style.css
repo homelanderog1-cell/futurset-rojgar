@@ -920,3 +920,72 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* =============================================================
+   STRIPE DESIGN SYSTEM EXTENSIONS (stripe.com Standard)
+   ============================================================= */
+
+/* 1. Stripe Signature Gradient Mesh Background */
+.bg-stripe-canvas {
+  background-color: #080b14;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 91, 255, 0.16), transparent 70%),
+    radial-gradient(circle 600px at 85% 15%, rgba(0, 212, 255, 0.10), transparent 60%),
+    radial-gradient(circle 500px at 15% 45%, rgba(0, 72, 229, 0.07), transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* 2. Stripe-Grade Skeleton Loading Architecture */
+@keyframes skeletonPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton-shimmer {
+  animation: skeletonPulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 200% 100%;
+}
+
+.skeleton-card {
+  background: #0d111a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  padding: 1.35rem;
+}
+
+/* 3. Consolidated Multi-Step Eligibility Wizard */
+.wizard-step-dot {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wizard-step-dot.active {
+  background: #635bff;
+  border-color: #837dff;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(99, 91, 255, 0.45);
+}
+
+.wizard-step-dot.completed {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+

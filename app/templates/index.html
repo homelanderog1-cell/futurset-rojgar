@@ -295,249 +295,10 @@
     </div>
   </section>
 
-  <!-- Gazette Feed Telemetry Banner -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-    <div class="glass-panel rounded-2xl p-5 border border-cyan-500/30 bg-gradient-to-r from-cyan-950/40 via-slate-900/60 to-blue-950/40 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3.5">
-        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300">
-          <i data-lucide="radio" class="w-5 h-5"></i>
-        </div>
-        <div>
-          <h3 class="text-sm font-bold text-white flex items-center gap-2">
-            Central &amp; Gujarat State Gazette Ingestion Stream
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Live Sync</span>
-          </h3>
-          <p class="text-xs text-slate-400 mt-0.5">
-            Continuously tracking OJAS Gujarat, GPSC, GSSSB, Employment News, SSC, and UPSC notices with instant duplicate rejection.
-          </p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-3 shrink-0">
-        <button onclick="startLiveScan()" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 transition-all flex items-center gap-1.5">
-          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-          <span>Check Latest Gazettes</span>
-        </button>
-        <button onclick="openSubscribeModal()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5">
-          <i data-lucide="bell" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>Get Free Gazette Alerts</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pariksha Samay Chakra (Exam Date Timeline Ticker - 144Hz Butter-Smooth Marquee) -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-    <div class="glass-panel rounded-2xl p-3.5 border border-amber-500/30 bg-gradient-to-r from-amber-950/20 via-slate-900/80 to-cyan-950/20 flex flex-col md:flex-row items-center justify-between gap-3 shadow-lg">
-      <div class="flex items-center gap-2.5 shrink-0">
-        <div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300">
-          <i data-lucide="calendar-clock" class="w-4 h-4"></i>
-        </div>
-        <div>
-          <span class="text-xs font-black text-white flex items-center gap-1.5 uppercase tracking-wide">
-            <span>Pariksha Samay Chakra</span>
-            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse">2026 Live</span>
-          </span>
-          <p class="text-[11px] text-slate-400">કન્ફર્મ્ડ પરીક્ષા તારીખો અને કૉલ લેટર અપડેટ્સ</p>
-        </div>
-      </div>
-
-      <!-- Marquee Ticker Viewport -->
-      <div class="timeline-ticker-viewport flex-1 max-w-full overflow-hidden py-1">
-        <div class="timeline-ticker-track items-center gap-3">
-          <!-- Item 1: GPSC Class 1-2 -->
-          <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-            <span class="font-bold text-amber-300">GPSC વર્ગ ૧-૨:</span>
-            <span class="text-slate-300">Prelims 15 Nov 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">388 Posts</span>
-          </div>
-
-          <!-- Item 2: Gujarat Police Bharti -->
-          <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-orange-500/40 hover:border-orange-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-orange-400"></span>
-            <span class="font-bold text-orange-300">પોલીસ કોન્સ્ટેબલ / SI:</span>
-            <span class="text-slate-300">PET/PST Physical Test 12 Oct 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 font-mono">12,472 Posts</span>
-          </div>
-
-          <!-- Item 3: GSSSB CCE Group A/B -->
-          <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span class="font-bold text-cyan-300">GSSSB CCE Group A & B:</span>
-            <span class="text-slate-300">Mains Exam Schedule 28 Dec 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">5,554 Posts</span>
-          </div>
-
-          <!-- Item 4: Railway RRB ALP -->
-          <div onclick="openJobDetailModal(6)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-blue-500/40 hover:border-blue-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-            <span class="font-bold text-blue-300">Railway RRB ALP:</span>
-            <span class="text-slate-300">CBT-1 Multi-City Phase 1</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">18,799 Posts</span>
-          </div>
-
-          <!-- Item 5: SSC CGL -->
-          <div onclick="openJobDetailModal(5)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="font-bold text-emerald-300">SSC CGL 2026:</span>
-            <span class="text-slate-300">Tier-1 Computer Exam Active</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">17,727 Posts</span>
-          </div>
-
-          <!-- Item 6: High Court DySO -->
-          <div onclick="openJobDetailModal(7)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-purple-500/40 hover:border-purple-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-            <span class="font-bold text-purple-300">હાઇકોર્ટ આસિસ્ટન્ટ & DySO:</span>
-            <span class="text-slate-300">Elimination Test 24 Nov 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">1,446 Posts</span>
-          </div>
-
-          <!-- Duplicate Set for Seamless Infinite Loop -->
-          <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-            <span class="font-bold text-amber-300">GPSC વર્ગ ૧-૨:</span>
-            <span class="text-slate-300">Prelims 15 Nov 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">388 Posts</span>
-          </div>
-
-          <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-orange-500/40 hover:border-orange-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-orange-400"></span>
-            <span class="font-bold text-orange-300">પોલીસ કોન્સ્ટેબલ / SI:</span>
-            <span class="text-slate-300">PET/PST Physical Test 12 Oct 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 font-mono">12,472 Posts</span>
-          </div>
-
-          <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span class="font-bold text-cyan-300">GSSSB CCE Group A & B:</span>
-            <span class="text-slate-300">Mains Exam Schedule 28 Dec 2026</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">5,554 Posts</span>
-          </div>
-
-          <div onclick="openJobDetailModal(6)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-blue-500/40 hover:border-blue-400 flex items-center gap-2 text-xs">
-            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-            <span class="font-bold text-blue-300">Railway RRB ALP:</span>
-            <span class="text-slate-300">CBT-1 Multi-City Phase 1</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">18,799 Posts</span>
-          </div>
-        </div>
-      </div>
-
-      <button onclick="openTimelineModal()" class="px-3.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-amber-600 hover:text-white border border-slate-700 text-amber-300 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0">
-        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-        <span>તમામ તારીખો (View All)</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- 10-Second Instant Eligibility Radar (ઝડપી યોગ્યતા તપાસ) -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-    <div class="glass-panel rounded-2xl p-5 border border-indigo-500/40 bg-gradient-to-br from-indigo-950/40 via-slate-900/90 to-cyan-950/40 shadow-2xl relative overflow-hidden">
-      <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
-        <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 p-0.5 shadow-lg flex items-center justify-center text-white shrink-0">
-            <i data-lucide="crosshair" class="w-6 h-6 animate-pulse"></i>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h2 class="text-base sm:text-lg font-black text-white tracking-tight">10-Second Instant Eligibility Radar</h2>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">ઝડપી યોગ્યતા તપાસ</span>
-            </div>
-            <p class="text-xs text-slate-300 mt-0.5">
-              Select your age, education, and quota to immediately uncover every Gujarat State & Central opening you are qualified to apply for.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-2 shrink-0">
-          <button onclick="setMatcherPreset('btech_gujarat')" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-indigo-900/60 border border-slate-700 hover:border-indigo-500/50 text-indigo-300 text-xs font-semibold transition-all">
-            💻 B.Tech CSE Preset
-          </button>
-          <button onclick="setMatcherPreset('graduate_gujarat')" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-orange-900/60 border border-slate-700 hover:border-orange-500/50 text-orange-300 text-xs font-semibold transition-all">
-            🦁 Gujarat Graduate Preset
-          </button>
-        </div>
-      </div>
-
-      <!-- Radar Form Controls -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-4">
-        <!-- Education Select -->
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-cyan-400"></i>
-            <span>Qualification (લાયકાત)</span>
-          </label>
-          <select id="radar-qualification" class="w-full bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-cyan-400 transition-colors">
-            <option value="Graduate" selected>Any Graduate (BA, B.Com, B.Sc, BCA)</option>
-            <option value="12th Pass">12th Pass (Higher Secondary / HSC)</option>
-            <option value="10th Pass">10th Pass (SSC)</option>
-            <option value="B.Tech / B.E. / MCA">B.Tech / B.E. / MCA (Engineering & IT)</option>
-            <option value="Post Graduate">Post Graduate / Master's Degree</option>
-            <option value="Diploma / ITI">Diploma / ITI Technical Trade</option>
-            <option value="All">View All Openings</option>
-          </select>
-        </div>
-
-        <!-- Age Input -->
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="user" class="w-3.5 h-3.5 text-indigo-400"></i>
-            <span>Current Age (ઉંમર)</span>
-          </label>
-          <div class="relative">
-            <input type="number" id="radar-age" value="24" min="18" max="55" class="w-full bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white font-bold outline-none focus:border-cyan-400 transition-colors">
-            <span class="absolute right-3 top-2.5 text-xs text-slate-500 font-semibold">Years</span>
-          </div>
-        </div>
-
-        <!-- Reservation Category -->
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-400"></i>
-            <span>Category / Quota (કેટેગરી)</span>
-          </label>
-          <select id="radar-category" class="w-full bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-cyan-400 transition-colors">
-            <option value="General">General / Open (Standard Limits)</option>
-            <option value="OBC" selected>OBC / SEBC (+3 Years Relaxation)</option>
-            <option value="SC">SC / ST (+5 Years Relaxation)</option>
-            <option value="EWS">EWS (Economically Weaker Section)</option>
-            <option value="Female">Female (+5 Years Relaxation)</option>
-            <option value="PwD">PwD / Divyang (+10 Years Relaxation)</option>
-          </select>
-        </div>
-
-        <!-- Target Jurisdiction -->
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
-            <span>Target Region (પસંદગી)</span>
-          </label>
-          <div class="flex items-center gap-2">
-            <select id="radar-target" class="flex-1 bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-cyan-400 transition-colors">
-              <option value="All" selected>All (Gujarat + Central)</option>
-              <option value="Gujarat">🦁 Gujarat State Only (OJAS)</option>
-              <option value="Central">🇮🇳 Central Govt Only (SSC/RRB)</option>
-            </select>
-            <button id="radar-submit-btn" onclick="runQuickEligibilityRadar(); playAudioTick(780, 0.05);" class="px-4 py-2.5 bg-gradient-to-r from-cyan-500 via-indigo-600 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-black rounded-xl shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-1.5 shrink-0 cursor-pointer">
-              <i data-lucide="zap" class="w-4 h-4 text-cyan-200"></i>
-              <span>Scan My Eligibility</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Results Banner Container -->
-      <div id="radar-results-banner" class="mt-4 hidden"></div>
-    </div>
-  </section>
-
-  <!-- Filter Controls & Job Listing Section -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
-    <!-- Comprehensive Transparent Filter Station -->
-    <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 mb-8 space-y-4 shadow-2xl">
+  <!-- Filter Controls & Primary Job Listing Section (Immediate Above-the-Fold Access) -->
+  <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 flex-1 w-full relative z-20">
+    <!-- Transparent Tactical Filter Station -->
+    <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800/90 mb-8 space-y-4 shadow-2xl bg-[#0a0f1d]/90">
       <!-- Row 1: Level, Clear Button, Sort & View -->
       <div class="flex flex-wrap items-center justify-between gap-4">
         <!-- Level Filters -->
@@ -586,27 +347,27 @@
         </div>
       </div>
 
-      <!-- Row 2: Sector Filters -->
+      <!-- Row 2: Sector Filters (Clean Lucide Icons, No Emojis) -->
       <div class="flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-800/70">
         <span class="text-xs font-semibold text-cyan-400/90 mr-1 flex items-center gap-1 shrink-0">
           <i data-lucide="layers" class="w-3.5 h-3.5"></i>
           <span>Sector:</span>
         </span>
         <button onclick="filterBySector('All', this)" class="filter-pill filter-pill-sector pill-default-all active">All Sectors</button>
-        <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-sector">🏛️ Civil Services</button>
-        <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-sector">👮 Police &amp; Security</button>
-        <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-sector">📝 Clerical &amp; Secretariat</button>
-        <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-sector">⚙️ Engineering &amp; Tech</button>
-        <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-sector">🎓 Teaching &amp; Education</button>
-        <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-sector">🏥 Medical &amp; Healthcare</button>
-        <button onclick="filterBySector('railways', this)" class="filter-pill filter-pill-sector">🚂 Railways</button>
-        <button onclick="filterBySector('banking', this)" class="filter-pill filter-pill-sector">🏦 Banking &amp; Finance</button>
-        <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-sector">🚌 GSRTC &amp; Transport</button>
-        <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-sector">⚡ Electricity Boards</button>
-        <button onclick="filterBySector('defence', this)" class="filter-pill filter-pill-sector">🛡️ Defence Forces</button>
-        <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-sector">🌲 Forest &amp; Wildlife</button>
-        <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-sector">📮 Postal &amp; Post Office</button>
-        <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-sector">✈️ Airport &amp; Aviation</button>
+        <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="landmark" class="w-3.5 h-3.5 text-cyan-400"></i><span>Civil Services</span></button>
+        <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5 text-amber-400"></i><span>Police &amp; Security</span></button>
+        <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-400"></i><span>Clerical &amp; Secretariat</span></button>
+        <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-indigo-400"></i><span>Engineering &amp; Tech</span></button>
+        <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-emerald-400"></i><span>Teaching &amp; Education</span></button>
+        <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="activity" class="w-3.5 h-3.5 text-rose-400"></i><span>Medical &amp; Healthcare</span></button>
+        <button onclick="filterBySector('railways', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="train" class="w-3.5 h-3.5 text-orange-400"></i><span>Railways</span></button>
+        <button onclick="filterBySector('banking', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="building" class="w-3.5 h-3.5 text-teal-400"></i><span>Banking &amp; Finance</span></button>
+        <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="bus" class="w-3.5 h-3.5 text-amber-400"></i><span>GSRTC &amp; Transport</span></button>
+        <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-yellow-400"></i><span>Electricity Boards</span></button>
+        <button onclick="filterBySector('defence', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-400"></i><span>Defence Forces</span></button>
+        <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-400"></i><span>Forest &amp; Wildlife</span></button>
+        <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-red-400"></i><span>Postal &amp; Post Office</span></button>
+        <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="plane" class="w-3.5 h-3.5 text-sky-400"></i><span>Airport &amp; Aviation</span></button>
       </div>
 
       <!-- Selection Process / Mode Filters -->
@@ -616,18 +377,17 @@
           <span>Selection Mode:</span>
         </span>
         <button onclick="filterBySelectionMode('All', this)" class="filter-pill filter-pill-mode pill-default-all active">All Selection Modes</button>
-        <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-mode text-emerald-300 border-emerald-500/30 hover:border-emerald-400">⚡ Direct Merit (No Exam)</button>
-        <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-mode text-orange-300 border-orange-500/30 hover:border-orange-400">🤝 Walk-in / Interview</button>
-        <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-mode text-teal-300 border-teal-500/30 hover:border-teal-400">🛠️ Apprenticeship / Trade</button>
-        <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-mode text-blue-300 border-blue-500/30 hover:border-blue-400">📝 Written Exam (CBT)</button>
+        <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-mode text-emerald-300 border-emerald-500/30 hover:border-emerald-400 flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3 text-emerald-400"></i><span>Direct Merit (No Exam)</span></button>
+        <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-mode text-orange-300 border-orange-500/30 hover:border-orange-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3 text-orange-400"></i><span>Walk-in / Interview</span></button>
+        <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-mode text-teal-300 border-teal-500/30 hover:border-teal-400 flex items-center gap-1"><i data-lucide="wrench" class="w-3 h-3 text-teal-400"></i><span>Apprenticeship / Trade</span></button>
+        <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-mode text-blue-300 border-blue-500/30 hover:border-blue-400 flex items-center gap-1"><i data-lucide="edit-3" class="w-3 h-3 text-blue-400"></i><span>Written Exam (CBT)</span></button>
         <a href="/btech-cse" class="filter-pill text-cyan-300 border-cyan-500/40 bg-cyan-950/60 hover:bg-cyan-900/60 font-bold flex items-center gap-1">
-          <i data-lucide="laptop" class="w-3 h-3"></i> 💻 B.Tech CSE Hub →
+          <i data-lucide="laptop" class="w-3 h-3 text-cyan-400"></i> <span>B.Tech CSE Hub &rarr;</span>
         </a>
         <a href="/corporate" class="filter-pill text-purple-300 border-purple-500/40 bg-purple-950/60 hover:bg-purple-900/60 font-bold flex items-center gap-1">
-          <i data-lucide="building-2" class="w-3 h-3 text-yellow-300"></i> 🏢 All Companies (Adani, BHEL, Linde, Amazon) →
+          <i data-lucide="building-2" class="w-3 h-3 text-purple-400"></i> <span>Corporate Careers (Adani, BHEL, AWS) &rarr;</span>
         </a>
       </div>
-
 
       <!-- Row 3: Qualification Filters -->
       <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-800/70">
@@ -653,9 +413,9 @@
           <span>Deadline &amp; Fee:</span>
         </span>
         <button onclick="filterByUrgency('All', this)" class="filter-pill filter-pill-urgency pill-default-all active">All Deadlines</button>
-        <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-urgency text-rose-300 border-rose-500/30 hover:border-rose-400">⚡ Closing in 48 Hours</button>
-        <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-urgency text-amber-300 border-amber-500/30 hover:border-amber-400">⏰ Closing This Week</button>
-        <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-urgency text-emerald-300 border-emerald-500/30 hover:border-emerald-400">🟢 ₹0 / Fee Exempted</button>
+        <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-urgency text-rose-300 border-rose-500/30 hover:border-rose-400">Closing in 48 Hours</button>
+        <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-urgency text-amber-300 border-amber-500/30 hover:border-amber-400">Closing This Week</button>
+        <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-urgency text-emerald-300 border-emerald-500/30 hover:border-emerald-400">₹0 / Fee Exempted</button>
       </div>
 
       <!-- Row 5: Board Category Chips -->
@@ -679,15 +439,502 @@
       <h2 class="text-lg font-bold text-white flex items-center gap-2" id="filtered-results-count">
         Verified Government Opportunities
       </h2>
-      <span class="text-xs text-slate-400">All notifications verified against official gazettes</span>
+      <span class="text-xs text-slate-400">Updated hourly from official gazettes</span>
     </div>
 
-    <!-- Job Cards / Table Container (Filled dynamically by app.js) -->
+    <!-- Job Cards / Table Container (With Pre-rendered Skeleton Cards for Zero Layout Shift) -->
     <div id="jobs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Loading skeleton placeholder -->
-      <div class="col-span-full py-20 text-center">
-        <div class="inline-block w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-3 text-slate-400 font-medium">Connecting to FuturSet recruitment index...</p>
+      <!-- 6 Pre-rendered Skeleton Cards -->
+      <div class="skeleton-card p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
+            </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-24 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-14 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
+            </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-2/3 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-26 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-18 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
+            </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-4/5 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card p-5 flex flex-col justify-between hidden md:flex">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-24 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
+            </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card p-5 flex flex-col justify-between hidden lg:flex">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-14 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
+            </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-2/3 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card p-5 flex flex-col justify-between hidden lg:flex">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-22 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
+            </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Multi-Step Candidate Eligibility Wizard (Consolidated Feature) -->
+  <section id="eligibility-wizard-section" class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8">
+    <div class="glass-panel rounded-3xl p-5 sm:p-8 border border-cyan-500/30 bg-gradient-to-br from-[#0c1427] via-[#090e1a] to-[#0a1122] shadow-2xl relative overflow-hidden">
+      <!-- Ambient Backdrops -->
+      <div class="absolute -right-20 -top-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Wizard Header with Step Progress Indicators -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/[0.08] relative z-10">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-indigo-600 p-0.5 shadow-lg flex items-center justify-center text-white shrink-0">
+            <div class="w-full h-full bg-[#090e1a] rounded-[14px] flex items-center justify-center">
+              <i data-lucide="crosshair" class="w-6 h-6 text-cyan-400 animate-pulse"></i>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 class="text-lg sm:text-xl font-black text-white tracking-tight">Unified Eligibility &amp; Career Matching Engine</h2>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">Official Gazettes 2026</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Verify your qualifications and age relaxations across 170+ Gujarat State &amp; Central recruitment notifications.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wizard Step Indicators -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <div id="wizard-step-dot-1" class="wizard-step-dot active">1</div>
+            <span class="text-xs font-semibold text-slate-300 hidden sm:inline">Qualification</span>
+          </div>
+          <div class="w-6 h-px bg-white/10"></div>
+          <div class="flex items-center gap-2">
+            <div id="wizard-step-dot-2" class="wizard-step-dot">2</div>
+            <span class="text-xs font-semibold text-slate-400 hidden sm:inline">Demographics</span>
+          </div>
+          <div class="w-6 h-px bg-white/10"></div>
+          <div class="flex items-center gap-2">
+            <div id="wizard-step-dot-3" class="wizard-step-dot">3</div>
+            <span class="text-xs font-semibold text-slate-400 hidden sm:inline">Verified Openings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Preset Triggers -->
+      <div class="py-3 px-2 flex flex-wrap items-center gap-2 text-xs border-b border-white/[0.05] relative z-10">
+        <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] mr-1">One-Click Presets:</span>
+        <button onclick="setMatcherPreset('btech_gujarat'); goToWizardStep(2);" class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+          <i data-lucide="laptop" class="w-3.5 h-3.5"></i>
+          <span>B.Tech CSE Gujarat</span>
+        </button>
+        <button onclick="setMatcherPreset('graduate_gujarat'); goToWizardStep(2);" class="px-3 py-1 rounded-xl bg-orange-950/70 hover:bg-orange-900 border border-orange-500/40 text-orange-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+          <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
+          <span>Gujarat Graduate (GPSC/CCE)</span>
+        </button>
+        <button onclick="setMatcherPreset('12th_gujarat'); goToWizardStep(2);" class="px-3 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+          <span>12th Pass (Police &amp; Forest)</span>
+        </button>
+      </div>
+
+      <!-- Step 1 Panel: Education Selection -->
+      <div id="wizard-step-panel-1" class="py-6 space-y-4 relative z-10">
+        <div class="max-w-2xl">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2 flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-400"></i>
+            <span>Select Your Highest Educational Qualification</span>
+          </label>
+          <select id="radar-qualification" class="w-full bg-[#050914] border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white font-medium outline-none focus:border-cyan-400 transition-colors shadow-inner">
+            <option value="Graduate" selected>Any Graduate Degree (BA, B.Com, B.Sc, BCA, BBA)</option>
+            <option value="12th Pass">12th Pass (HSC / Higher Secondary)</option>
+            <option value="10th Pass">10th Pass (SSC / Matriculation)</option>
+            <option value="B.Tech / B.E. / MCA">B.Tech / B.E. / MCA (Computer Science, IT, Engineering)</option>
+            <option value="Post Graduate">Post Graduate / Master's Degree (M.Sc, M.Com, M.Tech)</option>
+            <option value="Diploma / ITI">Diploma / ITI Technical Certification</option>
+            <option value="Medical">MBBS / BAMS / Nursing / Healthcare</option>
+            <option value="All">View All Openings (No Filter)</option>
+          </select>
+        </div>
+
+        <div class="pt-4 flex justify-end">
+          <button onclick="goToWizardStep(2); playAudioTick(750, 0.05);" class="btn-premium-primary text-xs py-2.5 px-6">
+            <span>Next: Demographics &amp; Quota</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2 Panel: Demographics & Quota -->
+      <div id="wizard-step-panel-2" class="py-6 space-y-5 hidden relative z-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- Age Input -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="user" class="w-3.5 h-3.5 text-indigo-400"></i>
+              <span>Your Age (Years)</span>
+            </label>
+            <input type="number" id="radar-age" value="24" min="18" max="55" class="w-full bg-[#050914] border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white font-bold outline-none focus:border-cyan-400 transition-colors">
+          </div>
+
+          <!-- Reservation Quota -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Category / Quota</span>
+            </label>
+            <select id="radar-category" class="w-full bg-[#050914] border border-slate-700/80 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-cyan-400 transition-colors">
+              <option value="General">General / Open (Standard Limits)</option>
+              <option value="OBC" selected>OBC / SEBC (+3 Years Relaxation)</option>
+              <option value="SC">SC / ST (+5 Years Relaxation)</option>
+              <option value="EWS">EWS (+5 Years in Gujarat)</option>
+              <option value="Female">Female Candidates (+5 Years)</option>
+              <option value="PwD">PwD / Divyang (+10 Years)</option>
+            </select>
+          </div>
+
+          <!-- Domicile / Region Target -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>Jurisdiction Target</span>
+            </label>
+            <select id="radar-target" class="w-full bg-[#050914] border border-slate-700/80 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-cyan-400 transition-colors">
+              <option value="All" selected>All (Gujarat State + Central Govt)</option>
+              <option value="Gujarat">Gujarat State Only (OJAS / GPSC)</option>
+              <option value="Central">Central Govt Only (SSC / RRB / UPSC)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center justify-between border-t border-white/[0.05]">
+          <button onclick="goToWizardStep(1); playAudioTick(650, 0.04);" class="btn-premium-ghost text-xs py-2 px-4">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Back</span>
+          </button>
+          <button id="radar-submit-btn" onclick="runQuickEligibilityRadar(); goToWizardStep(3); playAudioTick(800, 0.05);" class="btn-premium-primary text-xs py-2.5 px-6">
+            <i data-lucide="zap" class="w-4 h-4 text-cyan-200"></i>
+            <span>Calculate Verified Matches</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3 Panel: Verified Results Banner & Recommendations -->
+      <div id="wizard-step-panel-3" class="py-6 space-y-4 hidden relative z-10">
+        <div id="radar-results-banner">
+          <!-- Injected dynamically by runQuickEligibilityRadar() -->
+          <div class="py-12 text-center text-slate-400 text-xs">
+            <div class="inline-block w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-3">Evaluating gazette requirements, age criteria, and quota rules...</p>
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center justify-between border-t border-white/[0.05]">
+          <button onclick="goToWizardStep(2); playAudioTick(650, 0.04);" class="btn-premium-ghost text-xs py-2 px-4">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Adjust Demographics</span>
+          </button>
+          <button onclick="document.getElementById('jobs-container').scrollIntoView({ behavior: 'smooth' });" class="btn-premium-ghost text-xs py-2 px-4 text-cyan-300">
+            <span>Scroll to Job Feed &uarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recruitment Ecosystem & Candidate Tools -->
+  <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 space-y-6">
+    <!-- Pariksha Samay Chakra (Exam Date Timeline Ticker - Smooth Continuous Track) -->
+    <div class="glass-panel rounded-2xl p-3.5 border border-amber-500/30 bg-gradient-to-r from-amber-950/20 via-slate-900/80 to-cyan-950/20 flex flex-col md:flex-row items-center justify-between gap-3 shadow-lg">
+      <div class="flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300">
+          <i data-lucide="calendar-clock" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <span class="text-xs font-black text-white flex items-center gap-1.5 uppercase tracking-wide">
+            <span>Pariksha Samay Chakra</span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">2026 Active</span>
+          </span>
+          <p class="text-[11px] text-slate-400">Confirmed Exam Dates &amp; Call Letter Schedules</p>
+        </div>
+      </div>
+
+      <!-- Marquee Ticker Viewport -->
+      <div class="timeline-ticker-viewport flex-1 max-w-full overflow-hidden py-1">
+        <div class="timeline-ticker-track items-center gap-3">
+          <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 text-xs">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="font-bold text-amber-300">GPSC Class 1-2:</span>
+            <span class="text-slate-300">Prelims 15 Nov 2026</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">388 Posts</span>
+          </div>
+
+          <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-orange-500/40 hover:border-orange-400 flex items-center gap-2 text-xs">
+            <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+            <span class="font-bold text-orange-300">Police Constable / SI:</span>
+            <span class="text-slate-300">PET/PST Physical 12 Oct 2026</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 font-mono">12,472 Posts</span>
+          </div>
+
+          <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 flex items-center gap-2 text-xs">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span class="font-bold text-cyan-300">GSSSB CCE Group A &amp; B:</span>
+            <span class="text-slate-300">Mains 28 Dec 2026</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">5,554 Posts</span>
+          </div>
+
+          <div onclick="openJobDetailModal(6)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-blue-500/40 hover:border-blue-400 flex items-center gap-2 text-xs">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            <span class="font-bold text-blue-300">Railway RRB ALP:</span>
+            <span class="text-slate-300">CBT-1 Phase 1</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">18,799 Posts</span>
+          </div>
+
+          <div onclick="openJobDetailModal(5)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-2 text-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="font-bold text-emerald-300">SSC CGL 2026:</span>
+            <span class="text-slate-300">Tier-1 Exam Active</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">17,727 Posts</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openTimelineModal()" class="px-3.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-amber-600 hover:text-white border border-slate-700 text-amber-300 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0">
+        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+        <span>View Full Schedule</span>
+      </button>
+    </div>
+
+    <!-- Candidate Tools & Services Ecosystem Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Tool 1: 7th Pay Salary Calculator -->
+      <div onclick="openSalaryCalculator()" class="glass-panel p-5 rounded-2xl border border-emerald-500/20 hover:border-emerald-500/40 cursor-pointer transition-all hover:-translate-y-1 bg-[#09111c]/90 group">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 group-hover:scale-105 transition-transform">
+          <i data-lucide="calculator" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">7th Pay Salary Simulator</h3>
+        <p class="text-xs text-slate-400 mt-1">
+          Calculate Grade Pay, Basic, HRA (X/Y/Z tier), DA (50%), and exact monthly in-hand net salary.
+        </p>
+        <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 mt-3">
+          Launch Simulator &rarr;
+        </span>
+      </div>
+
+      <!-- Tool 2: OJAS Gujarat Application Guide -->
+      <div onclick="openOjasGuideModal()" class="glass-panel p-5 rounded-2xl border border-amber-500/20 hover:border-amber-500/40 cursor-pointer transition-all hover:-translate-y-1 bg-[#09111c]/90 group">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-105 transition-transform">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">OJAS Apply Guide</h3>
+        <p class="text-xs text-slate-400 mt-1">
+          Step-by-step One-Time Registration (OTR), 15KB photo/signature resizing, and confirmation guide.
+        </p>
+        <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-400 mt-3">
+          Read Guide &rarr;
+        </span>
+      </div>
+
+      <!-- Tool 3: Exam Syllabus & Pattern Explorer -->
+      <div onclick="openSyllabusModal(1)" class="glass-panel p-5 rounded-2xl border border-indigo-500/20 hover:border-indigo-500/40 cursor-pointer transition-all hover:-translate-y-1 bg-[#09111c]/90 group">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3 group-hover:scale-105 transition-transform">
+          <i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white group-hover:text-indigo-300 transition-colors">Syllabus &amp; Exam Pattern</h3>
+        <p class="text-xs text-slate-400 mt-1">
+          Detailed marks distribution, negative marking rules, prelims &amp; mains stage breakdowns.
+        </p>
+        <span class="inline-flex items-center gap-1 text-xs font-bold text-indigo-400 mt-3">
+          Explore Syllabus &rarr;
+        </span>
+      </div>
+
+      <!-- Tool 4: Fee Exemption & Challan Guide -->
+      <div onclick="openFeeGuideModal()" class="glass-panel p-5 rounded-2xl border border-teal-500/20 hover:border-teal-500/40 cursor-pointer transition-all hover:-translate-y-1 bg-[#09111c]/90 group">
+        <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-3 group-hover:scale-105 transition-transform">
+          <i data-lucide="credit-card" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white group-hover:text-teal-300 transition-colors">Fee &amp; Exemption Guide</h3>
+        <p class="text-xs text-slate-400 mt-1">
+          Complete rules on ₹0 fee exemptions for Women, SC, ST, SEBC, and EWS candidates.
+        </p>
+        <span class="inline-flex items-center gap-1 text-xs font-bold text-teal-400 mt-3">
+          View Exemptions &rarr;
+        </span>
+      </div>
+    </div>
+
+    <!-- Gazette Telemetry Banner -->
+    <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-cyan-500/30 bg-gradient-to-r from-cyan-950/40 via-slate-900/60 to-blue-950/40 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 shrink-0">
+          <i data-lucide="radio" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            Central &amp; Gujarat State Gazette Ingestion Stream
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Live Sync</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Continuously synchronizing OJAS Gujarat, GPSC, GSSSB, Employment News, SSC, and UPSC notices.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <button onclick="startLiveScan()" class="btn-premium-primary text-xs py-2 px-4 shadow-md">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Check Latest Gazettes</span>
+        </button>
+        <button onclick="openSubscribeModal()" class="btn-premium-ghost text-xs py-2 px-4">
+          <i data-lucide="bell" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Free Alerts</span>
+        </button>
       </div>
     </div>
   </section>
@@ -758,89 +1005,7 @@
     </div>
   </div>
 
-  <!-- AI Matcher Modal -->
-  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-    <div class="glass-panel w-full max-w-3xl rounded-2xl border border-indigo-500/40 p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h3 class="text-base font-bold text-white">FuturSet AI Career & Eligibility Matcher</h3>
-            <p class="text-xs text-slate-400">Input your credentials to calculate age relaxations and matched openings.</p>
-          </div>
-        </div>
-        <button onclick="closeMatcherModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
 
-      <!-- Matcher Inputs -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5 p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-        <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">Your Age</label>
-          <input type="number" id="matcher-age-input" value="23" min="17" max="60" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white font-bold outline-none focus:border-indigo-400">
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">Highest Qualification</label>
-          <select id="matcher-edu-select" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-indigo-400 font-medium">
-            <option value="Graduate">Graduate (Any Degree)</option>
-            <option value="12th Pass">12th Pass (HSC)</option>
-            <option value="10th Pass">10th Pass (SSC)</option>
-            <option value="Engineering">Engineering / B.E. / B.Tech</option>
-            <option value="Diploma">Diploma in Engineering</option>
-            <option value="ITI">ITI Certified</option>
-            <option value="Post Graduate">Post Graduate (Master's)</option>
-            <option value="MBBS">MBBS / Medical</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">Reservation Category</label>
-          <select id="matcher-cat-select" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-indigo-400 font-medium">
-            <option value="General">General / Open</option>
-            <option value="OBC/SEBC">SEBC / OBC (+3 yrs)</option>
-            <option value="EWS">EWS (+5 yrs in Gujarat)</option>
-            <option value="SC">SC (+5 yrs)</option>
-            <option value="ST">ST (+5 yrs)</option>
-            <option value="Female">Women Candidate (+5 yrs)</option>
-            <option value="PwD">Differently Abled PwD (+10 yrs)</option>
-            <option value="Ex-SM">Ex-Servicemen</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">State Domicile</label>
-          <select id="matcher-state-select" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-indigo-400 font-medium">
-            <option value="Gujarat">Gujarat State</option>
-            <option value="All India">All India / Other</option>
-          </select>
-        </div>
-
-        <div class="col-span-full flex items-center justify-between pt-2 border-t border-slate-800">
-          <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-            <input type="checkbox" id="matcher-central-check" checked class="rounded bg-slate-800 border-slate-700 text-indigo-500 focus:ring-0">
-            <span>Include Central Government Pan-India Recruitments</span>
-          </label>
-          <button onclick="calculateAIMatches()" class="px-5 py-2 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-bold rounded-lg shadow-lg transition-all flex items-center gap-1.5">
-            <i data-lucide="cpu" class="w-4 h-4"></i>
-            <span>Calculate Match Score</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Matcher Results Area -->
-      <div id="matcher-results-container" class="flex-1 overflow-y-auto pr-1">
-        <div class="py-10 text-center text-slate-400">
-          <i data-lucide="compass" class="w-12 h-12 mx-auto text-slate-600 mb-3"></i>
-          <p class="font-medium text-slate-300">Click "Calculate Match Score" to run AI ranking</p>
-          <p class="text-xs mt-1">Our engine evaluates government gazettes, age relaxations, quota rules, and educational equivalencies.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Job Dossier Detail Modal -->
   <div id="job-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-xl p-2 sm:p-4 md:p-6 transition-all duration-300">
@@ -1253,8 +1418,8 @@
           </div>
           <div>
             <h3 class="text-lg font-black text-white flex items-center gap-2">
-              AI Eligibility &amp; Career Navigator
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% Precision</span>
+              Eligibility &amp; Career Matching Engine
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Official Gazettes 2026</span>
             </h3>
             <p class="text-xs text-slate-400">Instantly check all Gujarat State &amp; Central Govt recruitments matching your exact profile.</p>
           </div>
@@ -1337,9 +1502,9 @@
       <div id="matcher-results-container" class="p-5 flex-1 overflow-y-auto bg-slate-950/40">
         <div class="text-center py-10 text-slate-400">
           <i data-lucide="compass" class="w-12 h-12 mx-auto text-cyan-400/40 mb-3 animate-pulse"></i>
-          <h4 class="text-sm font-bold text-white mb-1">Click "B.Tech / BE (CSE / IT) Gujarat" or "Run Profile Evaluation"</h4>
+          <h4 class="text-sm font-bold text-white mb-1">Click a preset or "Run Profile Evaluation"</h4>
           <p class="text-xs text-slate-400 max-w-md mx-auto">
-            Our algorithm will immediately test your age and qualifications against all 172 gazette notifications to show every single recruitment you are 100% eligible for.
+            Our engine evaluates your age and qualifications against all 170+ official gazette notifications to show every recruitment you are eligible for.
           </p>
         </div>
       </div>
@@ -1355,7 +1520,7 @@
           <span class="font-extrabold text-white text-base">FuturSet Rojgar</span>
         </div>
         <p class="text-xs text-slate-400 leading-relaxed">
-          The next-generation open recruitment intelligence aggregator for aspirants across Gujarat and India. All data sourced directly from official government gazettes with zero hallucination.
+          The next-generation open recruitment intelligence aggregator for aspirants across Gujarat and India. All data sourced directly from official government gazettes.
         </p>
       </div>
 

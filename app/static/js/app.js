@@ -177,14 +177,37 @@ async function fetchJobs() {
   const container = document.getElementById("jobs-container");
   if (!container) return;
 
-  const isGujarat = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
-
-  container.innerHTML = `
-    <div class="col-span-full py-16 text-center">
-      <div class="inline-block w-8 h-8 border-4 ${isGujarat ? 'border-orange-500' : 'border-cyan-500'} border-t-transparent rounded-full animate-spin"></div>
-      <p class="mt-3 text-slate-400 font-medium">${isGujarat ? 'સરકારી ભરતી ઇન્ડેક્સ સ્કેન થઈ રહ્યો છે...' : 'Scanning FuturSet job index...'}</p>
+  const skeletonCard = `
+    <div class="skeleton-card p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+            <div class="space-y-1.5">
+              <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
+              <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+            </div>
+          </div>
+          <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+        </div>
+        <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+        <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+        <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-2">
+        <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+        <div class="flex gap-2">
+          <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+          <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+        </div>
+      </div>
     </div>
   `;
+  container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
 
   const queryParams = new URLSearchParams();
   if (currentFilters.q) queryParams.set("q", currentFilters.q);
@@ -3126,8 +3149,29 @@ function resetAllFilters() {
 }
 
 // -------------------------------------------------------------
-// Quick 10-Second Eligibility Radar
+// Quick 10-Second Eligibility Radar & Multi-Step Wizard
 // -------------------------------------------------------------
+function goToWizardStep(step) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById(`wizard-step-dot-${i}`);
+    const panel = document.getElementById(`wizard-step-panel-${i}`);
+    if (dot) {
+      if (i < step) {
+        dot.className = "wizard-step-dot completed";
+      } else if (i === step) {
+        dot.className = "wizard-step-dot active";
+      } else {
+        dot.className = "wizard-step-dot";
+      }
+    }
+    if (panel) {
+      panel.classList.toggle("hidden", i !== step);
+    }
+  }
+  if (window.lucide) lucide.createIcons();
+}
+window.goToWizardStep = goToWizardStep;
+
 async function runQuickEligibilityRadar() {
   const qual = document.getElementById("radar-qualification") ? document.getElementById("radar-qualification").value : "All";
   const age = document.getElementById("radar-age") ? parseInt(document.getElementById("radar-age").value) || 24 : 24;
@@ -3164,6 +3208,8 @@ async function runQuickEligibilityRadar() {
     let totalVacancies = 0;
     eligibleMatches.forEach(m => { totalVacancies += (m.job.vacancies || 0); });
 
+    goToWizardStep(3);
+
     if (resultContainer) {
       resultContainer.classList.remove("hidden");
       resultContainer.innerHTML = `
@@ -3171,12 +3217,12 @@ async function runQuickEligibilityRadar() {
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div class="flex items-start gap-3.5">
               <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl shrink-0 shadow-lg">
-                🎉
+                <i data-lucide="check-circle-2" class="w-6 h-6"></i>
               </div>
               <div>
                 <div class="flex items-center gap-2 flex-wrap">
                   <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                    Match Success: 100% Verified
+                    Verified Match: Gazette Confirmed
                   </span>
                   <span class="text-xs text-slate-400">Profile: ${qual} • Age ${age} • ${cat}</span>
                 </div>
@@ -3184,16 +3230,16 @@ async function runQuickEligibilityRadar() {
                   You are eligible for <span class="text-emerald-400 font-extrabold">${eligibleMatches.length} Active Recruitment Drives</span> (<span class="text-cyan-400 font-extrabold">${totalVacancies.toLocaleString()} Total Posts</span>)!
                 </h3>
                 <p class="text-xs text-slate-300 mt-0.5">
-                  We evaluated age relaxation rules, branch requirements, and category benefits. The job cards below have been filtered to show your top eligible openings first.
+                  Evaluated against official gazettes, reservation age relaxations, and educational criteria.
                 </p>
               </div>
             </div>
 
             <div class="flex flex-wrap items-center gap-2 shrink-0 w-full md:w-auto justify-end">
-              <button onclick="resetQuickEligibilityRadar()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700 transition-colors">
+              <button onclick="resetQuickEligibilityRadar()" class="btn-premium-ghost text-xs py-2 px-3.5">
                 Show All Jobs
               </button>
-              <button onclick="shareJobWhatsApp(0, 'I am eligible for ${eligibleMatches.length} Government Jobs (${totalVacancies.toLocaleString()} Posts) on FuturSet Rojgar! Check your eligibility:', '${totalVacancies.toLocaleString()}', '2026', 'http://127.0.0.1:8000/')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-emerald-600/30 transition-all">
+              <button onclick="shareJobWhatsApp(0, 'I am eligible for ${eligibleMatches.length} Government Jobs (${totalVacancies.toLocaleString()} Posts) on FuturSet Rojgar! Check your eligibility:', '${totalVacancies.toLocaleString()}', '2026', 'https://futurset-rojgar.onrender.com/')" class="btn-premium-primary text-xs py-2 px-4 shadow-lg shadow-cyan-600/30">
                 <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
                 <span>Share My Result</span>
               </button>
@@ -3238,6 +3284,7 @@ function resetQuickEligibilityRadar() {
     resultContainer.classList.add("hidden");
     resultContainer.innerHTML = "";
   }
+  goToWizardStep(1);
   resetAllFilters();
 }
 
