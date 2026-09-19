@@ -212,9 +212,29 @@
             <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
             <span>1. Ingested (Raw)</span>
           </div>
-          <span id="pipeline-count-ingested" class="pipeline-badge-count">0</span>
+          <span id="pipeline-count-ingested" class="pipeline-badge-count">{{ pipeline_articles | selectattr('stage', 'equalto', 'ingested') | list | length }}</span>
         </div>
-        <div id="pipeline-col-ingested" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+        <div id="pipeline-col-ingested" class="space-y-3 flex-1 overflow-y-auto pr-1">
+          {% for art in pipeline_articles if art.stage == 'ingested' %}
+            <div class="pipeline-article-card stage-ingested group" onclick="viewArticleDetails({{ art.id }})">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">{{ art.category or 'General' }}</span>
+                <span class="text-[10px] font-mono text-slate-400">{{ (art.vacancies or 0) | format_vacancies }} Posts</span>
+              </div>
+              <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">{{ art.title }}</h4>
+              {% if art.title_gu %}
+                <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">{{ art.title_gu }}</p>
+              {% endif %}
+              <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">{{ art.summary or 'Official notification analysis in progress...' }}</p>
+              <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
+                <span class="font-mono text-slate-500">📅 {{ art.deadline or 'Active' }}</span>
+                <button onclick="advanceArticleStage({{ art.id }}, 'parsing')" class="px-2 py-1 rounded bg-slate-800 hover:bg-cyan-600 hover:text-white text-cyan-400 font-bold transition-all flex items-center gap-1">
+                  <span>Advance</span> <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
       <!-- Stage 2: AI Parsing -->
@@ -224,9 +244,29 @@
             <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
             <span>2. AI Parsing</span>
           </div>
-          <span id="pipeline-count-parsing" class="pipeline-badge-count">0</span>
+          <span id="pipeline-count-parsing" class="pipeline-badge-count">{{ pipeline_articles | selectattr('stage', 'equalto', 'parsing') | list | length }}</span>
         </div>
-        <div id="pipeline-col-parsing" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+        <div id="pipeline-col-parsing" class="space-y-3 flex-1 overflow-y-auto pr-1">
+          {% for art in pipeline_articles if art.stage == 'parsing' %}
+            <div class="pipeline-article-card stage-parsing group" onclick="viewArticleDetails({{ art.id }})">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">{{ art.category or 'General' }}</span>
+                <span class="text-[10px] font-mono text-slate-400">{{ (art.vacancies or 0) | format_vacancies }} Posts</span>
+              </div>
+              <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">{{ art.title }}</h4>
+              {% if art.title_gu %}
+                <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">{{ art.title_gu }}</p>
+              {% endif %}
+              <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">{{ art.summary or 'AI parsing gazette tables...' }}</p>
+              <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
+                <span class="font-mono text-slate-500">📅 {{ art.deadline or 'Active' }}</span>
+                <button onclick="advanceArticleStage({{ art.id }}, 'drafting')" class="px-2 py-1 rounded bg-slate-800 hover:bg-violet-600 hover:text-white text-violet-400 font-bold transition-all flex items-center gap-1">
+                  <span>Advance</span> <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
       <!-- Stage 3: Bilingual Drafting -->
@@ -236,9 +276,29 @@
             <span class="w-2.5 h-2.5 rounded-full bg-violet-400"></span>
             <span>3. Bilingual Draft</span>
           </div>
-          <span id="pipeline-count-drafting" class="pipeline-badge-count">0</span>
+          <span id="pipeline-count-drafting" class="pipeline-badge-count">{{ pipeline_articles | selectattr('stage', 'equalto', 'drafting') | list | length }}</span>
         </div>
-        <div id="pipeline-col-drafting" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+        <div id="pipeline-col-drafting" class="space-y-3 flex-1 overflow-y-auto pr-1">
+          {% for art in pipeline_articles if art.stage == 'drafting' %}
+            <div class="pipeline-article-card stage-drafting group" onclick="viewArticleDetails({{ art.id }})">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">{{ art.category or 'General' }}</span>
+                <span class="text-[10px] font-mono text-slate-400">{{ (art.vacancies or 0) | format_vacancies }} Posts</span>
+              </div>
+              <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">{{ art.title }}</h4>
+              {% if art.title_gu %}
+                <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">{{ art.title_gu }}</p>
+              {% endif %}
+              <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">{{ art.summary or 'Bilingual drafting...' }}</p>
+              <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
+                <span class="font-mono text-slate-500">📅 {{ art.deadline or 'Active' }}</span>
+                <button onclick="advanceArticleStage({{ art.id }}, 'review')" class="px-2 py-1 rounded bg-slate-800 hover:bg-amber-600 hover:text-white text-amber-400 font-bold transition-all flex items-center gap-1">
+                  <span>Advance</span> <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
       <!-- Stage 4: Editorial Review -->
@@ -248,9 +308,29 @@
             <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
             <span>4. Editorial Review</span>
           </div>
-          <span id="pipeline-count-review" class="pipeline-badge-count">0</span>
+          <span id="pipeline-count-review" class="pipeline-badge-count">{{ pipeline_articles | selectattr('stage', 'equalto', 'review') | list | length }}</span>
         </div>
-        <div id="pipeline-col-review" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+        <div id="pipeline-col-review" class="space-y-3 flex-1 overflow-y-auto pr-1">
+          {% for art in pipeline_articles if art.stage == 'review' %}
+            <div class="pipeline-article-card stage-review group" onclick="viewArticleDetails({{ art.id }})">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">{{ art.category or 'General' }}</span>
+                <span class="text-[10px] font-mono text-slate-400">{{ (art.vacancies or 0) | format_vacancies }} Posts</span>
+              </div>
+              <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">{{ art.title }}</h4>
+              {% if art.title_gu %}
+                <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">{{ art.title_gu }}</p>
+              {% endif %}
+              <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">{{ art.summary or 'Editorial review pending...' }}</p>
+              <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
+                <span class="font-mono text-slate-500">📅 {{ art.deadline or 'Active' }}</span>
+                <button onclick="advanceArticleStage({{ art.id }}, 'published')" class="px-2 py-1 rounded bg-slate-800 hover:bg-emerald-600 hover:text-white text-emerald-400 font-bold transition-all flex items-center gap-1">
+                  <span>Publish</span> <span>✓</span>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
       <!-- Stage 5: Published -->
@@ -260,9 +340,29 @@
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
             <span>5. Published &amp; Live</span>
           </div>
-          <span id="pipeline-count-published" class="pipeline-badge-count">0</span>
+          <span id="pipeline-count-published" class="pipeline-badge-count">{{ pipeline_articles | selectattr('stage', 'equalto', 'published') | list | length }}</span>
         </div>
-        <div id="pipeline-col-published" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+        <div id="pipeline-col-published" class="space-y-3 flex-1 overflow-y-auto pr-1">
+          {% for art in pipeline_articles if art.stage == 'published' %}
+            <div class="pipeline-article-card stage-published group" onclick="viewArticleDetails({{ art.id }})">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">{{ art.category or 'General' }}</span>
+                <span class="text-[10px] font-mono text-slate-400">{{ (art.vacancies or 0) | format_vacancies }} Posts</span>
+              </div>
+              <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">{{ art.title }}</h4>
+              {% if art.title_gu %}
+                <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">{{ art.title_gu }}</p>
+              {% endif %}
+              <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">{{ art.summary or 'Live notification active.' }}</p>
+              <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
+                <span class="font-mono text-slate-500">📅 {{ art.deadline or 'Active' }}</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold flex items-center gap-1">
+                  <span>Live</span> <span>✓</span>
+                </span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </section>
