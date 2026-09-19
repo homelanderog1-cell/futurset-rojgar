@@ -51,7 +51,7 @@ templates.env.filters["format_vacancies"] = lambda val: f"{val:,}" if isinstance
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     stats = get_stats()
-    featured_jobs = get_jobs({"limit": 8, "sort_by": "vacancies"})
+    initial_jobs = get_jobs({"limit": 50, "sort_by": "deadline"})
     gujarat_jobs = get_jobs({"state": "Gujarat", "limit": 6})
     return templates.TemplateResponse(
         request,
@@ -59,7 +59,8 @@ async def home(request: Request):
         {
             "title": PORTAL_TITLE,
             "stats": stats,
-            "featured_jobs": featured_jobs,
+            "initial_jobs": initial_jobs,
+            "featured_jobs": initial_jobs[:8],
             "gujarat_jobs": gujarat_jobs,
             "boards_gujarat": BOARDS_GUJARAT,
             "boards_central": BOARDS_CENTRAL,

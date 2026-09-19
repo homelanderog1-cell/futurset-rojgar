@@ -823,20 +823,22 @@ body {
 /* 2. Otta / Linear Luxury Job Card Architecture */
 .job-card-otta {
   position: relative;
-  background: #0d111a;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #0d121f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1.25rem;
   padding: 1.35rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: auto 300px;
   contain: layout style paint;
   transform: translateZ(0);
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--card-index, 0) * 45ms);
 }
 
 .job-card-otta::before {
@@ -845,25 +847,44 @@ body {
   inset: 0;
   border-radius: 1.25rem;
   padding: 1px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 60%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 60%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
 
-.job-card-otta:hover {
-  background: #111724;
-  transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.38);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 24px -4px rgba(14, 165, 233, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+/* Glassmorphic Specular Sweep Sheen on Hover */
+.job-card-otta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
 }
 
-/* Staggered Card Entrance Animation */
-@keyframes cardEntrance {
+.job-card-otta:hover::after {
+  left: 200%;
+  transition: left 0.75s ease-in-out;
+}
+
+.job-card-otta:hover {
+  background: #111827;
+  transform: translateY(-4px);
+  border-color: rgba(99, 91, 255, 0.45);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75), 0 0 24px -2px rgba(99, 91, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Staggered Fade-Up Entrance Animation (Prismic Standard) */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.99);
+    transform: translateY(18px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -872,7 +893,8 @@ body {
 }
 
 .animate-card-entrance {
-  animation: cardEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--card-index, 0) * 45ms);
 }
 
 /* 3. Refined Monochromatic & Duo-Tone Badges */
@@ -987,5 +1009,158 @@ body {
   background: rgba(16, 185, 129, 0.15);
   border-color: rgba(16, 185, 129, 0.4);
   color: #34d399;
+}
+
+/* =============================================================
+   STRIPE DESIGN SYSTEM & PRISMIC ANIMATION ENGINE
+   ============================================================= */
+
+/* 1. Animated Stripe Signature Gradient Canvas */
+.bg-stripe-canvas {
+  background-color: #080b14;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 91, 255, 0.20), transparent 70%),
+    radial-gradient(circle 700px at 85% 20%, rgba(0, 212, 255, 0.12), transparent 60%),
+    radial-gradient(circle 600px at 15% 55%, rgba(121, 40, 202, 0.12), transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* 2. Stripe Pill Badge with Ambient Beacon */
+.stripe-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(99, 91, 255, 0.08);
+  border: 1px solid rgba(99, 91, 255, 0.25);
+  color: #c7d2fe;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stripe-badge-pill:hover {
+  background: rgba(99, 91, 255, 0.16);
+  border-color: rgba(99, 91, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+/* 3. Radiant Animated Gradient Headline (Stripe Style) */
+.stripe-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 35%, #00d4ff 70%, #635bff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShine 8s linear infinite;
+}
+
+@keyframes textShine {
+  to { background-position: 200% center; }
+}
+
+/* 4. Stripe-Grade Pill Action Buttons */
+.btn-stripe-primary {
+  background: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px -2px rgba(99, 91, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.btn-stripe-primary:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px -2px rgba(99, 91, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.btn-stripe-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-stripe-ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-stripe-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-stripe-ghost:active {
+  transform: scale(0.97);
+}
+
+/* 5. Live Indicator Pulse Beacon */
+@keyframes beaconPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.beacon-pulse {
+  border-radius: 9999px;
+  animation: beaconPulse 2s infinite;
+}
+
+/* 6. Staggered Table Rows with Hover Slide & Left Accent */
+.portal-table tbody tr {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  animation: fadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--row-index, 0) * 35ms);
+}
+
+.portal-table tbody tr:hover {
+  background: rgba(99, 91, 255, 0.08) !important;
+  transform: translateX(4px);
+}
+
+/* 7. View Switcher Pill Slider */
+.view-switcher-pill {
+  position: relative;
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 0.25rem;
+}
+
+.view-switcher-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #94a3b8;
+}
+
+.view-switcher-btn.active {
+  background: #635bff;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(99, 91, 255, 0.4);
 }
 

@@ -173,41 +173,61 @@ async function fetchBookmarks() {
   }
 }
 
-async function fetchJobs() {
+async function fetchJobs(retryCount = 0) {
   const container = document.getElementById("jobs-container");
   if (!container) return;
 
-  const skeletonCard = `
-    <div class="skeleton-card p-5 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
-            <div class="space-y-1.5">
-              <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
-              <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+  // 1. If we have initial jobs from SSR on first load and no filters are active, hydrate instantly!
+  const hasFilters = Object.values(currentFilters).some(v => v !== null && v !== "" && v !== undefined);
+  if (!hasFilters && window.__INITIAL_JOBS__ && window.__INITIAL_JOBS__.length > 0 && retryCount === 0 && !container.dataset.hydrated) {
+    container.dataset.hydrated = "true";
+    if (currentView === "cards") {
+      renderCardsView(container, window.__INITIAL_JOBS__);
+    } else {
+      renderTableView(container, window.__INITIAL_JOBS__);
+    }
+    const countHeader = document.getElementById("filtered-results-count");
+    if (countHeader) {
+      countHeader.innerText = isGujarat ? `ગુજરાત રાજ્યની સક્રિય ભરતીઓ (${window.__INITIAL_JOBS__.length} ઉપલબ્ધ)` : `${window.__INITIAL_JOBS__.length} Verified Recruitments Found`;
+    }
+    initLucide();
+    return;
+  }
+
+  // 2. Otherwise, if container doesn't already have cards, show skeleton loader
+  if (!container.querySelector(".job-card-otta") && !container.querySelector(".portal-table")) {
+    const skeletonCard = `
+      <div class="skeleton-card p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+              <div class="space-y-1.5">
+                <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
+                <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+              </div>
             </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
           </div>
-          <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+          <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          </div>
         </div>
-        <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
-        <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
-        <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          </div>
         </div>
       </div>
-      <div class="flex items-center justify-between pt-2">
-        <div class="w-20 h-3 rounded skeleton-shimmer"></div>
-        <div class="flex gap-2">
-          <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
-          <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
-        </div>
-      </div>
-    </div>
-  `;
-  container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
+    `;
+    container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
+  }
 
   const queryParams = new URLSearchParams();
   if (currentFilters.q) queryParams.set("q", currentFilters.q);
@@ -222,7 +242,12 @@ async function fetchJobs() {
   if (currentFilters.sort_by) queryParams.set("sort_by", currentFilters.sort_by);
 
   try {
-    const res = await fetch(`/api/jobs?${queryParams.toString()}`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout
+    const res = await fetch(`/api/jobs?${queryParams.toString()}`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
     const countHeader = document.getElementById("filtered-results-count");
@@ -234,7 +259,7 @@ async function fetchJobs() {
       }
     }
 
-    if (data.results.length === 0) {
+    if (!data.results || data.results.length === 0) {
       container.innerHTML = `
         <div class="col-span-full py-16 text-center glass-panel rounded-2xl p-8 border border-slate-800">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400">
@@ -259,8 +284,43 @@ async function fetchJobs() {
 
     initLucide();
   } catch (err) {
-    console.error("Error fetching jobs:", err);
-    container.innerHTML = `<div class="col-span-full text-center text-rose-400 py-10">Failed to load jobs. Please try again.</div>`;
+    console.warn("fetchJobs attempt failed:", err, "retryCount:", retryCount);
+    // Auto-retry up to 3 times (handles server cold-start on Render)
+    if (retryCount < 3) {
+      const waitMs = (retryCount + 1) * 1500;
+      const countHeader = document.getElementById("filtered-results-count");
+      if (countHeader) countHeader.innerText = `Connecting to database... (Attempt ${retryCount + 1}/3)`;
+      setTimeout(() => fetchJobs(retryCount + 1), waitMs);
+      return;
+    }
+
+    // Fallback: If initial jobs exist, render them!
+    if (window.__INITIAL_JOBS__ && window.__INITIAL_JOBS__.length > 0) {
+      console.log("Rendering fallback initial jobs");
+      if (currentView === "cards") {
+        renderCardsView(container, window.__INITIAL_JOBS__);
+      } else {
+        renderTableView(container, window.__INITIAL_JOBS__);
+      }
+      initLucide();
+      return;
+    }
+
+    // Otherwise show friendly interactive retry UI
+    container.innerHTML = `
+      <div class="col-span-full py-12 px-6 text-center glass-panel rounded-2xl border border-rose-500/20 max-w-xl mx-auto">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
+          <i data-lucide="wifi-off" class="w-6 h-6"></i>
+        </div>
+        <h4 class="text-base font-bold text-slate-100">Temporary Connection Delay</h4>
+        <p class="text-xs text-slate-400 mt-1 mb-4">The recruitment cloud server is currently waking up from standby. Please click below to refresh.</p>
+        <button onclick="fetchJobs(0)" class="btn-stripe-primary text-xs px-4 py-2">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Retry Loading Jobs</span>
+        </button>
+      </div>
+    `;
+    initLucide();
   }
 }
 
@@ -268,17 +328,17 @@ function renderCardsView(container, jobs) {
   const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
   let html = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
 
-  jobs.forEach(job => {
+  jobs.forEach((job, index) => {
     const isBookmarked = bookmarkedJobIds.has(job.id);
     const isGujaratJob = job.state === "Gujarat";
     const initialLetter = (job.organization || "G").charAt(0).toUpperCase();
 
     let urgencyBadgeHtml = "";
-    if (job.urgency_badge === "closed" || job.days_left < 0) {
+    if (job.urgency_badge === "closed" || (job.days_left !== null && job.days_left < 0)) {
       urgencyBadgeHtml = `<span class="badge-minimal text-rose-400 border-rose-500/30"><i data-lucide="x-circle" class="w-3 h-3"></i> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
     } else if (job.days_left === 0) {
       urgencyBadgeHtml = `<span class="badge-minimal text-amber-300 border-amber-500/40 animate-pulse"><i data-lucide="alert-triangle" class="w-3 h-3"></i> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
-    } else if (job.urgency_badge === "urgent" || job.days_left <= 3) {
+    } else if (job.urgency_badge === "urgent" || (job.days_left !== null && job.days_left <= 3)) {
       urgencyBadgeHtml = `<span class="badge-minimal text-rose-400 border-rose-500/30"><i data-lucide="clock" class="w-3 h-3"></i> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
     } else {
       urgencyBadgeHtml = `<span class="badge-minimal text-slate-400"><i data-lucide="calendar" class="w-3 h-3 text-slate-500"></i> ${job.last_date || 'Closing Soon'}</span>`;
@@ -287,9 +347,10 @@ function renderCardsView(container, jobs) {
     const isCompareSelected = selectedCompareIds.includes(job.id);
     const qualDisplay = (job.qualification || 'Degree / Diploma').split('+')[0].trim();
     const salaryDisplay = job.salary_text ? job.salary_text.split('->')[0].trim() : (job.ctc_lpa ? `₹${job.ctc_lpa} LPA` : '7th Pay Matrix');
+    const vacanciesFormatted = (job.vacancies || 0).toLocaleString();
 
     html += `
-      <div class="job-card-otta group animate-card-entrance">
+      <div class="job-card-otta group animate-card-entrance" style="--card-index: ${index};">
         <div>
           <!-- Header: Org Avatar + Badges + Actions -->
           <div class="flex items-start justify-between gap-3 mb-3.5">
@@ -298,7 +359,7 @@ function renderCardsView(container, jobs) {
                 ${initialLetter}
               </div>
               <div class="min-w-0">
-                <span class="text-xs font-bold text-slate-300 block truncate group-hover:text-cyan-300 transition-colors">${job.organization}</span>
+                <span class="text-xs font-bold text-slate-300 block truncate group-hover:text-cyan-300 transition-colors">${job.organization || 'Govt Department'}</span>
                 <span class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
                   <i data-lucide="map-pin" class="w-3 h-3 text-slate-500 shrink-0"></i>
                   <span class="truncate">${job.district || job.state || 'All India'}</span>
@@ -330,7 +391,7 @@ function renderCardsView(container, jobs) {
 
           <!-- Title -->
           <h3 class="text-[0.95rem] font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
-            ${job.title}
+            ${job.title || 'Recruitment Drive'}
           </h3>
 
           ${job.title_gu ? `
@@ -343,15 +404,15 @@ function renderCardsView(container, jobs) {
           <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-950/70 border border-white/[0.04] text-xs mb-4">
             <div>
               <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Vacancies</span>
-              <span class="font-bold text-emerald-400 text-xs mt-0.5 block">${job.vacancies.toLocaleString()}</span>
+              <span class="font-bold text-emerald-400 text-xs mt-0.5 block">${vacanciesFormatted}</span>
             </div>
             <div>
               <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Pay Scale</span>
-              <span class="font-semibold text-slate-200 text-xs mt-0.5 block truncate" title="${job.salary_text}">${salaryDisplay}</span>
+              <span class="font-semibold text-slate-200 text-xs mt-0.5 block truncate" title="${job.salary_text || ''}">${salaryDisplay}</span>
             </div>
             <div>
               <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Eligibility</span>
-              <span class="font-semibold text-slate-300 text-xs mt-0.5 block truncate" title="${job.qualification}">${qualDisplay}</span>
+              <span class="font-semibold text-slate-300 text-xs mt-0.5 block truncate" title="${job.qualification || ''}">${qualDisplay}</span>
             </div>
           </div>
         </div>
@@ -363,12 +424,12 @@ function renderCardsView(container, jobs) {
           </div>
 
           <div class="flex items-center gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="btn-premium-ghost text-xs" title="View Full Dossier">
+            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-ghost text-xs" title="View Full Dossier">
               <span>Dossier</span>
             </button>
-            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-premium-primary btn-shimmer text-xs">
+            <a href="${job.apply_url || '#'}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs">
               <span>Apply</span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
             </a>
           </div>
         </div>
@@ -399,19 +460,19 @@ function renderTableView(container, jobs) {
         <tbody class="divide-y divide-slate-800/60">
   `;
 
-  jobs.forEach(job => {
+  jobs.forEach((job, index) => {
     const minAge = parseInt(job.age_min) || 18;
     const maxAge = parseInt(job.age_max) || 35;
     const daysLeft = job.days_left !== undefined && job.days_left !== null ? job.days_left : 15;
     const boardCat = job.board_category || (job.state === 'Gujarat' ? 'OJAS Gujarat' : 'National');
 
     html += `
-      <tr class="hover:bg-slate-800/40 transition-colors group">
+      <tr class="hover:bg-slate-800/40 transition-colors group" style="--row-index: ${index};">
         <td class="px-5 py-4">
-          <div class="font-bold text-white text-sm leading-snug group-hover:text-cyan-300 transition-colors">${job.title}</div>
+          <div class="font-bold text-white text-sm leading-snug group-hover:text-cyan-300 transition-colors cursor-pointer" onclick="openJobDetailModal(${job.id})">${job.title || 'Recruitment Drive'}</div>
           <div class="text-xs text-cyan-400 font-semibold mt-0.5 flex items-center gap-1.5">
             <i data-lucide="building" class="w-3.5 h-3.5 shrink-0"></i>
-            <span>${job.organization}</span>
+            <span>${job.organization || 'Govt Department'}</span>
           </div>
           ${job.title_gu ? `<div class="text-xs text-slate-400 font-gujarati mt-1">${job.title_gu}</div>` : ''}
         </td>
@@ -448,13 +509,13 @@ function renderTableView(container, jobs) {
         </td>
         <td class="px-5 py-4 text-right sticky-action-col">
           <div class="flex items-center justify-end gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="btn-premium-ghost text-xs" title="View Full Dossier">
+            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-ghost text-xs" title="View Full Dossier">
               <i data-lucide="info" class="w-3.5 h-3.5 text-cyan-400"></i>
               <span>Details</span>
             </button>
-            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-premium-primary text-xs">
+            <a href="${job.apply_url || '#'}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs">
               <span>${isGujaratPage ? 'અરજી' : 'Apply'}</span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
             </a>
           </div>
         </td>
@@ -464,7 +525,7 @@ function renderTableView(container, jobs) {
 
   html += `</tbody></table></div>`;
   container.innerHTML = html;
-  if (window.lucide) lucide.createIcons();
+  initLucide();
 }
 
 function generateStepByStepGuide(job, isGujaratPage) {
