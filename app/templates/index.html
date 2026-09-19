@@ -218,9 +218,9 @@
 
         <!-- Essential Candidate Tools Quick Launchers -->
         <div class="mt-6 flex flex-wrap items-center justify-center gap-2 pt-4 border-t border-slate-800/60">
-          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-900/90 to-cyan-950/90 hover:from-indigo-800 hover:to-cyan-900 border border-indigo-500/50 text-cyan-200 text-xs font-bold transition-all flex items-center gap-1.5 shadow-lg shadow-indigo-950/50 ring-1 ring-cyan-500/30">
-            <i data-lucide="target" class="w-3.5 h-3.5 text-cyan-400 animate-pulse"></i>
-            <span>🎯 Check My Eligibility (હું કઈ ભરતી માટે લાયક છું?)</span>
+          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-900/90 to-cyan-950/90 hover:from-indigo-800 hover:to-cyan-900 border border-indigo-500/50 text-cyan-200 text-xs font-bold transition-all flex items-center gap-1.5 shadow-lg shadow-indigo-950/50 ring-1 ring-cyan-500/30">
+            <i data-lucide="target" class="w-3.5 h-3.5 text-cyan-400 animate-pulse shrink-0"></i>
+            <span>🎯 Check My Eligibility <span class="hidden sm:inline">(હું કઈ ભરતી માટે લાયક છું?)</span></span>
           </button>
 
           <button onclick="openSalaryCalculator()" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-emerald-950/40 border border-slate-800 hover:border-emerald-500/40 text-emerald-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
@@ -258,45 +258,45 @@
   </section>
 
   <!-- Live Statistics Strip -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="glass-panel rounded-2xl p-4 border border-slate-800 shadow-xl flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
-          <i data-lucide="briefcase" class="w-6 h-6"></i>
+  <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-6 relative z-20">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
+      <div class="glass-panel rounded-2xl p-2.5 sm:p-4 border border-slate-800 shadow-xl flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+          <i data-lucide="briefcase" class="w-4 h-4 sm:w-6 sm:h-6"></i>
         </div>
-        <div>
-          <div class="text-xl md:text-2xl font-extrabold text-white" id="stat-total-vacancies">{{ stats.total_vacancies }}</div>
-          <div class="text-xs text-slate-400 font-medium">Total Open Vacancies</div>
-        </div>
-      </div>
-
-      <div class="glass-panel rounded-2xl p-4 border border-slate-800 shadow-xl flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shrink-0">
-          <i data-lucide="map-pin" class="w-6 h-6"></i>
-        </div>
-        <div>
-          <div class="text-xl md:text-2xl font-extrabold text-orange-400" id="stat-gujarat-vacancies">{{ stats.gujarat_vacancies }}</div>
-          <div class="text-xs text-slate-400 font-medium">Gujarat State Posts</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-base sm:text-xl md:text-2xl font-extrabold text-white truncate" id="stat-total-vacancies">{{ stats.total_vacancies }}</div>
+          <div class="text-[10px] sm:text-xs text-slate-400 font-medium truncate">Total Vacancies</div>
         </div>
       </div>
 
-      <div class="glass-panel rounded-2xl p-4 border border-slate-800 shadow-xl flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
-          <i data-lucide="landmark" class="w-6 h-6"></i>
+      <div class="glass-panel rounded-2xl p-2.5 sm:p-4 border border-slate-800 shadow-xl flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shrink-0">
+          <i data-lucide="map-pin" class="w-4 h-4 sm:w-6 sm:h-6"></i>
         </div>
-        <div>
-          <div class="text-xl md:text-2xl font-extrabold text-blue-400" id="stat-central-vacancies">{{ stats.central_vacancies }}</div>
-          <div class="text-xs text-slate-400 font-medium">Central Govt Posts</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-base sm:text-xl md:text-2xl font-extrabold text-orange-400 truncate" id="stat-gujarat-vacancies">{{ stats.gujarat_vacancies }}</div>
+          <div class="text-[10px] sm:text-xs text-slate-400 font-medium truncate">Gujarat Posts</div>
         </div>
       </div>
 
-      <div class="glass-panel rounded-2xl p-4 border border-slate-800 shadow-xl flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 shrink-0">
-          <i data-lucide="clock" class="w-6 h-6"></i>
+      <div class="glass-panel rounded-2xl p-2.5 sm:p-4 border border-slate-800 shadow-xl flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+          <i data-lucide="landmark" class="w-4 h-4 sm:w-6 sm:h-6"></i>
         </div>
-        <div>
-          <div class="text-xl md:text-2xl font-extrabold text-rose-400" id="stat-closing-soon">{{ stats.closing_soon }}</div>
-          <div class="text-xs text-slate-400 font-medium">Closing in &le; 7 Days</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-base sm:text-xl md:text-2xl font-extrabold text-blue-400 truncate" id="stat-central-vacancies">{{ stats.central_vacancies }}</div>
+          <div class="text-[10px] sm:text-xs text-slate-400 font-medium truncate">Central Govt</div>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-2xl p-2.5 sm:p-4 border border-slate-800 shadow-xl flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 shrink-0">
+          <i data-lucide="clock" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-base sm:text-xl md:text-2xl font-extrabold text-rose-400 truncate" id="stat-closing-soon">{{ stats.closing_soon }}</div>
+          <div class="text-[10px] sm:text-xs text-slate-400 font-medium truncate">Closing &le; 7 Days</div>
         </div>
       </div>
     </div>
