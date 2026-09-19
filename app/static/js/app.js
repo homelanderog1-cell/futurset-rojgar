@@ -88,6 +88,21 @@ function initEventListeners() {
       btnViewCards.classList.add("text-slate-400");
       fetchJobs();
     });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("view") === "table") {
+      currentView = "table";
+      btnViewTable.classList.add(activeBg, activeText, activeBorder);
+      btnViewTable.classList.remove("text-slate-400");
+      btnViewCards.classList.remove(activeBg, activeText, activeBorder);
+      btnViewCards.classList.add("text-slate-400");
+    }
+    const targetJobId = urlParams.get("job");
+    if (targetJobId) {
+      setTimeout(() => {
+        openJobDetailModal(parseInt(targetJobId, 10));
+      }, 600);
+    }
   }
 }
 
