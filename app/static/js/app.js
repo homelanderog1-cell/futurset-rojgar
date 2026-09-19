@@ -3743,4 +3743,17 @@ window.addEventListener("scroll", () => {
   bar.style.transform = `scaleX(${progress})`;
 }, { passive: true });
 
+// Auto-initialize Article Pipeline if in pipeline view mode
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.__ACTIVE_VIEW__ === "pipeline" || document.querySelector(".article-pipeline-board")) {
+    if (typeof renderPipelineBoard === "function") {
+      renderPipelineBoard(window.__PIPELINE_ARTICLES__ || []);
+    }
+    if (typeof fetchPipelineArticles === "function") {
+      fetchPipelineArticles();
+    }
+  }
+});
+
+
 

@@ -52,14 +52,15 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["format_vacancies"] = lambda val: f"{val:,}" if isinstance(val, (int, float)) else str(val)
 
 @app.get("/", response_class=HTMLResponse)
-async def home(request: Request, theme: str = Query("01")):
+async def home(request: Request, theme: str = Query("01"), view: str = Query("dashboard")):
     stats = get_stats()
     initial_jobs = get_jobs({"limit": 50, "sort_by": "deadline"})
     gujarat_jobs = get_jobs({"state": "Gujarat", "limit": 6})
     pipeline_articles = get_pipeline_articles()
     
-    # Clean theme ID (01 to 28)
+    # Clean theme ID (01 to 50)
     active_theme = theme if any(p["id"] == theme for p in PREVIEWS_DATA) else "01"
+    active_view = view if view in ["dashboard", "pipeline"] else "dashboard"
     
     return templates.TemplateResponse(
         request,
@@ -73,6 +74,7 @@ async def home(request: Request, theme: str = Query("01")):
             "pipeline_articles": pipeline_articles,
             "previews": PREVIEWS_DATA,
             "active_theme": active_theme,
+            "active_view": active_view,
             "boards_gujarat": BOARDS_GUJARAT,
             "boards_central": BOARDS_CENTRAL,
             "version": APP_VERSION

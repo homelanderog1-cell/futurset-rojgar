@@ -1636,6 +1636,264 @@ body {
   outline-offset: 3px !important;
 }
 
+/* Theme 29: AI Operating System */
+[data-preview-theme="29"] {
+  --preview-bg-canvas: #070512;
+  --preview-card-bg: rgba(17, 13, 36, 0.9);
+  --preview-card-border: rgba(168, 85, 247, 0.25);
+  --preview-card-hover-border: rgba(168, 85, 247, 0.8);
+  --preview-accent: #a855f7;
+  --preview-accent-gradient: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+  --preview-card-radius: 1.25rem;
+  --preview-card-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+}
+
+/* Theme 30: Data Immersion */
+[data-preview-theme="30"] {
+  --preview-bg-canvas: #030712;
+  --preview-card-bg: rgba(8, 20, 44, 0.85);
+  --preview-card-border: rgba(14, 165, 233, 0.25);
+  --preview-card-hover-border: rgba(14, 165, 233, 0.75);
+  --preview-accent: #0ea5e9;
+  --preview-accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+  --preview-card-radius: 0.75rem;
+}
+
+/* Theme 31: Editorial Dark Luxury */
+[data-preview-theme="31"] {
+  --preview-font-heading: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --preview-bg-canvas: #09090b;
+  --preview-card-bg: #141417;
+  --preview-card-border: rgba(212, 175, 55, 0.3);
+  --preview-card-hover-border: rgba(212, 175, 55, 0.85);
+  --preview-accent: #d4af37;
+  --preview-accent-gradient: linear-gradient(135deg, #d4af37 0%, #fef08a 50%, #d4af37 100%);
+  --preview-card-radius: 0.375rem;
+  --preview-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Theme 32: Futuristic Glass Dashboard HUD */
+[data-preview-theme="32"] {
+  --preview-bg-canvas: #020b14;
+  --preview-card-bg: rgba(4, 25, 48, 0.85);
+  --preview-card-border: rgba(0, 229, 255, 0.35);
+  --preview-card-hover-border: rgba(0, 229, 255, 0.9);
+  --preview-accent: #00e5ff;
+  --preview-accent-gradient: linear-gradient(135deg, #00e5ff 0%, #3b82f6 100%);
+  --preview-card-radius: 0.75rem;
+  --preview-card-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+/* Theme 33: Calm Productivity */
+[data-preview-theme="33"] {
+  --preview-bg-canvas: #0d1117;
+  --preview-card-bg: #161c26;
+  --preview-card-border: rgba(148, 163, 184, 0.2);
+  --preview-card-hover-border: rgba(148, 163, 184, 0.6);
+  --preview-accent: #94a3b8;
+  --preview-accent-gradient: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%);
+  --preview-card-radius: 0.75rem;
+  --preview-card-transform: none;
+}
+
+/* Theme 34: Creative Technology */
+[data-preview-theme="34"] {
+  --preview-bg-canvas: #0d0412;
+  --preview-card-bg: rgba(28, 9, 38, 0.85);
+  --preview-card-border: rgba(255, 0, 85, 0.3);
+  --preview-card-hover-border: rgba(255, 0, 85, 0.85);
+  --preview-accent: #ff0055;
+  --preview-accent-gradient: linear-gradient(135deg, #ff0055 0%, #ff5e3a 100%);
+  --preview-card-radius: 1.5rem;
+}
+
+/* Theme 35: Monochrome System */
+[data-preview-theme="35"] {
+  --preview-bg-canvas: #080808;
+  --preview-card-bg: #121212;
+  --preview-card-border: #2a2a2a;
+  --preview-card-hover-border: #ffffff;
+  --preview-accent: #e5e7eb;
+  --preview-accent-gradient: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+  --preview-card-radius: 0.25rem;
+}
+
+/* Theme 36: Neon Data */
+[data-preview-theme="36"] {
+  --preview-bg-canvas: #070618;
+  --preview-card-bg: rgba(18, 14, 45, 0.9);
+  --preview-card-border: rgba(163, 230, 53, 0.35);
+  --preview-card-hover-border: rgba(163, 230, 53, 0.9);
+  --preview-accent: #a3e635;
+  --preview-accent-gradient: linear-gradient(135deg, #a3e635 0%, #22d3ee 100%);
+  --preview-card-radius: 1rem;
+  --preview-card-shadow: 0 0 20px rgba(163, 230, 53, 0.2);
+}
+
+/* Theme 37: Premium Enterprise */
+[data-preview-theme="37"] {
+  --preview-bg-canvas: #091122;
+  --preview-card-bg: #111d38;
+  --preview-card-border: rgba(37, 99, 235, 0.25);
+  --preview-card-hover-border: rgba(37, 99, 235, 0.75);
+  --preview-accent: #2563eb;
+  --preview-accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --preview-card-radius: 0.5rem;
+}
+
+/* Theme 38: Product Studio */
+[data-preview-theme="38"] {
+  --preview-bg-canvas: #0c0e14;
+  --preview-card-bg: #151924;
+  --preview-card-border: rgba(14, 165, 233, 0.25);
+  --preview-card-hover-border: rgba(14, 165, 233, 0.8);
+  --preview-accent: #0ea5e9;
+  --preview-accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  --preview-card-radius: 1.25rem;
+}
+
+/* Theme 39: Immersive WebGL */
+[data-preview-theme="39"] {
+  --preview-bg-canvas: #020510;
+  --preview-card-bg: rgba(8, 18, 42, 0.85);
+  --preview-card-border: rgba(0, 240, 255, 0.35);
+  --preview-card-hover-border: rgba(0, 240, 255, 0.9);
+  --preview-accent: #00f0ff;
+  --preview-accent-gradient: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
+  --preview-card-radius: 1.5rem;
+  --preview-card-transform: perspective(1000px) rotateX(1.5deg) translateY(-4px);
+}
+
+/* Theme 40: Future Master */
+[data-preview-theme="40"] {
+  --preview-bg-canvas: #070416;
+  --preview-card-bg: rgba(22, 13, 48, 0.85);
+  --preview-card-border: rgba(124, 58, 237, 0.35);
+  --preview-card-hover-border: rgba(124, 58, 237, 0.9);
+  --preview-accent: #7c3aed;
+  --preview-accent-gradient: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #06b6d4 100%);
+  --preview-card-radius: 1.5rem;
+  --preview-card-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+}
+
+/* Theme 41: Neomorphic Clay */
+[data-preview-theme="41"] {
+  --preview-bg-canvas: #0f121d;
+  --preview-card-bg: #171b2b;
+  --preview-card-border: rgba(129, 140, 248, 0.2);
+  --preview-card-hover-border: rgba(129, 140, 248, 0.7);
+  --preview-accent: #818cf8;
+  --preview-accent-gradient: linear-gradient(135deg, #818cf8 0%, #a5b4fc 100%);
+  --preview-card-radius: 1.75rem;
+  --preview-card-shadow: 6px 6px 16px rgba(0, 0, 0, 0.5), -4px -4px 12px rgba(255, 255, 255, 0.04);
+}
+
+/* Theme 42: Bento OS v2 */
+[data-preview-theme="42"] {
+  --preview-bg-canvas: #080d1a;
+  --preview-card-bg: rgba(15, 23, 42, 0.92);
+  --preview-card-border: rgba(56, 189, 248, 0.25);
+  --preview-card-hover-border: rgba(56, 189, 248, 0.8);
+  --preview-accent: #38bdf8;
+  --preview-accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  --preview-card-radius: 1.5rem;
+}
+
+/* Theme 43: High-Frequency Telemetry */
+[data-preview-theme="43"] {
+  --preview-bg-canvas: #030c11;
+  --preview-card-bg: #081923;
+  --preview-card-border: rgba(16, 185, 129, 0.3);
+  --preview-card-hover-border: rgba(16, 185, 129, 0.85);
+  --preview-accent: #10b981;
+  --preview-accent-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --preview-card-radius: 0.5rem;
+}
+
+/* Theme 44: Papercraft & Tactile Origami */
+[data-preview-theme="44"] {
+  --preview-bg-canvas: #110f0c;
+  --preview-card-bg: #1a1612;
+  --preview-card-border: rgba(245, 158, 11, 0.3);
+  --preview-card-hover-border: rgba(245, 158, 11, 0.85);
+  --preview-accent: #f59e0b;
+  --preview-accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --preview-card-radius: 0.35rem;
+  --preview-card-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Theme 45: Retro Cyberpunk 2099 */
+[data-preview-theme="45"] {
+  --preview-bg-canvas: #0d0313;
+  --preview-card-bg: rgba(32, 8, 44, 0.9);
+  --preview-card-border: rgba(255, 0, 127, 0.4);
+  --preview-card-hover-border: rgba(255, 0, 127, 0.95);
+  --preview-accent: #ff007f;
+  --preview-accent-gradient: linear-gradient(135deg, #ff007f 0%, #00f0ff 100%);
+  --preview-card-radius: 0.5rem;
+  --preview-card-shadow: 0 0 20px rgba(255, 0, 127, 0.25);
+}
+
+/* Theme 46: Nordic Minimal */
+[data-preview-theme="46"] {
+  --preview-bg-canvas: #131210;
+  --preview-card-bg: #1b1916;
+  --preview-card-border: rgba(120, 113, 108, 0.3);
+  --preview-card-hover-border: rgba(120, 113, 108, 0.75);
+  --preview-accent: #a8a29e;
+  --preview-accent-gradient: linear-gradient(135deg, #d6d3d1 0%, #78716c 100%);
+  --preview-card-radius: 0.85rem;
+}
+
+/* Theme 47: Biophilic Glass */
+[data-preview-theme="47"] {
+  --preview-bg-canvas: #03130c;
+  --preview-card-bg: rgba(6, 36, 23, 0.85);
+  --preview-card-border: rgba(5, 150, 105, 0.35);
+  --preview-card-hover-border: rgba(5, 150, 105, 0.85);
+  --preview-accent: #059669;
+  --preview-accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --preview-card-radius: 1.5rem;
+  --preview-card-shadow: 0 0 25px rgba(5, 150, 105, 0.2);
+}
+
+/* Theme 48: Isometric Holographic 3D */
+[data-preview-theme="48"] {
+  --preview-bg-canvas: #070617;
+  --preview-card-bg: rgba(19, 15, 48, 0.9);
+  --preview-card-border: rgba(99, 102, 241, 0.35);
+  --preview-card-hover-border: rgba(99, 102, 241, 0.9);
+  --preview-accent: #6366f1;
+  --preview-accent-gradient: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  --preview-card-radius: 1.25rem;
+  --preview-card-shadow: -4px 6px 0px rgba(67, 56, 202, 0.5);
+  --preview-card-transform: perspective(900px) rotateX(4deg) rotateY(-2deg) translateY(-4px);
+}
+
+/* Theme 49: Dark Luxury Monospace */
+[data-preview-theme="49"] {
+  --preview-font-heading: 'JetBrains Mono', 'Fira Code', monospace;
+  --preview-bg-canvas: #08080a;
+  --preview-card-bg: #111114;
+  --preview-card-border: rgba(234, 179, 8, 0.3);
+  --preview-card-hover-border: rgba(234, 179, 8, 0.85);
+  --preview-accent: #eab308;
+  --preview-accent-gradient: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+  --preview-card-radius: 0.375rem;
+}
+
+/* Theme 50: Quantum Nebula */
+[data-preview-theme="50"] {
+  --preview-bg-canvas: #050311;
+  --preview-card-bg: rgba(19, 10, 44, 0.9);
+  --preview-card-border: rgba(139, 92, 246, 0.4);
+  --preview-card-hover-border: rgba(139, 92, 246, 0.95);
+  --preview-accent: #8b5cf6;
+  --preview-accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #38bdf8 100%);
+  --preview-card-radius: 1.75rem;
+  --preview-card-shadow: 0 0 35px rgba(139, 92, 246, 0.25);
+}
+
 /* Apply Token Variables to Existing Component Classes */
 .job-card-otta, .glass-panel, .glass-card-transparent {
   background-color: var(--preview-card-bg);
