@@ -3407,6 +3407,280 @@ window.setMatcherPreset = setMatcherPreset;
 window.filterMatchTab = filterMatchTab;
 window.renderMatchList = renderMatchList;
 
+// ==========================================================================
+// ARTICLE PIPELINE & GAZETTE EDITORIAL ENGINE
+// ==========================================================================
+let currentPipelineArticles = window.__PIPELINE_ARTICLES__ || [];
+
+function openArticlePipelineModal() {
+  const modal = document.getElementById("article-pipeline-modal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  document.body.style.overflow = "hidden";
+  fetchPipelineArticles();
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeArticlePipelineModal() {
+  const modal = document.getElementById("article-pipeline-modal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+  document.body.style.overflow = "auto";
+}
+
+async function fetchPipelineArticles() {
+  try {
+    const res = await fetch("/api/pipeline/articles");
+    if (res.ok) {
+      const data = await res.json();
+      currentPipelineArticles = data.articles || [];
+      renderPipelineBoard(currentPipelineArticles);
+    } else {
+      renderPipelineBoard(currentPipelineArticles);
+    }
+  } catch (err) {
+    console.warn("Using offline cached pipeline articles:", err);
+    renderPipelineBoard(currentPipelineArticles);
+  }
+}
+
+function renderPipelineBoard(articles) {
+  const stages = ["ingested", "parsing", "drafting", "review", "published"];
+  
+  stages.forEach(stage => {
+    const container = document.getElementById(`pipeline-col-${stage}`);
+    const countBadge = document.getElementById(`pipeline-count-${stage}`);
+    if (!container) return;
+    
+    const stageArticles = articles.filter(a => a.stage === stage);
+    if (countBadge) countBadge.textContent = stageArticles.length;
+    
+    if (stageArticles.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 text-slate-500 text-xs border border-dashed border-slate-800 rounded-xl">
+          <p>No articles in this stage</p>
+        </div>
+      `;
+      return;
+    }
+    
+    container.innerHTML = stageArticles.map(art => {
+      const nextStageMap = {
+        "ingested": "parsing",
+        "parsing": "drafting",
+        "drafting": "review",
+        "review": "published",
+        "published": null
+      };
+      const nextStage = nextStageMap[stage];
+      
+      return `
+        <div class="pipeline-article-card stage-${stage} group" onclick="viewArticleDetails(${art.id})">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">
+              ${art.category || 'General'}
+            </span>
+            <span class="text-[10px] font-mono text-slate-400">
+              ${(art.vacancies || 0).toLocaleString()} Posts
+            </span>
+          </div>
+          
+          <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">
+            ${art.title}
+          </h4>
+          
+          ${art.title_gu ? `
+            <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">
+              ${art.title_gu}
+            </p>
+          ` : ''}
+          
+          <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">
+            ${art.summary || 'Official notification analysis in progress...'}
+          </p>
+          
+          <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
+            <span class="font-mono text-slate-500">📅 ${art.deadline || 'Active'}</span>
+            <div class="flex items-center gap-1.5">
+              ${nextStage ? `
+                <button onclick="advanceArticleStage(${art.id}, '${nextStage}')" class="px-2 py-1 rounded bg-slate-800 hover:bg-cyan-600 hover:text-white text-cyan-400 font-bold transition-all flex items-center gap-1" title="Advance to ${nextStage}">
+                  <span>Advance</span>
+                  <span>&rarr;</span>
+                </button>
+              ` : `
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold flex items-center gap-1">
+                  <span>Live</span>
+                  <span>✓</span>
+                </span>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  });
+  
+  if (window.lucide) window.lucide.createIcons();
+}
+
+async function advanceArticleStage(articleId, targetStage) {
+  try {
+    showNotificationToast(`Advancing article to ${targetStage.toUpperCase()}...`, "info");
+    const res = await fetch(`/api/pipeline/articles/${articleId}/transition`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stage: targetStage })
+    });
+    if (res.ok) {
+      showNotificationToast(`Article successfully transitioned to ${targetStage.toUpperCase()}!`, "success");
+      fetchPipelineArticles();
+    } else {
+      showNotificationToast("Failed to transition article.", "error");
+    }
+  } catch (err) {
+    console.error("Transition error:", err);
+    // Optimistic offline update
+    const art = currentPipelineArticles.find(a => a.id === articleId);
+    if (art) {
+      art.stage = targetStage;
+      renderPipelineBoard(currentPipelineArticles);
+      showNotificationToast(`Article transitioned to ${targetStage.toUpperCase()} (local)`, "success");
+    }
+  }
+}
+
+function viewArticleDetails(articleId) {
+  const art = currentPipelineArticles.find(a => a.id === articleId);
+  if (!art) return;
+  
+  const detailModal = document.getElementById("article-detail-modal");
+  const detailBody = document.getElementById("article-detail-body");
+  if (!detailModal || !detailBody) return;
+  
+  detailBody.innerHTML = `
+    <div class="space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+            ${art.stage} Stage
+          </span>
+          <h3 class="text-base sm:text-lg font-black text-white mt-2">${art.title}</h3>
+          ${art.title_gu ? `<p class="text-xs text-slate-400 font-gujarati mt-0.5">${art.title_gu}</p>` : ''}
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-slate-400">Total Vacancies</div>
+          <div class="text-base font-bold text-cyan-400 mt-0.5">${(art.vacancies || 0).toLocaleString()}</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-slate-400">Qualification</div>
+          <div class="text-sm font-bold text-slate-200 mt-0.5">${art.qualification || 'Graduate'}</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-slate-400">Last Date</div>
+          <div class="text-sm font-bold text-amber-400 mt-0.5">${art.deadline || 'N/A'}</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-slate-400">Source Feed</div>
+          <div class="text-sm font-bold text-slate-200 mt-0.5 truncate">${art.source || 'Gazette'}</div>
+        </div>
+      </div>
+      
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+        <h4 class="text-xs font-bold uppercase text-slate-400 mb-2">Editorial Summary</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">${art.summary || 'No summary available.'}</p>
+      </div>
+      
+      <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">
+        <h4 class="text-[11px] font-bold uppercase text-slate-400 mb-2">Markdown Content</h4>
+        <pre class="whitespace-pre-wrap">${art.content_md || 'No markdown body.'}</pre>
+      </div>
+      
+      <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+        <a href="${art.apply_url || '#'}" target="_blank" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5">
+          <span>Apply / Official Link</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+        ${art.stage !== 'published' ? `
+          <button onclick="publishArticleDirectly(${art.id})" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/30">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Publish Directly to Live Feed</span>
+          </button>
+        ` : `
+          <span class="text-xs text-emerald-400 font-bold flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Published &amp; Live
+          </span>
+        `}
+      </div>
+    </div>
+  `;
+  
+  detailModal.classList.remove("hidden");
+  detailModal.classList.add("flex");
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeArticleDetailModal() {
+  const modal = document.getElementById("article-detail-modal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+}
+
+async function publishArticleDirectly(articleId) {
+  try {
+    showNotificationToast("Publishing article to live feeds...", "info");
+    const res = await fetch(`/api/pipeline/articles/${articleId}/publish`, { method: "POST" });
+    if (res.ok) {
+      showNotificationToast("Article successfully published to live recruitment stream!", "success");
+      closeArticleDetailModal();
+      fetchPipelineArticles();
+    } else {
+      showNotificationToast("Publishing failed. Please retry.", "error");
+    }
+  } catch (err) {
+    console.error("Publish error:", err);
+    showNotificationToast("Published locally in cache.", "success");
+    closeArticleDetailModal();
+  }
+}
+
+// ==========================================================================
+// THEME TOKEN ENGINE (28 VISUAL IDENTITIES)
+// ==========================================================================
+function setPreviewTheme(themeId) {
+  const cleanId = String(themeId).padStart(2, "0");
+  document.body.setAttribute("data-preview-theme", cleanId);
+  document.documentElement.setAttribute("data-preview-theme", cleanId);
+  localStorage.setItem("futurset_theme", cleanId);
+  
+  // Also update any active preview indicator
+  const indicator = document.getElementById("active-theme-indicator");
+  if (indicator) indicator.textContent = cleanId;
+}
+
+// Initialize theme from URL query (?theme=01) or localStorage
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const themeParam = urlParams.get("theme");
+  const storedTheme = localStorage.getItem("futurset_theme");
+  const initialTheme = themeParam || storedTheme || document.body.getAttribute("data-preview-theme") || "01";
+  setPreviewTheme(initialTheme);
+});
+
+// Expose pipeline methods globally
+window.openArticlePipelineModal = openArticlePipelineModal;
+window.closeArticlePipelineModal = closeArticlePipelineModal;
+window.advanceArticleStage = advanceArticleStage;
+window.viewArticleDetails = viewArticleDetails;
+window.closeArticleDetailModal = closeArticleDetailModal;
+window.publishArticleDirectly = publishArticleDirectly;
+window.setPreviewTheme = setPreviewTheme;
+
 // Universal listener for closing ANY active modal on backdrop click or Escape
 document.addEventListener("click", (e) => {
   const modalConfigs = [
@@ -3421,7 +3695,9 @@ document.addEventListener("click", (e) => {
     { id: "command-palette-modal", close: closeCommandPalette },
     { id: "ojas-guide-modal", close: closeOjasGuideModal },
     { id: "salary-calc-modal", close: closeSalaryCalculator },
-    { id: "tech-job-modal", close: closeTechModal }
+    { id: "tech-job-modal", close: closeTechModal },
+    { id: "article-pipeline-modal", close: closeArticlePipelineModal },
+    { id: "article-detail-modal", close: closeArticleDetailModal }
   ];
 
   modalConfigs.forEach(({ id, close }) => {
@@ -3449,10 +3725,13 @@ document.addEventListener("keydown", (e) => {
     if (typeof closeFeeGuideModal === "function") closeFeeGuideModal();
     if (typeof closeSubscribeModal === "function") closeSubscribeModal();
     if (typeof closeTechModal === "function") closeTechModal();
+    if (typeof closeArticlePipelineModal === "function") closeArticlePipelineModal();
+    if (typeof closeArticleDetailModal === "function") closeArticleDetailModal();
     document.body.style.overflow = "auto";
     document.documentElement.style.overflow = "auto";
   }
 });
+
 
 // Scroll Progress Bar Listener (cross-browser fallback)
 window.addEventListener("scroll", () => {

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23635bff'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    body {
+      background-color: #060913;
+      color: #f8fafc;
+      overflow: hidden;
+    }
+    .preview-frame-container {
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .active-nav-btn {
+      background: rgba(99, 91, 255, 0.25) !important;
+      border-color: rgba(99, 91, 255, 0.6) !important;
+      color: #ffffff !important;
+    }
+    .grid-view-card {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .grid-view-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 91, 255, 0.7);
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col antialiased select-none">
+
+  <!-- Design Lab Top Bar -->
+  <header class="h-16 bg-slate-950/95 border-b border-slate-800/90 px-3 sm:px-6 flex items-center justify-between z-40 shrink-0 gap-3">
+    <!-- Left: Brand + Counter + Name -->
+    <div class="flex items-center gap-3 min-w-0">
+      <a href="/" class="flex items-center gap-2 text-white hover:text-cyan-300 transition-colors shrink-0" title="Return to Home">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span class="font-extrabold text-xs hidden md:inline">FuturSet</span>
+      </a>
+
+      <div class="h-5 w-[1px] bg-slate-800 hidden md:block"></div>
+
+      <!-- Preview Counter & Dropdown -->
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700/80 shrink-0">
+          <span class="font-mono font-black text-xs text-cyan-400" id="preview-counter-disp">01 / 28</span>
+        </div>
+
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="font-black text-xs sm:text-sm text-white truncate" id="preview-name-disp">
+              {{ active_preview.name }}
+            </h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 shrink-0 hidden sm:inline" id="preview-badge-disp">
+              {{ active_preview.badge }}
+            </span>
+          </div>
+          <div class="text-[10px] text-slate-400 truncate hidden lg:block" id="preview-desc-disp">
+            {{ active_preview.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Navigation Controls (Prev, Next, Select) -->
+    <div class="flex items-center gap-1.5 shrink-0">
+      <button onclick="prevPreview()" class="p-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1" title="Previous Preview (←)">
+        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Prev</span>
+      </button>
+
+      <select id="preview-select" onchange="jumpToPreview(this.value)" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-1.5 outline-none focus:border-cyan-400 max-w-[130px] sm:max-w-[190px]">
+        {% for p in previews %}
+          <option value="{{ p.id }}" {% if p.id == active_preview.id %}selected{% endif %}>
+            {{ p.id }} — {{ p.name }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <button onclick="nextPreview()" class="p-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1" title="Next Preview (→)">
+        <span class="hidden sm:inline">Next</span>
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Right: Device Viewport, Grid, Compare, Animation Panel, Fullscreen -->
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+      <!-- Device Viewports -->
+      <div class="hidden md:flex items-center p-0.5 rounded-xl bg-slate-900 border border-slate-800">
+        <button onclick="setViewport('desktop')" id="vp-desktop" class="p-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white active-nav-btn transition-colors" title="Desktop (100%)">
+          <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
+        </button>
+        <button onclick="setViewport('tablet')" id="vp-tablet" class="p-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors" title="Tablet (768px)">
+          <i data-lucide="tablet" class="w-3.5 h-3.5"></i>
+        </button>
+        <button onclick="setViewport('mobile')" id="vp-mobile" class="p-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors" title="Mobile (390px)">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Grid View Toggle -->
+      <button onclick="toggleGridView()" id="btn-grid-toggle" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-colors flex items-center gap-1" title="Grid View (All 28)">
+        <i data-lucide="grid" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span class="hidden xl:inline">Grid</span>
+      </button>
+
+      <!-- Compare Mode Toggle -->
+      <button onclick="toggleCompareMode()" id="btn-compare-toggle" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-colors flex items-center gap-1" title="Compare Two Designs">
+        <i data-lucide="columns-2" class="w-3.5 h-3.5 text-indigo-400"></i>
+        <span class="hidden xl:inline">Compare</span>
+      </button>
+
+      <!-- Animation References Drawer Trigger -->
+      <button onclick="toggleAnimationDrawer()" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-colors flex items-center gap-1" title="Inspect Animation References">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span class="hidden xl:inline">Animations</span>
+      </button>
+
+      <!-- Concepts Hub Link -->
+      <a href="/concepts" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-300 hover:text-white text-xs font-bold transition-colors flex items-center gap-1" title="View 20 Experimental Concept Websites">
+        <i data-lucide="flask-conical" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span class="hidden xl:inline">Concepts (20)</span>
+      </a>
+
+      <!-- Favorite Button -->
+      <button onclick="toggleFavoriteCurrent()" id="btn-favorite" class="p-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-400 hover:text-rose-400 transition-colors" title="Favorite this Design">
+        <i data-lucide="heart" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button onclick="toggleFullscreen()" class="p-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition-colors" title="Fullscreen (F)">
+        <i data-lucide="maximize" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Implement Design CTA -->
+      <button onclick="implementActiveDesign()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5">
+        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+        <span class="hidden md:inline">Implement</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Secondary Metadata & Inspiration Source Bar -->
+  <div class="h-9 bg-slate-900/90 border-b border-slate-800/80 px-4 sm:px-6 flex items-center justify-between text-xs overflow-x-auto no-scrollbar z-30 shrink-0">
+    <div class="flex items-center gap-2 min-w-0">
+      <span class="text-slate-500 font-bold uppercase text-[10px] tracking-wider shrink-0">Inspired by:</span>
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar" id="inspiration-tags-container">
+        {% for tag in active_preview.inspired_by %}
+          <span class="px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700/80 text-slate-300 text-[10px] font-medium shrink-0">
+            {{ tag }}
+          </span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4 text-[11px] text-slate-400 shrink-0">
+      <div class="flex items-center gap-1.5">
+        <span class="text-slate-500">Motion System:</span>
+        <span class="text-cyan-300 font-medium truncate max-w-[280px]" id="preview-motion-disp">
+          {{ active_preview.motion }}
+        </span>
+      </div>
+      <div class="hidden lg:flex items-center gap-2 text-slate-500 text-[10px]">
+        <span>Shortcuts:</span>
+        <kbd class="px-1 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">←</kbd>
+        <kbd class="px-1 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">→</kbd>
+        <kbd class="px-1 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">F</kbd>
+        <kbd class="px-1 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">Esc</kbd>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Viewport Workspace -->
+  <main class="flex-1 bg-[#050811] relative overflow-hidden flex items-center justify-center p-0 sm:p-2">
+    <!-- Single Live Viewport Container -->
+    <div id="single-viewport-container" class="preview-frame-container w-full h-full flex items-center justify-center">
+      <div id="frame-wrapper" class="w-full h-full bg-slate-950 rounded-none sm:rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden relative">
+        <iframe
+          id="preview-iframe"
+          src="/?theme={{ active_preview.id }}"
+          class="w-full h-full border-none"
+          title="FuturSet Live Preview"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Compare Split View Container (Hidden by default) -->
+    <div id="compare-viewport-container" class="hidden w-full h-full grid grid-cols-1 md:grid-cols-2 gap-2 p-2">
+      <!-- Left Compare Pane -->
+      <div class="w-full h-full bg-slate-950 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
+        <div class="p-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs">
+          <span class="font-bold text-white flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>Design A: <span id="compare-a-name">01 — Master Luminous</span></span>
+          </span>
+          <select id="compare-select-a" onchange="updateComparePane('a', this.value)" class="bg-slate-950 border border-slate-700 rounded-lg text-xs text-white px-2 py-1 outline-none">
+            {% for p in previews %}
+              <option value="{{ p.id }}">{{ p.id }} — {{ p.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <iframe id="compare-frame-a" src="/?theme=01" class="flex-1 w-full border-none"></iframe>
+      </div>
+
+      <!-- Right Compare Pane -->
+      <div class="w-full h-full bg-slate-950 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
+        <div class="p-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs">
+          <span class="font-bold text-white flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+            <span>Design B: <span id="compare-b-name">02 — Linear Precision</span></span>
+          </span>
+          <select id="compare-select-b" onchange="updateComparePane('b', this.value)" class="bg-slate-950 border border-slate-700 rounded-lg text-xs text-white px-2 py-1 outline-none">
+            {% for p in previews %}
+              <option value="{{ p.id }}" {% if p.id == '02' %}selected{% endif %}>{{ p.id }} — {{ p.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <iframe id="compare-frame-b" src="/?theme=02" class="flex-1 w-full border-none"></iframe>
+      </div>
+    </div>
+
+    <!-- Grid View Modal (All 28 Previews Cards) -->
+    <div id="grid-view-modal" class="hidden absolute inset-0 z-50 bg-slate-950/95 backdrop-blur-2xl p-4 sm:p-8 overflow-y-auto">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+          <div>
+            <h2 class="text-lg font-black text-white flex items-center gap-2">
+              <span>All 28 Visual Directions of FuturSet</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Same Real Product</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">Click any card to load it live into the workspace.</p>
+          </div>
+          <button onclick="toggleGridView()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {% for p in previews %}
+            <div onclick="jumpToPreview('{{ p.id }}'); toggleGridView();" class="grid-view-card p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 cursor-pointer flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono font-bold text-xs text-cyan-400">{{ p.id }} / 28</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">{{ p.badge }}</span>
+                </div>
+                <h3 class="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">{{ p.name }}</h3>
+                <p class="text-xs text-slate-400 mt-1 line-clamp-3 leading-relaxed">{{ p.description }}</p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
+                <span class="text-slate-500 truncate max-w-[150px]">{{ p.inspired_by[0] }}</span>
+                <span class="font-bold text-cyan-400 group-hover:translate-x-0.5 transition-transform">Preview &rarr;</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation References Inspection Drawer -->
+    <div id="animation-drawer" class="hidden absolute top-0 right-0 bottom-0 w-full max-w-md bg-slate-950/98 border-l border-slate-800 shadow-2xl p-6 z-50 flex flex-col overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+          <span>Animation Reference Intelligence</span>
+        </h3>
+        <button onclick="toggleAnimationDrawer()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="text-xs text-slate-400 mb-4">
+        Showing curated animation patterns implemented in <strong class="text-white" id="anim-preview-title">{{ active_preview.name }}</strong>:
+      </div>
+
+      <div id="animation-list-container" class="space-y-3.5 flex-1">
+        <!-- Injected dynamically based on active preview -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const PREVIEWS = {{ previews | tojson | safe }};
+    let currentPreviewIndex = PREVIEWS.findIndex(p => p.id === "{{ active_preview.id }}");
+    if (currentPreviewIndex === -1) currentPreviewIndex = 0;
+
+    let isFullscreen = false;
+    let isCompareMode = false;
+    let favorites = JSON.parse(localStorage.getItem("futurset_design_favorites") || "[]");
+
+    function updatePreviewDisplay(index) {
+      currentPreviewIndex = index;
+      const p = PREVIEWS[currentPreviewIndex];
+
+      document.getElementById("preview-counter-disp").textContent = `${p.id} / 28`;
+      document.getElementById("preview-name-disp").textContent = p.name;
+      document.getElementById("preview-badge-disp").textContent = p.badge;
+      document.getElementById("preview-desc-disp").textContent = p.description;
+      document.getElementById("preview-select").value = p.id;
+      document.getElementById("preview-motion-disp").textContent = p.motion;
+
+      // Update inspiration tags
+      const tagsContainer = document.getElementById("inspiration-tags-container");
+      tagsContainer.innerHTML = p.inspired_by.map(tag => `
+        <span class="px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700/80 text-slate-300 text-[10px] font-medium shrink-0">
+          ${tag}
+        </span>
+      `).join('');
+
+      // Update iframe source
+      const iframe = document.getElementById("preview-iframe");
+      iframe.src = `/?theme=${p.id}`;
+
+      // Update favorite button state
+      updateFavoriteButton();
+      renderAnimationDrawer();
+    }
+
+    function prevPreview() {
+      const newIdx = (currentPreviewIndex - 1 + PREVIEWS.length) % PREVIEWS.length;
+      updatePreviewDisplay(newIdx);
+    }
+
+    function nextPreview() {
+      const newIdx = (currentPreviewIndex + 1) % PREVIEWS.length;
+      updatePreviewDisplay(newIdx);
+    }
+
+    function jumpToPreview(id) {
+      const idx = PREVIEWS.findIndex(p => p.id === id);
+      if (idx !== -1) updatePreviewDisplay(idx);
+    }
+
+    function setViewport(mode) {
+      const wrapper = document.getElementById("frame-wrapper");
+      document.querySelectorAll("#vp-desktop, #vp-tablet, #vp-mobile").forEach(b => b.classList.remove("active-nav-btn"));
+
+      if (mode === "desktop") {
+        wrapper.style.maxWidth = "100%";
+        wrapper.style.height = "100%";
+        document.getElementById("vp-desktop").classList.add("active-nav-btn");
+      } else if (mode === "tablet") {
+        wrapper.style.maxWidth = "768px";
+        wrapper.style.height = "94%";
+        document.getElementById("vp-tablet").classList.add("active-nav-btn");
+      } else if (mode === "mobile") {
+        wrapper.style.maxWidth = "390px";
+        wrapper.style.height = "90%";
+        document.getElementById("vp-mobile").classList.add("active-nav-btn");
+      }
+    }
+
+    function toggleGridView() {
+      const modal = document.getElementById("grid-view-modal");
+      modal.classList.toggle("hidden");
+    }
+
+    function toggleCompareMode() {
+      isCompareMode = !isCompareMode;
+      const single = document.getElementById("single-viewport-container");
+      const compare = document.getElementById("compare-viewport-container");
+      const btn = document.getElementById("btn-compare-toggle");
+
+      if (isCompareMode) {
+        single.classList.add("hidden");
+        compare.classList.remove("hidden");
+        btn.classList.add("active-nav-btn");
+      } else {
+        single.classList.remove("hidden");
+        compare.classList.add("hidden");
+        btn.classList.remove("active-nav-btn");
+      }
+    }
+
+    function updateComparePane(pane, id) {
+      const p = PREVIEWS.find(item => item.id === id);
+      if (!p) return;
+      if (pane === 'a') {
+        document.getElementById("compare-a-name").textContent = `${p.id} — ${p.name}`;
+        document.getElementById("compare-frame-a").src = `/?theme=${p.id}`;
+      } else {
+        document.getElementById("compare-b-name").textContent = `${p.id} — ${p.name}`;
+        document.getElementById("compare-frame-b").src = `/?theme=${p.id}`;
+      }
+    }
+
+    function toggleAnimationDrawer() {
+      const drawer = document.getElementById("animation-drawer");
+      drawer.classList.toggle("hidden");
+      if (!drawer.classList.contains("hidden")) {
+        renderAnimationDrawer();
+      }
+    }
+
+    function renderAnimationDrawer() {
+      const p = PREVIEWS[currentPreviewIndex];
+      const title = document.getElementById("anim-preview-title");
+      if (title) title.textContent = p.name;
+      const list = document.getElementById("animation-list-container");
+      if (!list) return;
+
+      list.innerHTML = p.animations.map(a => `
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-white">${a.name}</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">${a.source}</span>
+          </div>
+          <p class="text-slate-400 mt-1"><strong>Usage:</strong> ${a.usage}</p>
+          <p class="text-slate-400 mt-1 font-mono text-[11px] bg-slate-950 p-2 rounded-lg border border-slate-800 text-cyan-300">
+            ${a.tech}
+          </p>
+        </div>
+      `).join('');
+    }
+
+    function toggleFavoriteCurrent() {
+      const p = PREVIEWS[currentPreviewIndex];
+      const idx = favorites.indexOf(p.id);
+      if (idx === -1) {
+        favorites.push(p.id);
+      } else {
+        favorites.splice(idx, 1);
+      }
+      localStorage.setItem("futurset_design_favorites", JSON.stringify(favorites));
+      updateFavoriteButton();
+    }
+
+    function updateFavoriteButton() {
+      const p = PREVIEWS[currentPreviewIndex];
+      const btn = document.getElementById("btn-favorite");
+      if (favorites.includes(p.id)) {
+        btn.classList.add("text-rose-500");
+        btn.classList.remove("text-slate-400");
+      } else {
+        btn.classList.remove("text-rose-500");
+        btn.classList.add("text-slate-400");
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    function implementActiveDesign() {
+      const p = PREVIEWS[currentPreviewIndex];
+      localStorage.setItem("futurset_theme", p.id);
+      alert(`Design "${p.id} — ${p.name}" selected! Redirecting to live product...`);
+      window.location.href = `/?theme=${p.id}`;
+    }
+
+    // Keyboard Shortcuts Listener
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        prevPreview();
+      } else if (e.key === "ArrowRight") {
+        nextPreview();
+      } else if (e.key === "f" || e.key === "F") {
+        toggleFullscreen();
+      } else if (e.key === "Escape") {
+        const grid = document.getElementById("grid-view-modal");
+        const anim = document.getElementById("animation-drawer");
+        if (!grid.classList.contains("hidden")) grid.classList.add("hidden");
+        if (!anim.classList.contains("hidden")) anim.classList.add("hidden");
+      } else if (e.key >= "1" && e.key <= "9") {
+        const targetIdx = parseInt(e.key) - 1;
+        if (targetIdx < PREVIEWS.length) {
+          updatePreviewDisplay(targetIdx);
+        }
+      }
+    });
+
+    // Initialize
+    updateFavoriteButton();
+    renderAnimationDrawer();
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>

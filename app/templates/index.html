@@ -30,7 +30,7 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="min-h-screen flex flex-col bg-stripe-canvas text-slate-100 antialiased selection:bg-cyan-500 selection:text-white relative">
+<body class="min-h-screen flex flex-col bg-stripe-canvas text-slate-100 antialiased selection:bg-cyan-500 selection:text-white relative" data-preview-theme="{{ active_theme or '01' }}">
 
   <!-- Pure CSS & JS Scroll Progress Bar -->
   <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
@@ -116,6 +116,19 @@
           <i data-lucide="building-2" class="w-3.5 h-3.5 text-yellow-300"></i>
           <span>🏢 All Companies</span>
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        </a>
+
+        <!-- Article Pipeline Trigger Button -->
+        <button onclick="openArticlePipelineModal()" class="shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-600/30 to-teal-600/30 hover:from-emerald-600/50 hover:to-teal-600/50 border border-emerald-500/40 text-emerald-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm" title="Article & Gazette Editorial Pipeline">
+          <i data-lucide="kanban" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400"></i>
+          <span>Article Pipeline</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        </button>
+
+        <!-- Design Lab Showcase Button -->
+        <a href="/design-lab" class="shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-gradient-to-r from-violet-600/30 to-indigo-600/30 hover:from-violet-600/50 hover:to-indigo-600/50 border border-violet-500/40 text-violet-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm" title="28 Visual Identities Showcase">
+          <i data-lucide="palette" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-violet-400"></i>
+          <span>Design Lab (28)</span>
         </a>
 
         <!-- 7th Pay Calculator Trigger -->
@@ -779,7 +792,24 @@
     </div>
 
     <!-- Candidate Tools & Services Ecosystem Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+      <!-- Tool 0: Article & Gazette Editorial Pipeline -->
+      <div onclick="openArticlePipelineModal()" class="glass-panel p-5 rounded-2xl border border-emerald-500/30 hover:border-emerald-500/60 cursor-pointer transition-all hover:-translate-y-1 bg-[#09111c]/90 group shadow-lg shadow-emerald-500/5">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3 group-hover:scale-105 transition-transform">
+          <i data-lucide="kanban" class="w-5 h-5"></i>
+        </div>
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">Article Pipeline</h3>
+          <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300">5 Stages</span>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">
+          Track official gazette articles through Ingestion, AI Parsing, Bilingual Drafting, Review &amp; Live Publishing.
+        </p>
+        <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 mt-3">
+          Open Pipeline &rarr;
+        </span>
+      </div>
+
       <!-- Tool 1: 7th Pay Salary Calculator -->
       <div onclick="openSalaryCalculator()" class="glass-panel p-5 rounded-2xl border border-emerald-500/20 hover:border-emerald-500/40 cursor-pointer transition-all hover:-translate-y-1 bg-[#09111c]/90 group">
         <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 group-hover:scale-105 transition-transform">
@@ -1439,6 +1469,119 @@
     </div>
   </div>
 
+  <!-- Article Pipeline & Gazette Editorial Modal -->
+  <div id="article-pipeline-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-xl p-3 sm:p-6 overflow-y-auto">
+    <div class="glass-modal w-full max-w-7xl max-h-[94vh] flex flex-col rounded-3xl border border-emerald-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
+      <!-- Header -->
+      <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/60 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-inner">
+            <i data-lucide="kanban" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-white flex items-center gap-2">
+              FuturSet Article &amp; Gazette Editorial Pipeline
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Live Workflow</span>
+            </h3>
+            <p class="text-xs text-slate-400">
+              5-Stage Editorial Lifecycle: Raw Ingestion &rarr; AI Parsing &rarr; Bilingual Drafting &rarr; Editorial Review &rarr; Published Stream
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="fetchPipelineArticles()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Refresh Pipeline Data">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+          </button>
+          <button onclick="closeArticlePipelineModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors" title="Close Pipeline">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5-Column Kanban Board -->
+      <div class="p-5 flex-1 overflow-y-auto bg-slate-950/60">
+        <div class="article-pipeline-board">
+          <!-- Stage 1: Ingested -->
+          <div class="pipeline-stage-col">
+            <div class="pipeline-stage-header">
+              <div class="pipeline-stage-title">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                <span>1. Ingested (Raw)</span>
+              </div>
+              <span id="pipeline-count-ingested" class="pipeline-badge-count">0</span>
+            </div>
+            <div id="pipeline-col-ingested" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Stage 2: AI Parsing -->
+          <div class="pipeline-stage-col">
+            <div class="pipeline-stage-header">
+              <div class="pipeline-stage-title">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span>2. AI Parsing</span>
+              </div>
+              <span id="pipeline-count-parsing" class="pipeline-badge-count">0</span>
+            </div>
+            <div id="pipeline-col-parsing" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Stage 3: Bilingual Drafting -->
+          <div class="pipeline-stage-col">
+            <div class="pipeline-stage-header">
+              <div class="pipeline-stage-title">
+                <span class="w-2.5 h-2.5 rounded-full bg-violet-400"></span>
+                <span>3. Bilingual Draft</span>
+              </div>
+              <span id="pipeline-count-drafting" class="pipeline-badge-count">0</span>
+            </div>
+            <div id="pipeline-col-drafting" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Stage 4: Editorial Review -->
+          <div class="pipeline-stage-col">
+            <div class="pipeline-stage-header">
+              <div class="pipeline-stage-title">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>4. Editorial Review</span>
+              </div>
+              <span id="pipeline-count-review" class="pipeline-badge-count">0</span>
+            </div>
+            <div id="pipeline-col-review" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Stage 5: Published -->
+          <div class="pipeline-stage-col">
+            <div class="pipeline-stage-header">
+              <div class="pipeline-stage-title">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>5. Published &amp; Live</span>
+              </div>
+              <span id="pipeline-count-published" class="pipeline-badge-count">0</span>
+            </div>
+            <div id="pipeline-col-published" class="space-y-3 flex-1 overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article Detail / Publish Modal -->
+  <div id="article-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-xl p-4 overflow-y-auto">
+    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-cyan-500/40 p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i data-lucide="file-text" class="w-5 h-5 text-cyan-400"></i>
+          <span>Gazette Article Dossier</span>
+        </h3>
+        <button onclick="closeArticleDetailModal()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="article-detail-body" class="flex-1 overflow-y-auto pr-1"></div>
+    </div>
+  </div>
+
   <!-- Professional Footer -->
   <footer class="bg-[#050914] border-t border-slate-800/80 pt-12 pb-8 px-4 sm:px-6 lg:px-8 mt-auto">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -1477,6 +1620,8 @@
       <div>
         <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Tools & Transparency</h4>
         <ul class="space-y-1.5 text-xs text-slate-400">
+          <li><button onclick="openArticlePipelineModal()" class="hover:text-cyan-400 transition-colors text-emerald-400 font-semibold">Article Pipeline (5-Stage)</button></li>
+          <li><a href="/design-lab" class="hover:text-cyan-400 transition-colors text-violet-400 font-semibold">Design Lab (28 Previews)</a></li>
           <li><button onclick="openMatcherModal()" class="hover:text-cyan-400 transition-colors">AI Eligibility Matcher</button></li>
           <li><button onclick="startLiveScan()" class="hover:text-cyan-400 transition-colors">Live Feeds Aggregator</button></li>
           <li><a href="/api/export" class="hover:text-cyan-400 transition-colors">Export Jobs Dataset (CSV)</a></li>
@@ -1498,6 +1643,8 @@
   <!-- Scripts -->
   <script>
     window.__INITIAL_JOBS__ = {{ initial_jobs | tojson | safe }};
+    window.__PIPELINE_ARTICLES__ = {{ pipeline_articles | tojson | safe }};
+    window.__PREVIEWS__ = {{ previews | tojson | safe }};
   </script>
   <script src="/static/js/scanner.js"></script>
   <script src="/static/js/app.js"></script>
