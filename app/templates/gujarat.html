@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f77f00'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#070d1e',
+              panel: '#0e172f',
+              navy: '#162244',
+              cyan: '#00b4d8',
+              orange: '#f77f00',
+              saffron: '#fb8500'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="min-h-screen flex flex-col bg-[#050914] text-slate-100 antialiased font-gujarati selection:bg-orange-500 selection:text-white relative">
+
+  <!-- Dynamic Cursor Spotlight Overlay -->
+  <div class="cursor-spotlight"></div>
+
+  <!-- Gujarat Emblem & State Header Marquee -->
+  <div class="bg-gradient-to-r from-orange-950 via-slate-900 to-amber-950 border-b border-orange-500/20 py-2 px-4 text-xs no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-orange-400 font-bold shrink-0">
+        <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
+        <span class="tracking-wider uppercase text-[11px]">ગુજરાત સરકારી નોકરીઓ ૨૦૨૬:</span>
+      </div>
+      <div class="overflow-hidden whitespace-nowrap flex-1">
+        <div class="inline-block animate-marquee space-x-8 text-amber-200/90 text-xs">
+          <span>🔥 <strong>પોલીસ કોન્સ્ટેબલ અને જેલ સિપાહી:</strong> ૧૨,૪૭૨ જગ્યાઓ માટે OJAS પર ઓનલાઇન અરજી ચાલુ!</span>
+          <span>🏛️ <strong>GPSC વર્ગ-૧ અને ૨:</strong> ૩૮૮ અધિકારીઓની જગ્યાઓ.</span>
+          <span>📝 <strong>GSSSB CCE ક્લાર્ક ભરતી:</strong> ૫,૫૫૪ જગ્યાઓ.</span>
+          <span>🚌 <strong>GSRTC કંડક્ટર અને ડ્રાઇવર:</strong> ૭,૪૧૯ જગ્યાઓ.</span>
+          <span>⚡ <strong>વીજ કંપનીઓ વિદ્યુત સહાયક:</strong> ૨,૧૫૦ જગ્યાઓ.</span>
+        </div>
+      </div>
+      <div class="shrink-0 hidden md:flex items-center gap-2 text-amber-400 text-xs font-semibold">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+        <span>OJAS અધિકૃત ડેટા</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-[#070d1e]/95 backdrop-blur-2xl border-b border-orange-500/20 shadow-2xl no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="/" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Back to All India Portal">
+          <i data-lucide="arrow-left" class="w-5 h-5"></i>
+        </a>
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-600 to-yellow-500 p-0.5 shadow-lg shadow-orange-500/25">
+          <div class="w-full h-full bg-[#070d1e] rounded-[10px] flex items-center justify-center">
+            <span class="text-orange-400 font-black text-xl">ગુ</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold text-white">FuturSet</span>
+            <span class="text-xl font-bold text-orange-400">ગુજરાત રોજગાર</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-orange-500/20 text-orange-300 border border-orange-500/30 uppercase">OJAS HUB</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">ગુજરાત રાજ્ય સરકારની તમામ સીધી ભરતીઓ (OJAS, GPSC, GSSSB, Police, HC)</p>
+        </div>
+      </div>
+
+      <!-- Quick Command Palette Launcher -->
+      <button onclick="openCommandPalette()" class="hidden lg:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-orange-500/50 text-slate-400 hover:text-slate-200 text-xs transition-all shadow-inner">
+        <i data-lucide="search" class="w-3.5 h-3.5 text-orange-400"></i>
+        <span>શોધો (Ctrl+K)...</span>
+        <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-orange-300 border border-slate-700 font-mono">Ctrl+K</kbd>
+      </button>
+
+      <!-- Header Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <!-- 7th Pay Calculator Trigger -->
+        <button onclick="openSalaryCalculator()" class="px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5" title="ગુજરાત ૭મું પગાર પંચ કેલ્ક્યુલેટર">
+          <i data-lucide="calculator" class="w-4 h-4 text-emerald-400"></i>
+          <span class="hidden xl:inline">પગાર કેલ્ક્યુલેટર</span>
+        </button>
+
+        <!-- AI Matcher Trigger -->
+        <button onclick="openMatcherModal()" class="px-3 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 hover:text-white text-xs font-semibold transition-all flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-indigo-400"></i>
+          <span class="hidden sm:inline">યોગ્યતા મેચર</span>
+        </button>
+
+        <!-- Live Scanner Trigger -->
+        <button onclick="startLiveScan()" class="px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold shadow-lg shadow-orange-600/30 transition-all flex items-center gap-1.5">
+          <i data-lucide="radar" class="w-4 h-4" id="scanner-radar-icon"></i>
+          <span class="hidden sm:inline">OJAS સ્કેન કરો</span>
+        </button>
+
+        <!-- Audio Feedback Toggle -->
+        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Audio Feedback">
+          <i data-lucide="volume-2" class="w-4 h-4 text-orange-400"></i>
+        </button>
+
+        <!-- Bookmarks Modal Trigger -->
+        <button onclick="openBookmarksModal()" class="relative p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="સાચવેલી ભરતીઓ">
+          <i data-lucide="bookmark" class="w-4 h-4 text-orange-400"></i>
+          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-orange-500 text-slate-950 font-black text-[10px] flex items-center justify-center">0</span>
+        </button>
+
+        <!-- CSV Export -->
+        <a href="/api/export" download class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="CSV એક્સપોર્ટ">
+          <i data-lucide="download" class="w-4 h-4"></i>
+        </a>
+
+        <!-- B.Tech CSE Hub Link -->
+        <a href="/btech-cse" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 hover:text-white text-xs font-bold transition-all">
+          <i data-lucide="laptop" class="w-3.5 h-3.5"></i>
+          <span>B.Tech CSE નોકરીઓ</span>
+        </a>
+
+        <!-- Corporate Hub Link -->
+        <a href="/corporate" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-purple-300 hover:text-white text-xs font-bold transition-all shadow-md">
+          <i data-lucide="building-2" class="w-3.5 h-3.5 text-yellow-300"></i>
+          <span>🏢 તમામ કંપનીઓ (Adani, BHEL, Amazon)</span>
+        </a>
+
+
+        <!-- All India Link -->
+        <a href="/" class="hidden md:inline-flex px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition-colors">
+          All India Hub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gujarat Hero & Fast-Track Service Links -->
+  <section class="relative pt-12 pb-14 px-4 sm:px-6 lg:px-8 border-b border-slate-800/60 overflow-hidden bg-gradient-to-b from-[#0e172f]/60 to-transparent">
+    <!-- Physics Particle Canvas Background for Gujarat -->
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-auto z-0"></canvas>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-8">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-950/80 border border-orange-500/40 text-xs text-orange-400 font-semibold mb-4 shadow-lg backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
+          <span>સત્તાવાર ગુજરાત રાજ્ય ભરતી ડેશબોર્ડ ૨૦૨૬</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+          <span class="text-gold-metallic">ગુજરાત સરકારની તમામ ભરતીઓ</span> અને ડાયરેક્ટ અરજી ૨૦૨૬
+        </h1>
+        <p class="text-sm text-slate-300 mt-2 font-normal">
+          OJAS, GPSC, ગૌણ સેવા (GSSSB), પોલીસ ભરતી બોર્ડ, હાઇકોર્ટ, એસ.ટી. નિગમ, વીજ કંપનીઓ અને શિક્ષણ વિભાગની તમામ સત્તાવાર જાહેરાતો.
+        </p>
+
+        <!-- Quick Tool Pills for Gujarat -->
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
+          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-950 to-indigo-950 hover:from-orange-900 hover:to-indigo-900 border border-orange-500/50 text-orange-200 text-xs font-bold transition-all flex items-center gap-1.5 shadow-lg shadow-orange-950/40 ring-1 ring-orange-500/30">
+            <i data-lucide="target" class="w-3.5 h-3.5 text-orange-400 animate-pulse"></i>
+            <span>🎯 મારી લાયકાત તપાસો (Check My Eligibility)</span>
+          </button>
+          <button onclick="openSalaryCalculator()" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-emerald-950/40 border border-slate-800 hover:border-emerald-500/40 text-emerald-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
+            <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+            <span>૭મું પગાર પંચ (Fix-Pay ₹26,000)</span>
+          </button>
+          <button onclick="openOjasGuideModal()" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-amber-950/40 border border-slate-800 hover:border-amber-500/40 text-amber-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span>OJAS OTR અરજી માર્ગદર્શિકા</span>
+          </button>
+          <button onclick="openSyllabusModal(1)" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-indigo-950/40 border border-slate-800 hover:border-indigo-500/40 text-indigo-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>પરીક્ષા પદ્ધતિ &amp; ગુણભાર</span>
+          </button>
+          <button onclick="openFeeGuideModal()" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-teal-950/40 border border-slate-800 hover:border-teal-500/40 text-teal-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
+            <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
+            <span>ફી માફી &amp; ચલણ નિયમો</span>
+          </button>
+          <button onclick="openTimelineModal()" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-amber-950/40 border border-slate-800 hover:border-amber-500/40 text-amber-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+            <span>પરીક્ષા તારીખો &amp; સમયપત્રક</span>
+          </button>
+          <button onclick="openCommandPalette()" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-orange-950/40 border border-slate-800 hover:border-orange-500/40 text-orange-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow">
+            <i data-lucide="command" class="w-3.5 h-3.5"></i>
+            <span>કમાન્ડ પેલેટ (Ctrl+K)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- OJAS Fast Track Service Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-6">
+        <a href="https://ojas.gujarat.gov.in" target="_blank" class="glass-panel glass-panel-hover card-hover-tilt p-4 rounded-xl border border-orange-500/30 group">
+          <div class="flex items-center gap-2 text-orange-400 font-bold text-sm mb-1">
+            <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+            <span>OJAS ઓનલાઇન અરજી</span>
+          </div>
+          <p class="text-xs text-slate-400 font-sans">ojas.gujarat.gov.in ડાયરેક્ટ લિંક</p>
+        </a>
+
+        <a href="https://gpsc-ojas.gujarat.gov.in" target="_blank" class="glass-panel glass-panel-hover card-hover-tilt p-4 rounded-xl border border-orange-500/30 group">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-sm mb-1">
+            <i data-lucide="award" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+            <span>GPSC OJAS પોર્ટલ</span>
+          </div>
+          <p class="text-xs text-slate-400 font-sans">gpsc-ojas.gujarat.gov.in વર્ગ ૧-૨</p>
+        </a>
+
+        <a href="https://hc-ojas.gujarat.gov.in" target="_blank" class="glass-panel glass-panel-hover card-hover-tilt p-4 rounded-xl border border-orange-500/30 group">
+          <div class="flex items-center gap-2 text-yellow-400 font-bold text-sm mb-1">
+            <i data-lucide="scale" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+            <span>હાઇકોર્ટ OJAS પોર્ટલ</span>
+          </div>
+          <p class="text-xs text-slate-400 font-sans">hc-ojas.gujarat.gov.in જુડિશિયલ</p>
+        </a>
+
+        <a href="https://ojas.gujarat.gov.in/PrintApplForm.aspx" target="_blank" class="glass-panel glass-panel-hover card-hover-tilt p-4 rounded-xl border border-orange-500/30 group">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm mb-1">
+            <i data-lucide="download" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+            <span>કોલ લેટર ડાઉનલોડ</span>
+          </div>
+          <p class="text-xs text-slate-400 font-sans">કન્ફર્મેશન નંબર અને હોલ ટિકિટ</p>
+        </a>
+      </div>
+
+      <!-- ગુજરાત પરીક્ષા સમય ચક્ર (Pariksha Samay Chakra Ticker - 144Hz Butter-Smooth Marquee) -->
+      <div class="glass-panel rounded-2xl p-3.5 border border-amber-500/30 bg-gradient-to-r from-amber-950/20 via-slate-900/80 to-orange-950/20 flex flex-col md:flex-row items-center justify-between gap-3 shadow-lg mb-6">
+        <div class="flex items-center gap-2.5 shrink-0">
+          <div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300">
+            <i data-lucide="calendar-clock" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-xs font-black text-white flex items-center gap-1.5 uppercase tracking-wide">
+              <span>પરીક્ષા સમય ચક્ર (Pariksha Samay Chakra)</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/40 animate-pulse">2026 લાઈવ</span>
+            </span>
+            <p class="text-[11px] text-slate-400">કન્ફર્મ્ડ ગુજરાત સરકારી પરીક્ષા તારીખો અને કૉલ લેટર અપડેટ્સ</p>
+          </div>
+        </div>
+
+        <!-- Marquee Ticker Viewport -->
+        <div class="timeline-ticker-viewport flex-1 max-w-full overflow-hidden py-1">
+          <div class="timeline-ticker-track items-center gap-3">
+            <!-- Item 1: GPSC Class 1-2 -->
+            <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              <span class="font-bold text-amber-300">GPSC વર્ગ ૧-૨:</span>
+              <span class="text-slate-300">પ્રિલિમ્સ ૧૫ નવેમ્બર ૨૦૨૬</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">૩૮૮ જગ્યાઓ</span>
+            </div>
+
+            <!-- Item 2: Gujarat Police Constable -->
+            <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-orange-500/40 hover:border-orange-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+              <span class="font-bold text-orange-300">પોલીસ કોન્સ્ટેબલ / SI:</span>
+              <span class="text-slate-300">PET/PST શારીરિક કસોટી ૧૨ ઓક્ટોબર</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 font-mono">૧૨,૪૭૨ જગ્યાઓ</span>
+            </div>
+
+            <!-- Item 3: GSSSB CCE -->
+            <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <span class="font-bold text-cyan-300">GSSSB CCE ગ્રૂપ A & B:</span>
+              <span class="text-slate-300">મુખ્ય લેખિત પરીક્ષા ૨૮ ડિસેમ્બર</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">૫,૫૫૪ જગ્યાઓ</span>
+            </div>
+
+            <!-- Item 4: High Court DySO -->
+            <div onclick="openJobDetailModal(7)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-purple-500/40 hover:border-purple-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+              <span class="font-bold text-purple-300">હાઇકોર્ટ આસિસ્ટન્ટ & DySO:</span>
+              <span class="text-slate-300">પ્રાથમિક કસોટી ૨૪ નવેમ્બર ૨૦૨૬</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">૧,૪૪૬ જગ્યાઓ</span>
+            </div>
+
+            <!-- Item 5: GSRTC Conductor -->
+            <div onclick="openJobDetailModal(4)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="font-bold text-emerald-300">GSRTC એસ.ટી. કંડક્ટર/ડ્રાઈવર:</span>
+              <span class="text-slate-300">OMR કસોટી શિડ્યુલ જાહેર</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">૭,૪૧૯ જગ્યાઓ</span>
+            </div>
+
+            <!-- Duplicate Set for Smooth Infinite Loop -->
+            <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              <span class="font-bold text-amber-300">GPSC વર્ગ ૧-૨:</span>
+              <span class="text-slate-300">પ્રિલિમ્સ ૧૫ નવેમ્બર ૨૦૨૬</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">૩૮૮ જગ્યાઓ</span>
+            </div>
+
+            <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-orange-500/40 hover:border-orange-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+              <span class="font-bold text-orange-300">પોલીસ કોન્સ્ટેબલ / SI:</span>
+              <span class="text-slate-300">PET/PST શારીરિક કસોટી ૧૨ ઓક્ટોબર</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 font-mono">૧૨,૪૭૨ જગ્યાઓ</span>
+            </div>
+
+            <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 flex items-center gap-2 text-xs">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <span class="font-bold text-cyan-300">GSSSB CCE ગ્રૂપ A & B:</span>
+              <span class="text-slate-300">મુખ્ય લેખિત પરીક્ષા ૨૮ ડિસેમ્બર</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">૫,૫૫૪ જગ્યાઓ</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="openTimelineModal()" class="px-3.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-amber-600 hover:text-white border border-slate-700 text-amber-300 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>તમામ કેલેન્ડર</span>
+        </button>
+      </div>
+
+      <!-- ૧૦-સેકન્ડ ઝડપી યોગ્યતા રડાર (10-Second Instant Eligibility Radar - Gujarat Edition) -->
+      <div class="glass-panel rounded-2xl p-5 border border-orange-500/40 bg-gradient-to-br from-orange-950/30 via-slate-900/90 to-amber-950/30 shadow-2xl relative overflow-hidden mb-6">
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 p-0.5 shadow-lg flex items-center justify-center text-white shrink-0">
+              <i data-lucide="crosshair" class="w-6 h-6 animate-pulse"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-base sm:text-lg font-black text-white tracking-tight">૧૦-સેકન્ડ ઝડપી યોગ્યતા રડાર</h2>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/40">OJAS / GPSC સ્પેશિયલ</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-0.5">
+                તમારી ઉંમર, શિક્ષણ અને અનામત કેટેગરી પસંદ કરો - કઈ સરકારી ભરતી માટે તમે લાયક છો તે ત્વરિત જાણી લો.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="setMatcherPreset('graduate_gujarat')" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-orange-900/60 border border-slate-700 hover:border-orange-500/50 text-orange-300 text-xs font-semibold transition-all">
+              🦁 સ્નાતક (Graduate) પ્રિસેટ
+            </button>
+            <button onclick="setMatcherPreset('12th_gujarat')" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-amber-900/60 border border-slate-700 hover:border-amber-500/50 text-amber-300 text-xs font-semibold transition-all">
+              👮 ૧૨ પાસ કોન્સ્ટેબલ પ્રિસેટ
+            </button>
+          </div>
+        </div>
+
+        <!-- Radar Form Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-4">
+          <!-- Education Select -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-orange-400"></i>
+              <span>શૈક્ષણિક લાયકાત (Education)</span>
+            </label>
+            <select id="radar-qualification" class="w-full bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-orange-400 transition-colors">
+              <option value="Graduate" selected>કોઈપણ સ્નાતક (Any Graduate)</option>
+              <option value="12th Pass">૧૨મું પાસ (HSC / હાયર સેકન્ડરી)</option>
+              <option value="10th Pass">૧૦મું પાસ (SSC)</option>
+              <option value="B.Tech / B.E. / MCA">B.Tech / B.E. / MCA (ટેકનિકલ)</option>
+              <option value="Post Graduate">અનુસ્નાતક (Master's Degree)</option>
+              <option value="Diploma / ITI">ડિપ્લોમા / ITI ટ્રેડ</option>
+              <option value="All">તમામ ભરતીઓ જુઓ</option>
+            </select>
+          </div>
+
+          <!-- Age Input -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="user" class="w-3.5 h-3.5 text-indigo-400"></i>
+              <span>હાલની ઉંમર (Current Age)</span>
+            </label>
+            <div class="relative">
+              <input type="number" id="radar-age" value="24" min="18" max="55" class="w-full bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white font-bold outline-none focus:border-orange-400 transition-colors">
+              <span class="absolute right-3 top-2.5 text-xs text-slate-500 font-semibold">વર્ષ</span>
+            </div>
+          </div>
+
+          <!-- Reservation Category -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>અનામત કેટેગરી (Category / Quota)</span>
+            </label>
+            <select id="radar-category" class="w-full bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-orange-400 transition-colors">
+              <option value="General">સામાન્ય / જનરલ (ઓપન)</option>
+              <option value="OBC" selected>SEBC / OBC (+૩ વર્ષ છૂટછાટ)</option>
+              <option value="SC">SC / ST (+૫ વર્ષ છૂટછાટ)</option>
+              <option value="EWS">EWS (આર્થિક નબળા વર્ગ)</option>
+              <option value="Female">મહિલા ઉમેદવાર (+૫ વર્ષ છૂટછાટ)</option>
+              <option value="PwD">દિવ્યાંગ / PwD (+૧૦ વર્ષ છૂટછાટ)</option>
+            </select>
+          </div>
+
+          <!-- Target Jurisdiction -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>રાજ્ય પસંદગી (Region)</span>
+            </label>
+            <div class="flex items-center gap-2">
+              <select id="radar-target" class="flex-1 bg-slate-950/90 border border-slate-700/90 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-orange-400 transition-colors">
+                <option value="Gujarat" selected>🦁 માત્ર ગુજરાત રાજ્ય (OJAS)</option>
+                <option value="All">ગુજરાત + કેન્દ્ર સરકાર બંને</option>
+              </select>
+              <button id="radar-submit-btn" onclick="runQuickEligibilityRadar(); playAudioTick(780, 0.05);" class="px-4 py-2.5 bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-black rounded-xl shadow-lg shadow-orange-600/25 transition-all flex items-center gap-1.5 shrink-0 cursor-pointer">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-200"></i>
+                <span>યોગ્યતા તપાસો</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Banner Container -->
+        <div id="radar-results-banner" class="mt-4 hidden"></div>
+      </div>
+
+      <!-- Gujarat Comprehensive Filter Station -->
+      <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-orange-500/30 space-y-3.5 shadow-2xl">
+        <!-- Search Bar with Reset Button -->
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <div class="relative flex-1 w-full">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-orange-400">
+              <i data-lucide="search" class="w-5 h-5"></i>
+            </div>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="ગુજરાતી અથવા અંગ્રેજીમાં શોધો (દા.ત. કોન્સ્ટેબલ, ક્લાર્ક, GPSC, કંડક્ટર, વનરક્ષક)..."
+              class="w-full bg-slate-950/90 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-orange-400 shadow-inner"
+            >
+          </div>
+          <div class="flex items-center gap-2 shrink-0 w-full sm:w-auto">
+            <button onclick="fetchJobs(); playAudioTick(800, 0.05);" class="flex-1 sm:flex-initial px-5 py-3 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-orange-600/30 transition-all flex items-center justify-center gap-1.5">
+              <span>શોધો</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="resetAllFilters()" class="px-3.5 py-3 rounded-xl bg-slate-900/90 hover:bg-rose-950/40 text-slate-300 hover:text-rose-300 border border-slate-700 hover:border-rose-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" title="બધા ફિલ્ટર્સ સાફ કરો">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-rose-400"></i>
+              <span>રીસેટ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sector Filter Pills (Gujarati) -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-800/80">
+          <span class="text-xs text-orange-400 font-semibold mr-1 flex items-center gap-1 shrink-0">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>વિભાગ / ક્ષેત્ર:</span>
+          </span>
+          <button onclick="filterBySector('All', this)" class="filter-pill filter-pill-gujarat filter-pill-sector pill-default-all active">તમામ ક્ષેત્રો</button>
+          <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🏛️ વહીવટી સેવા (GPSC)</button>
+          <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">👮 પોલીસ &amp; જેલ સિપાહી</button>
+          <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">📝 સચિવાલય &amp; CCE ક્લાર્ક</button>
+          <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">⚙️ ઈજનેર (Engineering)</button>
+          <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🎓 શિક્ષણ &amp; વિદ્યાસહાયક</button>
+          <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🏥 આરોગ્ય &amp; નર્સિંગ</button>
+          <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🚌 GSRTC એસ.ટી. નિગમ</button>
+          <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">⚡ વીજ કંપનીઓ વિદ્યુત સહાયક</button>
+          <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🌲 વનરક્ષક &amp; વનપાલ</button>
+          <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">📮 ટપાલ ખાતું (પોસ્ટ ઓફિસ)</button>
+          <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">✈️ એરપોર્ટ અને ઉડ્ડયન (Aviation)</button>
+        </div>
+
+        <!-- Selection Mode Filter Pills (Gujarati) -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-800/70">
+          <span class="text-xs text-emerald-400 font-semibold mr-1 flex items-center gap-1 shrink-0">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+            <span>પસંદગી પદ્ધતિ:</span>
+          </span>
+          <button onclick="filterBySelectionMode('All', this)" class="filter-pill filter-pill-gujarat filter-pill-mode pill-default-all active">તમામ પદ્ધતિઓ</button>
+          <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-emerald-300 border-emerald-500/30">⚡ સીધી મેરીટ ભરતી (પરીક્ષા વગર)</button>
+          <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-orange-300 border-orange-500/30">🤝 વોક-ઇન ઇન્ટરવ્યુ</button>
+          <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-teal-300 border-teal-500/30">🛠️ એપ્રેન્ટિસ ભરતી</button>
+          <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-blue-300 border-blue-500/30">📝 લેખિત / CBT પરીક્ષા</button>
+          <a href="/btech-cse" class="filter-pill filter-pill-gujarat text-cyan-300 border-cyan-500/40 bg-cyan-950/60 font-bold flex items-center gap-1">
+            <i data-lucide="laptop" class="w-3 h-3"></i> 💻 B.Tech CSE / IT ભરતીઓ →
+          </a>
+        </div>
+
+        <!-- Qualification Filter Pills (Gujarati) -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-800/70">
+          <span class="text-xs text-amber-400 font-semibold mr-1 flex items-center gap-1 shrink-0">
+            <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+            <span>શૈક્ષણિક લાયકાત:</span>
+          </span>
+          <button onclick="filterByQualification('All', this)" class="filter-pill filter-pill-gujarat filter-pill-qual pill-default-all active">તમામ લાયકાત</button>
+          <button onclick="filterByQualification('10th', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">૧૦મું પાસ (SSC)</button>
+          <button onclick="filterByQualification('12th', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">૧૨મું પાસ (HSC)</button>
+          <button onclick="filterByQualification('Diploma', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">ITI / ડિપ્લોમા</button>
+          <button onclick="filterByQualification('Graduate', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">સ્નાતક (Graduate)</button>
+          <button onclick="filterByQualification('Engineering', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">B.E. / B.Tech</button>
+          <button onclick="filterByQualification('Post Graduate', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">અનુસ્નાતક (PG)</button>
+          <button onclick="filterByQualification('Medical', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">મેડિકલ / નર્સિંગ</button>
+          <button onclick="filterByQualification('Teaching', this)" class="filter-pill filter-pill-gujarat filter-pill-qual">B.Ed / TET / TAT</button>
+        </div>
+
+        <!-- Urgency & Fee Quick Filters (Gujarati) -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-800/70">
+          <span class="text-xs text-rose-400 font-semibold mr-1 flex items-center gap-1 shrink-0">
+            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+            <span>સમયસીમા &amp; ફી:</span>
+          </span>
+          <button onclick="filterByUrgency('All', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency pill-default-all active">તમામ સમયસીમા</button>
+          <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-rose-300 border-rose-500/30">⚡ ૪૮ કલાકમાં છેલ્લી તારીખ</button>
+          <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-amber-300 border-amber-500/30">⏰ આ અઠવાડિયે બંધ થતી</button>
+          <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-emerald-300 border-emerald-500/30">🟢 ફી મુક્ત (₹0 / Exempt)</button>
+        </div>
+
+        <!-- Board Category Chips -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-800/70">
+          <span class="text-xs text-slate-400 mr-1 font-semibold shrink-0">ભરતી બોર્ડ:</span>
+          <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white shadow">
+            તમામ ગુજરાત બોર્ડ
+          </button>
+          {% for b in boards_gujarat %}
+            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">
+              {{ b }}
+            </button>
+          {% endfor %}
+        </div>
+
+        <!-- Gujarat District-Wise Fast Filter Chips -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-800/70">
+          <span class="text-xs text-orange-400/90 font-semibold mr-1 flex items-center gap-1 shrink-0">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+            <span>જિલ્લા વાર:</span>
+          </span>
+          <button onclick="filterByGujaratDistrict('All', this)" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white shadow-md">તમામ જિલ્લા</button>
+          <button onclick="filterByGujaratDistrict('ગાંધીનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">ગાંધીનગર (સચિવાલય)</button>
+          <button onclick="filterByGujaratDistrict('અમદાવાદ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">અમદાવાદ</button>
+          <button onclick="filterByGujaratDistrict('સુરત', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">સુરત</button>
+          <button onclick="filterByGujaratDistrict('વડોદરા', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">વડોદરા</button>
+          <button onclick="filterByGujaratDistrict('રાજકોટ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">રાજકોટ</button>
+          <button onclick="filterByGujaratDistrict('ભાવનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">ભાવનગર</button>
+          <button onclick="filterByGujaratDistrict('જામનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">જામનગર</button>
+          <button onclick="filterByGujaratDistrict('કચ્છ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors">કચ્છ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gujarat Vacancies Listing -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <h2 class="text-xl font-extrabold text-white flex items-center gap-2" id="filtered-results-count">
+        ગુજરાત રાજ્યની સક્રિય ભરતીઓ ({{ stats.gujarat_vacancies }} જગ્યાઓ)
+      </h2>
+
+      <!-- Sort and View Mode Switcher -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 text-xs text-slate-400">
+          <span>ક્રમ:</span>
+          <select id="sort-select" class="bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-orange-400">
+            <option value="deadline">અંતિમ તારીખ (પહેલા)</option>
+            <option value="vacancies">સૌથી વધુ જગ્યાઓ</option>
+            <option value="newest">તાજી જાહેરાતો</option>
+          </select>
+        </div>
+
+        <!-- View Mode Toggle -->
+        <div class="flex items-center bg-slate-900 border border-slate-700 rounded-lg p-0.5">
+          <button id="btn-view-cards" class="p-1.5 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/40 transition-colors" title="કાર્ડ વ્યુ">
+            <i data-lucide="grid" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-view-table" class="p-1.5 rounded-md text-slate-400 hover:text-white transition-colors" title="ટેબલ વ્યુ">
+            <i data-lucide="list" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jobs Grid Container -->
+    <div id="jobs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Injected dynamically by app.js -->
+    </div>
+  </main>
+
+  <!-- Live Scanner Telemetry Modal -->
+  <div id="scanner-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-orange-500/40 p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <i data-lucide="radar" class="w-6 h-6 text-orange-400 radar-ping"></i>
+          <div>
+            <h3 class="text-base font-bold text-white">OJAS અને ગુજરાત સરકાર ભરતી સ્કેનર</h3>
+            <p class="text-xs text-slate-400 font-mono" id="scan-current-source">કનેક્ટ થઈ રહ્યું છે...</p>
+          </div>
+        </div>
+        <button onclick="closeScannerModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Telemetry Stats Strip -->
+      <div class="grid grid-cols-3 gap-3 my-4">
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-xs text-slate-400 font-medium">તપાસેલ જાહેરાતો</div>
+          <div class="text-lg font-bold text-orange-400 mt-0.5" id="stat-scanned-count">0</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-xs text-slate-400 font-medium">નવી ભરતીઓ ઉમેરાઈ</div>
+          <div class="text-lg font-bold text-emerald-400 mt-0.5" id="stat-added-count">0</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-xs text-slate-400 font-medium">ઝીરો ડુપ્લિકેશન</div>
+          <div class="text-lg font-bold text-amber-400 mt-0.5">૧૦૦% સચોટ</div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex justify-between text-xs text-slate-400 mb-1">
+          <span>સ્કેન પ્રગતિ</span>
+          <span id="scan-progress-percent" class="font-bold text-orange-400">0%</span>
+        </div>
+        <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+          <div id="scan-progress-bar" class="bg-gradient-to-r from-orange-500 to-amber-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div id="scan-log-output" class="terminal-window flex-1 p-3 rounded-xl overflow-y-auto space-y-1 max-h-60">
+        <div class="text-xs text-slate-500 font-mono">સ્કેન શરૂ થવાની રાહ જોઈ રહ્યું છે...</div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+        <button onclick="closeScannerModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg">
+          બંધ કરો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Matcher Modal for Gujarat -->
+  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+    <div class="glass-panel w-full max-w-3xl rounded-2xl border border-orange-500/40 p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">FuturSet AI કારકિર્દી અને યોગ્યતા સ્કેનર</h3>
+            <p class="text-xs text-slate-400">તમારી વિગતો દાખલ કરો અને જાણી લો કે તમે કઈ સરકારી નોકરી માટે પાત્ર છો.</p>
+          </div>
+        </div>
+        <button onclick="closeMatcherModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Matcher Inputs -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5 p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">તમારી ઉંમર (Age)</label>
+          <input type="number" id="matcher-age-input" value="23" min="17" max="60" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white font-bold outline-none focus:border-orange-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">શૈક્ષણિક લાયકાત</label>
+          <select id="matcher-edu-select" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400 font-medium">
+            <option value="Graduate">સ્નાતક (Graduate - Any Degree)</option>
+            <option value="12th Pass">૧૨ પાસ (12th / HSC)</option>
+            <option value="10th Pass">૧૦ પાસ (10th / SSC)</option>
+            <option value="Engineering">એન્જિનિયરિંગ (B.E. / B.Tech)</option>
+            <option value="Diploma">ડિપ્લોમા (Diploma)</option>
+            <option value="ITI">ITI સર્ટિફાઇડ</option>
+            <option value="Post Graduate">અનુસ્નાતક (Post Graduate / Master)</option>
+            <option value="MBBS">MBBS / મેડિકલ</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">અનામત કેટેગરી</label>
+          <select id="matcher-cat-select" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400 font-medium">
+            <option value="General">સામાન્ય / જનરલ (General / Open)</option>
+            <option value="OBC/SEBC">SEBC / OBC (+૩ વર્ષ છૂટછાટ)</option>
+            <option value="EWS">EWS (+૫ વર્ષ ગુજરાત છૂટછાટ)</option>
+            <option value="SC">SC અનુસૂચિત જાતિ (+૫ વર્ષ)</option>
+            <option value="ST">ST અનુસૂચિત જનજાતિ (+૫ વર્ષ)</option>
+            <option value="Female">મહિલા ઉમેદવાર (+૫ વર્ષ)</option>
+            <option value="PwD">દિવ્યાંગ PwD (+૧૦ વર્ષ)</option>
+            <option value="Ex-SM">માજી સૈનિક (Ex-SM)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">રાજ્ય પ્રાથમિકતા</label>
+          <select id="matcher-state-select" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400 font-medium">
+            <option value="Gujarat" selected>ગુજરાત રાજ્ય (Gujarat)</option>
+            <option value="All India">ઓલ ઇન્ડિયા (All India)</option>
+          </select>
+        </div>
+
+        <div class="col-span-full flex items-center justify-between pt-2 border-t border-slate-800">
+          <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+            <input type="checkbox" id="matcher-central-check" checked class="rounded bg-slate-800 border-slate-700 text-orange-500 focus:ring-0">
+            <span>કેન્દ્રીય સરકારની ઓલ ઇન્ડિયા ભરતીઓ પણ દર્શાવો</span>
+          </label>
+          <button onclick="calculateAIMatches()" class="px-5 py-2 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-bold rounded-lg shadow-lg transition-all flex items-center gap-1.5">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+            <span>યોગ્યતા ચકાસો (Match Score)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Matcher Results Area -->
+      <div id="matcher-results-container" class="flex-1 overflow-y-auto pr-1">
+        <div class="py-10 text-center text-slate-400">
+          <i data-lucide="compass" class="w-12 h-12 mx-auto text-slate-600 mb-3"></i>
+          <p class="font-medium text-slate-300">"યોગ્યતા ચકાસો" બટન દબાવો</p>
+          <p class="text-xs mt-1">અમારું એલ્ગોરિધમ સરકારી નિયમો મુજબ વય મર્યાદા અને અનામત લાભોની ગણતરી કરશે.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Detail Modal -->
+  <div id="job-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-xl p-2 sm:p-4 md:p-6 transition-all duration-300">
+    <div class="glass-panel w-full max-w-5xl rounded-3xl border border-orange-500/40 shadow-[0_0_60px_rgba(0,0,0,0.95)] relative flex flex-col max-h-[94vh] overflow-hidden bg-[#090e1a]/98">
+      <!-- Permanent Fixed Top Bar (Always Visible, Never Scrolls Away) -->
+      <div class="px-4 sm:px-6 py-3 border-b border-slate-800 bg-slate-900/95 backdrop-blur flex items-center justify-between z-30 shrink-0 select-none">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-orange-400 animate-pulse"></span>
+          <div class="flex flex-col">
+            <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
+              <i data-lucide="file-check-2" class="w-4 h-4 text-orange-400"></i>
+              <span>ગુજરાત ભરતી વિગતવાર ડોઝિયર અને અરજી પદ્ધતિ</span>
+            </span>
+            <span class="text-[10px] text-slate-400 sm:hidden">Close બટન અથવા ESC દબાવી પાછા જાઓ</span>
+          </div>
+          <span class="text-[11px] font-medium text-slate-400 hidden sm:inline">• પાછા જવા માટે <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-mono border border-slate-700">ESC</kbd> અથવા Close બટન દબાવો</span>
+        </div>
+
+        <!-- Prominent Sticky Close Button -->
+        <button
+          onclick="closeJobDetailModal()"
+          class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/30 transition-all transform hover:scale-105 cursor-pointer z-50 shrink-0"
+          title="Close Recruitment Details (Esc)"
+        >
+          <i data-lucide="x" class="w-4 h-4 stroke-[3]"></i>
+          <span>Close / બંધ કરો (Esc)</span>
+        </button>
+      </div>
+
+      <div id="job-modal-body" class="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-8"></div>
+    </div>
+  </div>
+
+  <!-- Bookmarks Modal -->
+  <div id="bookmarks-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-orange-500/30 p-6 shadow-2xl relative flex flex-col max-h-[85vh]">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="bookmark" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+          <h3 class="text-base font-bold text-white">સાચવેલી ભરતીઓ (Saved Gujarat Bookmarks)</h3>
+        </div>
+        <button onclick="closeBookmarksModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="bookmarks-list" class="flex-1 overflow-y-auto pr-1"></div>
+    </div>
+  </div>
+
+  <!-- Syllabus & Exam Pattern Modal -->
+  <div id="syllabus-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 font-gujarati">
+    <div class="glass-modal w-full max-w-2xl rounded-2xl p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-orange-500/40">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">પરીક્ષા પદ્ધતિ, ગુણભાર અને સિલેબસ વિગત</h3>
+            <p class="text-xs text-slate-400 font-sans">Official Scheme of Examination, Subject Weightage &amp; Negative Marking</p>
+          </div>
+        </div>
+        <button onclick="closeSyllabusModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="syllabus-modal-body" class="overflow-y-auto py-5 space-y-4 pr-1 font-sans">
+        <!-- Injected dynamically by openSyllabusModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Fee & Exemption Guide Modal -->
+  <div id="fee-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 font-gujarati">
+    <div class="glass-modal w-full max-w-2xl rounded-2xl p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-emerald-500/40">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+            <i data-lucide="credit-card" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">અરજી ફી અને ફી માફી નિયમો</h3>
+            <p class="text-xs text-slate-400 font-sans">Gujarat Government Application Fee, Post Office Challan &amp; Exemption Guide</p>
+          </div>
+        </div>
+        <button onclick="closeFeeGuideModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="overflow-y-auto py-5 space-y-4 text-xs text-slate-300 pr-1 font-sans">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-white text-sm font-gujarati">ગુજરાત સરકાર સીધી ભરતી (OJAS)</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">GPSC / GSSSB / LRD</span>
+            </div>
+            <ul class="space-y-1.5 text-slate-300 font-gujarati">
+              <li>• <strong>બિનઅનામત (જનરલ) પુરુષ:</strong> ₹૧૦૦ + પોસ્ટ ઓફિસ ચાર્જ ₹૧૨.</li>
+              <li>• <strong>SC / ST / SEBC (OBC) / EWS:</strong> <span class="text-emerald-400 font-bold">સંપૂર્ણ ફી માફ (₹0)</span></li>
+              <li>• <strong>તમામ કેટેગરીની મહિલાઓ:</strong> <span class="text-emerald-400 font-bold">સંપૂર્ણ ફી માફ (₹0)</span></li>
+              <li>• <strong>માજી સૈનિક (Ex-SM) &amp; દિવ્યાંગ:</strong> <span class="text-emerald-400 font-bold">સંપૂર્ણ ફી માફ (₹0)</span></li>
+              <li>• <strong>GSSSB CCE પરીક્ષા ફી રિફંડ:</strong> અનામત વર્ગના ઉમેદવારો પરીક્ષામાં હાજર રહે તો ₹૪૦૦/₹૫૦૦ સંપૂર્ણ પરત મળે છે.</li>
+            </ul>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-white text-sm font-gujarati">પોસ્ટ ઓફિસ ચલણ &amp; ઓનલાઇન ચુકવણી</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">Payment Mode</span>
+            </div>
+            <ul class="space-y-1.5 text-slate-300 font-gujarati">
+              <li>• <strong>UPI / NetBanking:</strong> અરજી કન્ફર્મ કર્યા બાદ તાત્કાલિક e-Receipt ડાઉનલોડ કરો.</li>
+              <li>• <strong>પોસ્ટ ઓફિસ ચલણ:</strong> બારકોડવાળું ચલણ પ્રિન્ટ કરી કોઈપણ કોમ્પ્યુટરાઇઝ્ડ પોસ્ટ ઓફિસમાં જમા કરાવો.</li>
+              <li>• <strong>ચલણ જમા સમય:</strong> પોસ્ટ ઓફિસમાં બપોરે ૩:૦૦ વાગ્યા પહેલાં ચલણ જમા કરાવવું હિતાવહ છે.</li>
+              <li>• <strong>ચલણ રસીદ:</strong> પોસ્ટ માસ્ટરનો સિક્કો અને ટ્રાન્ઝેક્શન આઈડીવાળી સ્લિપ સાચવી રાખવી.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 text-slate-300 font-gujarati">
+          <h4 class="font-bold text-amber-300 text-xs mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+            <span>ઉમેદવારો માટે મહત્વપૂર્ણ ફી સલાહ</span>
+          </h4>
+          <p class="leading-relaxed">
+            OJAS પર ઓનલાઇન ફી ભરતી વખતે પેમેન્ટ થઈ જાય પછી ૧૫ મિનિટ સુધી ફરીથી પેમેન્ટ કરવાનો પ્રયત્ન કરશો નહીં. જો એકાઉન્ટમાંથી પૈસા કપાઈ ગયા હોય અને સ્ટેટસ પેન્ડિંગ બતાવે, તો "Check Payment Status" લિંક પર ક્લિક કરીને કન્ફર્મેશન નંબર અને જન્મતારીખ દાખલ કરો.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exam Dates & Timeline Modal -->
+  <div id="timeline-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 font-gujarati">
+    <div class="glass-modal w-full max-w-2xl rounded-2xl p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-amber-500/40">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">પરીક્ષા તારીખો, કોલ લેટર &amp; સમયપત્રક</h3>
+            <p class="text-xs text-slate-400 font-sans">Official Examination Calendar &amp; Admit Card Schedule</p>
+          </div>
+        </div>
+        <button onclick="closeTimelineModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="timeline-modal-body" class="overflow-y-auto py-5 space-y-3 pr-1 font-sans">
+        <!-- Injected dynamically by openTimelineModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Free Job Alert Subscription Modal -->
+  <div id="subscribe-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+    <div class="glass-panel w-full max-w-md rounded-2xl border border-orange-500/30 p-6 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i data-lucide="bell" class="w-5 h-5 text-orange-400"></i>
+          ગુજરાત નોકરી એલર્ટ્સ સબસ્ક્રિપ્શન
+        </h3>
+        <button onclick="closeSubscribeModal()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <form onsubmit="handleSubscribe(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">તમારું પૂરું નામ</label>
+          <input type="text" id="sub-name" required placeholder="ઉદા. રમેશ પટેલ" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">ઈમેઇલ એડ્રેસ</label>
+          <input type="email" id="sub-email" required placeholder="ramesh@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">પસંદગી</label>
+          <select id="sub-state" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+            <option value="Gujarat" selected>ગુજરાત સરકાર (OJAS / GPSC / GSSSB)</option>
+            <option value="Both">ગુજરાત અને કેન્દ્ર સરકાર બંને</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all">
+          ફ્રી એલર્ટ સક્રિય કરો
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Job Compare Dock Bar -->
+  <div id="compare-floating-bar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-xl border border-orange-500/50 shadow-2xl rounded-2xl px-5 py-3 items-center gap-4 text-xs font-gujarati">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-orange-400 animate-pulse"></span>
+      <span class="font-bold text-white" id="compare-selected-count">0/2 પસંદ થયેલ</span>
+      <span class="text-slate-400 hidden sm:inline">સરખામણી માટે</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="openCompareModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold shadow-lg shadow-orange-500/30 transition-all flex items-center gap-1.5">
+        <span>સરખામણી કરો</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </button>
+      <button onclick="selectedCompareIds=[]; updateCompareFloatingBar(); fetchJobs();" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white" title="પસંદગી રદ કરો">
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Command Palette Modal (Ctrl+K or ⌘K) -->
+  <div id="command-palette-modal" class="hidden fixed inset-0 z-50 command-palette-backdrop flex items-start justify-center pt-20 px-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/40 rounded-2xl max-w-xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div class="p-3.5 border-b border-slate-800 flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-orange-400"></i>
+        <input
+          type="text"
+          id="palette-input"
+          placeholder="ભરતી, બોર્ડ, લાયકાત અથવા ટૂલ શોધો (દા.ત. પોલીસ, GPSC, કંડક્ટર)..."
+          class="bg-transparent text-white text-sm w-full outline-none placeholder-slate-500"
+        >
+        <button onclick="closeCommandPalette()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400 font-mono">ESC</kbd>
+        </button>
+      </div>
+
+      <div class="p-2 max-h-80 overflow-y-auto" id="palette-results">
+        <!-- Filled dynamically -->
+      </div>
+
+      <div class="px-4 py-2.5 bg-slate-950/80 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-sans">
+        <span>Enter દબાવીને સીધું ઓપન કરો</span>
+        <span>FuturSet ગુજરાત કમાન્ડ પેલેટ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7th Pay Commission Salary & Pension Calculator Modal -->
+  <div id="salary-calculator-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/30 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="calculator" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-base">ગુજરાત ૭મું પગાર પંચ કેલ્ક્યુલેટર</h3>
+            <p class="text-[11px] text-slate-400 font-sans" id="calc-prefill-note">Gujarat Govt Fix-Pay & Regular Scales</p>
+          </div>
+        </div>
+        <button onclick="closeSalaryCalculator()" class="text-slate-400 hover:text-white p-1.5 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 my-5 text-xs font-sans">
+        <div>
+          <label class="block text-slate-400 mb-1.5 font-medium font-gujarati">ભરતી સંવર્ગ / હોદ્દો પસંદ કરો</label>
+          <select id="salary-post-type" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-orange-400">
+            <option value="fix_clerk" selected>ગુજરાત વર્ગ-૩ ફિક્સ પગાર (પોલીસ કોન્સ્ટેબલ, તલાટી, જુનિયર ક્લાર્ક) - ₹26,000/માસ</option>
+            <option value="fix_head">ગુજરાત હેડ ક્લાર્ક / સબ-ઓડિટર ફિક્સ પગાર - ₹40,800/માસ</option>
+            <option value="lvl2">લેવલ ૨ રેગ્યુલર પે સ્કેલ (જુનિયર ક્લાર્ક) - બેઝિક ₹19,900</option>
+            <option value="lvl4">લેવલ ૪ રેગ્યુલર પે સ્કેલ (સિનિયર ક્લાર્ક) - બેઝિક ₹25,500</option>
+            <option value="lvl7">લેવલ ૭ (GPSC વર્ગ-૨, મામલતદાર, PI, DySO) - બેઝિક ₹44,900</option>
+            <option value="lvl10">લેવલ ૧૦ (GPSC વર્ગ-૧, ડેપ્યુટી કલેક્ટર, ડીવાયએસપી) - બેઝિક ₹56,100</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1.5 font-medium font-gujarati">શહેર વર્ગીકરણ (HRA કેટેગરી)</label>
+          <select id="salary-city-tier" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-orange-400">
+            <option value="X" selected>Tier X શહેર (અમદાવાદ - 27% HRA)</option>
+            <option value="Y">Tier Y શહેર (સુરત, વડોદરા, રાજકોટ, ગાંધીનગર - 18% HRA)</option>
+            <option value="Z">Tier Z વિસ્તાર (અન્ય જિલ્લાઓ અને ગ્રામ્ય - 9% HRA)</option>
+          </select>
+        </div>
+
+        <!-- Calculated Matrix Breakdown -->
+        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+          <div class="flex justify-between">
+            <span class="text-slate-400 font-gujarati">મૂળ પગાર (Basic Pay):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-basic">₹26,000</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400 font-gujarati">મોંઘવારી ભથ્થું (DA @ 50%):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-da">N/A (ફિક્સ પગાર)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400 font-gujarati">ઘરભાડું ભથ્થું (HRA):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-hra">N/A (ફિક્સ પગાર)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400 font-gujarati">વાહન ભથ્થું (TA):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-ta">N/A (ફિક્સ પગાર)</span>
+          </div>
+          <div class="flex justify-between pt-2 border-t border-slate-800">
+            <span class="text-slate-400 font-gujarati">કુલ માસિક પગાર (Gross):</span>
+            <span class="font-bold text-amber-400" id="sal-disp-gross">₹26,000</span>
+          </div>
+          <div class="flex justify-between text-rose-400/90 font-gujarati">
+            <span>કપાત (પ્રોફેશનલ ટેક્સ + NPS):</span>
+            <span class="font-medium" id="sal-disp-nps">₹200</span>
+          </div>
+          <div class="flex justify-between pt-2 border-t border-slate-800 items-center">
+            <span class="font-bold text-white text-sm font-gujarati">ચોખ્ખો હાથમાં આવતો પગાર (In-Hand):</span>
+            <span class="font-black text-emerald-400 text-base" id="sal-disp-net">₹25,800 / Month</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] text-slate-500 pt-2 border-t border-slate-800 font-gujarati">
+        <span>*ગુજરાત નાણા વિભાગના ૭મા પગાર પંચ મુજબ.</span>
+        <button onclick="closeSalaryCalculator()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-semibold">બંધ કરો</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side-by-Side Job Comparison Modal -->
+  <div id="compare-drawer-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/40 rounded-2xl max-w-3xl w-full shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="split" class="w-5 h-5 text-orange-400"></i>
+          <h3 class="font-extrabold text-white text-base">બે ભરતીઓની સામસામે સરખામણી</h3>
+        </div>
+        <button onclick="closeCompareModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto flex-1 font-sans" id="compare-matrix-body">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- OJAS OTR Step-by-Step Guide Modal -->
+  <div id="ojas-guide-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/40 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-base">OJAS ગુજરાત ઓનલાઇન અરજી માર્ગદર્શિકા</h3>
+            <p class="text-[11px] text-slate-400 font-sans">ojas.gujarat.gov.in Official Walkthrough</p>
+          </div>
+        </div>
+        <button onclick="closeOjasGuideModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 my-5 text-xs text-slate-300 leading-relaxed">
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૧</div>
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">વન ટાઈમ રજીસ્ટ્રેશન (OTR)</h4>
+            <p><a href="https://ojas.gujarat.gov.in" target="_blank" class="text-orange-400 underline">ojas.gujarat.gov.in</a> પર જાઓ અને <strong>"Registration" &rarr; "Apply"</strong> પર ક્લિક કરો. તમારી વ્યક્તિગત વિગતો, જાતિ (SEBC/SC/ST/EWS), જન્મ તારીખ અને મોબાઈલ નંબર નાખીને OTR રજીસ્ટ્રેશન નંબર મેળવો.</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૨</div>
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">ફોટો અને સહી અપલોડ કરવાના નિયમો</h4>
+            <p><strong>પાસપોર્ટ ફોટોગ્રાફ:</strong> ફાઇલ સાઈઝ <strong>15 KB થી ઓછી</strong> હોવી જોઈએ, JPG ફોર્મેટ, સાઈઝ: 5 cm ઊંચાઈ x 3.6 cm પહોળાઈ.<br>
+            <strong>સહી (Signature):</strong> ફાઇલ સાઈઝ <strong>15 KB થી ઓછી</strong> હોવી જોઈએ, સફેદ કાગળ પર કાળી/વાદળી પેનથી સહી, સાઈઝ: 2.5 cm ઊંચાઈ x 7.5 cm પહોળાઈ.</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૩</div>
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">ઓનલાઇન અરજી અને કન્ફર્મેશન</h4>
+            <p><strong>"Online Application" &rarr; "Apply"</strong> માં જઈને વિભાગ (દા.ત. GPRB પોલીસ, GSSSB, GPSC) પસંદ કરો. શૈક્ષણિક વિગતો ભરો અને <strong>"Confirm Application"</strong> બટન દબાવો. કન્ફર્મેશન નંબર સાચવી રાખો.</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૪</div>
+          <div>
+            <h4 class="font-bold text-white text-sm mb-1">ફી ભરવી અને હોલ ટિકિટ</h4>
+            <p>સામાન્ય વર્ગના ઉમેદવારો ઓનલાઇન UPI/NetBanking અથવા પોસ્ટ ઓફિસ ચલણથી ₹૧૦૦ + ચાર્જ ભરી શકે છે. અનામત વર્ગના ઉમેદવારો માટે મોટાભાગની ભરતીઓમાં ફી માફ છે. પરીક્ષાના ૭ દિવસ પહેલા OJAS પરથી કોલ લેટર ડાઉનલોડ કરો.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+        <a href="https://ojas.gujarat.gov.in" target="_blank" class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5">
+          <span>OJAS પોર્ટલ ખોલો</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+        <button onclick="closeOjasGuideModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold">બંધ કરો</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Eligibility & Career Navigator Modal (ગુજરાતી સ્પેશિયલ) -->
+  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto">
+    <div class="glass-modal w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl border border-orange-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
+      <!-- Header -->
+      <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/50">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-orange-500/20 to-indigo-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 shadow-inner">
+            <i data-lucide="target" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-black text-white flex items-center gap-2">
+              AI લાયકાત મૂલ્યાંકન &amp; સરકારી નોકરી માર્ગદર્શક
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">૧૦૦% સચોટ</span>
+            </h3>
+            <p class="text-xs text-slate-400">તમારી ડિગ્રી અને ઉંમર અનુસાર ગુજરાત અને કેન્દ્ર સરકારની તમામ યોગ્ય ભરતીઓ તાત્કાલિક મેળવો.</p>
+          </div>
+        </div>
+        <button onclick="closeMatcherModal()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Quick Profile Presets -->
+      <div class="px-5 py-3 bg-slate-950/60 border-b border-slate-800/60 flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] mr-1">ઝડપી પ્રોફાઇલ પસંદ કરો:</span>
+        <button onclick="setMatcherPreset('btech_gujarat')" class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+          <span>💻 B.Tech / BE (CSE / IT) ગુજરાત</span>
+        </button>
+        <button onclick="setMatcherPreset('graduate_gujarat')" class="px-3 py-1 rounded-xl bg-orange-950/70 hover:bg-orange-900 border border-orange-500/40 text-orange-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+          <span>🏛️ કોઈપણ સ્નાતક (Graduate)</span>
+        </button>
+        <button onclick="setMatcherPreset('12th_gujarat')" class="px-3 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+          <span>⚡ ૧૦મું / ૧૨મું પાસ (મેરીટ &amp; પોલીસ)</span>
+        </button>
+      </div>
+
+      <!-- Input Configuration Controls -->
+      <div class="p-5 border-b border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 bg-slate-900/30">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">શિક્ષણ લાયકાત (Qualification)</label>
+          <select id="matcher-edu-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+            <option value="B.E. / B.Tech">B.E. / B.Tech (એન્જિનિયરિંગ / CSE / IT)</option>
+            <option value="Graduate">સ્નાતક (કોઈપણ ફેકલ્ટી - Arts/Commerce/Science)</option>
+            <option value="12th Pass">ધોરણ ૧૨ પાસ (HSC)</option>
+            <option value="10th Pass">ધોરણ ૧૦ પાસ (SSC)</option>
+            <option value="Diploma">ડિપ્લોમા / પોલિટેકનિક</option>
+            <option value="ITI">ITI પાસ</option>
+            <option value="Post Graduate">અનુસ્નાતક (Post Graduate / MCA / M.Sc / M.Tech)</option>
+            <option value="MBBS">MBBS / મેડિકલ સ્ટાફ નર્સ</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">તમારી ઉંમર (વર્ષમાં)</label>
+          <input type="number" id="matcher-age-input" value="23" min="16" max="55" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">અનામત વર્ગ (Category)</label>
+          <select id="matcher-cat-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+            <option value="General">જનરલ (સામાન્ય વર્ગ)</option>
+            <option value="SEBC">SEBC / OBC સા.શૈ.પ. (+૩ થી +૫ વર્ષ)</option>
+            <option value="EWS">EWS આર્થિક નબળા વર્ગ (+૫ વર્ષ)</option>
+            <option value="SC">SC અનુસૂચિત જાતિ (+૫ વર્ષ)</option>
+            <option value="ST">ST અનુસૂચિત જનજાતિ (+૫ વર્ષ)</option>
+            <option value="Female">મહિલા ઉમેદવારો (+૫ વર્ષ વધારાની છૂટ)</option>
+            <option value="PwD">દિવ્યાંગ / PwBD (+૧૦ વર્ષ)</option>
+            <option value="Ex-SM">માજી સૈનિક (Ex-Servicemen)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">રાજ્ય વતની (State)</label>
+          <select id="matcher-state-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+            <option value="Gujarat">ગુજરાત રાજ્યના વતની (Domicile)</option>
+            <option value="All India">ઓલ ઇન્ડિયા</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="px-5 py-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs">
+        <label class="inline-flex items-center gap-2 cursor-pointer text-slate-300">
+          <input type="checkbox" id="matcher-central-check" checked class="rounded bg-slate-800 border-slate-700 text-orange-500 focus:ring-0">
+          <span>કેન્દ્ર સરકાર (Central Govt) ની ભરતીઓ પણ સામેલ કરો</span>
+        </label>
+        <button onclick="calculateAIMatches()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-orange-600 to-indigo-600 hover:from-orange-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-orange-500/20 transition-all flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellow-300"></i>
+          <span>યોગ્યતા ચકાસો (Find My Jobs)</span>
+        </button>
+      </div>
+
+      <!-- Results Container -->
+      <div id="matcher-results-container" class="p-5 flex-1 overflow-y-auto bg-slate-950/40">
+        <div class="text-center py-10 text-slate-400">
+          <i data-lucide="compass" class="w-12 h-12 mx-auto text-orange-400/40 mb-3 animate-pulse"></i>
+          <h4 class="text-sm font-bold text-white mb-1">"B.Tech / BE (CSE / IT) ગુજરાત" અથવા "યોગ્યતા ચકાસો" પર ક્લિક કરો</h4>
+          <p class="text-xs text-slate-400 max-w-md mx-auto">
+            તમારું શિક્ષણ અને ઉંમર તમામ ૧૭૨ ભરતીઓ સામે ચકાસીને ૧૦૦% યોગ્ય નોકરીઓની યાદી સીધી અરજી લિંક સાથે બતાવવામાં આવશે.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#050914] border-t border-slate-800/80 py-8 px-4 text-center text-xs text-slate-400 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© ૨૦૨૬ FuturSet ગુજરાત ભરતી પોર્ટલ. ઉમેદવારોની સુવિધા માટે અધિકૃત સરકારી માહિતી.</p>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="/" class="hover:text-orange-400">All India Portal</a>
+        <span>•</span>
+        <button onclick="openMatcherModal()" class="hover:text-orange-400">AI Matcher</button>
+        <span>•</span>
+        <a href="/api/export" class="hover:text-orange-400">CSV Export</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/scanner.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script>
+    // Initialize specifically for Gujarat State
+    document.addEventListener("DOMContentLoaded", () => {
+      currentFilters.state = "Gujarat";
+      currentFilters.gov_level = "State";
+      setTimeout(() => {
+        fetchJobs();
+      }, 100);
+    });
+  </script>
+</body>
+</html>

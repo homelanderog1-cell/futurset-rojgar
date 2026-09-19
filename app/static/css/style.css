@@ -1,0 +1,362 @@
+/* FuturSet Custom Cyber-Glass & Government Recruitment Portal Styling */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-navy: #0a1128;
+  --secondary-navy: #1c2541;
+  --accent-cyan: #00b4d8;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #ef4444;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
+  background-color: #070d1e;
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+.font-gujarati {
+  font-family: 'Noto Sans Gujarati', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Glassmorphism containers - High Performance 144Hz Hardware Accelerated */
+.glass-panel {
+  background: rgba(13, 22, 44, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* High-Performance 144Hz Cyber-Glass Card (Eliminates GPU Read-back Stutter) */
+.glass-card-transparent {
+  background: rgba(12, 19, 38, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
+  contain: layout style paint;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.glass-card-transparent:hover {
+  background: rgba(16, 26, 52, 0.98);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 12px 32px -8px rgba(0, 180, 216, 0.2);
+  transform: translateY(-3px);
+}
+
+.glass-modal {
+  background: rgba(8, 14, 28, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75);
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.45);
+  color: #94a3b8;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(30, 41, 59, 0.6);
+  transform: translateY(-1px);
+}
+
+.filter-pill.active {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.9), rgba(37, 99, 235, 0.9));
+  color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.4);
+}
+
+.filter-pill-gujarat.active {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(217, 119, 6, 0.9));
+  color: #ffffff;
+  border-color: rgba(251, 146, 60, 0.6);
+  box-shadow: 0 4px 15px -3px rgba(249, 115, 22, 0.4);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(26, 40, 77, 0.85);
+  border-color: rgba(0, 180, 216, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(0, 180, 216, 0.15);
+}
+
+.glass-dropdown {
+  background: rgba(14, 23, 47, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Neon Glows & Highlights */
+.glow-cyan {
+  box-shadow: 0 0 25px -5px rgba(0, 180, 216, 0.4);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.4);
+}
+
+/* Custom animated radar pulse */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(0, 180, 216, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 180, 216, 0);
+  }
+}
+
+.radar-ping {
+  animation: radar-pulse 2s infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090e1d;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2b48;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00b4d8;
+}
+
+/* Badge animations */
+.badge-urgent {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.3));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  animation: pulse-urgent 2s infinite;
+}
+
+@keyframes pulse-urgent {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* Terminal Console Styling */
+.terminal-window {
+  background: #050914;
+  border: 1px solid rgba(0, 180, 216, 0.2);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+}
+
+/* Dynamic Cursor Spotlight Overlay */
+.cursor-spotlight {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: radial-gradient(600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), rgba(0, 180, 216, 0.07), transparent 80%);
+  transition: opacity 0.3s ease;
+}
+
+/* GPU-Accelerated Micro-Interaction Card Hover */
+.card-hover-tilt {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  transform: translateZ(0);
+}
+
+.card-hover-tilt:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(0, 180, 216, 0.22), 0 0 16px 0 rgba(255, 255, 255, 0.04);
+  border-color: rgba(0, 180, 216, 0.45);
+}
+
+/* 144Hz High-Refresh Hardware Acceleration & Content Virtualization */
+.tech-job-card, .glass-panel-corp, .job-card-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+  contain: layout style paint;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+#jobs-container, #tech-jobs-grid, #corp-jobs-grid {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Global 144Hz Smooth Scrolling & Rendering Engine */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware-Accelerated Momentum Scrolling for 60Hz Tablets & 120Hz Phones */
+#jobs-container, #tech-jobs-grid, #corp-jobs-grid, #job-modal-body, .overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* Eliminate sticky hover states on touchscreens (Tablets & Mobile Phones) */
+@media (hover: none) and (pointer: coarse) {
+  .glass-card-transparent:hover,
+  .card-hover-tilt:hover,
+  .glass-panel-hover:hover {
+    transform: none !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45) !important;
+  }
+}
+
+/* Metallic & Holographic Gradient Heading Clips */
+.text-metallic {
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #38bdf8 80%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-metallic {
+  background: linear-gradient(135deg, #ffffff 0%, #fed7aa 30%, #f59e0b 70%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Interactive Canvas Background in Hero */
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Command Palette Modal Backdrop */
+.command-palette-backdrop {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(4, 8, 20, 0.85);
+}
+
+/* Tooltip Pill */
+.ui-chip-active {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.4);
+}
+
+.ui-chip-active-gujarat {
+  background: linear-gradient(135deg, #f97316, #d97706);
+  color: #ffffff;
+  box-shadow: 0 4px 15px -3px rgba(249, 115, 22, 0.4);
+}
+
+/* Shimmer scanline effect */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer-sweep 2.5s infinite;
+}
+
+/* Print Friendly Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   Pariksha Samay Chakra / Exam Date Timeline Ticker (144Hz Smooth Marquee)
+   ------------------------------------------------------------- */
+@keyframes ticker-scroll-horizontal {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.timeline-ticker-viewport {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.timeline-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll-horizontal 42s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.timeline-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.timeline-pill-chip {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, background 0.18s ease;
+  transform: translateZ(0);
+}
+
+.timeline-pill-chip:hover {
+  transform: translateY(-2px);
+}
+
+

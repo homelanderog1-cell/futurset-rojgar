@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    .glass-panel-corp {
+      background: rgba(12, 19, 38, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      content-visibility: auto;
+      contain-intrinsic-size: auto 280px;
+      contain: layout style paint;
+      transform: translateZ(0);
+    }
+    .filter-pill-corp {
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(15, 23, 42, 0.8);
+      color: #94a3b8;
+      border: 1px solid rgba(51, 65, 85, 0.7);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .filter-pill-corp:hover {
+      color: #f8fafc;
+      border-color: rgba(99, 102, 241, 0.5);
+      background: rgba(30, 41, 59, 0.9);
+    }
+    .filter-pill-corp.active {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+    .filter-pill-corp.active-green {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-[#030712] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white relative">
+  <!-- Interactive Ambient Backdrop Glows -->
+  <div class="fixed top-0 left-1/3 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed bottom-10 right-1/4 w-[30rem] h-[30rem] bg-cyan-600/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-1/2 left-10 w-80 h-80 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 w-full glass-panel-corp border-b border-slate-800/80 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-cyan-500 to-emerald-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+              <i data-lucide="building-2" class="w-4 h-4 text-cyan-400"></i>
+            </div>
+          </div>
+          <div>
+            <span class="text-lg font-black tracking-tight text-white flex items-center gap-1.5">
+              FuturSet <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-300">Enterprise</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Portal Switcher Links -->
+        <nav class="hidden md:flex items-center gap-1.5 text-xs font-semibold">
+          <a href="/" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors">
+            All India Govt Hub
+          </a>
+          <a href="/gujarat" class="px-3 py-1.5 rounded-lg text-orange-400 hover:bg-orange-500/10 transition-colors flex items-center gap-1">
+            <span>🦁 ગુજરાત રોજગાર</span>
+          </a>
+          <a href="/btech-cse" class="px-3 py-1.5 rounded-lg text-cyan-400 hover:bg-cyan-500/10 transition-colors flex items-center gap-1">
+            <i data-lucide="laptop" class="w-3.5 h-3.5"></i>
+            <span>B.Tech CSE Hub</span>
+          </a>
+          <span class="px-3 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/40 font-bold flex items-center gap-1">
+            <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>
+            <span>Corporate &amp; Semi-Private Hub</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="target" class="w-3.5 h-3.5 text-cyan-400 animate-pulse"></i>
+          <span class="hidden sm:inline">Check Eligibility</span>
+        </button>
+        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Toggle Sound">
+          <i data-lucide="volume-2" class="w-4 h-4 text-indigo-400"></i>
+        </button>
+        <button onclick="openBookmarksModal()" class="relative p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors" title="Saved Jobs">
+          <i data-lucide="bookmark" class="w-4 h-4 text-cyan-400"></i>
+          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-500 text-slate-950 font-black text-[10px] flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-10 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800/60 overflow-hidden">
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-indigo-500/30 text-xs font-semibold text-indigo-300 mb-4 shadow-lg backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>Adani • BHEL • Linde • Amazon • Flipkart • NPCI/UPI • Reliance • GIFT City</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-3">
+        Large, Medium &amp; Semi-Private <br class="hidden sm:inline">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-300">
+          Enterprise &amp; Corporate Careers 2026
+        </span>
+      </h1>
+
+      <p class="text-xs sm:text-sm text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
+        All active corporate drives across Indian Conglomerates, Govt-Backed PSUs &amp; Joint Ventures, Global Tech Giants, and GIFT City FinTech. Filter specifically for B.Tech &amp; Graduate eligible roles with verified direct apply links.
+      </p>
+
+      <!-- Metrics Radar Stats Grid -->
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
+        <div class="glass-panel-corp p-3.5 rounded-2xl border border-indigo-500/20 shadow-lg">
+          <div class="text-xl sm:text-2xl font-black text-indigo-400" id="stat-corp-jobs">{{ corp_stats.total_corporate_jobs }}+</div>
+          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Active Enterprise Drives</div>
+        </div>
+        <div class="glass-panel-corp p-3.5 rounded-2xl border border-cyan-500/20 shadow-lg">
+          <div class="text-xl sm:text-2xl font-black text-cyan-300" id="stat-corp-vacancies">{{ corp_stats.total_corporate_vacancies | format_vacancies }}</div>
+          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Corporate Openings</div>
+        </div>
+        <div class="glass-panel-corp p-3.5 rounded-2xl border border-orange-500/20 shadow-lg">
+          <div class="text-xl sm:text-2xl font-black text-orange-400" id="stat-corp-gujarat">{{ corp_stats.gujarat_corporate_jobs }}</div>
+          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Gujarat Corporate Roles</div>
+        </div>
+        <div class="glass-panel-corp p-3.5 rounded-2xl border border-emerald-500/20 shadow-lg">
+          <div class="text-xl sm:text-2xl font-black text-emerald-400">Up to ₹{{ corp_stats.highest_ctc_lpa }} LPA</div>
+          <div class="text-[11px] text-slate-400 font-medium mt-0.5">Top CTC Packages</div>
+        </div>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="mt-6 max-w-2xl mx-auto relative flex items-center">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <i data-lucide="search" class="w-4 h-4 text-indigo-400"></i>
+        </div>
+        <input
+          type="text"
+          id="corp-search-input"
+          placeholder="Search by company (Adani, BHEL, Linde, Amazon, Flipkart, UPI), role, skills..."
+          class="w-full pl-10 pr-24 py-3 bg-slate-900/90 text-white rounded-xl border border-slate-700/80 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 text-xs sm:text-sm outline-none shadow-xl transition-all"
+        >
+        <button onclick="fetchCorporateJobs(); playAudioTick(750, 0.05);" class="absolute right-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all flex items-center gap-1 shadow">
+          <span>Filter</span>
+        </button>
+      </div>
+
+      <!-- Trending Company Tags -->
+      <div class="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-[11px]">
+        <span class="font-bold text-slate-400 uppercase tracking-wider text-[10px]">Top Employers:</span>
+        <button onclick="setCorpSearch('Adani')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Adani Group</button>
+        <button onclick="setCorpSearch('BHEL')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">BHEL</button>
+        <button onclick="setCorpSearch('Linde')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Linde India</button>
+        <button onclick="setCorpSearch('Microsoft')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Microsoft IDC</button>
+        <button onclick="setCorpSearch('Google')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Google India</button>
+        <button onclick="setCorpSearch('Amazon')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Amazon AWS</button>
+        <button onclick="setCorpSearch('Swiggy')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Swiggy</button>
+        <button onclick="setCorpSearch('TCS')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">TCS NQT</button>
+        <button onclick="setCorpSearch('HDFC')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">HDFC Bank</button>
+        <button onclick="setCorpSearch('Sun Pharma')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Sun Pharma</button>
+        <button onclick="setCorpSearch('Maruti')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Maruti Suzuki</button>
+        <button onclick="setCorpSearch('Torrent')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">Torrent Power</button>
+        <button onclick="setCorpSearch('UPI')" class="px-2 py-0.5 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300">NPCI / UPI</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Listing Section -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <!-- Comprehensive Corporate Filter Station -->
+    <div class="glass-panel-corp rounded-2xl p-4 sm:p-5 mb-8 space-y-3.5 shadow-2xl border border-slate-800/80">
+      <!-- Row 1: Company Type / Industry Sector Pills -->
+      <div class="flex flex-wrap items-center gap-1.5">
+        <span class="text-xs font-bold text-indigo-300 mr-1 flex items-center gap-1 shrink-0">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          <span>Industry Sector:</span>
+        </span>
+        <button onclick="filterCorpType('all', this)" class="filter-pill-corp active">All Companies</button>
+        <button onclick="filterCorpType('global_tech', this)" class="filter-pill-corp">🌐 Big Tech (Microsoft, Google, Amazon, Apple, Meta)</button>
+        <button onclick="filterCorpType('unicorns', this)" class="filter-pill-corp">🦄 Unicorns (Swiggy, Zomato, Razorpay, CRED, Groww)</button>
+        <button onclick="filterCorpType('it_services', this)" class="filter-pill-corp">💻 IT Services (TCS, Infosys, Wipro, Cognizant, Accenture, HCL)</button>
+        <button onclick="filterCorpType('bfsi', this)" class="filter-pill-corp">🏦 Banking &amp; BFSI (HDFC, ICICI, Axis, Kotak, Bajaj)</button>
+        <button onclick="filterCorpType('conglomerate', this)" class="filter-pill-corp">🏢 Conglomerates (Adani, Reliance, Tata, L&amp;T, JSW, Vedanta)</button>
+        <button onclick="filterCorpType('semi_private', this)" class="filter-pill-corp">🏛️ Semi-Private &amp; Govt-Backed (BHEL, Linde, GSFC, NPCI/UPI)</button>
+        <button onclick="filterCorpType('auto_ev', this)" class="filter-pill-corp">🚗 Automobile &amp; EV (Maruti, Tata Motors, Ola, Ather, Hyundai)</button>
+        <button onclick="filterCorpType('pharma', this)" class="filter-pill-corp">💊 Pharma &amp; Healthcare (Sun Pharma, Zydus, Torrent, Dr. Reddy's)</button>
+        <button onclick="filterCorpType('fmcg', this)" class="filter-pill-corp">🛒 FMCG &amp; Consumer (HUL, ITC, Nestlé, Asian Paints)</button>
+        <button onclick="filterCorpType('gujarat_champions', this)" class="filter-pill-corp text-orange-300">🦁 Gujarat Industrial Leaders (Torrent Power, Nirma, Arvind, Astral, Welspun)</button>
+      </div>
+
+      <!-- Row 2: Location & Eligibility Toggle -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2.5 border-t border-slate-800/80">
+        <!-- Location Pills -->
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-semibold text-cyan-400 mr-1 flex items-center gap-1 shrink-0">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+            <span>Location:</span>
+          </span>
+          <button onclick="filterCorpLocation('all', this)" class="filter-pill-corp active">All Locations</button>
+          <button onclick="filterCorpLocation('gujarat', this)" class="filter-pill-corp text-orange-300">🦁 Gujarat (Ahmedabad, GIFT City, Mundra, Vadodara)</button>
+          <button onclick="filterCorpLocation('remote', this)" class="filter-pill-corp text-emerald-300">🌐 Remote / Hybrid</button>
+          <button onclick="filterCorpLocation('metros', this)" class="filter-pill-corp">🏙️ Metro Hubs (Bengaluru, Mumbai, Pune)</button>
+        </div>
+
+        <!-- 1-Click "My Eligible Companies" Toggle -->
+        <div class="flex items-center gap-2">
+          <button id="btn-eligible-toggle" onclick="toggleEligibleOnly()" class="px-3.5 py-1.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/50 text-emerald-300 font-bold text-xs shadow-md transition-all flex items-center gap-1.5 ring-1 ring-emerald-500/20">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span id="eligible-toggle-text">🎯 All My Eligible Companies (B.Tech / Graduate)</span>
+          </button>
+          <button onclick="resetCorpFilters()" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-medium transition-colors" title="Reset Filters">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 3: CTC Brackets & Experience -->
+      <div class="flex flex-wrap items-center gap-3 pt-2.5 border-t border-slate-800/80 text-xs">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-semibold text-emerald-400 mr-1">CTC Range:</span>
+          <button onclick="filterCorpCTC('0', this)" class="filter-pill-corp active">All Packages</button>
+          <button onclick="filterCorpCTC('6', this)" class="filter-pill-corp">₹6+ LPA</button>
+          <button onclick="filterCorpCTC('10', this)" class="filter-pill-corp">₹10+ LPA</button>
+          <button onclick="filterCorpCTC('18', this)" class="filter-pill-corp">₹18+ LPA (High Pay)</button>
+        </div>
+
+        <div class="flex items-center gap-1.5 ml-auto">
+          <span class="text-slate-400">Experience:</span>
+          <select id="corp-exp-select" onchange="fetchCorporateJobs()" class="bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-200 outline-none focus:border-indigo-400">
+            <option value="">All Experience</option>
+            <option value="fresher" selected>Freshers (2024 - 2026 Batch)</option>
+            <option value="experienced">Experienced (1-3+ Years)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filter Status Bar -->
+    <div class="flex items-center justify-between mb-4 px-1 text-xs text-slate-400">
+      <div id="corp-results-count" class="font-semibold text-slate-300">
+        Showing all corporate &amp; enterprise openings
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-emerald-400 font-medium">Direct Official Apply Links Active</span>
+      </div>
+    </div>
+
+    <!-- Corporate Jobs Grid -->
+    <div id="corp-jobs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="col-span-full text-center py-16 text-slate-400">
+        <div class="inline-block w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        <p class="mt-3 text-xs">Loading corporate &amp; enterprise openings...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Detailed Corporate Job Modal -->
+  <div id="corp-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto">
+    <div class="glass-panel-corp w-full max-w-2xl rounded-3xl border border-indigo-500/30 shadow-2xl overflow-hidden bg-slate-950 flex flex-col max-h-[90vh]">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
+        <div class="flex items-center gap-3">
+          <div id="modal-corp-badge" class="w-10 h-10 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center font-black text-indigo-300 text-base">
+            C
+          </div>
+          <div>
+            <h3 id="modal-corp-title" class="text-base font-bold text-white">Job Title</h3>
+            <p id="modal-corp-org" class="text-xs text-indigo-300 font-semibold">Company Name</p>
+          </div>
+        </div>
+        <button onclick="closeCorpModal()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 text-xs">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div>
+            <span class="text-slate-500 block">Package (CTC):</span>
+            <span id="modal-corp-ctc" class="font-bold text-emerald-400 text-sm">₹8.0 LPA</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Location:</span>
+            <span id="modal-corp-loc" class="font-semibold text-slate-200">Ahmedabad</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Eligible Batch:</span>
+            <span class="font-semibold text-cyan-300">2024, 2025, 2026 Batch</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-indigo-400"></i>
+            <span>Educational Qualification Criteria</span>
+          </h4>
+          <p id="modal-corp-qual" class="p-3 rounded-xl bg-slate-900/40 border border-slate-800 text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="git-merge" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span>Selection Process &amp; Interview Rounds</span>
+          </h4>
+          <p id="modal-corp-process" class="p-3 rounded-xl bg-slate-900/40 border border-slate-800 text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="code-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>Tech Stack &amp; Skills Assessed</span>
+          </h4>
+          <div id="modal-corp-skills" class="flex flex-wrap gap-1.5"></div>
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-slate-800 bg-slate-900/50 flex items-center justify-between">
+        <span class="text-[11px] text-slate-400">Apply via Official Careers Portal</span>
+        <div class="flex items-center gap-2">
+          <button onclick="closeCorpModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-medium text-xs">Close</button>
+          <a id="modal-corp-apply-btn" href="#" target="_blank" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-xs shadow-lg shadow-indigo-500/25 transition-all flex items-center gap-1.5">
+            <span>Apply on Official Website</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Eligibility & Career Navigator Modal (Reusable) -->
+  {% include 'components/eligibility_modal.html' ignore missing %}
+
+  <!-- Professional Footer -->
+  <footer class="bg-[#030712] border-t border-slate-800/80 py-8 px-4 text-center text-xs text-slate-400 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 FuturSet Enterprise &amp; Corporate Careers Radar. Curated for Indian &amp; Gujarat graduates.</p>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="/" class="hover:text-cyan-400">All India Govt</a>
+        <span>•</span>
+        <a href="/gujarat" class="hover:text-orange-400">ગુજરાત રોજગાર</a>
+        <span>•</span>
+        <a href="/btech-cse" class="hover:text-indigo-400">B.Tech CSE Hub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Corporate JavaScript Engine -->
+  <script src="/static/js/app.js"></script>
+  <script>
+    let corpFilters = {
+      company_type: "all",
+      location: "all",
+      eligible_only: false,
+      min_ctc: 0,
+      experience: "fresher",
+      q: ""
+    };
+
+    window._corpJobs = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchCorporateJobs();
+      const searchInput = document.getElementById("corp-search-input");
+      if (searchInput) {
+        let timer = null;
+        searchInput.addEventListener("input", (e) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            corpFilters.q = e.target.value.trim();
+            fetchCorporateJobs();
+          }, 300);
+        });
+      }
+    });
+
+    function setCorpSearch(term) {
+      const el = document.getElementById("corp-search-input");
+      if (el) el.value = term;
+      corpFilters.q = term;
+      fetchCorporateJobs();
+    }
+
+    function filterCorpType(type, btn) {
+      playAudioTick(700, 0.04);
+      corpFilters.company_type = type;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll(".filter-pill-corp").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      fetchCorporateJobs();
+    }
+
+    function filterCorpLocation(loc, btn) {
+      playAudioTick(650, 0.04);
+      corpFilters.location = loc;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll(".filter-pill-corp").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      fetchCorporateJobs();
+    }
+
+    function filterCorpCTC(ctc, btn) {
+      playAudioTick(650, 0.04);
+      corpFilters.min_ctc = parseFloat(ctc) || 0;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll(".filter-pill-corp").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      fetchCorporateJobs();
+    }
+
+    function toggleEligibleOnly() {
+      playAudioTick(800, 0.06);
+      corpFilters.eligible_only = !corpFilters.eligible_only;
+      const btn = document.getElementById("btn-eligible-toggle");
+      if (corpFilters.eligible_only) {
+        btn.classList.add("bg-emerald-600", "text-white", "shadow-emerald-600/40");
+        btn.classList.remove("bg-emerald-950/80", "text-emerald-300");
+      } else {
+        btn.classList.remove("bg-emerald-600", "text-white", "shadow-emerald-600/40");
+        btn.classList.add("bg-emerald-950/80", "text-emerald-300");
+      }
+      fetchCorporateJobs();
+    }
+
+    function resetCorpFilters() {
+      playAudioTick(500, 0.05);
+      corpFilters = {
+        company_type: "all",
+        location: "all",
+        eligible_only: false,
+        min_ctc: 0,
+        experience: "",
+        q: ""
+      };
+      const searchEl = document.getElementById("corp-search-input");
+      if (searchEl) searchEl.value = "";
+      const expEl = document.getElementById("corp-exp-select");
+      if (expEl) expEl.value = "";
+      document.querySelectorAll(".filter-pill-corp").forEach(b => b.classList.remove("active"));
+      const btn = document.getElementById("btn-eligible-toggle");
+      if (btn) {
+        btn.classList.remove("bg-emerald-600", "text-white");
+        btn.classList.add("bg-emerald-950/80", "text-emerald-300");
+      }
+      fetchCorporateJobs();
+    }
+
+    async function fetchCorporateJobs() {
+      const expEl = document.getElementById("corp-exp-select");
+      if (expEl) corpFilters.experience = expEl.value;
+
+      const params = new URLSearchParams();
+      if (corpFilters.company_type && corpFilters.company_type !== 'all') params.append("company_type", corpFilters.company_type);
+      if (corpFilters.location && corpFilters.location !== 'all') params.append("location", corpFilters.location);
+      if (corpFilters.eligible_only) params.append("eligible_only", "true");
+      if (corpFilters.min_ctc > 0) params.append("min_ctc", corpFilters.min_ctc);
+      if (corpFilters.experience) params.append("experience", corpFilters.experience);
+      if (corpFilters.q) params.append("q", corpFilters.q);
+
+      try {
+        const res = await fetch(`/api/jobs/corporate?${params.toString()}`);
+        const data = await res.json();
+        window._corpJobs = data.results || [];
+        renderCorpGrid(window._corpJobs, data.count || 0);
+      } catch (err) {
+        console.error("Corporate fetch error:", err);
+      }
+    }
+
+    function renderCorpGrid(jobs, totalCount) {
+      const container = document.getElementById("corp-jobs-grid");
+      const countEl = document.getElementById("corp-results-count");
+      if (countEl) {
+        countEl.innerHTML = `Showing <strong class="text-white">${jobs.length}</strong> enterprise opportunities (Total: ${totalCount.toLocaleString()} vacancies)`;
+      }
+
+      if (!jobs || jobs.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400 glass-panel-corp rounded-2xl border border-slate-800">
+            <i data-lucide="building" class="w-12 h-12 mx-auto text-slate-600 mb-2"></i>
+            <h4 class="text-base font-bold text-white mb-1">No Companies Found</h4>
+            <p class="text-xs text-slate-400 max-w-sm mx-auto">Try resetting filters or searching another keyword.</p>
+            <button onclick="resetCorpFilters()" class="mt-4 px-3.5 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-semibold">Reset Filters</button>
+          </div>
+        `;
+        initLucide();
+        return;
+      }
+
+      let html = "";
+      jobs.forEach(job => {
+        const cat = (job.job_category || '').toLowerCase();
+        const isSemiPrivate = cat === 'semi_private' || cat === 'psu';
+        const isTechGiant = cat === 'global_tech';
+        const isUnicorn = cat === 'unicorns' || cat === 'fintech_startup';
+        const isITServices = cat === 'it_services';
+        const isBFSI = cat === 'bfsi';
+        const isAuto = cat === 'auto_ev';
+        const isPharma = cat === 'pharma';
+        const isFMCG = cat === 'fmcg';
+        const isGujarat = cat === 'gujarat_champions';
+        const isAdani = (job.organization || '').toLowerCase().includes('adani');
+
+        let typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">🏢 Corporate</span>`;
+        if (isSemiPrivate) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">🏛️ Semi-Private / PSU</span>`;
+        } else if (isTechGiant) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">🌐 Big Tech</span>`;
+        } else if (isUnicorn) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">🦄 Unicorn</span>`;
+        } else if (isITServices) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">💻 IT Services</span>`;
+        } else if (isBFSI) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🏦 Banking/BFSI</span>`;
+        } else if (isAuto) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-300 border border-red-500/30">🚗 Auto &amp; EV</span>`;
+        } else if (isPharma) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30">💊 Pharma</span>`;
+        } else if (isFMCG) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">🛒 FMCG</span>`;
+        } else if (isGujarat) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">🦁 Gujarat Leader</span>`;
+        } else if (isAdani) {
+          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">🏢 Adani Group</span>`;
+        }
+
+        const isBTechEligible = job.is_btech_cse === 1 || (job.qualification_level || '').toLowerCase() === 'engineering' || (job.qualification_level || '').toLowerCase() === 'graduate';
+
+        const initialLetter = (job.organization || 'C').charAt(0);
+
+        html += `
+          <div class="glass-panel-corp p-4 rounded-2xl border border-slate-800/90 hover:border-indigo-500/40 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2.5">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-900 to-slate-900 border border-indigo-500/30 flex items-center justify-center font-black text-indigo-300 text-sm group-hover:scale-105 transition-transform shrink-0 shadow-inner">
+                    ${initialLetter}
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-indigo-300 block leading-tight truncate max-w-[180px]">${job.organization}</span>
+                    <span class="text-[10px] text-slate-400 block">${job.district || job.state || 'All India'}</span>
+                  </div>
+                </div>
+                ${typeBadge}
+              </div>
+
+              <h4 class="text-sm font-extrabold text-white group-hover:text-indigo-300 transition-colors cursor-pointer line-clamp-2 leading-snug mb-2" onclick="openCorpModal(${job.id})">
+                ${job.title}
+              </h4>
+
+              <div class="flex flex-wrap items-center gap-1.5 mb-2.5 text-[11px]">
+                <span class="px-2 py-0.5 rounded-md font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  ₹${job.ctc_lpa ? job.ctc_lpa + ' LPA' : 'Competitive'}
+                </span>
+                <span class="px-2 py-0.5 rounded-md font-semibold bg-slate-900 text-slate-300 border border-slate-800">
+                  ${job.vacancies.toLocaleString()} Posts
+                </span>
+                ${isBTechEligible ? `
+                  <span class="px-2 py-0.5 rounded-md font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                    <i data-lucide="check" class="w-3 h-3"></i>
+                    <span>Eligible for B.Tech</span>
+                  </span>
+                ` : ''}
+              </div>
+
+              <p class="text-[11px] text-slate-400 line-clamp-2 mb-3 leading-relaxed">
+                ${job.qualification}
+              </p>
+
+              ${job.tech_stack ? `
+                <div class="flex flex-wrap gap-1 mb-3">
+                  ${job.tech_stack.split(',').slice(0, 3).map(s => `<span class="text-[10px] px-2 py-0.5 rounded bg-slate-900/90 text-indigo-200 border border-slate-800">${s.trim()}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 mt-auto">
+              <button onclick="openCorpModal(${job.id})" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-semibold border border-slate-800 transition-colors">
+                Hiring Info
+              </button>
+              <a href="${job.apply_url}" target="_blank" class="px-3.5 py-1.5 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-1">
+                <span>Apply Official</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      initLucide();
+    }
+
+    function openCorpModal(jobId) {
+      if (typeof openJobDetailModal === 'function') {
+        openJobDetailModal(jobId);
+        return;
+      }
+    }
+  </script>
+
+  <!-- Unified Job Dossier & Step-by-Step Modal -->
+  <div id="job-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-xl p-2 sm:p-4 md:p-6 transition-all duration-300">
+    <div class="glass-panel w-full max-w-5xl rounded-3xl border border-indigo-500/40 shadow-[0_0_60px_rgba(0,0,0,0.95)] relative flex flex-col max-h-[94vh] overflow-hidden bg-[#090e1a]/98">
+      <!-- Permanent Fixed Top Bar (Always Visible, Never Scrolls Away) -->
+      <div class="px-4 sm:px-6 py-3 border-b border-slate-800 bg-slate-900/95 backdrop-blur flex items-center justify-between z-30 shrink-0 select-none">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-pulse"></span>
+          <div class="flex flex-col">
+            <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
+              <i data-lucide="file-check-2" class="w-4 h-4 text-indigo-400"></i>
+              <span>Corporate Recruitment Dossier &amp; Selection Guide</span>
+            </span>
+            <span class="text-[10px] text-slate-400 sm:hidden">Click Close button or ESC to exit</span>
+          </div>
+          <span class="text-[11px] font-medium text-slate-400 hidden sm:inline">• Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-mono border border-slate-700">ESC</kbd> or click Close to return</span>
+        </div>
+
+        <!-- Prominent Sticky Close Button -->
+        <button
+          onclick="closeJobDetailModal()"
+          class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/30 transition-all transform hover:scale-105 cursor-pointer z-50 shrink-0"
+          title="Close Recruitment Details (Esc)"
+        >
+          <i data-lucide="x" class="w-4 h-4 stroke-[3]"></i>
+          <span>Close / બંધ કરો (Esc)</span>
+        </button>
+      </div>
+
+      <div id="job-modal-body" class="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-8"></div>
+    </div>
+  </div>
+</body>
+</html>
