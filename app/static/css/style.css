@@ -1025,18 +1025,48 @@ body {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* 3. Otta-Style Clean Job Card */
+/* 3. Otta-Style Crisp Job Card with Clear Contrast & Boundaries */
 .otta-job-card {
   background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 16px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1.5px solid #cbd5e1 !important; /* Crisp slate-300 border so boundaries are immediately visible! */
+  border-radius: 18px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 5px -1px rgba(10, 37, 64, 0.06), 0 1px 3px -1px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+.otta-job-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #635bff, #00d4ff);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 .otta-job-card:hover {
-  border-color: #a5b4fc !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(99, 91, 255, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
+  border-color: #635bff !important;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -8px rgba(99, 91, 255, 0.14), 0 8px 16px -4px rgba(10, 37, 64, 0.06);
+}
+.otta-job-card:hover::before {
+  opacity: 1;
+}
+
+/* Gujarat Portal Job Card Variant */
+.gujarat-royal-mesh-bg .otta-job-card {
+  border: 1.5px solid #fdba74 !important; /* Rich amber-300 border for Gujarat portal! */
+  background: #ffffff !important;
+  box-shadow: 0 3px 8px -1px rgba(249, 115, 22, 0.08), 0 1px 3px -1px rgba(0, 0, 0, 0.04);
+}
+.gujarat-royal-mesh-bg .otta-job-card::before {
+  background: linear-gradient(90deg, #f97316, #f59e0b);
+}
+.gujarat-royal-mesh-bg .otta-job-card:hover {
+  border-color: #ea580c !important;
+  box-shadow: 0 20px 32px -8px rgba(249, 115, 22, 0.18), 0 8px 16px -4px rgba(234, 88, 12, 0.08);
 }
 
 /* 4. Light Mode Skeleton Pulse */
@@ -1047,8 +1077,8 @@ body {
 }
 .skeleton-card-light {
   background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 16px;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 18px;
   padding: 1.5rem;
 }
 
@@ -1078,15 +1108,29 @@ body {
   animation-play-state: paused;
 }
 
-/* 7. Gujarat Royal Saffron & Amber Dynamic Mesh Background */
+/* 7. Gujarat Royal Saffron & Amber Dynamic Mesh Background with Tactile Dot Pattern */
 .gujarat-royal-mesh-bg {
-  background-color: #fdfbf7;
+  background-color: #faf7f2;
   background-image: 
-    radial-gradient(at 15% 10%, rgba(249, 115, 22, 0.09) 0px, transparent 45%),
-    radial-gradient(at 85% 12%, rgba(245, 158, 11, 0.09) 0px, transparent 45%),
-    radial-gradient(at 50% 45%, rgba(251, 146, 60, 0.05) 0px, transparent 60%),
-    radial-gradient(at 80% 85%, rgba(234, 88, 12, 0.07) 0px, transparent 50%),
-    radial-gradient(at 10% 90%, rgba(217, 119, 6, 0.06) 0px, transparent 50%);
+    radial-gradient(rgba(249, 115, 22, 0.15) 1.2px, transparent 1.2px),
+    radial-gradient(at 15% 10%, rgba(249, 115, 22, 0.12) 0px, transparent 45%),
+    radial-gradient(at 85% 12%, rgba(245, 158, 11, 0.12) 0px, transparent 45%),
+    radial-gradient(at 50% 45%, rgba(251, 146, 60, 0.08) 0px, transparent 60%),
+    radial-gradient(at 80% 85%, rgba(234, 88, 12, 0.10) 0px, transparent 50%),
+    radial-gradient(at 10% 90%, rgba(217, 119, 6, 0.08) 0px, transparent 50%);
+  background-size: 24px 24px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+}
+
+/* Main Portal Stripe Mesh with Dot Grid */
+.stripe-light-mesh-bg {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(rgba(148, 163, 184, 0.28) 1.2px, transparent 1.2px),
+    radial-gradient(at 10% 10%, rgba(99, 91, 255, 0.08) 0px, transparent 45%),
+    radial-gradient(at 90% 15%, rgba(0, 212, 255, 0.08) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, rgba(99, 91, 255, 0.05) 0px, transparent 60%);
+  background-size: 24px 24px, 100% 100%, 100% 100%, 100% 100%;
   background-attachment: fixed;
 }
 
@@ -1129,14 +1173,57 @@ body {
 .gujarat-card-hover:hover {
   transform: translateY(-3px) scale(1.003);
   box-shadow: 0 12px 28px -6px rgba(249, 115, 22, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
-  border-color: #fdba74 !important;
+  border-color: #ea580c !important;
 }
 
-/* 9. High-Contrast Interactive Filter Station */
+/* 9. High-Contrast Interactive Filter Station Box */
 .filter-station-box {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 16px -4px rgba(10, 37, 64, 0.04);
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px -2px rgba(10, 37, 64, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+.gujarat-royal-mesh-bg .filter-station-box {
+  border: 1.5px solid #fed7aa !important;
+  box-shadow: 0 4px 20px -2px rgba(249, 115, 22, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+}
+
+/* 10. Filter Pills with Crisp High-Contrast Boundaries */
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.775rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.filter-pill:hover {
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+  background: #f8fafc !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+.filter-pill.active {
+  background: linear-gradient(135deg, #635bff, #4f46e5) !important;
+  color: #ffffff !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 4px 14px -1px rgba(99, 91, 255, 0.4) !important;
+}
+.filter-pill-gujarat.active {
+  background: linear-gradient(135deg, #f97316, #ea580c) !important;
+  color: #ffffff !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 4px 14px -1px rgba(249, 115, 22, 0.4) !important;
 }
 
 

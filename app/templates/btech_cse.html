@@ -25,13 +25,18 @@
       }
     }
   </script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons with Anycast CDN & Fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    if (!window.lucide) {
+      document.write('<script src="https://unpkg.com/lucide@latest"><\/script>');
+    }
+  </script>
   <!-- Custom Styles -->
   <link rel="stylesheet" href="/static/css/style.css">
   <script>window.__INITIAL_JOBS__ = {{ initial_jobs_json | safe }};</script>
 </head>
-<body class="min-h-screen flex flex-col stripe-mesh-bg bg-[#f8fafc] text-[#0a2540] antialiased selection:bg-indigo-500 selection:text-white relative">
+<body class="min-h-screen flex flex-col stripe-light-mesh-bg text-[#0a2540] antialiased selection:bg-indigo-500 selection:text-white relative">
 
   <!-- Ambient Overlay -->
   <div class="cursor-spotlight"></div>

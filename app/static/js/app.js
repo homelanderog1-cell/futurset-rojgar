@@ -15,6 +15,9 @@ let currentFilters = {
 
 let currentView = "cards"; // "cards" or "table"
 let bookmarkedJobIds = new Set();
+let selectedCompareIds = [];
+let audioEnabled = true;
+let audioCtx = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   initLucide();
@@ -54,18 +57,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initLucide() {
-  if (window.lucide) {
-    lucide.createIcons();
+  try {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  } catch (e) {
+    console.warn("Lucide initialization:", e);
   }
 }
 
-// Global Search Helper Functions
+// Global Search Helper Functions with Smooth Results Scroll
 window.executeSearch = function() {
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
     currentFilters.q = searchInput.value.trim();
     fetchJobs();
     if (typeof playAudioTick === 'function') playAudioTick(800, 0.05);
+    const target = document.getElementById("filtered-results-count") || document.getElementById("jobs-container");
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 };
 
@@ -86,11 +97,15 @@ window.setQuickSearch = function(term) {
     currentFilters.q = term;
     fetchJobs();
     if (typeof playAudioTick === 'function') playAudioTick(750, 0.05);
+    const target = document.getElementById("filtered-results-count") || document.getElementById("jobs-container");
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 };
 
 function initEventListeners() {
-  // Search input with debounce + Enter key support
+  // Search input with debounce + Enter key support & auto-scroll
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
     let timeout = null;
@@ -109,6 +124,10 @@ function initEventListeners() {
         currentFilters.q = searchInput.value.trim();
         fetchJobs();
         if (typeof playAudioTick === 'function') playAudioTick(800, 0.05);
+        const target = document.getElementById("filtered-results-count") || document.getElementById("jobs-container");
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     });
   }
@@ -328,8 +347,9 @@ async function fetchJobs() {
 }
 
 function renderCardsView(container, jobs) {
-  const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
-  let html = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
+  try {
+    const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+    let html = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
 
   jobs.forEach(job => {
     const isBookmarked = bookmarkedJobIds.has(job.id);
@@ -441,10 +461,15 @@ function renderCardsView(container, jobs) {
 
   html += `</div>`;
   container.innerHTML = html;
+  initLucide();
+  } catch (e) {
+    console.error("Fatal error in renderCardsView:", e);
+  }
 }
 
 function renderTableView(container, jobs) {
-  const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+  try {
+    const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
   let html = `
     <div class="col-span-full portal-table-container">
       <table class="portal-table">
@@ -527,7 +552,10 @@ function renderTableView(container, jobs) {
 
   html += `</tbody></table></div>`;
   container.innerHTML = html;
-  if (window.lucide) lucide.createIcons();
+  initLucide();
+  } catch (e) {
+    console.error("Fatal error in renderTableView:", e);
+  }
 }
 
 function generateStepByStepGuide(job, isGujaratPage) {
@@ -2519,8 +2547,7 @@ function initSpotlight() {
 // -------------------------------------------------------------
 // Web Audio API Tactile Sound Synthesizer (Zero asset dependency)
 // -------------------------------------------------------------
-let audioEnabled = true;
-let audioCtx = null;
+// audioEnabled and audioCtx initialized at top level
 
 function playAudioTick(freq = 600, duration = 0.04) {
   if (!audioEnabled) return;
@@ -2745,7 +2772,7 @@ function calculateSalary() {
 // -------------------------------------------------------------
 // Side-by-Side Job Comparison Matrix
 // -------------------------------------------------------------
-let selectedCompareIds = [];
+// selectedCompareIds initialized at top level
 
 function toggleCompareJob(jobId, element) {
   playAudioTick(600, 0.05);
