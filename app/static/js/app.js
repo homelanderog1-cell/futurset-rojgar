@@ -12,6 +12,7 @@ let currentFilters = {
   selection_mode: "",
   sort_by: "deadline"
 };
+window.currentFilters = currentFilters;
 
 let currentView = "cards"; // "cards" or "table"
 let bookmarkedJobIds = new Set();
@@ -69,6 +70,7 @@ function initLucide() {
     console.warn("Lucide initialization:", e);
   }
 }
+window.initLucide = initLucide;
 
 // Global Search Helper Functions with Smooth Results Scroll
 window.executeSearch = function() {
@@ -1505,7 +1507,8 @@ async function openJobDetailModal(jobId) {
 }
 
 function renderJobModalContent(modalBody, job, isGujaratPage) {
-  const portalGuide = generateStepByStepGuide(job, isGujaratPage);
+  try {
+    const portalGuide = generateStepByStepGuide(job, isGujaratPage);
 
   let basePay = 25500;
   const salaryMatch = (job.salary_text || "").match(/₹\s*([\d,]+)/);
@@ -2092,6 +2095,11 @@ function closeJobDetailModal() {
   document.body.style.overflow = "auto";
   document.documentElement.style.overflow = "auto";
 }
+
+function closeTechModal() {
+  closeJobDetailModal();
+}
+window.closeTechModal = closeTechModal;
 
 function copyJobLink(url, btn) {
   navigator.clipboard.writeText(url).then(() => {

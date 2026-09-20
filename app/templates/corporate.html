@@ -399,6 +399,17 @@
   <!-- Corporate JavaScript Engine -->
   <script src="/static/js/app.js"></script>
   <script>
+    if (typeof window.initLucide !== 'function') {
+      window.initLucide = function() {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      };
+    }
+    if (typeof window.playAudioTick !== 'function') {
+      window.playAudioTick = function() {};
+    }
+
     let corpFilters = {
       company_type: "all",
       location: "all",

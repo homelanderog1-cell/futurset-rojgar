@@ -1238,8 +1238,9 @@
   <script>
     // Initialize specifically for Gujarat State
     document.addEventListener("DOMContentLoaded", () => {
-      currentFilters.state = "Gujarat";
-      currentFilters.gov_level = "";
+      const filters = (typeof currentFilters !== 'undefined') ? currentFilters : (window.currentFilters || {});
+      filters.state = "Gujarat";
+      filters.gov_level = "";
       setTimeout(() => {
         if (typeof fetchJobs === "function") fetchJobs();
       }, 50);
