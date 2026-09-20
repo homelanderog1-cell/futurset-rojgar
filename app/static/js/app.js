@@ -20,18 +20,18 @@ let audioEnabled = true;
 let audioCtx = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-  initLucide();
-  initEventListeners();
-  initHeroCanvas();
-  initSpotlight();
-  initAudioFeedback();
-  initCommandPalette();
-  fetchStats();
-  fetchBookmarks();
-  // If on /gujarat, default filters to Gujarat
-  if (window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu") {
+  try { initLucide(); } catch (e) { console.warn("Lucide init:", e); }
+  try { initEventListeners(); } catch (e) { console.warn("EventListeners init:", e); }
+  try { initHeroCanvas(); } catch (e) { console.warn("HeroCanvas init:", e); }
+  try { initSpotlight(); } catch (e) { console.warn("Spotlight init:", e); }
+  try { initAudioFeedback(); } catch (e) { console.warn("AudioFeedback init:", e); }
+  try { initCommandPalette(); } catch (e) { console.warn("CommandPalette init:", e); }
+  try { fetchStats(); } catch (e) { console.warn("Stats init:", e); }
+  try { fetchBookmarks(); } catch (e) { console.warn("Bookmarks init:", e); }
+
+  const isGujarat = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+  if (isGujarat) {
     currentFilters.state = "Gujarat";
-    currentFilters.gov_level = "State";
   }
 
   // Instant hydration from pre-seeded verified jobs (Zero delay / No cold start flicker)
@@ -49,7 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const countHeader = document.getElementById("filtered-results-count");
     if (countHeader) {
-      countHeader.innerText = `${window._allJobs.length} Verified Recruitments Available`;
+      if (isGujarat) {
+        countHeader.innerText = `ગુજરાત રાજ્યની સક્રિય ભરતીઓ (${window._allJobs.length} ઉપલબ્ધ)`;
+      } else {
+        countHeader.innerText = `${window._allJobs.length} Verified Recruitments Available`;
+      }
     }
   }
 
@@ -2548,6 +2552,13 @@ function initSpotlight() {
 // Web Audio API Tactile Sound Synthesizer (Zero asset dependency)
 // -------------------------------------------------------------
 // audioEnabled and audioCtx initialized at top level
+
+function initAudioFeedback() {
+  const soundToggleBtn = document.getElementById("sound-toggle-btn");
+  if (soundToggleBtn) {
+    soundToggleBtn.addEventListener("click", toggleThemeSound);
+  }
+}
 
 function playAudioTick(freq = 600, duration = 0.04) {
   if (!audioEnabled) return;
