@@ -263,82 +263,86 @@
     </div>
   </section>
 
-  <!-- Live Statistics Strip (Stripe Pristine Light Standard) -->
+  <!-- Live Statistics Strip (High-Contrast Stripe Standard) -->
   <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-6 relative z-20">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-      <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-3.5 min-w-0">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
-          <i data-lucide="briefcase" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <!-- Total Vacancies -->
+      <div class="stat-card-stripe p-4 sm:p-5 rounded-2xl bg-white border-t-4 border-t-indigo-600 flex items-center gap-3.5 min-w-0">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         </div>
         <div class="min-w-0 flex-1">
           <div class="text-base sm:text-xl md:text-2xl font-black font-mono tabular-nums text-[#0a2540] truncate" id="stat-total-vacancies">{{ stats.total_vacancies }}</div>
-          <div class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Total Vacancies</div>
+          <div class="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider truncate">Total Vacancies</div>
         </div>
       </div>
 
-      <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-3.5 min-w-0">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 shrink-0">
-          <i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+      <!-- Gujarat Posts -->
+      <div class="stat-card-stripe p-4 sm:p-5 rounded-2xl bg-white border-t-4 border-t-orange-500 flex items-center gap-3.5 min-w-0">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div class="min-w-0 flex-1">
           <div class="text-base sm:text-xl md:text-2xl font-black font-mono tabular-nums text-orange-600 truncate" id="stat-gujarat-vacancies">{{ stats.gujarat_vacancies }}</div>
-          <div class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Gujarat Posts</div>
+          <div class="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider truncate">Gujarat Posts</div>
         </div>
       </div>
 
-      <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-3.5 min-w-0">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-          <i data-lucide="landmark" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+      <!-- Central Govt -->
+      <div class="stat-card-stripe p-4 sm:p-5 rounded-2xl bg-white border-t-4 border-t-blue-600 flex items-center gap-3.5 min-w-0">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
         </div>
         <div class="min-w-0 flex-1">
           <div class="text-base sm:text-xl md:text-2xl font-black font-mono tabular-nums text-blue-600 truncate" id="stat-central-vacancies">{{ stats.central_vacancies }}</div>
-          <div class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Central Govt</div>
+          <div class="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider truncate">Central Govt</div>
         </div>
       </div>
 
-      <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-3.5 min-w-0">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 shrink-0">
-          <i data-lucide="clock" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+      <!-- Closing Soon -->
+      <div class="stat-card-stripe p-4 sm:p-5 rounded-2xl bg-white border-t-4 border-t-rose-600 flex items-center gap-3.5 min-w-0">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center text-white shadow-md shadow-rose-500/20 shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="min-w-0 flex-1">
           <div class="text-base sm:text-xl md:text-2xl font-black font-mono tabular-nums text-rose-600 truncate" id="stat-closing-soon">{{ stats.closing_soon }}</div>
-          <div class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Closing &le; 7 Days</div>
+          <div class="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider truncate">Closing &le; 7 Days</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Filter Controls & Primary Job Listing Section (Immediate Above-the-Fold Access) -->
+  <!-- Filter Controls & Primary Job Listing Section -->
   <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 flex-1 w-full relative z-20">
-    <!-- Modern Tactical Filter Station (Stripe Pristine Light Standard) -->
-    <div class="filter-station-box rounded-2xl p-4 sm:p-6 mb-8 space-y-4 shadow-sm">
+    <!-- Modern Modular Filter Station -->
+    <div class="filter-station-box rounded-3xl p-5 sm:p-7 mb-8 shadow-md">
       <!-- Filter Station Header: Title, Active Badge, Reset, Sort & View -->
-      <div class="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-slate-200/90">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-2xs">
-            <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-200">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#635bff] to-[#00d4ff] flex items-center justify-center text-white shadow-md shadow-indigo-500/20 shrink-0">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-sm sm:text-base font-bold text-[#0a2540] tracking-tight">Filter Station</h3>
-              <span id="active-filters-badge" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-indigo-50 text-indigo-700 border border-indigo-200">Active: 0</span>
+              <h3 class="text-base sm:text-lg font-black text-[#0a2540] tracking-tight">Recruitment Filter Station</h3>
+              <span id="active-filters-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-indigo-100 text-indigo-800 border border-indigo-300 shadow-2xs">Active: 0</span>
             </div>
-            <p class="text-[11px] text-slate-500 font-medium">Refine vacancies by sector, level, qualification, and selection mode</p>
+            <p class="text-xs text-slate-500 font-medium">Refine vacancies by jurisdiction, sector, qualification, and selection mode</p>
           </div>
         </div>
 
         <!-- Action Controls: Reset, Sort & View Mode -->
         <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
           <!-- Reset All Filters Button -->
-          <button onclick="resetAllFilters()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-rose-50 text-slate-600 hover:text-rose-600 border border-slate-200 hover:border-rose-300 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs group" title="Clear All Active Filters">
-            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-rose-500 group-hover:-rotate-90 transition-transform"></i>
+          <button onclick="resetAllFilters()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-600 border border-slate-300 hover:border-rose-300 text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs group cursor-pointer" title="Clear All Active Filters">
+            <svg class="w-3.5 h-3.5 text-rose-500 group-hover:-rotate-90 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
             <span>Reset Filters</span>
           </button>
 
           <!-- Sort Dropdown -->
-          <div class="flex items-center gap-1.5 text-xs text-slate-500">
-            <span class="font-medium text-slate-400">Sort:</span>
-            <select id="sort-select" class="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 font-medium outline-none focus:border-[#635bff] shadow-2xs">
+          <div class="flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
+            <span class="font-bold text-slate-500">Sort:</span>
+            <select id="sort-select" class="bg-transparent text-xs text-[#0a2540] font-bold outline-none cursor-pointer">
               <option value="deadline">Closing Date (Urgent First)</option>
               <option value="vacancies">Highest Vacancies</option>
               <option value="newest">Latest Added</option>
@@ -346,123 +350,200 @@
           </div>
 
           <!-- View Mode Toggle -->
-          <div class="flex items-center bg-slate-100 border border-slate-200 rounded-lg p-0.5">
-            <button id="btn-view-cards" class="p-1.5 rounded-md bg-white text-[#635bff] shadow-2xs transition-colors" title="Cards View">
-              <i data-lucide="grid" class="w-4 h-4"></i>
+          <div class="flex items-center bg-slate-100 border border-slate-300 rounded-xl p-0.5 shadow-2xs">
+            <button id="btn-view-cards" class="p-1.5 rounded-lg bg-white text-[#635bff] shadow-xs transition-colors cursor-pointer" title="Cards View">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
             </button>
-            <button id="btn-view-table" class="p-1.5 rounded-md text-slate-500 hover:text-slate-900 transition-colors" title="Table View">
-              <i data-lucide="list" class="w-4 h-4"></i>
+            <button id="btn-view-table" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 transition-colors cursor-pointer" title="Table View">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Row 1: Jurisdiction & Level Filters -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-xs font-bold text-slate-400 mr-1 uppercase tracking-wider text-[11px] font-mono flex items-center gap-1">
-          <i data-lucide="compass" class="w-3.5 h-3.5 text-indigo-500"></i>
-          <span>Jurisdiction:</span>
-        </span>
-        <button onclick="applyQuickFilter('level', 'All', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#635bff] text-white shadow-xs transition-all">
-          All Openings
-        </button>
-        <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-all flex items-center gap-1.5 shadow-2xs">
-          <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-          <span>Gujarat State (ગુજરાત)</span>
-        </button>
-        <button onclick="applyQuickFilter('level', 'Central', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-300 transition-all flex items-center gap-1.5 shadow-2xs">
-          <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-          <span>Central Govt (All India)</span>
-        </button>
-      </div>
-
-      <!-- Row 2: Sector Filters (14 Modern Categories with Crisp Lucide Icons) -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
-        <span class="text-xs font-semibold text-indigo-700 mr-1 flex items-center gap-1 shrink-0">
-          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-          <span>Sector:</span>
-        </span>
-        <button onclick="filterBySector('All', this)" class="filter-pill filter-pill-sector pill-default-all active">All Sectors</button>
-        <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="landmark" class="w-3.5 h-3.5 text-blue-600"></i><span>Civil Services</span></button>
-        <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5 text-amber-600"></i><span>Police &amp; Security</span></button>
-        <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-600"></i><span>Clerical &amp; Secretariat</span></button>
-        <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600"></i><span>Engineering &amp; Tech</span></button>
-        <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-emerald-600"></i><span>Teaching &amp; Education</span></button>
-        <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="activity" class="w-3.5 h-3.5 text-rose-600"></i><span>Medical &amp; Healthcare</span></button>
-        <button onclick="filterBySector('railways', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="train" class="w-3.5 h-3.5 text-orange-600"></i><span>Railways</span></button>
-        <button onclick="filterBySector('banking', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="building" class="w-3.5 h-3.5 text-teal-600"></i><span>Banking &amp; Finance</span></button>
-        <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="bus" class="w-3.5 h-3.5 text-amber-600"></i><span>GSRTC &amp; Transport</span></button>
-        <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-yellow-600"></i><span>Electricity Boards</span></button>
-        <button onclick="filterBySector('defence', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-600"></i><span>Defence Forces</span></button>
-        <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-600"></i><span>Forest &amp; Wildlife</span></button>
-        <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-red-600"></i><span>Postal &amp; Post Office</span></button>
-        <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5"><i data-lucide="plane" class="w-3.5 h-3.5 text-sky-600"></i><span>Airport &amp; Aviation</span></button>
-      </div>
-
-      <!-- Row 3: Selection Process / Mode Filters -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
-        <span class="text-xs font-semibold text-emerald-700 mr-1 flex items-center gap-1 shrink-0">
-          <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
-          <span>Selection Mode:</span>
-        </span>
-        <button onclick="filterBySelectionMode('All', this)" class="filter-pill filter-pill-mode pill-default-all active">All Selection Modes</button>
-        <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-mode text-emerald-700 border-emerald-200 hover:border-emerald-400 flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3 text-emerald-600"></i><span>Direct Merit (No Exam)</span></button>
-        <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-mode text-orange-700 border-orange-200 hover:border-orange-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3 text-orange-600"></i><span>Walk-in / Interview</span></button>
-        <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-mode text-teal-700 border-teal-200 hover:border-teal-400 flex items-center gap-1"><i data-lucide="wrench" class="w-3 h-3 text-teal-600"></i><span>Apprenticeship / Trade</span></button>
-        <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-mode text-blue-700 border-blue-200 hover:border-blue-400 flex items-center gap-1"><i data-lucide="edit-3" class="w-3 h-3 text-blue-600"></i><span>Written Exam (CBT)</span></button>
-        <a href="/btech-cse" class="filter-pill text-indigo-700 border-indigo-200 bg-indigo-50 hover:bg-indigo-100 font-bold flex items-center gap-1">
-          <i data-lucide="laptop" class="w-3 h-3 text-indigo-600"></i> <span>B.Tech CSE Hub &rarr;</span>
-        </a>
-        <a href="/corporate" class="filter-pill text-purple-700 border-purple-200 bg-purple-50 hover:bg-purple-100 font-bold flex items-center gap-1">
-          <i data-lucide="building-2" class="w-3 h-3 text-purple-600"></i> <span>Corporate Careers (TCS, Adani, L&amp;T) &rarr;</span>
-        </a>
-      </div>
-
-      <!-- Row 4: Qualification Filters -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
-        <span class="text-xs font-semibold text-indigo-700 mr-1 flex items-center gap-1 shrink-0">
-          <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
-          <span>Qualification:</span>
-        </span>
-        <button onclick="filterByQualification('All', this)" class="filter-pill filter-pill-qual pill-default-all active">All Qualifications</button>
-        <button onclick="filterByQualification('10th', this)" class="filter-pill filter-pill-qual">10th Pass (SSC)</button>
-        <button onclick="filterByQualification('12th', this)" class="filter-pill filter-pill-qual">12th Pass (HSC)</button>
-        <button onclick="filterByQualification('Diploma', this)" class="filter-pill filter-pill-qual">ITI / Diploma</button>
-        <button onclick="filterByQualification('Graduate', this)" class="filter-pill filter-pill-qual">Graduate (Any Degree)</button>
-        <button onclick="filterByQualification('Engineering', this)" class="filter-pill filter-pill-qual">B.E. / B.Tech</button>
-        <button onclick="filterByQualification('Post Graduate', this)" class="filter-pill filter-pill-qual">Post Graduate</button>
-        <button onclick="filterByQualification('Medical', this)" class="filter-pill filter-pill-qual">MBBS / Nursing</button>
-        <button onclick="filterByQualification('Teaching', this)" class="filter-pill filter-pill-qual">B.Ed / TET / TAT</button>
-      </div>
-
-      <!-- Row 5: Urgency & Fee Quick Filters -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
-        <span class="text-xs font-semibold text-rose-700 mr-1 flex items-center gap-1 shrink-0">
-          <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-          <span>Deadline &amp; Fee:</span>
-        </span>
-        <button onclick="filterByUrgency('All', this)" class="filter-pill filter-pill-urgency pill-default-all active">All Deadlines</button>
-        <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-urgency text-rose-700 border-rose-200 hover:border-rose-400">Closing in 48 Hours</button>
-        <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-urgency text-amber-700 border-amber-200 hover:border-amber-400">Closing This Week</button>
-        <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-urgency text-emerald-700 border-emerald-200 hover:border-emerald-400">₹0 / Fee Exempted</button>
-      </div>
-
-      <!-- Row 6: Board Category Chips -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
-        <span class="text-xs font-semibold text-slate-500 mr-1 shrink-0 font-mono">Key Boards:</span>
-        {% for b in boards_gujarat %}
-          <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-2xs">
-            {{ b }}
+      <!-- Module 1: Jurisdiction & Level Filters -->
+      <div class="filter-module-row">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-slate-700 mr-2 uppercase tracking-wider text-[11px] flex items-center gap-1.5 shrink-0">
+            <svg class="w-4 h-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <span>Jurisdiction:</span>
+          </span>
+          <button onclick="applyQuickFilter('level', 'All', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#635bff] text-white shadow-xs transition-all cursor-pointer">
+            All Openings
           </button>
-        {% endfor %}
-        {% for b in boards_central %}
-          <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-2xs">
-            {{ b }}
+          <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-300 hover:border-orange-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
+            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+            <span>🦁 Gujarat State (ગુજરાત)</span>
           </button>
-        {% endfor %}
+          <button onclick="applyQuickFilter('level', 'Central', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-300 hover:border-blue-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            <span>🇮🇳 Central Govt (All India)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module 2: Sector Filters (14 Modern Categories with 100% Inline SVGs) -->
+      <div class="filter-module-row">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
+            <svg class="w-4 h-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>Sector:</span>
+          </span>
+          <button onclick="filterBySector('All', this)" class="filter-pill filter-pill-sector pill-default-all active">All Sectors</button>
+          <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+            <span>Civil Services</span>
+          </button>
+          <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Police &amp; Security</span>
+          </button>
+          <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Clerical &amp; Secretariat</span>
+          </button>
+          <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-purple-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+            <span>Engineering &amp; Tech</span>
+          </button>
+          <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span>Teaching &amp; Education</span>
+          </button>
+          <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span>Medical &amp; Healthcare</span>
+          </button>
+          <button onclick="filterBySector('railways', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>
+            <span>Railways</span>
+          </button>
+          <button onclick="filterBySector('banking', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+            <span>Banking &amp; Finance</span>
+          </button>
+          <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.6-.2-1.2-.5-1.6L20 9l-2-4H5L3 9l-1.5 3.4c-.3.4-.5 1-.5 1.6 0 .4.1.8.2 1.2l.8 2.8H5"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            <span>GSRTC &amp; Transport</span>
+          </button>
+          <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Electricity Boards</span>
+          </button>
+          <button onclick="filterBySector('defence', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Defence Forces</span>
+          </button>
+          <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>
+            <span>Forest &amp; Wildlife</span>
+          </button>
+          <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Postal &amp; Post Office</span>
+          </button>
+          <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+            <span>Airport &amp; Aviation</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module 3: Selection Process / Mode Filters -->
+      <div class="filter-module-row">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
+            <svg class="w-4 h-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Selection Mode:</span>
+          </span>
+          <button onclick="filterBySelectionMode('All', this)" class="filter-pill filter-pill-mode pill-default-all active">All Selection Modes</button>
+          <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-mode text-emerald-800 border-emerald-300 hover:border-emerald-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Direct Merit (No Exam)</span>
+          </button>
+          <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-mode text-orange-800 border-orange-300 hover:border-orange-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Walk-in / Interview</span>
+          </button>
+          <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-mode text-teal-800 border-teal-300 hover:border-teal-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <span>Apprenticeship / Trade</span>
+          </button>
+          <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-mode text-blue-800 border-blue-300 hover:border-blue-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span>Written Exam (CBT)</span>
+          </button>
+          <a href="/btech-cse" class="filter-pill text-indigo-700 border-indigo-300 bg-indigo-50 hover:bg-indigo-100 font-bold flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+            <span>B.Tech CSE Hub &rarr;</span>
+          </a>
+          <a href="/corporate" class="filter-pill text-purple-700 border-purple-300 bg-purple-50 hover:bg-purple-100 font-bold flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-purple-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+            <span>Corporate Careers (TCS, Adani, L&amp;T) &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Module 4: Qualification Filters -->
+      <div class="filter-module-row">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
+            <svg class="w-4 h-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span>Qualification:</span>
+          </span>
+          <button onclick="filterByQualification('All', this)" class="filter-pill filter-pill-qual pill-default-all active">All Qualifications</button>
+          <button onclick="filterByQualification('10th', this)" class="filter-pill filter-pill-qual">10th Pass (SSC)</button>
+          <button onclick="filterByQualification('12th', this)" class="filter-pill filter-pill-qual">12th Pass (HSC)</button>
+          <button onclick="filterByQualification('Diploma', this)" class="filter-pill filter-pill-qual">ITI / Diploma</button>
+          <button onclick="filterByQualification('Graduate', this)" class="filter-pill filter-pill-qual">Graduate (Any Degree)</button>
+          <button onclick="filterByQualification('Engineering', this)" class="filter-pill filter-pill-qual">B.E. / B.Tech</button>
+          <button onclick="filterByQualification('Post Graduate', this)" class="filter-pill filter-pill-qual">Post Graduate</button>
+          <button onclick="filterByQualification('Medical', this)" class="filter-pill filter-pill-qual">MBBS / Nursing</button>
+          <button onclick="filterByQualification('Teaching', this)" class="filter-pill filter-pill-qual">B.Ed / TET / TAT</button>
+        </div>
+      </div>
+
+      <!-- Module 5: Urgency & Fee Quick Filters -->
+      <div class="filter-module-row">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
+            <svg class="w-4 h-4 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Deadline &amp; Fee:</span>
+          </span>
+          <button onclick="filterByUrgency('All', this)" class="filter-pill filter-pill-urgency pill-default-all active">All Deadlines</button>
+          <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-urgency text-rose-800 border-rose-300 hover:border-rose-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Closing in 48 Hours</span>
+          </button>
+          <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-urgency text-amber-800 border-amber-300 hover:border-amber-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Closing This Week</span>
+          </button>
+          <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-urgency text-emerald-800 border-emerald-300 hover:border-emerald-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>₹0 / Fee Exempted</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module 6: Board Category Chips -->
+      <div class="filter-module-row mb-0">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-bold text-slate-700 mr-2 shrink-0 uppercase tracking-wider text-[11px] font-mono">Key Boards:</span>
+          {% for b in boards_gujarat %}
+            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 hover:border-indigo-400 transition-colors shadow-2xs cursor-pointer">
+              {{ b }}
+            </button>
+          {% endfor %}
+          {% for b in boards_central %}
+            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 hover:border-indigo-400 transition-colors shadow-2xs cursor-pointer">
+              {{ b }}
+            </button>
+          {% endfor %}
+        </div>
       </div>
     </div>
-
+  </section>
     <!-- Active Filter Counter Header -->
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-lg font-bold text-[#0a2540] flex items-center gap-2" id="filtered-results-count">
