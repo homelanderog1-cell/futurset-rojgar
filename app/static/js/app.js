@@ -173,61 +173,41 @@ async function fetchBookmarks() {
   }
 }
 
-async function fetchJobs(retryCount = 0) {
+async function fetchJobs() {
   const container = document.getElementById("jobs-container");
   if (!container) return;
 
-  // 1. If we have initial jobs from SSR on first load and no filters are active, hydrate instantly!
-  const hasFilters = Object.values(currentFilters).some(v => v !== null && v !== "" && v !== undefined);
-  if (!hasFilters && window.__INITIAL_JOBS__ && window.__INITIAL_JOBS__.length > 0 && retryCount === 0 && !container.dataset.hydrated) {
-    container.dataset.hydrated = "true";
-    if (currentView === "cards") {
-      renderCardsView(container, window.__INITIAL_JOBS__);
-    } else {
-      renderTableView(container, window.__INITIAL_JOBS__);
-    }
-    const countHeader = document.getElementById("filtered-results-count");
-    if (countHeader) {
-      countHeader.innerText = isGujarat ? `ગુજરાત રાજ્યની સક્રિય ભરતીઓ (${window.__INITIAL_JOBS__.length} ઉપલબ્ધ)` : `${window.__INITIAL_JOBS__.length} Verified Recruitments Found`;
-    }
-    initLucide();
-    return;
-  }
-
-  // 2. Otherwise, if container doesn't already have cards, show skeleton loader
-  if (!container.querySelector(".job-card-otta") && !container.querySelector(".portal-table")) {
-    const skeletonCard = `
-      <div class="skeleton-card p-5 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between gap-3 mb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
-              <div class="space-y-1.5">
-                <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
-                <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
-              </div>
+  const skeletonCard = `
+    <div class="skeleton-card p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+            <div class="space-y-1.5">
+              <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
+              <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
             </div>
-            <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
           </div>
-          <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
-          <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
-          <div class="grid grid-cols-3 gap-2 py-3 border-y border-white/[0.05] mb-4">
-            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-          </div>
+          <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
         </div>
-        <div class="flex items-center justify-between pt-2">
-          <div class="w-20 h-3 rounded skeleton-shimmer"></div>
-          <div class="flex gap-2">
-            <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
-            <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
-          </div>
+        <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
+        <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+        <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 mb-4">
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
         </div>
       </div>
-    `;
-    container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
-  }
+      <div class="flex items-center justify-between pt-2">
+        <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+        <div class="flex gap-2">
+          <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
+          <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
 
   const queryParams = new URLSearchParams();
   if (currentFilters.q) queryParams.set("q", currentFilters.q);
@@ -242,12 +222,7 @@ async function fetchJobs(retryCount = 0) {
   if (currentFilters.sort_by) queryParams.set("sort_by", currentFilters.sort_by);
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout
-    const res = await fetch(`/api/jobs?${queryParams.toString()}`, { signal: controller.signal });
-    clearTimeout(timeoutId);
-
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const res = await fetch(`/api/jobs?${queryParams.toString()}`);
     const data = await res.json();
 
     const countHeader = document.getElementById("filtered-results-count");
@@ -259,7 +234,7 @@ async function fetchJobs(retryCount = 0) {
       }
     }
 
-    if (!data.results || data.results.length === 0) {
+    if (data.results.length === 0) {
       container.innerHTML = `
         <div class="col-span-full py-16 text-center glass-panel rounded-2xl p-8 border border-slate-800">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400">
@@ -284,43 +259,8 @@ async function fetchJobs(retryCount = 0) {
 
     initLucide();
   } catch (err) {
-    console.warn("fetchJobs attempt failed:", err, "retryCount:", retryCount);
-    // Auto-retry up to 3 times (handles server cold-start on Render)
-    if (retryCount < 3) {
-      const waitMs = (retryCount + 1) * 1500;
-      const countHeader = document.getElementById("filtered-results-count");
-      if (countHeader) countHeader.innerText = `Connecting to database... (Attempt ${retryCount + 1}/3)`;
-      setTimeout(() => fetchJobs(retryCount + 1), waitMs);
-      return;
-    }
-
-    // Fallback: If initial jobs exist, render them!
-    if (window.__INITIAL_JOBS__ && window.__INITIAL_JOBS__.length > 0) {
-      console.log("Rendering fallback initial jobs");
-      if (currentView === "cards") {
-        renderCardsView(container, window.__INITIAL_JOBS__);
-      } else {
-        renderTableView(container, window.__INITIAL_JOBS__);
-      }
-      initLucide();
-      return;
-    }
-
-    // Otherwise show friendly interactive retry UI
-    container.innerHTML = `
-      <div class="col-span-full py-12 px-6 text-center glass-panel rounded-2xl border border-rose-500/20 max-w-xl mx-auto">
-        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
-          <i data-lucide="wifi-off" class="w-6 h-6"></i>
-        </div>
-        <h4 class="text-base font-bold text-slate-100">Temporary Connection Delay</h4>
-        <p class="text-xs text-slate-400 mt-1 mb-4">The recruitment cloud server is currently waking up from standby. Please click below to refresh.</p>
-        <button onclick="fetchJobs(0)" class="btn-stripe-primary text-xs px-4 py-2">
-          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-          <span>Retry Loading Jobs</span>
-        </button>
-      </div>
-    `;
-    initLucide();
+    console.error("Error fetching jobs:", err);
+    container.innerHTML = `<div class="col-span-full text-center text-rose-400 py-10">Failed to load jobs. Please try again.</div>`;
   }
 }
 
@@ -328,108 +268,107 @@ function renderCardsView(container, jobs) {
   const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
   let html = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
 
-  jobs.forEach((job, index) => {
+  jobs.forEach(job => {
     const isBookmarked = bookmarkedJobIds.has(job.id);
     const isGujaratJob = job.state === "Gujarat";
     const initialLetter = (job.organization || "G").charAt(0).toUpperCase();
 
     let urgencyBadgeHtml = "";
-    if (job.urgency_badge === "closed" || (job.days_left !== null && job.days_left < 0)) {
-      urgencyBadgeHtml = `<span class="badge-minimal text-rose-400 border-rose-500/30"><i data-lucide="x-circle" class="w-3 h-3"></i> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
+    if (job.urgency_badge === "closed" || job.days_left < 0) {
+      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><i data-lucide="x-circle" class="w-3 h-3"></i> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
     } else if (job.days_left === 0) {
-      urgencyBadgeHtml = `<span class="badge-minimal text-amber-300 border-amber-500/40 animate-pulse"><i data-lucide="alert-triangle" class="w-3 h-3"></i> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
-    } else if (job.urgency_badge === "urgent" || (job.days_left !== null && job.days_left <= 3)) {
-      urgencyBadgeHtml = `<span class="badge-minimal text-rose-400 border-rose-500/30"><i data-lucide="clock" class="w-3 h-3"></i> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
+      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-300 animate-pulse flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3 h-3"></i> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
+    } else if (job.urgency_badge === "urgent" || job.days_left <= 3) {
+      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
     } else {
-      urgencyBadgeHtml = `<span class="badge-minimal text-slate-400"><i data-lucide="calendar" class="w-3 h-3 text-slate-500"></i> ${job.last_date || 'Closing Soon'}</span>`;
+      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3 text-slate-500"></i> ${job.last_date || 'Closing Soon'}</span>`;
     }
 
     const isCompareSelected = selectedCompareIds.includes(job.id);
     const qualDisplay = (job.qualification || 'Degree / Diploma').split('+')[0].trim();
     const salaryDisplay = job.salary_text ? job.salary_text.split('->')[0].trim() : (job.ctc_lpa ? `₹${job.ctc_lpa} LPA` : '7th Pay Matrix');
-    const vacanciesFormatted = (job.vacancies || 0).toLocaleString();
 
     html += `
-      <div class="job-card-otta group animate-card-entrance" style="--card-index: ${index};">
+      <div class="otta-job-card p-5 group animate-card-entrance flex flex-col justify-between">
         <div>
           <!-- Header: Org Avatar + Badges + Actions -->
           <div class="flex items-start justify-between gap-3 mb-3.5">
             <div class="flex items-center gap-2.5">
-              <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 flex items-center justify-center font-black text-slate-200 text-sm shadow-inner shrink-0 group-hover:border-cyan-500/40 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center font-bold text-[#635bff] text-sm shrink-0 group-hover:scale-105 transition-transform shadow-xs">
                 ${initialLetter}
               </div>
               <div class="min-w-0">
-                <span class="text-xs font-bold text-slate-300 block truncate group-hover:text-cyan-300 transition-colors">${job.organization || 'Govt Department'}</span>
+                <span class="text-xs font-bold text-[#0a2540] block truncate group-hover:text-[#635bff] transition-colors">${job.organization}</span>
                 <span class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
-                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-500 shrink-0"></i>
+                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-400 shrink-0"></i>
                   <span class="truncate">${job.district || job.state || 'All India'}</span>
                 </span>
               </div>
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-              <label class="cursor-pointer text-[11px] font-medium text-slate-400 hover:text-cyan-300 flex items-center gap-1 bg-white/[0.03] hover:bg-white/[0.06] px-2 py-1 rounded-lg border border-white/5 transition-colors" title="Compare side-by-side">
-                <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-cyan-500 focus:ring-0 w-3.5 h-3.5 bg-slate-900 border-slate-700">
+              <label class="cursor-pointer text-[11px] font-medium text-slate-600 hover:text-[#635bff] flex items-center gap-1 bg-slate-50 hover:bg-slate-100 px-2 py-1 rounded-lg border border-slate-200 transition-colors" title="Compare side-by-side">
+                <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300">
                 <span class="hidden sm:inline text-[10px]">Compare</span>
               </label>
-              <button onclick="toggleBookmark(${job.id}, this)" class="p-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] text-slate-400 hover:text-cyan-300 border border-white/5 transition-colors" title="Bookmark">
-                <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isBookmarked ? 'fill-cyan-400 text-cyan-400' : ''}"></i>
+              <button onclick="toggleBookmark(${job.id}, this)" class="p-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 transition-colors" title="Bookmark">
+                <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isBookmarked ? 'fill-[#635bff] text-[#635bff]' : ''}"></i>
               </button>
             </div>
           </div>
 
           <!-- Authority & Status Pills -->
           <div class="flex flex-wrap items-center gap-1.5 mb-3">
-            <span class="badge-minimal ${isGujaratJob ? 'badge-minimal-amber' : 'badge-minimal-cyan'}">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${isGujaratJob ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}">
               ${job.gov_level === 'Central' ? '🇮🇳 Central Govt' : '🦁 Gujarat State'}
             </span>
-            <span class="badge-minimal">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
               ${job.board_category || 'Board'}
             </span>
-            ${job.is_btech_cse ? '<span class="badge-minimal text-cyan-300 border-cyan-500/30">💻 B.Tech CSE</span>' : ''}
+            ${job.is_btech_cse ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">💻 B.Tech CSE</span>' : ''}
           </div>
 
           <!-- Title -->
-          <h3 class="text-[0.95rem] font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
-            ${job.title || 'Recruitment Drive'}
+          <h3 class="text-[0.95rem] font-bold text-[#0a2540] group-hover:text-[#635bff] transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
+            ${job.title}
           </h3>
 
           ${job.title_gu ? `
-            <p class="font-gujarati text-xs text-amber-400/90 font-medium mb-3 line-clamp-1">
+            <p class="font-gujarati text-xs text-amber-700 font-medium mb-3 line-clamp-1">
               ${job.title_gu}
             </p>
           ` : ''}
 
           <!-- Clean 3-Item Metrics Bar (Otta Standard) -->
-          <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-950/70 border border-white/[0.04] text-xs mb-4">
+          <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-50 border border-slate-100 text-xs mb-4">
             <div>
               <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Vacancies</span>
-              <span class="font-bold text-emerald-400 text-xs mt-0.5 block">${vacanciesFormatted}</span>
+              <span class="font-bold text-emerald-600 text-xs mt-0.5 block tabular-nums">${job.vacancies.toLocaleString()}</span>
             </div>
             <div>
               <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Pay Scale</span>
-              <span class="font-semibold text-slate-200 text-xs mt-0.5 block truncate" title="${job.salary_text || ''}">${salaryDisplay}</span>
+              <span class="font-semibold text-slate-800 text-xs mt-0.5 block truncate" title="${job.salary_text}">${salaryDisplay}</span>
             </div>
             <div>
               <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Eligibility</span>
-              <span class="font-semibold text-slate-300 text-xs mt-0.5 block truncate" title="${job.qualification || ''}">${qualDisplay}</span>
+              <span class="font-semibold text-slate-700 text-xs mt-0.5 block truncate" title="${job.qualification}">${qualDisplay}</span>
             </div>
           </div>
         </div>
 
         <!-- Card Footer: Urgency Pill + Tactile Actions -->
-        <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-2 mt-auto">
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 mt-auto">
           <div class="shrink-0">
             ${urgencyBadgeHtml}
           </div>
 
           <div class="flex items-center gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-ghost text-xs" title="View Full Dossier">
+            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-secondary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1" title="View Full Dossier">
               <span>Dossier</span>
             </button>
-            <a href="${job.apply_url || '#'}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs">
+            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1 shadow-xs">
               <span>Apply</span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
             </a>
           </div>
         </div>
@@ -457,65 +396,65 @@ function renderTableView(container, jobs) {
             <th class="min-w-[150px] text-right sticky-action-col">${isGujaratPage ? 'ક્રિયા' : 'Actions'}</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-slate-800/60">
+        <tbody class="divide-y divide-slate-100">
   `;
 
-  jobs.forEach((job, index) => {
+  jobs.forEach(job => {
     const minAge = parseInt(job.age_min) || 18;
     const maxAge = parseInt(job.age_max) || 35;
     const daysLeft = job.days_left !== undefined && job.days_left !== null ? job.days_left : 15;
     const boardCat = job.board_category || (job.state === 'Gujarat' ? 'OJAS Gujarat' : 'National');
 
     html += `
-      <tr class="hover:bg-slate-800/40 transition-colors group" style="--row-index: ${index};">
+      <tr class="hover:bg-slate-50 transition-colors group">
         <td class="px-5 py-4">
-          <div class="font-bold text-white text-sm leading-snug group-hover:text-cyan-300 transition-colors cursor-pointer" onclick="openJobDetailModal(${job.id})">${job.title || 'Recruitment Drive'}</div>
-          <div class="text-xs text-cyan-400 font-semibold mt-0.5 flex items-center gap-1.5">
+          <div class="font-bold text-[#0a2540] text-sm leading-snug group-hover:text-[#635bff] transition-colors">${job.title}</div>
+          <div class="text-xs text-[#635bff] font-semibold mt-0.5 flex items-center gap-1.5">
             <i data-lucide="building" class="w-3.5 h-3.5 shrink-0"></i>
-            <span>${job.organization || 'Govt Department'}</span>
+            <span>${job.organization}</span>
           </div>
-          ${job.title_gu ? `<div class="text-xs text-slate-400 font-gujarati mt-1">${job.title_gu}</div>` : ''}
+          ${job.title_gu ? `<div class="text-xs text-slate-500 font-gujarati mt-1">${job.title_gu}</div>` : ''}
         </td>
         <td class="px-4 py-4">
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${job.state === 'Gujarat' ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30' : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'}">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${job.state === 'Gujarat' ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}">
             ${boardCat}
           </span>
-          <span class="block text-xs text-slate-400 mt-1">${job.gov_level || 'Public Sector'}</span>
+          <span class="block text-xs text-slate-500 mt-1">${job.gov_level || 'Public Sector'}</span>
         </td>
         <td class="px-4 py-4">
-          <span class="inline-flex items-center gap-1 font-extrabold text-emerald-400 text-sm bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-500/30">
+          <span class="inline-flex items-center gap-1 font-extrabold text-emerald-700 text-sm bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 tabular-nums">
             <i data-lucide="users" class="w-3.5 h-3.5"></i>
             ${(job.vacancies || 0).toLocaleString()}
           </span>
         </td>
         <td class="px-4 py-4 text-xs">
-          <div class="font-semibold text-slate-200 leading-snug">${job.qualification || 'Graduate / 10th / 12th'}</div>
-          <div class="text-slate-400 text-[11px] mt-1 flex items-center gap-1">
-            <i data-lucide="calendar" class="w-3 h-3 text-amber-400"></i>
-            <span>Age: <strong class="text-slate-300">${minAge}-${maxAge} Yrs</strong></span>
+          <div class="font-semibold text-slate-800 leading-snug">${job.qualification || 'Graduate / 10th / 12th'}</div>
+          <div class="text-slate-500 text-[11px] mt-1 flex items-center gap-1">
+            <i data-lucide="calendar" class="w-3 h-3 text-amber-600"></i>
+            <span>Age: <strong class="text-slate-700">${minAge}-${maxAge} Yrs</strong></span>
           </div>
         </td>
         <td class="px-4 py-4 text-xs">
-          <div class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 whitespace-nowrap shadow-sm">
-            <i data-lucide="wallet" class="w-3 h-3 mr-1 text-cyan-400"></i>
+          <div class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 whitespace-nowrap shadow-xs">
+            <i data-lucide="wallet" class="w-3 h-3 mr-1 text-indigo-600"></i>
             <span>${job.salary_text || 'Standard 7th Pay'}</span>
           </div>
         </td>
         <td class="px-4 py-4 text-xs">
-          <span class="font-bold ${daysLeft <= 3 ? 'text-rose-400' : 'text-slate-200'}">${job.last_date || 'Closing Soon'}</span>
-          <span class="block text-[11px] font-semibold mt-0.5 ${daysLeft <= 3 ? 'text-rose-400' : 'text-amber-400'}">
+          <span class="font-bold ${daysLeft <= 3 ? 'text-rose-600' : 'text-slate-800'}">${job.last_date || 'Closing Soon'}</span>
+          <span class="block text-[11px] font-semibold mt-0.5 ${daysLeft <= 3 ? 'text-rose-600' : 'text-amber-700'}">
             ${daysLeft <= 0 ? 'Closed' : daysLeft + ' days left'}
           </span>
         </td>
         <td class="px-5 py-4 text-right sticky-action-col">
           <div class="flex items-center justify-end gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-ghost text-xs" title="View Full Dossier">
-              <i data-lucide="info" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-secondary text-xs px-2.5 py-1.5 rounded-lg flex items-center gap-1" title="View Full Dossier">
+              <i data-lucide="info" class="w-3.5 h-3.5 text-[#635bff]"></i>
               <span>Details</span>
             </button>
-            <a href="${job.apply_url || '#'}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs">
+            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-xs">
               <span>${isGujaratPage ? 'અરજી' : 'Apply'}</span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
             </a>
           </div>
         </td>
@@ -525,7 +464,7 @@ function renderTableView(container, jobs) {
 
   html += `</tbody></table></div>`;
   container.innerHTML = html;
-  initLucide();
+  if (window.lucide) lucide.createIcons();
 }
 
 function generateStepByStepGuide(job, isGujaratPage) {
@@ -3407,280 +3346,6 @@ window.setMatcherPreset = setMatcherPreset;
 window.filterMatchTab = filterMatchTab;
 window.renderMatchList = renderMatchList;
 
-// ==========================================================================
-// ARTICLE PIPELINE & GAZETTE EDITORIAL ENGINE
-// ==========================================================================
-let currentPipelineArticles = window.__PIPELINE_ARTICLES__ || [];
-
-function openArticlePipelineModal() {
-  const modal = document.getElementById("article-pipeline-modal");
-  if (!modal) return;
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-  document.body.style.overflow = "hidden";
-  fetchPipelineArticles();
-  if (window.lucide) window.lucide.createIcons();
-}
-
-function closeArticlePipelineModal() {
-  const modal = document.getElementById("article-pipeline-modal");
-  if (!modal) return;
-  modal.classList.add("hidden");
-  modal.classList.remove("flex");
-  document.body.style.overflow = "auto";
-}
-
-async function fetchPipelineArticles() {
-  try {
-    const res = await fetch("/api/pipeline/articles");
-    if (res.ok) {
-      const data = await res.json();
-      currentPipelineArticles = data.articles || [];
-      renderPipelineBoard(currentPipelineArticles);
-    } else {
-      renderPipelineBoard(currentPipelineArticles);
-    }
-  } catch (err) {
-    console.warn("Using offline cached pipeline articles:", err);
-    renderPipelineBoard(currentPipelineArticles);
-  }
-}
-
-function renderPipelineBoard(articles) {
-  const stages = ["ingested", "parsing", "drafting", "review", "published"];
-  
-  stages.forEach(stage => {
-    const container = document.getElementById(`pipeline-col-${stage}`);
-    const countBadge = document.getElementById(`pipeline-count-${stage}`);
-    if (!container) return;
-    
-    const stageArticles = articles.filter(a => a.stage === stage);
-    if (countBadge) countBadge.textContent = stageArticles.length;
-    
-    if (stageArticles.length === 0) {
-      container.innerHTML = `
-        <div class="text-center py-8 text-slate-500 text-xs border border-dashed border-slate-800 rounded-xl">
-          <p>No articles in this stage</p>
-        </div>
-      `;
-      return;
-    }
-    
-    container.innerHTML = stageArticles.map(art => {
-      const nextStageMap = {
-        "ingested": "parsing",
-        "parsing": "drafting",
-        "drafting": "review",
-        "review": "published",
-        "published": null
-      };
-      const nextStage = nextStageMap[stage];
-      
-      return `
-        <div class="pipeline-article-card stage-${stage} group" onclick="viewArticleDetails(${art.id})">
-          <div class="flex items-start justify-between gap-2">
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">
-              ${art.category || 'General'}
-            </span>
-            <span class="text-[10px] font-mono text-slate-400">
-              ${(art.vacancies || 0).toLocaleString()} Posts
-            </span>
-          </div>
-          
-          <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">
-            ${art.title}
-          </h4>
-          
-          ${art.title_gu ? `
-            <p class="text-[11px] text-slate-400 font-gujarati line-clamp-1">
-              ${art.title_gu}
-            </p>
-          ` : ''}
-          
-          <p class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">
-            ${art.summary || 'Official notification analysis in progress...'}
-          </p>
-          
-          <div class="pipeline-action-bar text-[10px] text-slate-400" onclick="event.stopPropagation()">
-            <span class="font-mono text-slate-500">📅 ${art.deadline || 'Active'}</span>
-            <div class="flex items-center gap-1.5">
-              ${nextStage ? `
-                <button onclick="advanceArticleStage(${art.id}, '${nextStage}')" class="px-2 py-1 rounded bg-slate-800 hover:bg-cyan-600 hover:text-white text-cyan-400 font-bold transition-all flex items-center gap-1" title="Advance to ${nextStage}">
-                  <span>Advance</span>
-                  <span>&rarr;</span>
-                </button>
-              ` : `
-                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold flex items-center gap-1">
-                  <span>Live</span>
-                  <span>✓</span>
-                </span>
-              `}
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  });
-  
-  if (window.lucide) window.lucide.createIcons();
-}
-
-async function advanceArticleStage(articleId, targetStage) {
-  try {
-    showNotificationToast(`Advancing article to ${targetStage.toUpperCase()}...`, "info");
-    const res = await fetch(`/api/pipeline/articles/${articleId}/transition`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ stage: targetStage })
-    });
-    if (res.ok) {
-      showNotificationToast(`Article successfully transitioned to ${targetStage.toUpperCase()}!`, "success");
-      fetchPipelineArticles();
-    } else {
-      showNotificationToast("Failed to transition article.", "error");
-    }
-  } catch (err) {
-    console.error("Transition error:", err);
-    // Optimistic offline update
-    const art = currentPipelineArticles.find(a => a.id === articleId);
-    if (art) {
-      art.stage = targetStage;
-      renderPipelineBoard(currentPipelineArticles);
-      showNotificationToast(`Article transitioned to ${targetStage.toUpperCase()} (local)`, "success");
-    }
-  }
-}
-
-function viewArticleDetails(articleId) {
-  const art = currentPipelineArticles.find(a => a.id === articleId);
-  if (!art) return;
-  
-  const detailModal = document.getElementById("article-detail-modal");
-  const detailBody = document.getElementById("article-detail-body");
-  if (!detailModal || !detailBody) return;
-  
-  detailBody.innerHTML = `
-    <div class="space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div>
-          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-            ${art.stage} Stage
-          </span>
-          <h3 class="text-base sm:text-lg font-black text-white mt-2">${art.title}</h3>
-          ${art.title_gu ? `<p class="text-xs text-slate-400 font-gujarati mt-0.5">${art.title_gu}</p>` : ''}
-        </div>
-      </div>
-      
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-          <div class="text-slate-400">Total Vacancies</div>
-          <div class="text-base font-bold text-cyan-400 mt-0.5">${(art.vacancies || 0).toLocaleString()}</div>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-          <div class="text-slate-400">Qualification</div>
-          <div class="text-sm font-bold text-slate-200 mt-0.5">${art.qualification || 'Graduate'}</div>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-          <div class="text-slate-400">Last Date</div>
-          <div class="text-sm font-bold text-amber-400 mt-0.5">${art.deadline || 'N/A'}</div>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-          <div class="text-slate-400">Source Feed</div>
-          <div class="text-sm font-bold text-slate-200 mt-0.5 truncate">${art.source || 'Gazette'}</div>
-        </div>
-      </div>
-      
-      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-        <h4 class="text-xs font-bold uppercase text-slate-400 mb-2">Editorial Summary</h4>
-        <p class="text-xs text-slate-300 leading-relaxed">${art.summary || 'No summary available.'}</p>
-      </div>
-      
-      <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">
-        <h4 class="text-[11px] font-bold uppercase text-slate-400 mb-2">Markdown Content</h4>
-        <pre class="whitespace-pre-wrap">${art.content_md || 'No markdown body.'}</pre>
-      </div>
-      
-      <div class="flex items-center justify-between pt-3 border-t border-slate-800">
-        <a href="${art.apply_url || '#'}" target="_blank" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5">
-          <span>Apply / Official Link</span>
-          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-        </a>
-        ${art.stage !== 'published' ? `
-          <button onclick="publishArticleDirectly(${art.id})" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/30">
-            <i data-lucide="send" class="w-3.5 h-3.5"></i>
-            <span>Publish Directly to Live Feed</span>
-          </button>
-        ` : `
-          <span class="text-xs text-emerald-400 font-bold flex items-center gap-1">
-            <i data-lucide="check-circle" class="w-4 h-4"></i> Published &amp; Live
-          </span>
-        `}
-      </div>
-    </div>
-  `;
-  
-  detailModal.classList.remove("hidden");
-  detailModal.classList.add("flex");
-  if (window.lucide) window.lucide.createIcons();
-}
-
-function closeArticleDetailModal() {
-  const modal = document.getElementById("article-detail-modal");
-  if (!modal) return;
-  modal.classList.add("hidden");
-  modal.classList.remove("flex");
-}
-
-async function publishArticleDirectly(articleId) {
-  try {
-    showNotificationToast("Publishing article to live feeds...", "info");
-    const res = await fetch(`/api/pipeline/articles/${articleId}/publish`, { method: "POST" });
-    if (res.ok) {
-      showNotificationToast("Article successfully published to live recruitment stream!", "success");
-      closeArticleDetailModal();
-      fetchPipelineArticles();
-    } else {
-      showNotificationToast("Publishing failed. Please retry.", "error");
-    }
-  } catch (err) {
-    console.error("Publish error:", err);
-    showNotificationToast("Published locally in cache.", "success");
-    closeArticleDetailModal();
-  }
-}
-
-// ==========================================================================
-// THEME TOKEN ENGINE (28 VISUAL IDENTITIES)
-// ==========================================================================
-function setPreviewTheme(themeId) {
-  const cleanId = String(themeId).padStart(2, "0");
-  document.body.setAttribute("data-preview-theme", cleanId);
-  document.documentElement.setAttribute("data-preview-theme", cleanId);
-  localStorage.setItem("futurset_theme", cleanId);
-  
-  // Also update any active preview indicator
-  const indicator = document.getElementById("active-theme-indicator");
-  if (indicator) indicator.textContent = cleanId;
-}
-
-// Initialize theme from URL query (?theme=01) or localStorage
-document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const themeParam = urlParams.get("theme");
-  const storedTheme = localStorage.getItem("futurset_theme");
-  const initialTheme = themeParam || storedTheme || document.body.getAttribute("data-preview-theme") || "01";
-  setPreviewTheme(initialTheme);
-});
-
-// Expose pipeline methods globally
-window.openArticlePipelineModal = openArticlePipelineModal;
-window.closeArticlePipelineModal = closeArticlePipelineModal;
-window.advanceArticleStage = advanceArticleStage;
-window.viewArticleDetails = viewArticleDetails;
-window.closeArticleDetailModal = closeArticleDetailModal;
-window.publishArticleDirectly = publishArticleDirectly;
-window.setPreviewTheme = setPreviewTheme;
-
 // Universal listener for closing ANY active modal on backdrop click or Escape
 document.addEventListener("click", (e) => {
   const modalConfigs = [
@@ -3695,9 +3360,7 @@ document.addEventListener("click", (e) => {
     { id: "command-palette-modal", close: closeCommandPalette },
     { id: "ojas-guide-modal", close: closeOjasGuideModal },
     { id: "salary-calc-modal", close: closeSalaryCalculator },
-    { id: "tech-job-modal", close: closeTechModal },
-    { id: "article-pipeline-modal", close: closeArticlePipelineModal },
-    { id: "article-detail-modal", close: closeArticleDetailModal }
+    { id: "tech-job-modal", close: closeTechModal }
   ];
 
   modalConfigs.forEach(({ id, close }) => {
@@ -3725,35 +3388,8 @@ document.addEventListener("keydown", (e) => {
     if (typeof closeFeeGuideModal === "function") closeFeeGuideModal();
     if (typeof closeSubscribeModal === "function") closeSubscribeModal();
     if (typeof closeTechModal === "function") closeTechModal();
-    if (typeof closeArticlePipelineModal === "function") closeArticlePipelineModal();
-    if (typeof closeArticleDetailModal === "function") closeArticleDetailModal();
     document.body.style.overflow = "auto";
     document.documentElement.style.overflow = "auto";
   }
 });
-
-
-// Scroll Progress Bar Listener (cross-browser fallback)
-window.addEventListener("scroll", () => {
-  const bar = document.getElementById("scroll-progress-bar");
-  if (!bar) return;
-  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
-  bar.style.transform = `scaleX(${progress})`;
-}, { passive: true });
-
-// Auto-initialize Article Pipeline if in pipeline view mode
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.__ACTIVE_VIEW__ === "pipeline" || document.querySelector(".article-pipeline-board")) {
-    if (typeof renderPipelineBoard === "function") {
-      renderPipelineBoard(window.__PIPELINE_ARTICLES__ || []);
-    }
-    if (typeof fetchPipelineArticles === "function") {
-      fetchPipelineArticles();
-    }
-  }
-});
-
-
 

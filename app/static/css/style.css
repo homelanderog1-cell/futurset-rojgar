@@ -626,9 +626,9 @@ body {
 .portal-table-container {
   overflow-x: auto;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(10, 16, 32, 0.94);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
 .portal-table {
@@ -639,24 +639,25 @@ body {
 }
 
 .portal-table th {
-  background: rgba(15, 23, 42, 0.95);
+  background: #f8fafc;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: #94a3b8;
+  color: #475569;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #e2e8f0;
   white-space: nowrap;
 }
 
 .portal-table td {
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid #f1f5f9;
   font-size: 0.82rem;
   vertical-align: middle;
+  color: #0a2540;
 }
 
 .portal-table tbody tr {
@@ -664,7 +665,7 @@ body {
 }
 
 .portal-table tbody tr:hover {
-  background: rgba(30, 41, 59, 0.55) !important;
+  background: #f8fafc !important;
   transform: translateY(-1px);
 }
 
@@ -672,8 +673,8 @@ body {
 .sticky-action-col {
   position: sticky;
   right: 0;
-  background: rgba(10, 16, 32, 0.98);
-  box-shadow: -8px 0 16px -4px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  box-shadow: -6px 0 12px -4px rgba(0, 0, 0, 0.06);
   z-index: 10;
 }
 
@@ -823,68 +824,34 @@ body {
 /* 2. Otta / Linear Luxury Job Card Architecture */
 .job-card-otta {
   position: relative;
-  background: #0d121f;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
   padding: 1.35rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: auto 300px;
   contain: layout style paint;
   transform: translateZ(0);
-  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  animation-delay: calc(var(--card-index, 0) * 45ms);
-}
-
-.job-card-otta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1.25rem;
-  padding: 1px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 60%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* Glassmorphic Specular Sweep Sheen on Hover */
-.job-card-otta::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-  transform: skewX(-20deg);
-  transition: none;
-  pointer-events: none;
-}
-
-.job-card-otta:hover::after {
-  left: 200%;
-  transition: left 0.75s ease-in-out;
 }
 
 .job-card-otta:hover {
-  background: #111827;
-  transform: translateY(-4px);
-  border-color: rgba(99, 91, 255, 0.45);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75), 0 0 24px -2px rgba(99, 91, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: #ffffff;
+  transform: translateY(-3px);
+  border-color: #a5b4fc;
+  box-shadow: 0 12px 28px -6px rgba(99, 91, 255, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
 }
 
-/* Staggered Fade-Up Entrance Animation (Prismic Standard) */
-@keyframes fadeUp {
+/* Staggered Card Entrance Animation */
+@keyframes cardEntrance {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.99);
+    transform: translateY(12px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -893,8 +860,7 @@ body {
 }
 
 .animate-card-entrance {
-  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  animation-delay: calc(var(--card-index, 0) * 45ms);
+  animation: cardEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* 3. Refined Monochromatic & Duo-Tone Badges */
@@ -970,15 +936,15 @@ body {
 }
 
 .skeleton-shimmer {
-  animation: skeletonPulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 37%, #f1f5f9 63%);
   background-size: 200% 100%;
 }
 
 .skeleton-card {
-  background: #0d111a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 1.25rem;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 1rem;
   padding: 1.35rem;
 }
 
@@ -1012,1000 +978,102 @@ body {
 }
 
 /* =============================================================
-   STRIPE DESIGN SYSTEM & PRISMIC ANIMATION ENGINE
+   STRIPE PRISTINE LIGHT DESIGN SYSTEM (Option D)
    ============================================================= */
 
-/* 1. Animated Stripe Signature Gradient Canvas */
-.bg-stripe-canvas {
-  background-color: #080b14;
+/* 1. Ambient Light Gradient Mesh Background */
+.stripe-mesh-bg {
+  background-color: #f8fafc !important;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 91, 255, 0.20), transparent 70%),
-    radial-gradient(circle 700px at 85% 20%, rgba(0, 212, 255, 0.12), transparent 60%),
-    radial-gradient(circle 600px at 15% 55%, rgba(121, 40, 202, 0.12), transparent 60%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    radial-gradient(at 0% 0%, rgba(99, 91, 255, 0.07) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 212, 255, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(244, 63, 94, 0.02) 0px, transparent 50%) !important;
 }
 
-/* 2. Stripe Pill Badge with Ambient Beacon */
-.stripe-badge-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  background: rgba(99, 91, 255, 0.08);
-  border: 1px solid rgba(99, 91, 255, 0.25);
-  color: #c7d2fe;
-  font-size: 0.75rem;
+/* 2. Stripe Tactile Button System */
+.btn-stripe-primary {
+  background-color: #635bff !important;
+  color: #ffffff !important;
   font-weight: 600;
-  letter-spacing: 0.01em;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-
-.stripe-badge-pill:hover {
-  background: rgba(99, 91, 255, 0.16);
-  border-color: rgba(99, 91, 255, 0.45);
+.btn-stripe-primary:hover {
+  background-color: #5349e0 !important;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 91, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.btn-stripe-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-/* 3. Radiant Animated Gradient Headline (Stripe Style) */
-.stripe-gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 35%, #00d4ff 70%, #635bff 100%);
-  background-size: 200% auto;
+.btn-stripe-secondary {
+  background-color: #ffffff !important;
+  color: #0a2540 !important;
+  border: 1px solid #e2e8f0 !important;
+  font-weight: 600;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+.btn-stripe-secondary:hover {
+  border-color: #cbd5e1 !important;
+  background-color: #f8fafc !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 3. Otta-Style Clean Job Card */
+.otta-job-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+.otta-job-card:hover {
+  border-color: #a5b4fc !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(99, 91, 255, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
+}
+
+/* 4. Light Mode Skeleton Pulse */
+.skeleton-shimmer-light {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 37%, #f1f5f9 63%);
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+}
+.skeleton-card-light {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+/* 5. Heading & Accent Gradients */
+.headline-stripe-gradient {
+  background: linear-gradient(135deg, #0a2540 0%, #1e1b4b 50%, #4338ca 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textShine 8s linear infinite;
 }
-
-@keyframes textShine {
-  to { background-position: 200% center; }
-}
-
-/* 4. Stripe-Grade Pill Action Buttons */
-.btn-stripe-primary {
+.accent-gradient-stripe {
   background: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.5rem 1.15rem;
-  border-radius: 9999px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 6. Smooth Marquee */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee-smooth {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 4px 14px -2px rgba(99, 91, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
+  white-space: nowrap;
+  animation: marqueeScroll 35s linear infinite;
 }
-
-.btn-stripe-primary:hover {
-  transform: translateY(-1.5px);
-  box-shadow: 0 8px 24px -2px rgba(99, 91, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-}
-
-.btn-stripe-primary:active {
-  transform: scale(0.97);
-}
-
-.btn-stripe-ghost {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
-}
-
-.btn-stripe-ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.btn-stripe-ghost:active {
-  transform: scale(0.97);
-}
-
-/* 5. Live Indicator Pulse Beacon */
-@keyframes beaconPulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.beacon-pulse {
-  border-radius: 9999px;
-  animation: beaconPulse 2s infinite;
-}
-
-/* 6. Staggered Table Rows with Hover Slide & Left Accent */
-.portal-table tbody tr {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  animation: fadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  animation-delay: calc(var(--row-index, 0) * 35ms);
-}
-
-.portal-table tbody tr:hover {
-  background: rgba(99, 91, 255, 0.08) !important;
-  transform: translateX(4px);
-}
-
-/* 7. View Switcher Pill Slider */
-.view-switcher-pill {
-  position: relative;
-  display: inline-flex;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-  padding: 0.25rem;
-}
-
-.view-switcher-btn {
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  color: #94a3b8;
-}
-
-.view-switcher-btn.active {
-  background: #635bff;
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(99, 91, 255, 0.4);
-}
-
-/* 8. Pure CSS Scroll Progress Bar (Prismic Standard) */
-.scroll-progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  background: linear-gradient(90deg, #635bff, #00d4ff, #10b981);
-  transform-origin: 0 50%;
-  transform: scaleX(0);
-  animation: growProgress linear;
-  animation-timeline: scroll();
-  z-index: 9999;
-}
-
-@keyframes growProgress {
-  to { transform: scaleX(1); }
-}
-
-/* 9. Liquid Fill Effect Button (Prismic Highlighted Item) */
-.btn-liquid-fill {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transition: color 0.3s ease;
-}
-
-.btn-liquid-fill::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
-  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: -1;
-  border-radius: inherit;
-}
-
-.btn-liquid-fill:hover::before {
-  height: 100%;
-}
-
-/* 10. Sonar Badge Radar Ripple */
-.sonar-radar {
-  position: relative;
-}
-
-.sonar-radar::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 1.5px solid rgba(16, 185, 129, 0.6);
-  border-radius: 9999px;
-  animation: sonar 2.5s ease-in-out infinite;
-}
-
-@keyframes sonar {
-  0% { transform: scale(0.9); opacity: 1; }
-  60% { transform: scale(1.6); opacity: 0; }
-  60.01%, 100% { transform: scale(0.9); opacity: 0; }
-}
-
-/* 11. Accessibility: Comprehensive Prefers-Reduced-Motion Fallback */
-@media (prefers-reduced-motion: reduce) {
-  .job-card-otta,
-  .animate-card-entrance,
-  .portal-table tbody tr,
-  .btn-stripe-primary,
-  .btn-stripe-ghost,
-  .beacon-pulse,
-  .stripe-gradient-text,
-  .scroll-progress-bar,
-  .skeleton-shimmer,
-  .pipeline-article-card {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-  .scroll-progress-bar {
-    display: none !important;
-  }
-}
-
-/* ==========================================================================
-   28 DESIGN THEMES & TOKEN ENGINE (FUTURSET DESIGN LAB)
-   ========================================================================== */
-
-:root {
-  --preview-font-heading: 'Plus Jakarta Sans', sans-serif;
-  --preview-font-body: 'Plus Jakarta Sans', sans-serif;
-  --preview-bg-canvas: #080b14;
-  --preview-card-bg: rgba(13, 22, 44, 0.88);
-  --preview-card-border: rgba(99, 91, 255, 0.2);
-  --preview-card-hover-border: rgba(99, 91, 255, 0.6);
-  --preview-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  --preview-card-radius: 1.25rem;
-  --preview-accent: #635bff;
-  --preview-accent-gradient: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
-  --preview-text-primary: #f8fafc;
-  --preview-text-muted: #94a3b8;
-  --preview-btn-radius: 9999px;
-  --preview-card-transform: translateY(-4px);
-  --preview-transition-timing: cubic-bezier(0.16, 1, 0.3, 1);
-  --preview-transition-duration: 0.25s;
-}
-
-/* Theme 01: Master Luminous */
-[data-preview-theme="01"] {
-  --preview-font-heading: 'Plus Jakarta Sans', sans-serif;
-  --preview-bg-canvas: #080b14;
-  --preview-card-bg: rgba(13, 22, 44, 0.88);
-  --preview-card-border: rgba(99, 91, 255, 0.25);
-  --preview-card-hover-border: rgba(99, 91, 255, 0.7);
-  --preview-accent: #635bff;
-  --preview-accent-gradient: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
-  --preview-card-radius: 1.25rem;
-}
-
-/* Theme 02: Linear Precision */
-[data-preview-theme="02"] {
-  --preview-font-heading: 'Inter', system-ui, sans-serif;
-  --preview-bg-canvas: #0d0e12;
-  --preview-card-bg: #14151b;
-  --preview-card-border: rgba(255, 255, 255, 0.08);
-  --preview-card-hover-border: rgba(94, 106, 210, 0.7);
-  --preview-accent: #5e6ad2;
-  --preview-accent-gradient: linear-gradient(135deg, #5e6ad2 0%, #828fff 100%);
-  --preview-card-radius: 0.5rem;
-  --preview-btn-radius: 0.5rem;
-  --preview-card-transform: translateY(-2px);
-}
-
-/* Theme 03: Stripe Dynamic */
-[data-preview-theme="03"] {
-  --preview-bg-canvas: #0a0e27;
-  --preview-card-bg: rgba(18, 24, 60, 0.85);
-  --preview-card-border: rgba(0, 212, 255, 0.25);
-  --preview-card-hover-border: rgba(0, 212, 255, 0.75);
-  --preview-accent: #00d4ff;
-  --preview-accent-gradient: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
-  --preview-card-radius: 1.5rem;
-}
-
-/* Theme 04: Raycast Command Center */
-[data-preview-theme="04"] {
-  --preview-bg-canvas: #09090b;
-  --preview-card-bg: rgba(24, 24, 27, 0.95);
-  --preview-card-border: rgba(255, 255, 255, 0.1);
-  --preview-card-hover-border: rgba(255, 99, 99, 0.6);
-  --preview-accent: #ff6363;
-  --preview-accent-gradient: linear-gradient(135deg, #ff6363 0%, #ff9f43 100%);
-  --preview-card-radius: 0.75rem;
-  --preview-btn-radius: 0.6rem;
-}
-
-/* Theme 05: Extreme Minimal */
-[data-preview-theme="05"] {
-  --preview-bg-canvas: #000000;
-  --preview-card-bg: #0a0a0a;
-  --preview-card-border: #222222;
-  --preview-card-hover-border: #ffffff;
-  --preview-accent: #ffffff;
-  --preview-accent-gradient: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
-  --preview-card-radius: 0.25rem;
-  --preview-btn-radius: 0.25rem;
-  --preview-card-shadow: none;
-  --preview-card-transform: none;
-}
-
-/* Theme 06: Spatial Premium */
-[data-preview-theme="06"] {
-  --preview-bg-canvas: #060b18;
-  --preview-card-bg: rgba(14, 25, 52, 0.75);
-  --preview-card-border: rgba(56, 189, 248, 0.2);
-  --preview-card-hover-border: rgba(56, 189, 248, 0.6);
-  --preview-accent: #38bdf8;
-  --preview-accent-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-  --preview-card-radius: 1.5rem;
-  --preview-card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  --preview-card-transform: translateY(-8px) scale(1.01);
-}
-
-/* Theme 07: Creative Framer */
-[data-preview-theme="07"] {
-  --preview-bg-canvas: #0c0a1a;
-  --preview-card-bg: rgba(26, 18, 54, 0.85);
-  --preview-card-border: rgba(236, 72, 153, 0.25);
-  --preview-card-hover-border: rgba(236, 72, 153, 0.7);
-  --preview-accent: #ec4899;
-  --preview-accent-gradient: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-  --preview-card-radius: 1.75rem;
-  --preview-transition-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Theme 08: Playful Premium */
-[data-preview-theme="08"] {
-  --preview-bg-canvas: #051614;
-  --preview-card-bg: rgba(10, 36, 32, 0.88);
-  --preview-card-border: rgba(16, 185, 129, 0.3);
-  --preview-card-hover-border: rgba(16, 185, 129, 0.8);
-  --preview-accent: #10b981;
-  --preview-accent-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  --preview-card-radius: 2rem;
-  --preview-btn-radius: 9999px;
-  --preview-card-transform: scale(1.02);
-}
-
-/* Theme 09: AI Editorial */
-[data-preview-theme="09"] {
-  --preview-font-heading: 'Playfair Display', Georgia, serif;
-  --preview-bg-canvas: #0c1017;
-  --preview-card-bg: #121824;
-  --preview-card-border: rgba(148, 163, 184, 0.15);
-  --preview-card-hover-border: rgba(226, 232, 240, 0.5);
-  --preview-accent: #e2e8f0;
-  --preview-accent-gradient: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
-  --preview-card-radius: 0.75rem;
-}
-
-/* Theme 10: Awwwards Editorial */
-[data-preview-theme="10"] {
-  --preview-bg-canvas: #080808;
-  --preview-card-bg: #111111;
-  --preview-card-border: rgba(245, 158, 11, 0.2);
-  --preview-card-hover-border: rgba(245, 158, 11, 0.7);
-  --preview-accent: #f59e0b;
-  --preview-accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
-  --preview-card-radius: 0.5rem;
-}
-
-/* Theme 11: Cyber AI */
-[data-preview-theme="11"] {
-  --preview-font-heading: 'Courier New', monospace;
-  --preview-bg-canvas: #030a0d;
-  --preview-card-bg: rgba(4, 20, 26, 0.9);
-  --preview-card-border: rgba(0, 255, 204, 0.3);
-  --preview-card-hover-border: #00ffcc;
-  --preview-accent: #00ffcc;
-  --preview-accent-gradient: linear-gradient(135deg, #00ffcc 0%, #0077ff 100%);
-  --preview-card-radius: 0.25rem;
-  --preview-btn-radius: 0.25rem;
-  --preview-card-shadow: 0 0 20px rgba(0, 255, 204, 0.15);
-}
-
-/* Theme 12: Glass System */
-[data-preview-theme="12"] {
-  --preview-bg-canvas: #090e24;
-  --preview-card-bg: rgba(255, 255, 255, 0.05);
-  --preview-card-border: rgba(255, 255, 255, 0.18);
-  --preview-card-hover-border: rgba(255, 255, 255, 0.45);
-  --preview-accent: #a5b4fc;
-  --preview-accent-gradient: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
-  --preview-card-radius: 1.5rem;
-  backdrop-filter: blur(24px) !important;
-}
-
-/* Theme 13: Aurora Fluid */
-[data-preview-theme="13"] {
-  --preview-bg-canvas: #050b1e;
-  --preview-card-bg: rgba(15, 23, 58, 0.85);
-  --preview-card-border: rgba(129, 140, 248, 0.25);
-  --preview-card-hover-border: rgba(129, 140, 248, 0.7);
-  --preview-accent: #818cf8;
-  --preview-accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
-  --preview-card-radius: 1.5rem;
-}
-
-/* Theme 14: Bento OS */
-[data-preview-theme="14"] {
-  --preview-bg-canvas: #0b1120;
-  --preview-card-bg: #131d33;
-  --preview-card-border: rgba(59, 130, 246, 0.2);
-  --preview-card-hover-border: rgba(59, 130, 246, 0.6);
-  --preview-accent: #3b82f6;
-  --preview-accent-gradient: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-  --preview-card-radius: 1.75rem;
-  --preview-btn-radius: 1.25rem;
-}
-
-/* Theme 15: Swiss Precision */
-[data-preview-theme="15"] {
-  --preview-font-heading: 'Helvetica Neue', Arial, sans-serif;
-  --preview-bg-canvas: #111111;
-  --preview-card-bg: #1c1c1c;
-  --preview-card-border: #333333;
-  --preview-card-hover-border: #e11d48;
-  --preview-accent: #e11d48;
-  --preview-accent-gradient: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
-  --preview-card-radius: 0px;
-  --preview-btn-radius: 0px;
-  --preview-card-shadow: none;
-}
-
-/* Theme 16: Soft SaaS (Light Mode) */
-[data-preview-theme="16"] {
-  --preview-bg-canvas: #f8fafc;
-  --preview-card-bg: #ffffff;
-  --preview-card-border: #e2e8f0;
-  --preview-card-hover-border: #4f46e5;
-  --preview-text-primary: #0f172a;
-  --preview-text-muted: #64748b;
-  --preview-accent: #4f46e5;
-  --preview-accent-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-  --preview-card-radius: 1.25rem;
-  --preview-card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
-}
-[data-preview-theme="16"] body {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
-}
-
-/* Theme 17: Developer Terminal */
-[data-preview-theme="17"] {
-  --preview-font-heading: 'JetBrains Mono', monospace;
-  --preview-font-body: 'JetBrains Mono', monospace;
-  --preview-bg-canvas: #0a0e14;
-  --preview-card-bg: #0f141c;
-  --preview-card-border: #1f2937;
-  --preview-card-hover-border: #22c55e;
-  --preview-accent: #22c55e;
-  --preview-accent-gradient: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
-  --preview-card-radius: 0.35rem;
-  --preview-btn-radius: 0.35rem;
-}
-
-/* Theme 18: Fintech Command Center */
-[data-preview-theme="18"] {
-  --preview-bg-canvas: #061118;
-  --preview-card-bg: #0a1b24;
-  --preview-card-border: rgba(20, 184, 166, 0.2);
-  --preview-card-hover-border: rgba(20, 184, 166, 0.7);
-  --preview-accent: #14b8a6;
-  --preview-accent-gradient: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
-  --preview-card-radius: 0.6rem;
-  --preview-btn-radius: 0.5rem;
-}
-
-/* Theme 19: 3D Spatial */
-[data-preview-theme="19"] {
-  --preview-bg-canvas: #090918;
-  --preview-card-bg: rgba(20, 18, 48, 0.85);
-  --preview-card-border: rgba(139, 92, 246, 0.25);
-  --preview-card-hover-border: rgba(139, 92, 246, 0.8);
-  --preview-accent: #8b5cf6;
-  --preview-accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
-  --preview-card-radius: 1.5rem;
-  --preview-card-transform: perspective(1000px) rotateX(2deg) translateY(-6px);
-}
-
-/* Theme 20: Liquid Morph */
-[data-preview-theme="20"] {
-  --preview-bg-canvas: #14050f;
-  --preview-card-bg: rgba(36, 12, 28, 0.85);
-  --preview-card-border: rgba(244, 63, 94, 0.25);
-  --preview-card-hover-border: rgba(244, 63, 94, 0.7);
-  --preview-accent: #f43f5e;
-  --preview-accent-gradient: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
-  --preview-card-radius: 2.25rem 1rem 2.25rem 1rem;
-}
-
-/* Theme 21: Kinetic Typography */
-[data-preview-theme="21"] {
-  --preview-bg-canvas: #090b14;
-  --preview-card-bg: #11162a;
-  --preview-card-border: rgba(224, 231, 255, 0.15);
-  --preview-card-hover-border: rgba(224, 231, 255, 0.6);
-  --preview-accent: #e0e7ff;
-  --preview-accent-gradient: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
-  --preview-card-radius: 1rem;
-}
-
-/* Theme 22: Holographic Future */
-[data-preview-theme="22"] {
-  --preview-bg-canvas: #0a0618;
-  --preview-card-bg: rgba(24, 14, 46, 0.85);
-  --preview-card-border: rgba(217, 70, 239, 0.3);
-  --preview-card-hover-border: rgba(217, 70, 239, 0.85);
-  --preview-accent: #d946ef;
-  --preview-accent-gradient: linear-gradient(135deg, #d946ef 0%, #06b6d4 50%, #facc15 100%);
-  --preview-card-radius: 1.5rem;
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
 }
 
-/* Theme 23: Editorial Magazine */
-[data-preview-theme="23"] {
-  --preview-font-heading: 'Merriweather', Georgia, serif;
-  --preview-bg-canvas: #0e1217;
-  --preview-card-bg: #161c24;
-  --preview-card-border: #2d3748;
-  --preview-card-hover-border: #f1f5f9;
-  --preview-accent: #f1f5f9;
-  --preview-accent-gradient: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
-  --preview-card-radius: 0.5rem;
-}
-
-/* Theme 24: Modern Brutalism */
-[data-preview-theme="24"] {
-  --preview-bg-canvas: #0e0e0e;
-  --preview-card-bg: #181818;
-  --preview-card-border: #facc15;
-  --preview-card-hover-border: #ffffff;
-  --preview-accent: #facc15;
-  --preview-accent-gradient: linear-gradient(135deg, #facc15 0%, #eab308 100%);
-  --preview-card-radius: 0px;
-  --preview-btn-radius: 0px;
-  --preview-card-shadow: 4px 4px 0px #000000;
-  --preview-card-transform: translate(-2px, -2px);
-}
-
-/* Theme 25: Light Premium */
-[data-preview-theme="25"] {
-  --preview-bg-canvas: #fcfbf9;
-  --preview-card-bg: #ffffff;
-  --preview-card-border: rgba(0, 0, 0, 0.08);
-  --preview-card-hover-border: rgba(0, 0, 0, 0.35);
-  --preview-text-primary: #0f172a;
-  --preview-text-muted: #64748b;
-  --preview-accent: #0f172a;
-  --preview-accent-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-  --preview-card-radius: 1rem;
-  --preview-card-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
-}
-[data-preview-theme="25"] body {
-  background-color: #fcfbf9 !important;
-  color: #0f172a !important;
-}
-
-/* Theme 26: OLED Cinematic */
-[data-preview-theme="26"] {
-  --preview-bg-canvas: #000000;
-  --preview-card-bg: #050505;
-  --preview-card-border: #1a1a1a;
-  --preview-card-hover-border: #fbbf24;
-  --preview-accent: #fbbf24;
-  --preview-accent-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  --preview-card-radius: 1.25rem;
-  --preview-card-shadow: 0 0 35px rgba(0, 0, 0, 0.95);
-}
-
-/* Theme 27: Motion Storytelling */
-[data-preview-theme="27"] {
-  --preview-bg-canvas: #040e17;
-  --preview-card-bg: rgba(8, 26, 42, 0.85);
-  --preview-card-border: rgba(6, 182, 212, 0.25);
-  --preview-card-hover-border: rgba(6, 182, 212, 0.75);
-  --preview-accent: #06b6d4;
-  --preview-accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-  --preview-card-radius: 1.5rem;
-}
-
-/* Theme 28: Accessibility Premium */
-[data-preview-theme="28"] {
-  --preview-bg-canvas: #050505;
-  --preview-card-bg: #121212;
-  --preview-card-border: #38bdf8;
-  --preview-card-hover-border: #ffffff;
-  --preview-accent: #38bdf8;
-  --preview-accent-gradient: linear-gradient(135deg, #38bdf8 0%, #7dd3fc 100%);
-  --preview-card-radius: 0.5rem;
-  --preview-btn-radius: 0.5rem;
-  --preview-card-shadow: none;
-  --preview-card-transform: none;
-}
-[data-preview-theme="28"] button:focus-visible,
-[data-preview-theme="28"] a:focus-visible,
-[data-preview-theme="28"] input:focus-visible {
-  outline: 3px solid #38bdf8 !important;
-  outline-offset: 3px !important;
-}
-
-/* Theme 29: AI Operating System */
-[data-preview-theme="29"] {
-  --preview-bg-canvas: #070512;
-  --preview-card-bg: rgba(17, 13, 36, 0.9);
-  --preview-card-border: rgba(168, 85, 247, 0.25);
-  --preview-card-hover-border: rgba(168, 85, 247, 0.8);
-  --preview-accent: #a855f7;
-  --preview-accent-gradient: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
-  --preview-card-radius: 1.25rem;
-  --preview-card-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
-}
-
-/* Theme 30: Data Immersion */
-[data-preview-theme="30"] {
-  --preview-bg-canvas: #030712;
-  --preview-card-bg: rgba(8, 20, 44, 0.85);
-  --preview-card-border: rgba(14, 165, 233, 0.25);
-  --preview-card-hover-border: rgba(14, 165, 233, 0.75);
-  --preview-accent: #0ea5e9;
-  --preview-accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
-  --preview-card-radius: 0.75rem;
-}
-
-/* Theme 31: Editorial Dark Luxury */
-[data-preview-theme="31"] {
-  --preview-font-heading: 'Cinzel', 'Playfair Display', Georgia, serif;
-  --preview-bg-canvas: #09090b;
-  --preview-card-bg: #141417;
-  --preview-card-border: rgba(212, 175, 55, 0.3);
-  --preview-card-hover-border: rgba(212, 175, 55, 0.85);
-  --preview-accent: #d4af37;
-  --preview-accent-gradient: linear-gradient(135deg, #d4af37 0%, #fef08a 50%, #d4af37 100%);
-  --preview-card-radius: 0.375rem;
-  --preview-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-}
-
-/* Theme 32: Futuristic Glass Dashboard HUD */
-[data-preview-theme="32"] {
-  --preview-bg-canvas: #020b14;
-  --preview-card-bg: rgba(4, 25, 48, 0.85);
-  --preview-card-border: rgba(0, 229, 255, 0.35);
-  --preview-card-hover-border: rgba(0, 229, 255, 0.9);
-  --preview-accent: #00e5ff;
-  --preview-accent-gradient: linear-gradient(135deg, #00e5ff 0%, #3b82f6 100%);
-  --preview-card-radius: 0.75rem;
-  --preview-card-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
-}
-
-/* Theme 33: Calm Productivity */
-[data-preview-theme="33"] {
-  --preview-bg-canvas: #0d1117;
-  --preview-card-bg: #161c26;
-  --preview-card-border: rgba(148, 163, 184, 0.2);
-  --preview-card-hover-border: rgba(148, 163, 184, 0.6);
-  --preview-accent: #94a3b8;
-  --preview-accent-gradient: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%);
-  --preview-card-radius: 0.75rem;
-  --preview-card-transform: none;
-}
-
-/* Theme 34: Creative Technology */
-[data-preview-theme="34"] {
-  --preview-bg-canvas: #0d0412;
-  --preview-card-bg: rgba(28, 9, 38, 0.85);
-  --preview-card-border: rgba(255, 0, 85, 0.3);
-  --preview-card-hover-border: rgba(255, 0, 85, 0.85);
-  --preview-accent: #ff0055;
-  --preview-accent-gradient: linear-gradient(135deg, #ff0055 0%, #ff5e3a 100%);
-  --preview-card-radius: 1.5rem;
-}
-
-/* Theme 35: Monochrome System */
-[data-preview-theme="35"] {
-  --preview-bg-canvas: #080808;
-  --preview-card-bg: #121212;
-  --preview-card-border: #2a2a2a;
-  --preview-card-hover-border: #ffffff;
-  --preview-accent: #e5e7eb;
-  --preview-accent-gradient: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
-  --preview-card-radius: 0.25rem;
-}
-
-/* Theme 36: Neon Data */
-[data-preview-theme="36"] {
-  --preview-bg-canvas: #070618;
-  --preview-card-bg: rgba(18, 14, 45, 0.9);
-  --preview-card-border: rgba(163, 230, 53, 0.35);
-  --preview-card-hover-border: rgba(163, 230, 53, 0.9);
-  --preview-accent: #a3e635;
-  --preview-accent-gradient: linear-gradient(135deg, #a3e635 0%, #22d3ee 100%);
-  --preview-card-radius: 1rem;
-  --preview-card-shadow: 0 0 20px rgba(163, 230, 53, 0.2);
-}
-
-/* Theme 37: Premium Enterprise */
-[data-preview-theme="37"] {
-  --preview-bg-canvas: #091122;
-  --preview-card-bg: #111d38;
-  --preview-card-border: rgba(37, 99, 235, 0.25);
-  --preview-card-hover-border: rgba(37, 99, 235, 0.75);
-  --preview-accent: #2563eb;
-  --preview-accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-  --preview-card-radius: 0.5rem;
-}
-
-/* Theme 38: Product Studio */
-[data-preview-theme="38"] {
-  --preview-bg-canvas: #0c0e14;
-  --preview-card-bg: #151924;
-  --preview-card-border: rgba(14, 165, 233, 0.25);
-  --preview-card-hover-border: rgba(14, 165, 233, 0.8);
-  --preview-accent: #0ea5e9;
-  --preview-accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
-  --preview-card-radius: 1.25rem;
-}
-
-/* Theme 39: Immersive WebGL */
-[data-preview-theme="39"] {
-  --preview-bg-canvas: #020510;
-  --preview-card-bg: rgba(8, 18, 42, 0.85);
-  --preview-card-border: rgba(0, 240, 255, 0.35);
-  --preview-card-hover-border: rgba(0, 240, 255, 0.9);
-  --preview-accent: #00f0ff;
-  --preview-accent-gradient: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
-  --preview-card-radius: 1.5rem;
-  --preview-card-transform: perspective(1000px) rotateX(1.5deg) translateY(-4px);
-}
-
-/* Theme 40: Future Master */
-[data-preview-theme="40"] {
-  --preview-bg-canvas: #070416;
-  --preview-card-bg: rgba(22, 13, 48, 0.85);
-  --preview-card-border: rgba(124, 58, 237, 0.35);
-  --preview-card-hover-border: rgba(124, 58, 237, 0.9);
-  --preview-accent: #7c3aed;
-  --preview-accent-gradient: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #06b6d4 100%);
-  --preview-card-radius: 1.5rem;
-  --preview-card-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
-}
-
-/* Theme 41: Neomorphic Clay */
-[data-preview-theme="41"] {
-  --preview-bg-canvas: #0f121d;
-  --preview-card-bg: #171b2b;
-  --preview-card-border: rgba(129, 140, 248, 0.2);
-  --preview-card-hover-border: rgba(129, 140, 248, 0.7);
-  --preview-accent: #818cf8;
-  --preview-accent-gradient: linear-gradient(135deg, #818cf8 0%, #a5b4fc 100%);
-  --preview-card-radius: 1.75rem;
-  --preview-card-shadow: 6px 6px 16px rgba(0, 0, 0, 0.5), -4px -4px 12px rgba(255, 255, 255, 0.04);
-}
-
-/* Theme 42: Bento OS v2 */
-[data-preview-theme="42"] {
-  --preview-bg-canvas: #080d1a;
-  --preview-card-bg: rgba(15, 23, 42, 0.92);
-  --preview-card-border: rgba(56, 189, 248, 0.25);
-  --preview-card-hover-border: rgba(56, 189, 248, 0.8);
-  --preview-accent: #38bdf8;
-  --preview-accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
-  --preview-card-radius: 1.5rem;
-}
-
-/* Theme 43: High-Frequency Telemetry */
-[data-preview-theme="43"] {
-  --preview-bg-canvas: #030c11;
-  --preview-card-bg: #081923;
-  --preview-card-border: rgba(16, 185, 129, 0.3);
-  --preview-card-hover-border: rgba(16, 185, 129, 0.85);
-  --preview-accent: #10b981;
-  --preview-accent-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  --preview-card-radius: 0.5rem;
-}
-
-/* Theme 44: Papercraft & Tactile Origami */
-[data-preview-theme="44"] {
-  --preview-bg-canvas: #110f0c;
-  --preview-card-bg: #1a1612;
-  --preview-card-border: rgba(245, 158, 11, 0.3);
-  --preview-card-hover-border: rgba(245, 158, 11, 0.85);
-  --preview-accent: #f59e0b;
-  --preview-accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --preview-card-radius: 0.35rem;
-  --preview-card-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* Theme 45: Retro Cyberpunk 2099 */
-[data-preview-theme="45"] {
-  --preview-bg-canvas: #0d0313;
-  --preview-card-bg: rgba(32, 8, 44, 0.9);
-  --preview-card-border: rgba(255, 0, 127, 0.4);
-  --preview-card-hover-border: rgba(255, 0, 127, 0.95);
-  --preview-accent: #ff007f;
-  --preview-accent-gradient: linear-gradient(135deg, #ff007f 0%, #00f0ff 100%);
-  --preview-card-radius: 0.5rem;
-  --preview-card-shadow: 0 0 20px rgba(255, 0, 127, 0.25);
-}
-
-/* Theme 46: Nordic Minimal */
-[data-preview-theme="46"] {
-  --preview-bg-canvas: #131210;
-  --preview-card-bg: #1b1916;
-  --preview-card-border: rgba(120, 113, 108, 0.3);
-  --preview-card-hover-border: rgba(120, 113, 108, 0.75);
-  --preview-accent: #a8a29e;
-  --preview-accent-gradient: linear-gradient(135deg, #d6d3d1 0%, #78716c 100%);
-  --preview-card-radius: 0.85rem;
-}
-
-/* Theme 47: Biophilic Glass */
-[data-preview-theme="47"] {
-  --preview-bg-canvas: #03130c;
-  --preview-card-bg: rgba(6, 36, 23, 0.85);
-  --preview-card-border: rgba(5, 150, 105, 0.35);
-  --preview-card-hover-border: rgba(5, 150, 105, 0.85);
-  --preview-accent: #059669;
-  --preview-accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%);
-  --preview-card-radius: 1.5rem;
-  --preview-card-shadow: 0 0 25px rgba(5, 150, 105, 0.2);
-}
-
-/* Theme 48: Isometric Holographic 3D */
-[data-preview-theme="48"] {
-  --preview-bg-canvas: #070617;
-  --preview-card-bg: rgba(19, 15, 48, 0.9);
-  --preview-card-border: rgba(99, 102, 241, 0.35);
-  --preview-card-hover-border: rgba(99, 102, 241, 0.9);
-  --preview-accent: #6366f1;
-  --preview-accent-gradient: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
-  --preview-card-radius: 1.25rem;
-  --preview-card-shadow: -4px 6px 0px rgba(67, 56, 202, 0.5);
-  --preview-card-transform: perspective(900px) rotateX(4deg) rotateY(-2deg) translateY(-4px);
-}
-
-/* Theme 49: Dark Luxury Monospace */
-[data-preview-theme="49"] {
-  --preview-font-heading: 'JetBrains Mono', 'Fira Code', monospace;
-  --preview-bg-canvas: #08080a;
-  --preview-card-bg: #111114;
-  --preview-card-border: rgba(234, 179, 8, 0.3);
-  --preview-card-hover-border: rgba(234, 179, 8, 0.85);
-  --preview-accent: #eab308;
-  --preview-accent-gradient: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
-  --preview-card-radius: 0.375rem;
-}
-
-/* Theme 50: Quantum Nebula */
-[data-preview-theme="50"] {
-  --preview-bg-canvas: #050311;
-  --preview-card-bg: rgba(19, 10, 44, 0.9);
-  --preview-card-border: rgba(139, 92, 246, 0.4);
-  --preview-card-hover-border: rgba(139, 92, 246, 0.95);
-  --preview-accent: #8b5cf6;
-  --preview-accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #38bdf8 100%);
-  --preview-card-radius: 1.75rem;
-  --preview-card-shadow: 0 0 35px rgba(139, 92, 246, 0.25);
-}
-
-/* Apply Token Variables to Existing Component Classes */
-.job-card-otta, .glass-panel, .glass-card-transparent {
-  background-color: var(--preview-card-bg);
-  border-color: var(--preview-card-border);
-  border-radius: var(--preview-card-radius);
-  transition: all var(--preview-transition-duration) var(--preview-transition-timing);
-}
-
-.job-card-otta:hover {
-  border-color: var(--preview-card-hover-border);
-  transform: var(--preview-card-transform);
-}
-
-/* ==========================================================================
-   ARTICLE PIPELINE COMPONENT STYLING
-   ========================================================================== */
-
-.article-pipeline-board {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(260px, 1fr));
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-}
-
-@media (max-width: 1024px) {
-  .article-pipeline-board {
-    grid-template-columns: repeat(5, 280px);
-  }
-}
-
-.pipeline-stage-col {
-  background: rgba(10, 16, 32, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--preview-card-radius, 1rem);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-height: 480px;
-}
-
-.pipeline-stage-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.pipeline-stage-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--preview-text-primary, #ffffff);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.pipeline-badge-count {
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--preview-accent, #635bff);
-}
-
-.pipeline-article-card {
-  background: var(--preview-card-bg, rgba(13, 22, 44, 0.9));
-  border: 1px solid var(--preview-card-border, rgba(255, 255, 255, 0.1));
-  border-radius: calc(var(--preview-card-radius, 1rem) * 0.75);
-  padding: 0.85rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
-  position: relative;
-  cursor: pointer;
-}
-
-.pipeline-article-card:hover {
-  border-color: var(--preview-card-hover-border, #635bff);
-  transform: translateY(-2px);
-}
-
-.pipeline-article-card.stage-published {
-  border-left: 3px solid #10b981;
-}
-
-.pipeline-article-card.stage-review {
-  border-left: 3px solid #f59e0b;
-}
-
-.pipeline-article-card.stage-drafting {
-  border-left: 3px solid #635bff;
-}
-
-.pipeline-article-card.stage-parsing {
-  border-left: 3px solid #00d4ff;
-}
-
-.pipeline-article-card.stage-ingested {
-  border-left: 3px solid #94a3b8;
-}
-
-.pipeline-action-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
 

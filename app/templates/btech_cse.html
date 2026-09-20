@@ -30,20 +30,20 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="min-h-screen flex flex-col bg-[#050914] text-slate-100 antialiased selection:bg-cyan-500 selection:text-white relative">
+<body class="min-h-screen flex flex-col stripe-mesh-bg bg-[#f8fafc] text-[#0a2540] antialiased selection:bg-indigo-500 selection:text-white relative">
 
   <!-- Ambient Overlay -->
   <div class="cursor-spotlight"></div>
 
   <!-- Top Announcement Marquee -->
-  <div class="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border-b border-cyan-500/20 py-1.5 px-4 text-xs overflow-hidden no-print">
+  <div class="bg-slate-50 border-b border-slate-200 py-1.5 px-4 text-xs overflow-hidden no-print text-slate-700">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-      <div class="flex items-center gap-2 text-cyan-400 font-bold shrink-0">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+      <div class="flex items-center gap-2 text-indigo-700 font-bold shrink-0">
+        <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
         <span class="tracking-wider uppercase text-[11px]">B.Tech CSE & IT Radar 2026:</span>
       </div>
       <div class="overflow-hidden whitespace-nowrap flex-1">
-        <div class="inline-block animate-marquee space-x-8 text-slate-300">
+        <div class="inline-block animate-marquee space-x-8 text-slate-600">
           <span>🚀 <strong>NIC Scientist-B:</strong> 340 Level-10 Gazetted Computer Science vacancies open!</span>
           <span>💻 <strong>TCS NQT 2026:</strong> 40,000+ Freshers & Digital/Prime engineering roles.</span>
           <span>🦁 <strong>Gujarat High Court IT:</strong> Computer Programmer & System Officer (Level-8) recruitment active.</span>
@@ -51,10 +51,10 @@
           <span>🏢 <strong>GIFT City FinTech:</strong> 450+ Blockchain & Full-Stack developer positions (CTC up to ₹16 LPA).</span>
         </div>
       </div>
-      <div class="shrink-0 hidden md:flex items-center gap-3 text-slate-400 text-[11px]">
+      <div class="shrink-0 hidden md:flex items-center gap-3 text-slate-500 text-[11px]">
         <span>Tech Hub v{{ version }}</span>
         <span>•</span>
-        <span class="text-emerald-400 font-semibold flex items-center gap-1">
+        <span class="text-emerald-600 font-semibold flex items-center gap-1">
           <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Govt & Private Verified
         </span>
       </div>
@@ -62,45 +62,45 @@
   </div>
 
   <!-- Primary Navigation -->
-  <header class="sticky top-0 z-40 bg-[#070d1e]/90 backdrop-blur-md border-b border-slate-800/80">
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
           <i data-lucide="code-2" class="w-5 h-5"></i>
         </div>
         <div>
           <div class="flex items-center gap-1.5">
-            <span class="text-xl font-black tracking-tight text-white">Futur<span class="text-cyan-400">Set</span></span>
-            <span class="text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded bg-gradient-to-r from-blue-500/30 to-indigo-500/30 text-cyan-300 border border-cyan-500/30">CSE/IT Hub</span>
+            <span class="text-xl font-black tracking-tight text-[#0a2540]">Futur<span class="text-indigo-600">Set</span></span>
+            <span class="text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">CSE/IT Hub</span>
           </div>
-          <p class="text-[10px] text-slate-400 font-medium tracking-wide">Tech Engineering Career Intelligence</p>
+          <p class="text-[10px] text-slate-500 font-medium tracking-wide">Tech Engineering Career Intelligence</p>
         </div>
       </a>
 
       <!-- Navigation Links -->
       <nav class="hidden md:flex items-center gap-1 lg:gap-2">
-        <a href="/" class="px-3 py-1.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5">
+        <a href="/" class="px-3 py-1.5 rounded-lg text-sm text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-colors flex items-center gap-1.5">
           <i data-lucide="compass" class="w-4 h-4"></i> All India Jobs
         </a>
-        <a href="/gujarat" class="px-3 py-1.5 rounded-lg text-sm text-amber-300 hover:text-amber-200 hover:bg-amber-950/40 border border-amber-500/20 transition-colors flex items-center gap-1.5 font-medium">
+        <a href="/gujarat" class="px-3 py-1.5 rounded-lg text-sm text-amber-800 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors flex items-center gap-1.5 font-medium">
           <span class="text-base">🦁</span> ગુજરાત સરકારી ભરતી Hub
         </a>
-        <a href="/btech-cse" class="px-3 py-1.5 rounded-lg text-sm text-cyan-300 bg-cyan-950/70 border border-cyan-500/40 shadow-sm shadow-cyan-500/20 transition-colors flex items-center gap-1.5 font-semibold">
+        <a href="/btech-cse" class="px-3 py-1.5 rounded-lg text-sm text-indigo-700 bg-indigo-50 border border-indigo-200 shadow-xs transition-colors flex items-center gap-1.5 font-bold">
           <i data-lucide="laptop" class="w-4 h-4"></i> B.Tech CSE Portal
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
         </a>
-        <a href="/corporate" class="px-3 py-1.5 rounded-lg text-sm text-purple-300 hover:text-purple-200 hover:bg-purple-950/40 border border-purple-500/30 transition-colors flex items-center gap-1.5 font-medium">
-          <i data-lucide="building-2" class="w-4 h-4 text-yellow-300"></i> Corporate Hub
+        <a href="/corporate" class="px-3 py-1.5 rounded-lg text-sm text-purple-700 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-colors flex items-center gap-1.5 font-medium">
+          <i data-lucide="building-2" class="w-4 h-4 text-purple-600"></i> Corporate Hub
         </a>
       </nav>
 
       <!-- Quick Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="/#scanner-section" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs font-semibold text-slate-200 transition-all">
-          <i data-lucide="radar" class="w-3.5 h-3.5 text-cyan-400 animate-spin"></i> Live Scanner
+        <a href="/#scanner-section" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 shadow-xs transition-all">
+          <i data-lucide="radar" class="w-3.5 h-3.5 text-indigo-600 animate-spin"></i> Live Scanner
         </a>
-        <a href="/" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-md shadow-cyan-500/20 transition-all">
+        <a href="/" class="btn-stripe-primary inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-white text-xs font-bold shadow-xs transition-all">
           <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Back to All Jobs
         </a>
       </div>
@@ -108,37 +108,37 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative pt-10 pb-8 overflow-hidden bg-gradient-to-b from-brand-dark via-[#091124] to-[#050914] border-b border-slate-800/60">
+  <section class="relative pt-10 pb-8 overflow-hidden bg-white/50 border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-4xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-bold mb-4 shadow-inner">
-          <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold mb-4 shadow-xs">
+          <i data-lucide="terminal" class="w-3.5 h-3.5 text-indigo-600"></i>
           <span>Dedicated Engineering Career Hub for B.Tech / B.E. / MCA</span>
         </div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3 leading-tight">
-          B.Tech CSE & IT <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Recruitment Radar 2026</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0a2540] mb-3 leading-tight">
+          B.Tech CSE & IT <span class="headline-stripe-gradient">Recruitment Radar 2026</span>
         </h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8 max-w-3xl mx-auto">
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-8 max-w-3xl mx-auto">
           Every active opportunity for Computer Science, Information Technology, Software Engineers, and MCA graduates — spanning <strong>Central Government</strong> (NIC, ISRO, DRDO, IBPS SO IT), <strong>Gujarat State Govt</strong> (GIL, GIPL, High Court, SDC), <strong>PSUs</strong> (AAI, PowerGrid, BEL), and <strong>Premier Private MNCs</strong> (TCS, Infosys, Jio, Adani, GIFT City FinTech).
         </p>
 
         <!-- Metrics Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
-          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center shadow-lg">
-            <span class="text-2xl font-black text-cyan-400">{{ stats.btech_cse_jobs }}+</span>
-            <p class="text-xs text-slate-400 mt-0.5 font-medium">Active Tech Drives</p>
+          <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+            <span class="text-2xl font-black text-indigo-600">{{ stats.btech_cse_jobs }}+</span>
+            <p class="text-xs text-slate-500 mt-0.5 font-medium">Active Tech Drives</p>
           </div>
-          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center shadow-lg">
-            <span class="text-2xl font-black text-emerald-400">{{ "{:,}".format(stats.btech_cse_vacancies) }}+</span>
-            <p class="text-xs text-slate-400 mt-0.5 font-medium">Total Tech Vacancies</p>
+          <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+            <span class="text-2xl font-black text-emerald-600">{{ "{:,}".format(stats.btech_cse_vacancies) }}+</span>
+            <p class="text-xs text-slate-500 mt-0.5 font-medium">Total Tech Vacancies</p>
           </div>
-          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center shadow-lg">
-            <span class="text-2xl font-black text-amber-400">Level-10</span>
-            <p class="text-xs text-slate-400 mt-0.5 font-medium">Central Scientific Roles</p>
+          <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+            <span class="text-2xl font-black text-amber-600">Level-10</span>
+            <p class="text-xs text-slate-500 mt-0.5 font-medium">Central Scientific Roles</p>
           </div>
-          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center shadow-lg">
-            <span class="text-2xl font-black text-blue-400">₹3.6 - ₹22 LPA</span>
-            <p class="text-xs text-slate-400 mt-0.5 font-medium">Annual Package Range</p>
+          <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-xs">
+            <span class="text-2xl font-black text-blue-600">₹3.6 - ₹22 LPA</span>
+            <p class="text-xs text-slate-500 mt-0.5 font-medium">Annual Package Range</p>
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@
   </section>
 
   <!-- Interactive Search & Multi-Filter Bar -->
-  <section class="sticky top-16 z-30 bg-[#070d1e]/95 backdrop-blur-md border-b border-slate-800/90 py-3.5 shadow-xl">
+  <section class="sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 py-3.5 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
       
       <!-- Top Row: Search Input + Reset -->
@@ -157,7 +157,7 @@
             id="tech-search-input"
             type="text"
             placeholder="Search by role, company, skill (e.g., Python, NIC, TCS, Level 10, AWS, React, Gandhinagar)..."
-            class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+            class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm text-[#0a2540] placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white shadow-xs transition-all"
             oninput="handleTechFilterChange()"
           >
         </div>
@@ -165,7 +165,7 @@
           <select
             id="tech-exp-filter"
             onchange="handleTechFilterChange()"
-            class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200 focus:outline-none focus:border-cyan-500"
+            class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500 shadow-xs"
           >
             <option value="">🎯 All Batches / Experience</option>
             <option value="fresher">Freshers (2024, 2025, 2026)</option>
@@ -173,78 +173,78 @@
           </select>
           <button
             onclick="resetTechFilters()"
-            class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+            class="px-3 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 shadow-xs transition-all flex items-center gap-1.5"
           >
-            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-rose-500"></i> Reset
           </button>
         </div>
       </div>
 
       <!-- Sector & Category Filter Pills -->
       <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs font-semibold">
-        <span class="text-slate-400 shrink-0 text-[11px] uppercase tracking-wider font-bold mr-1">Sector:</span>
+        <span class="text-slate-500 shrink-0 text-[11px] uppercase tracking-wider font-bold mr-1">Sector:</span>
         <button
           onclick="filterByTechCategory('', this)"
-          class="tech-cat-btn active px-3 py-1.5 rounded-lg border border-cyan-500/40 bg-cyan-950/80 text-cyan-300 transition-all shrink-0"
+          class="tech-cat-btn active px-3 py-1.5 rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 transition-all shrink-0"
         >
           ✨ All Tech ({{ jobs|length }})
         </button>
         <button
           onclick="filterByTechCategory('central_govt', this)"
-          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white hover:border-slate-700 transition-all shrink-0 flex items-center gap-1"
+          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all shrink-0 flex items-center gap-1 shadow-xs"
         >
           🏛️ Central Govt IT (NIC, ISRO, DRDO)
         </button>
         <button
           onclick="filterByTechCategory('gujarat_govt', this)"
-          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white hover:border-slate-700 transition-all shrink-0 flex items-center gap-1"
+          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all shrink-0 flex items-center gap-1 shadow-xs"
         >
           🦁 Gujarat Govt IT (GIL, High Court, SDC)
         </button>
         <button
           onclick="filterByTechCategory('psu', this)"
-          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white hover:border-slate-700 transition-all shrink-0 flex items-center gap-1"
+          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all shrink-0 flex items-center gap-1 shadow-xs"
         >
           ⚙️ PSU Technology (AAI, PowerGrid, BEL)
         </button>
         <button
           onclick="filterByTechCategory('private', this)"
-          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white hover:border-slate-700 transition-all shrink-0 flex items-center gap-1"
+          class="tech-cat-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all shrink-0 flex items-center gap-1 shadow-xs"
         >
           💼 Premier Private & MNCs (TCS, Infosys, Jio)
         </button>
       </div>
 
       <!-- Selection Process Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs font-semibold border-t border-slate-800/40 pt-2">
-        <span class="text-slate-400 shrink-0 text-[11px] uppercase tracking-wider font-bold mr-1">Selection Mode:</span>
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs font-semibold border-t border-slate-100 pt-2">
+        <span class="text-slate-500 shrink-0 text-[11px] uppercase tracking-wider font-bold mr-1">Selection Mode:</span>
         <button
           onclick="filterByTechMode('', this)"
-          class="tech-mode-btn active px-2.5 py-1 rounded-md border border-cyan-500/40 bg-cyan-950/60 text-cyan-300 shrink-0"
+          class="tech-mode-btn active px-2.5 py-1 rounded-md border border-indigo-200 bg-indigo-50 text-indigo-700 shrink-0"
         >
           All Selection Modes
         </button>
         <button
           onclick="filterByTechMode('coding_test', this)"
-          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-800 bg-slate-900 text-slate-300 hover:text-white shrink-0 flex items-center gap-1"
+          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shrink-0 flex items-center gap-1 shadow-xs"
         >
           ⚡ Coding Assessment / Drive
         </button>
         <button
           onclick="filterByTechMode('written_exam', this)"
-          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-800 bg-slate-900 text-slate-300 hover:text-white shrink-0 flex items-center gap-1"
+          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shrink-0 flex items-center gap-1 shadow-xs"
         >
           📝 Written Exam (CBT)
         </button>
         <button
           onclick="filterByTechMode('gate', this)"
-          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-800 bg-slate-900 text-slate-300 hover:text-white shrink-0 flex items-center gap-1"
+          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shrink-0 flex items-center gap-1 shadow-xs"
         >
           🎓 GATE Score Selection
         </button>
         <button
           onclick="filterByTechMode('direct_merit', this)"
-          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-800 bg-slate-900 text-slate-300 hover:text-white shrink-0 flex items-center gap-1"
+          class="tech-mode-btn px-2.5 py-1 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shrink-0 flex items-center gap-1 shadow-xs"
         >
           ⚡ Direct Merit / NATS
         </button>
@@ -258,12 +258,12 @@
 
     <!-- Active Filter Status & Counter -->
     <div class="flex items-center justify-between gap-4 mb-6">
-      <div class="flex items-center gap-2 text-sm text-slate-400">
-        <span class="font-bold text-white text-base" id="tech-jobs-counter">{{ jobs|length }}</span>
+      <div class="flex items-center gap-2 text-sm text-slate-600">
+        <span class="font-bold text-[#0a2540] text-base" id="tech-jobs-counter">{{ jobs|length }}</span>
         <span>Eligible Technical Openings for B.Tech CSE / IT / MCA</span>
       </div>
-      <div class="text-xs text-slate-400 flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <div class="text-xs text-slate-500 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         <span>Live Verified Feeds</span>
       </div>
     </div>
@@ -271,94 +271,91 @@
     <!-- Jobs Grid Container -->
     <div id="tech-jobs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {% for job in jobs %}
-      <article class="tech-job-card bg-gradient-to-b from-[#0e172f] to-[#080e20] border border-slate-800/90 hover:border-cyan-500/50 rounded-2xl p-5 shadow-lg hover:shadow-cyan-500/10 transition-all flex flex-col justify-between group relative overflow-hidden" data-category="{{ job.job_category }}" data-selection="{{ job.selection_mode }}" data-experience="{{ job.experience_level }}">
+      <article class="tech-job-card otta-job-card p-5 transition-all flex flex-col justify-between group relative overflow-hidden" data-category="{{ job.job_category }}" data-selection="{{ job.selection_mode }}" data-experience="{{ job.experience_level }}">
         
-        <!-- Ambient Top Glow on Hover -->
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
         <div>
           <!-- Header: Organization + Sector Pill -->
           <div class="flex items-start justify-between gap-2 mb-3">
             <div class="flex-1">
               <div class="flex items-center gap-1.5 flex-wrap mb-1">
                 {% if job.job_category == 'government' and job.gov_level == 'Central' %}
-                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-blue-900/60 text-blue-300 border border-blue-700/50">🏛️ Central Govt</span>
+                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-blue-50 text-blue-700 border border-blue-200">🏛️ Central Govt</span>
                 {% elif job.job_category == 'government' and job.state == 'Gujarat' %}
-                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-amber-900/60 text-amber-300 border border-amber-700/50">🦁 Gujarat Govt</span>
+                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-amber-50 text-amber-800 border border-amber-200">🦁 Gujarat Govt</span>
                 {% elif job.job_category == 'psu' %}
-                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-purple-900/60 text-purple-300 border border-purple-700/50">⚙️ PSU Tech</span>
+                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-purple-50 text-purple-700 border border-purple-200">⚙️ PSU Tech</span>
                 {% elif job.job_category == 'private' %}
-                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-teal-900/60 text-teal-300 border border-teal-700/50">💼 Premier MNC</span>
+                  <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-teal-50 text-teal-700 border border-teal-200">💼 Premier MNC</span>
                 {% endif %}
 
                 <!-- Selection Mode Badge -->
                 {% if job.selection_mode == 'coding_test' %}
-                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-indigo-50 text-indigo-700 border border-indigo-200 flex items-center gap-1">
                     ⚡ Coding Drive
                   </span>
                 {% elif job.selection_mode == 'written_exam' %}
-                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-slate-800 text-slate-300 border border-slate-700 flex items-center gap-1">
+                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1">
                     📝 Written CBT
                   </span>
                 {% elif job.selection_mode == 'apprenticeship' %}
-                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
                     🛠️ Apprenticeship
                   </span>
                 {% elif job.selection_mode == 'walk_in' %}
-                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-orange-950/80 text-orange-300 border border-orange-500/30 flex items-center gap-1">
+                  <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-orange-50 text-orange-700 border border-orange-200 flex items-center gap-1">
                     🤝 Walk-in Viva
                   </span>
                 {% endif %}
               </div>
-              <p class="text-xs font-semibold text-slate-400 truncate">{{ job.organization }}</p>
+              <p class="text-xs font-semibold text-slate-500 truncate">{{ job.organization }}</p>
             </div>
 
             <!-- Vacancies Count Badge -->
             <div class="text-right shrink-0">
-              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-extrabold text-xs">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 font-extrabold text-xs">
                 {{ "{:,}".format(job.vacancies) }} Posts
               </span>
             </div>
           </div>
 
           <!-- Job Title -->
-          <h2 class="text-base font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug mb-2 line-clamp-2">
+          <h2 class="text-base font-bold text-[#0a2540] group-hover:text-[#635bff] transition-colors leading-snug mb-2 line-clamp-2">
             {{ job.title }}
           </h2>
 
           {% if job.title_gu %}
-          <p class="text-xs text-slate-400 mb-3 line-clamp-1 italic font-serif">
+          <p class="text-xs text-slate-500 mb-3 line-clamp-1 italic font-serif">
             {{ job.title_gu }}
           </p>
           {% endif %}
 
           <!-- Pay Scale / CTC Highlight -->
-          <div class="bg-slate-900/90 border border-slate-800/80 rounded-xl p-2.5 mb-3">
+          <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 mb-3">
             <div class="flex items-center justify-between gap-2 text-xs">
-              <span class="text-slate-400 font-medium flex items-center gap-1">
-                <i data-lucide="badge-dollar-sign" class="w-3.5 h-3.5 text-emerald-400"></i> Pay / Package:
+              <span class="text-slate-500 font-medium flex items-center gap-1">
+                <i data-lucide="badge-dollar-sign" class="w-3.5 h-3.5 text-emerald-600"></i> Pay / Package:
               </span>
-              <span class="font-bold text-emerald-400 text-right truncate">
+              <span class="font-bold text-emerald-700 text-right truncate">
                 {{ job.salary_text }}
               </span>
             </div>
             {% if job.ctc_lpa > 0 %}
-            <div class="flex items-center justify-between gap-2 text-[11px] mt-1 pt-1 border-t border-slate-800 text-slate-400">
+            <div class="flex items-center justify-between gap-2 text-[11px] mt-1 pt-1 border-t border-slate-200/60 text-slate-500">
               <span>Annual CTC Estimate:</span>
-              <span class="font-extrabold text-amber-300">₹{{ job.ctc_lpa }} LPA</span>
+              <span class="font-extrabold text-amber-700">₹{{ job.ctc_lpa }} LPA</span>
             </div>
             {% endif %}
           </div>
 
           <!-- Qualification & Batches -->
-          <div class="space-y-1.5 text-xs text-slate-300 mb-3">
+          <div class="space-y-1.5 text-xs text-slate-600 mb-3">
             <div class="flex items-start gap-1.5">
-              <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
-              <span class="line-clamp-2 text-slate-300 font-medium">{{ job.qualification }}</span>
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5"></i>
+              <span class="line-clamp-2 text-slate-700 font-medium">{{ job.qualification }}</span>
             </div>
-            <div class="flex items-center justify-between text-slate-400 text-[11px] pt-1">
-              <span>Age Limit: <strong class="text-slate-200">{{ job.age_min }} - {{ job.age_max }} Yrs</strong></span>
-              <span>Passing: <strong class="text-cyan-300">{{ job.experience_level|capitalize }}</strong></span>
+            <div class="flex items-center justify-between text-slate-500 text-[11px] pt-1">
+              <span>Age Limit: <strong class="text-slate-700">{{ job.age_min }} - {{ job.age_max }} Yrs</strong></span>
+              <span>Passing: <strong class="text-indigo-600">{{ job.experience_level|capitalize }}</strong></span>
             </div>
           </div>
 
@@ -367,7 +364,7 @@
           <div class="mb-4">
             <div class="flex flex-wrap gap-1">
               {% for tech in job.tech_stack.split(',') %}
-              <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-800 text-cyan-200 border border-slate-700/60">
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
                 {{ tech.strip() }}
               </span>
               {% endfor %}
@@ -377,16 +374,16 @@
         </div>
 
         <!-- Card Footer -->
-        <div class="pt-3 border-t border-slate-800/80">
-          <div class="flex items-center justify-between text-xs text-slate-400 mb-3">
+        <div class="pt-3 border-t border-slate-100">
+          <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
             <span class="flex items-center gap-1">
               <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Deadline:
-              <strong class="text-slate-200">{{ job.last_date }}</strong>
+              <strong class="text-slate-700">{{ job.last_date }}</strong>
             </span>
             <span class="text-[11px] px-2 py-0.5 rounded font-bold
-              {% if job.urgency_badge == 'urgent' %}bg-rose-950 text-rose-400 border border-rose-800
-              {% elif job.urgency_badge == 'warning' %}bg-amber-950 text-amber-400 border border-amber-800
-              {% else %}bg-emerald-950 text-emerald-400 border border-emerald-800{% endif %}">
+              {% if job.urgency_badge == 'urgent' %}bg-rose-50 text-rose-700 border border-rose-200
+              {% elif job.urgency_badge == 'warning' %}bg-amber-50 text-amber-800 border border-amber-200
+              {% else %}bg-emerald-50 text-emerald-700 border border-emerald-200{% endif %}">
               {{ job.days_left }} days left
             </span>
           </div>
@@ -395,15 +392,15 @@
           <div class="grid grid-cols-2 gap-2">
             <button
               onclick="openTechModal({{ job.id }})"
-              class="w-full py-2 px-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-all flex items-center justify-center gap-1.5"
+              class="btn-stripe-secondary w-full py-2 px-3 rounded-xl text-xs font-semibold text-slate-700 transition-all flex items-center justify-center gap-1.5"
             >
-              <i data-lucide="file-text" class="w-3.5 h-3.5 text-cyan-400"></i> Pattern & Details
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-600"></i> Pattern & Details
             </button>
             <a
               href="{{ job.apply_url }}"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center gap-1.5"
+              class="btn-stripe-primary w-full py-2 px-3 rounded-xl text-white text-xs font-bold shadow-xs transition-all flex items-center justify-center gap-1.5"
             >
               <span>Apply Online</span>
               <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -415,13 +412,13 @@
     </div>
 
     <!-- Empty Results Fallback -->
-    <div id="tech-empty-state" class="hidden text-center py-16 bg-slate-900/40 border border-slate-800 rounded-2xl max-w-xl mx-auto my-8 p-8">
-      <div class="w-14 h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mx-auto mb-4 text-slate-400">
+    <div id="tech-empty-state" class="hidden text-center py-16 bg-white border border-slate-200 rounded-2xl max-w-xl mx-auto my-8 p-8 shadow-xs">
+      <div class="w-14 h-14 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-4 text-slate-500">
         <i data-lucide="filter-x" class="w-6 h-6"></i>
       </div>
-      <h3 class="text-lg font-bold text-white mb-1">No matching technical jobs found</h3>
-      <p class="text-sm text-slate-400 mb-4">Try clearing filters or searching for alternative keywords like "Python", "Cloud", "GATE", "NIC", or "TCS".</p>
-      <button onclick="resetTechFilters()" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition-all">
+      <h3 class="text-lg font-bold text-[#0a2540] mb-1">No matching technical jobs found</h3>
+      <p class="text-sm text-slate-500 mb-4">Try clearing filters or searching for alternative keywords like "Python", "Cloud", "GATE", "NIC", or "TCS".</p>
+      <button onclick="resetTechFilters()" class="btn-stripe-primary px-4 py-2 rounded-xl text-white font-bold text-xs shadow-xs transition-all">
         Reset All Filters
       </button>
     </div>
