@@ -1,5 +1,5 @@
 /**
- * FuturSet Jobs Portal - Core Interactivity, Search, Filters, AI Matcher & Modals
+ * FuturSet Jobs Portal - Core Interactivity, Search, Filters, Smart Matcher & Modals
  */
 
 let currentFilters = {
@@ -2206,7 +2206,7 @@ function resetFilters() {
   fetchJobs();
 }
 
-// AI Candidate Matcher Drawer
+// Smart Candidate Matcher Drawer
 function openMatcherModal() {
   if (typeof playAudioTick === "function") playAudioTick(650, 0.05);
   const modal = document.getElementById("matcher-modal");
@@ -2757,7 +2757,7 @@ function filterPaletteCommands(q) {
     { title: "Railway RRB ALP & Technician (18,799 Posts)", category: "Central Govt", icon: "train", action: () => { document.getElementById("search-input").value = "Railway"; currentFilters.q = "Railway"; fetchJobs(); closeCommandPalette(); } },
     { title: "SSC Combined Graduate Level (CGL 2026)", category: "Central Govt", icon: "landmark", action: () => { document.getElementById("search-input").value = "SSC"; currentFilters.q = "SSC"; fetchJobs(); closeCommandPalette(); } },
     { title: "7th Pay Commission Salary & Pension Calculator", category: "Financial Tool", icon: "calculator", action: () => { closeCommandPalette(); openSalaryCalculator(); } },
-    { title: "AI Career & Eligibility Matcher", category: "AI Tool", icon: "sparkles", action: () => { closeCommandPalette(); openMatcherModal(); } },
+    { title: "Smart Career & Eligibility Matcher", category: "Smart Tool", icon: "sparkles", action: () => { closeCommandPalette(); openMatcherModal(); } },
     { title: "OJAS One-Time Registration (OTR) Guide", category: "Official Guide", icon: "help-circle", action: () => { closeCommandPalette(); openOjasGuideModal(); } },
     { title: "Trigger Live Feeds Radar Scanner", category: "Engine Action", icon: "radar", action: () => { closeCommandPalette(); startLiveScan(); } },
     { title: "Export All Verified Recruitments (CSV)", category: "Data Export", icon: "download", action: () => { window.location.href = "/api/export"; } }
