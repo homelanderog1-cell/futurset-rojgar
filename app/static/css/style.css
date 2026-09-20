@@ -125,37 +125,39 @@ h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.38rem 0.85rem;
+  padding: 0.35rem 0.8rem;
   border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.45);
-  color: #94a3b8;
+  font-size: 0.775rem;
+  font-weight: 600;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .filter-pill:hover {
-  color: #f8fafc;
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(30, 41, 59, 0.6);
+  color: #0f172a;
+  border-color: #cbd5e1;
+  background: #f8fafc;
   transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .filter-pill.active {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.9), rgba(37, 99, 235, 0.9));
-  color: #ffffff;
-  border-color: rgba(56, 189, 248, 0.6);
-  box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.4);
+  background: linear-gradient(135deg, #635bff, #4f46e5) !important;
+  color: #ffffff !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 4px 12px -2px rgba(99, 91, 255, 0.35) !important;
 }
 
 .filter-pill-gujarat.active {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(217, 119, 6, 0.9));
-  color: #ffffff;
-  border-color: rgba(251, 146, 60, 0.6);
-  box-shadow: 0 4px 15px -3px rgba(249, 115, 22, 0.4);
+  background: linear-gradient(135deg, #f97316, #ea580c) !important;
+  color: #ffffff !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 4px 12px -2px rgba(249, 115, 22, 0.35) !important;
 }
 
 .glass-panel-hover {
@@ -1075,5 +1077,67 @@ body {
 .animate-marquee-smooth:hover {
   animation-play-state: paused;
 }
+
+/* 7. Gujarat Royal Saffron & Amber Dynamic Mesh Background */
+.gujarat-royal-mesh-bg {
+  background-color: #fdfbf7;
+  background-image: 
+    radial-gradient(at 15% 10%, rgba(249, 115, 22, 0.09) 0px, transparent 45%),
+    radial-gradient(at 85% 12%, rgba(245, 158, 11, 0.09) 0px, transparent 45%),
+    radial-gradient(at 50% 45%, rgba(251, 146, 60, 0.05) 0px, transparent 60%),
+    radial-gradient(at 80% 85%, rgba(234, 88, 12, 0.07) 0px, transparent 50%),
+    radial-gradient(at 10% 90%, rgba(217, 119, 6, 0.06) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* 8. Micro-Interactions & Animation Utilities */
+@keyframes saffronGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(249, 115, 22, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px 2px rgba(249, 115, 22, 0.55);
+  }
+}
+
+.glow-saffron-pulse {
+  animation: saffronGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes indigoGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(99, 91, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px 2px rgba(99, 91, 255, 0.5);
+  }
+}
+
+.glow-indigo-pulse {
+  animation: indigoGlow 2.8s ease-in-out infinite;
+}
+
+.card-hover-lift {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-3px) scale(1.003);
+  box-shadow: 0 12px 28px -6px rgba(10, 37, 64, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+}
+
+.gujarat-card-hover:hover {
+  transform: translateY(-3px) scale(1.003);
+  box-shadow: 0 12px 28px -6px rgba(249, 115, 22, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  border-color: #fdba74 !important;
+}
+
+/* 9. High-Contrast Interactive Filter Station */
+.filter-station-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 16px -4px rgba(10, 37, 64, 0.04);
+}
+
 
 

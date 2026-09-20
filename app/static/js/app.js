@@ -30,6 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
     currentFilters.state = "Gujarat";
     currentFilters.gov_level = "State";
   }
+
+  // Instant hydration from pre-seeded verified jobs (Zero delay / No cold start flicker)
+  if (window.__INITIAL_JOBS__ && Array.isArray(window.__INITIAL_JOBS__) && window.__INITIAL_JOBS__.length > 0) {
+    window._allJobs = window.__INITIAL_JOBS__;
+    window._jobsMap = window._jobsMap || {};
+    window._allJobs.forEach(j => { window._jobsMap[j.id] = j; });
+    const container = document.getElementById("jobs-container");
+    if (container) {
+      if (currentView === "cards") {
+        renderCardsView(container, window._allJobs);
+      } else {
+        renderTableView(container, window._allJobs);
+      }
+    }
+    const countHeader = document.getElementById("filtered-results-count");
+    if (countHeader) {
+      countHeader.innerText = `${window._allJobs.length} Verified Recruitments Available`;
+    }
+  }
+
   fetchJobs();
 });
 
@@ -39,8 +59,38 @@ function initLucide() {
   }
 }
 
+// Global Search Helper Functions
+window.executeSearch = function() {
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    currentFilters.q = searchInput.value.trim();
+    fetchJobs();
+    if (typeof playAudioTick === 'function') playAudioTick(800, 0.05);
+  }
+};
+
+window.clearSearch = function() {
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    searchInput.value = "";
+    currentFilters.q = "";
+    fetchJobs();
+    if (typeof playAudioTick === 'function') playAudioTick(600, 0.04);
+  }
+};
+
+window.setQuickSearch = function(term) {
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    searchInput.value = term;
+    currentFilters.q = term;
+    fetchJobs();
+    if (typeof playAudioTick === 'function') playAudioTick(750, 0.05);
+  }
+};
+
 function initEventListeners() {
-  // Search input with debounce
+  // Search input with debounce + Enter key support
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
     let timeout = null;
@@ -49,7 +99,17 @@ function initEventListeners() {
       timeout = setTimeout(() => {
         currentFilters.q = e.target.value.trim();
         fetchJobs();
-      }, 300);
+      }, 250);
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        clearTimeout(timeout);
+        currentFilters.q = searchInput.value.trim();
+        fetchJobs();
+        if (typeof playAudioTick === 'function') playAudioTick(800, 0.05);
+      }
     });
   }
 
@@ -108,16 +168,17 @@ function initEventListeners() {
 
 function applyQuickFilter(type, value, btnElement) {
   const isGujarat = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
-  const activeBg = isGujarat ? "bg-orange-600" : "bg-cyan-600";
+  const activeBg = isGujarat ? "bg-orange-600" : "bg-[#635bff]";
 
   // Reset active classes on sibling chips
   if (btnElement && btnElement.parentElement) {
     btnElement.parentElement.querySelectorAll("button").forEach(b => {
-      b.classList.remove("bg-cyan-600", "bg-orange-600", "text-white", "shadow-lg");
-      b.classList.add("bg-slate-800/80", "text-slate-300");
+      b.classList.remove("bg-cyan-600", "bg-orange-600", "bg-[#635bff]", "text-white", "shadow-sm", "shadow-xs");
+      b.classList.add("bg-white", "text-slate-700", "border-slate-200");
+      b.classList.remove("bg-slate-800/80", "text-slate-300");
     });
-    btnElement.classList.add(activeBg, "text-white", "shadow-lg");
-    btnElement.classList.remove("bg-slate-800/80", "text-slate-300");
+    btnElement.classList.add(activeBg, "text-white", "shadow-xs");
+    btnElement.classList.remove("bg-white", "text-slate-700", "border-slate-200", "bg-slate-800/80", "text-slate-300");
   }
 
   if (type === "level") {
@@ -178,31 +239,31 @@ async function fetchJobs() {
   if (!container) return;
 
   const skeletonCard = `
-    <div class="skeleton-card p-5 flex flex-col justify-between">
+    <div class="skeleton-card-light p-5 flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between gap-3 mb-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl skeleton-shimmer"></div>
+            <div class="w-10 h-10 rounded-xl skeleton-shimmer-light"></div>
             <div class="space-y-1.5">
-              <div class="w-28 h-3.5 rounded skeleton-shimmer"></div>
-              <div class="w-16 h-2.5 rounded skeleton-shimmer"></div>
+              <div class="w-28 h-3.5 rounded skeleton-shimmer-light"></div>
+              <div class="w-16 h-2.5 rounded skeleton-shimmer-light"></div>
             </div>
           </div>
-          <div class="w-20 h-5 rounded-full skeleton-shimmer"></div>
+          <div class="w-20 h-5 rounded-full skeleton-shimmer-light"></div>
         </div>
-        <div class="w-full h-5 rounded skeleton-shimmer mb-2"></div>
-        <div class="w-3/4 h-4 rounded skeleton-shimmer mb-4"></div>
+        <div class="w-full h-5 rounded skeleton-shimmer-light mb-2"></div>
+        <div class="w-3/4 h-4 rounded skeleton-shimmer-light mb-4"></div>
         <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 mb-4">
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer"></div><div class="w-14 h-4 rounded skeleton-shimmer"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
+          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
         </div>
       </div>
       <div class="flex items-center justify-between pt-2">
-        <div class="w-20 h-3 rounded skeleton-shimmer"></div>
+        <div class="w-20 h-3 rounded skeleton-shimmer-light"></div>
         <div class="flex gap-2">
-          <div class="w-8 h-8 rounded-lg skeleton-shimmer"></div>
-          <div class="w-24 h-8 rounded-lg skeleton-shimmer"></div>
+          <div class="w-8 h-8 rounded-lg skeleton-shimmer-light"></div>
+          <div class="w-24 h-8 rounded-lg skeleton-shimmer-light"></div>
         </div>
       </div>
     </div>
@@ -221,6 +282,8 @@ async function fetchJobs() {
   if (currentFilters.selection_mode) queryParams.set("selection_mode", currentFilters.selection_mode);
   if (currentFilters.sort_by) queryParams.set("sort_by", currentFilters.sort_by);
 
+  const isGujarat = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+
   try {
     const res = await fetch(`/api/jobs?${queryParams.toString()}`);
     const data = await res.json();
@@ -236,13 +299,13 @@ async function fetchJobs() {
 
     if (data.results.length === 0) {
       container.innerHTML = `
-        <div class="col-span-full py-16 text-center glass-panel rounded-2xl p-8 border border-slate-800">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400">
+        <div class="col-span-full py-16 text-center bg-white rounded-2xl p-8 border border-slate-200 shadow-xs">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
             <i data-lucide="search-x" class="w-8 h-8"></i>
           </div>
-          <h3 class="text-lg font-bold text-slate-200">${isGujarat ? 'કોઈ ભરતી પરિણામ મળ્યું નથી' : 'No recruitments match your filter criteria'}</h3>
-          <p class="text-sm text-slate-400 mt-1 max-w-md mx-auto">${isGujarat ? 'કૃપા કરીને અન્ય બોર્ડ અથવા લાયકાત પસંદ કરો, અથવા લાઈવ સ્કેનર ચલાવો.' : 'Try clearing selected filters, changing qualifications, or running the Live Scanner to pull new feeds.'}</p>
-          <button onclick="resetFilters()" class="mt-4 px-4 py-2 ${isGujarat ? 'bg-orange-600 hover:bg-orange-500' : 'bg-cyan-600 hover:bg-cyan-500'} text-white text-sm font-semibold rounded-lg transition-colors">
+          <h3 class="text-lg font-bold text-slate-800">${isGujarat ? 'કોઈ ભરતી પરિણામ મળ્યું નથી' : 'No recruitments match your filter criteria'}</h3>
+          <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">${isGujarat ? 'કૃપા કરીને અન્ય બોર્ડ અથવા લાયકાત પસંદ કરો, અથવા લાઈવ સ્કેનર ચલાવો.' : 'Try clearing selected filters, changing qualifications, or running the Live Scanner to pull new feeds.'}</p>
+          <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 ${isGujarat ? 'bg-orange-600 hover:bg-orange-500' : 'bg-[#635bff] hover:bg-indigo-600'} text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">
             ${isGujarat ? 'ફિલ્ટર્સ રીસેટ કરો' : 'Reset Filters'}
           </button>
         </div>
@@ -1319,44 +1382,72 @@ async function openJobDetailModal(jobId) {
 
   const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
 
-  modalBody.innerHTML = `
-    <div class="py-20 text-center">
-      <div class="inline-block w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-      <p class="mt-4 text-slate-300 font-bold text-sm tracking-wide">
-        ${isGujaratPage ? 'ભરતીની સંપૂર્ણ વિગતો અને સ્ટેપ-બાય-સ્ટેપ અરજી માર્ગદર્શિકા લોડ થઈ રહી છે...' : 'Compiling Full Recruitment Dossier & Step-by-Step Guide...'}
-      </p>
-    </div>
-  `;
+  // Check in-memory cache first for instant 0ms rendering!
+  const cachedJob = (window._jobsMap && window._jobsMap[jobId]) || (window._allJobs && window._allJobs.find(j => j.id == jobId));
+  if (cachedJob) {
+    renderJobModalContent(modalBody, cachedJob, isGujaratPage);
+  } else {
+    modalBody.innerHTML = `
+      <div class="py-20 text-center">
+        <div class="inline-block w-10 h-10 border-4 border-[#635bff] border-t-transparent rounded-full animate-spin"></div>
+        <p class="mt-4 text-slate-600 font-bold text-sm tracking-wide">
+          ${isGujaratPage ? 'ભરતીની સંપૂર્ણ વિગતો અને સ્ટેપ-બાય-સ્ટેપ અરજી માર્ગદર્શિકા લોડ થઈ રહી છે...' : 'Compiling Full Recruitment Dossier & Step-by-Step Guide...'}
+        </p>
+      </div>
+    `;
+  }
 
   try {
     const res = await fetch(`/api/jobs/${jobId}`);
-    if (!res.ok) throw new Error("Recruitment not found");
-    const job = await res.json();
-
-    const portalGuide = generateStepByStepGuide(job, isGujaratPage);
-
-    let basePay = 25500;
-    const salaryMatch = (job.salary_text || "").match(/₹\s*([\d,]+)/);
-    if (salaryMatch) {
-      basePay = parseInt(salaryMatch[1].replace(/,/g, "")) || 25500;
+    if (res.ok) {
+      const freshJob = await res.json();
+      if (!window._jobsMap) window._jobsMap = {};
+      window._jobsMap[freshJob.id] = freshJob;
+      renderJobModalContent(modalBody, freshJob, isGujaratPage);
+    } else if (!cachedJob) {
+      throw new Error("Recruitment not found");
     }
-    const daEstimate = Math.round(basePay * 0.50);
-    const hraEstimate = Math.round(basePay * 0.18);
-    const grossEst = basePay + daEstimate + hraEstimate;
-    const npsEstimate = Math.round((basePay + daEstimate) * 0.10);
-    const inHandEst = grossEst - npsEstimate - 200;
+  } catch (err) {
+    console.warn("Using cached job details or failed to fetch remote details:", err);
+    if (!cachedJob) {
+      modalBody.innerHTML = `
+        <div class="py-16 text-center text-slate-600">
+          <i data-lucide="alert-circle" class="w-12 h-12 mx-auto text-rose-500 mb-3"></i>
+          <h3 class="text-base font-bold text-[#0a2540] mb-1">Recruitment Details Unavailable</h3>
+          <p class="text-xs text-slate-500 mb-4">The selected recruitment could not be loaded at this time.</p>
+          <button onclick="closeJobDetailModal()" class="px-4 py-2 bg-[#635bff] text-white text-xs font-bold rounded-xl shadow">Close</button>
+        </div>
+      `;
+      if (window.lucide) lucide.createIcons();
+    }
+  }
+}
 
-    const isBookmarked = bookmarkedJobIds.has(job.id);
-    const isGovt = job.gov_level !== 'Private';
-    const isGujaratJob = job.state === 'Gujarat';
+function renderJobModalContent(modalBody, job, isGujaratPage) {
+  const portalGuide = generateStepByStepGuide(job, isGujaratPage);
 
-    const minAge = parseInt(job.age_min, 10) || 18;
-    const maxAge = parseInt(job.age_max, 10) || 35;
+  let basePay = 25500;
+  const salaryMatch = (job.salary_text || "").match(/₹\s*([\d,]+)/);
+  if (salaryMatch) {
+    basePay = parseInt(salaryMatch[1].replace(/,/g, "")) || 25500;
+  }
+  const daEstimate = Math.round(basePay * 0.50);
+  const hraEstimate = Math.round(basePay * 0.18);
+  const grossEst = basePay + daEstimate + hraEstimate;
+  const npsEstimate = Math.round((basePay + daEstimate) * 0.10);
+  const inHandEst = grossEst - npsEstimate - 200;
 
-    modalBody.innerHTML = `
-      <div class="space-y-6">
-        <!-- Top Header Bar -->
-        <div class="border-b border-slate-800 pb-5">
+  const isBookmarked = bookmarkedJobIds.has(job.id);
+  const isGovt = job.gov_level !== 'Private';
+  const isGujaratJob = job.state === 'Gujarat';
+
+  const minAge = parseInt(job.age_min, 10) || 18;
+  const maxAge = parseInt(job.age_max, 10) || 35;
+
+  modalBody.innerHTML = `
+    <div class="space-y-6">
+      <!-- Top Header Bar -->
+      <div class="border-b border-slate-200 pb-5">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
             <div class="flex flex-wrap items-center gap-2">
               <span class="px-3 py-1 rounded-full text-xs font-bold ${isGujaratJob ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40' : (job.gov_level === 'Central' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' : 'bg-purple-500/20 text-purple-300 border border-purple-500/40')}">
@@ -3131,14 +3222,15 @@ function resetAllFilters() {
   if (sInput) sInput.value = "";
 
   document.querySelectorAll(".filter-pill, .filter-btn-chip").forEach(b => {
-    b.classList.remove("active", "bg-cyan-600", "bg-orange-600", "text-white");
-    b.classList.add("bg-slate-800/80", "text-slate-300");
+    b.classList.remove("active", "bg-cyan-600", "bg-orange-600", "bg-[#635bff]", "text-white", "shadow-sm", "shadow-xs");
+    b.classList.add("bg-white", "text-slate-700", "border-slate-200");
+    b.classList.remove("bg-slate-800/80", "text-slate-300");
   });
 
   const allOpeningsBtn = document.querySelector(".filter-btn-chip");
   if (allOpeningsBtn) {
-    allOpeningsBtn.classList.add(isGu ? "bg-orange-600" : "bg-cyan-600", "text-white");
-    allOpeningsBtn.classList.remove("bg-slate-800/80", "text-slate-300");
+    allOpeningsBtn.classList.add(isGu ? "bg-orange-600" : "bg-[#635bff]", "text-white", "shadow-xs");
+    allOpeningsBtn.classList.remove("bg-white", "text-slate-700", "border-slate-200", "bg-slate-800/80", "text-slate-300");
   }
 
   document.querySelectorAll(".pill-default-all").forEach(b => {

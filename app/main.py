@@ -20,11 +20,8 @@ from app.config import (
 from app.database import (
     init_db, get_jobs, get_job_by_id, toggle_bookmark,
     get_bookmarked_jobs, get_stats, get_recent_scans, add_subscriber,
-    get_btech_cse_jobs, get_corporate_jobs, get_corporate_stats,
-    get_pipeline_articles, get_pipeline_article_by_id, create_pipeline_article,
-    transition_pipeline_article, publish_pipeline_article
+    get_btech_cse_jobs, get_corporate_jobs, get_corporate_stats
 )
-from app.design_lab_data import PREVIEWS_DATA, CONCEPTS_DATA
 from app.models import (
     JobResponse, MatchProfile, MatchResult, JobFilterParams,
     BookmarkToggleRequest, AlertSubscription, PortalStats
@@ -52,29 +49,21 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["format_vacancies"] = lambda val: f"{val:,}" if isinstance(val, (int, float)) else str(val)
 
 @app.get("/", response_class=HTMLResponse)
-async def home(request: Request, theme: str = Query("01"), view: str = Query("dashboard")):
+async def home(request: Request):
     stats = get_stats()
-    initial_jobs = get_jobs({"limit": 50, "sort_by": "deadline"})
+    featured_jobs = get_jobs({"limit": 8, "sort_by": "vacancies"})
     gujarat_jobs = get_jobs({"state": "Gujarat", "limit": 6})
-    pipeline_articles = get_pipeline_articles()
-    
-    # Clean theme ID (01 to 50)
-    active_theme = theme if any(p["id"] == theme for p in PREVIEWS_DATA) else "01"
-    active_view = view if view in ["dashboard", "pipeline"] else "dashboard"
-    
+    initial_jobs = get_jobs({"limit": 50})
+    import json
     return templates.TemplateResponse(
         request,
         "index.html",
         {
             "title": PORTAL_TITLE,
             "stats": stats,
-            "initial_jobs": initial_jobs,
-            "featured_jobs": initial_jobs[:8],
+            "featured_jobs": featured_jobs,
             "gujarat_jobs": gujarat_jobs,
-            "pipeline_articles": pipeline_articles,
-            "previews": PREVIEWS_DATA,
-            "active_theme": active_theme,
-            "active_view": active_view,
+            "initial_jobs_json": json.dumps(initial_jobs),
             "boards_gujarat": BOARDS_GUJARAT,
             "boards_central": BOARDS_CENTRAL,
             "version": APP_VERSION
@@ -85,6 +74,7 @@ async def home(request: Request, theme: str = Query("01"), view: str = Query("da
 async def gujarat_portal(request: Request):
     stats = get_stats()
     gujarat_all_jobs = get_jobs({"state": "Gujarat", "limit": 100})
+    import json
     return templates.TemplateResponse(
         request,
         "gujarat.html",
@@ -92,6 +82,7 @@ async def gujarat_portal(request: Request):
             "title": PORTAL_GUJARAT_TITLE,
             "stats": stats,
             "jobs": gujarat_all_jobs,
+            "initial_jobs_json": json.dumps(gujarat_all_jobs),
             "boards_gujarat": BOARDS_GUJARAT,
             "version": APP_VERSION
         }
@@ -101,6 +92,7 @@ async def gujarat_portal(request: Request):
 async def btech_cse_portal(request: Request):
     stats = get_stats()
     tech_jobs = get_btech_cse_jobs({"limit": 100})
+    import json
     return templates.TemplateResponse(
         request,
         "btech_cse.html",
@@ -108,6 +100,7 @@ async def btech_cse_portal(request: Request):
             "title": "FuturSet B.Tech CSE & IT Engineering Jobs Hub 2026",
             "stats": stats,
             "jobs": tech_jobs,
+            "initial_jobs_json": json.dumps(tech_jobs),
             "version": APP_VERSION
         }
     )
@@ -116,6 +109,8 @@ async def btech_cse_portal(request: Request):
 async def corporate_portal(request: Request):
     corp_stats = get_corporate_stats()
     stats = get_stats()
+    corp_jobs = get_corporate_jobs({"limit": 100})
+    import json
     return templates.TemplateResponse(
         request,
         "corporate.html",
@@ -123,6 +118,8 @@ async def corporate_portal(request: Request):
             "title": "FuturSet Enterprise & Corporate Careers 2026 - Adani, BHEL, Linde, Amazon, Flipkart, UPI & Startups",
             "corp_stats": corp_stats,
             "stats": stats,
+            "jobs": corp_jobs,
+            "initial_jobs_json": json.dumps(corp_jobs),
             "version": APP_VERSION
         }
     )
@@ -344,110 +341,11 @@ def api_subscribe(sub: AlertSubscription):
         raise HTTPException(status_code=400, detail="Failed to subscribe. Please verify email.")
     return {"status": "success", "message": "Successfully subscribed to FuturSet Job Alerts!"}
 
-@app.get("/api/pipeline/articles")
-def api_get_pipeline_articles(stage: Optional[str] = None):
-    """Fetch articles in the gazette editorial pipeline."""
-    articles = get_pipeline_articles(stage)
-    return {"count": len(articles), "articles": articles}
-
-@app.post("/api/pipeline/articles")
-def api_create_pipeline_article(payload: Dict[str, Any] = Body(...)):
-    """Create a new article in the pipeline."""
-    article_id = create_pipeline_article(payload)
-    return {"success": True, "article_id": article_id}
-
-@app.post("/api/pipeline/articles/{article_id}/transition")
-def api_transition_pipeline_article(article_id: int, payload: Dict[str, str] = Body(...)):
-    """Advance or move an article to another stage."""
-    target_stage = payload.get("stage", "ingested")
-    success = transition_pipeline_article(article_id, target_stage)
-    if not success:
-        raise HTTPException(status_code=400, detail="Invalid stage or article not found")
-    return {"success": True, "article_id": article_id, "stage": target_stage}
-
-@app.post("/api/pipeline/articles/{article_id}/publish")
-def api_publish_pipeline_article(article_id: int):
-    """Publish an article directly to the live jobs database."""
-    result = publish_pipeline_article(article_id)
-    if not result.get("success"):
-        raise HTTPException(status_code=404, detail="Article not found")
-    return result
-
-@app.get("/api/previews")
-def api_get_previews():
-    """Returns metadata for all 28 visual directions and their animation references."""
-    return {
-        "count": len(PREVIEWS_DATA),
-        "previews": PREVIEWS_DATA
-    }
-
-@app.get("/api/concepts")
-def api_get_concepts():
-    """Returns metadata for all 20 standalone concept websites."""
-    return {
-        "count": len(CONCEPTS_DATA),
-        "concepts": CONCEPTS_DATA
-    }
-
-@app.get("/design-lab", response_class=HTMLResponse)
-async def design_lab(request: Request, preview: str = Query("01")):
-    """Dedicated Design Lab interactive showcase for all 28 visual directions."""
-    active_preview = next((p for p in PREVIEWS_DATA if p["id"] == preview), PREVIEWS_DATA[0])
-    stats = get_stats()
-    return templates.TemplateResponse(
-        request,
-        "design_lab.html",
-        {
-            "title": "FuturSet Design Lab - 28 Visual Identities of FuturSet",
-            "previews": PREVIEWS_DATA,
-            "active_preview": active_preview,
-            "stats": stats,
-            "version": APP_VERSION
-        }
-    )
-
-@app.get("/concepts", response_class=HTMLResponse)
-async def concepts_hub(request: Request):
-    """Concept Lab showcasing the 20 standalone experimental websites."""
-    return templates.TemplateResponse(
-        request,
-        "concepts.html",
-        {
-            "title": "FuturSet Concept Lab - 20 Standalone Experimental Websites",
-            "concepts": CONCEPTS_DATA,
-            "version": APP_VERSION
-        }
-    )
-
-@app.get("/concepts/{concept_id}", response_class=HTMLResponse)
-async def concept_detail(request: Request, concept_id: str = FPath(...)):
-    """View an individual standalone concept website."""
-    concept = next((c for c in CONCEPTS_DATA if c["id"] == concept_id or c["slug"] == concept_id), None)
-    if not concept:
-        raise HTTPException(status_code=404, detail=f"Concept {concept_id} not found")
-    stats = get_stats()
-    jobs = get_jobs({"limit": 20})
-    return templates.TemplateResponse(
-        request,
-        "concept_view.html",
-        {
-            "title": f"Concept #{concept['id']} — {concept['title']} | FuturSet Experimental",
-            "concept": concept,
-            "all_concepts": CONCEPTS_DATA,
-            "jobs": jobs,
-            "stats": stats,
-            "version": APP_VERSION
-        }
-    )
-
 @app.get("/health")
 def health_check():
     return {
         "status": "healthy",
         "brand": "FuturSet",
         "version": APP_VERSION,
-        "database": "connected",
-        "design_lab": "enabled",
-        "previews_count": len(PREVIEWS_DATA),
-        "concepts_count": len(CONCEPTS_DATA)
+        "database": "connected"
     }

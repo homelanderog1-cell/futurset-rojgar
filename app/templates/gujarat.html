@@ -29,8 +29,9 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Custom Styles -->
   <link rel="stylesheet" href="/static/css/style.css">
+  <script>window.__INITIAL_JOBS__ = {{ initial_jobs_json | safe }};</script>
 </head>
-<body class="min-h-screen flex flex-col stripe-mesh-bg bg-[#f8fafc] text-[#0a2540] antialiased font-gujarati selection:bg-orange-500 selection:text-white relative">
+<body class="min-h-screen flex flex-col gujarat-royal-mesh-bg text-[#0a2540] antialiased font-gujarati selection:bg-orange-500 selection:text-white relative">
 
   <!-- Dynamic Cursor Spotlight Overlay -->
   <div class="cursor-spotlight"></div>
@@ -125,18 +126,22 @@
   </header>
 
   <!-- Gujarat Hero & Fast-Track Service Links -->
-  <section class="relative pt-8 sm:pt-12 pb-10 sm:pb-14 px-3 sm:px-6 lg:px-8 border-b border-slate-200/80 overflow-hidden bg-white/50">
+  <section class="relative pt-8 sm:pt-14 pb-10 sm:pb-16 px-3 sm:px-6 lg:px-8 border-b border-amber-200/60 overflow-hidden bg-gradient-to-b from-amber-50/70 via-orange-50/30 to-transparent">
+    <!-- Atmospheric Ambient Glows (Gujarat Saffron & Gold) -->
+    <div class="absolute top-0 left-1/4 w-[22rem] sm:w-[36rem] h-[22rem] sm:h-[36rem] bg-orange-500/[0.08] rounded-full blur-3xl pointer-events-none z-0"></div>
+    <div class="absolute top-10 right-1/4 w-[20rem] sm:w-[32rem] h-[20rem] sm:h-[32rem] bg-amber-400/[0.08] rounded-full blur-3xl pointer-events-none z-0"></div>
+
     <!-- Physics Particle Canvas Background for Gujarat -->
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-auto z-0 opacity-40"></canvas>
 
     <div class="max-w-6xl mx-auto relative z-10 px-1">
       <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
-        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] sm:text-xs text-amber-800 font-semibold mb-3 sm:mb-4 shadow-xs backdrop-blur-md max-w-full overflow-hidden">
-          <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping shrink-0"></span>
-          <span class="truncate">સત્તાવાર ગુજરાત રાજ્ય ભરતી ડેશબોર્ડ ૨૦૨૬</span>
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-amber-300/80 text-[11px] sm:text-xs text-amber-900 font-bold mb-3 sm:mb-4 shadow-xs backdrop-blur-md max-w-full overflow-hidden">
+          <span class="w-2.5 h-2.5 rounded-full bg-orange-500 animate-ping shrink-0"></span>
+          <span class="truncate">🦁 અધિકૃત ગુજરાત રાજ્ય ભરતી પોર્ટલ ૨૦૨૬ (OJAS • GPSC • GSSSB)</span>
         </div>
         <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-[#0a2540] leading-tight break-words">
-          <span class="headline-stripe-gradient block sm:inline">ગુજરાત સરકારની તમામ ભરતીઓ</span>
+          <span class="bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent block sm:inline">ગુજરાત સરકારની તમામ ભરતીઓ</span>
           <span class="block sm:inline text-[#0a2540]"> અને ડાયરેક્ટ અરજી ૨૦૨૬</span>
         </h1>
         <p class="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
@@ -145,8 +150,8 @@
 
         <!-- Quick Tool Pills for Gujarat -->
         <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
-          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-800 text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs">
-            <i data-lucide="target" class="w-3.5 h-3.5 text-orange-600 animate-pulse shrink-0"></i>
+          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="target" class="w-3.5 h-3.5 text-white animate-pulse shrink-0"></i>
             <span>🎯 મારી લાયકાત તપાસો <span class="hidden sm:inline">(Check My Eligibility)</span></span>
           </button>
           <button onclick="openSalaryCalculator()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-800 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
@@ -176,38 +181,58 @@
         </div>
       </div>
 
-      <!-- OJAS Fast Track Service Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 mb-6">
-        <a href="https://ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-orange-50/50 p-3 sm:p-4 rounded-xl border border-slate-200 hover:border-orange-300 shadow-xs group min-w-0 transition-all">
-          <div class="flex items-center gap-1.5 sm:gap-2 text-orange-600 font-bold text-xs sm:text-sm mb-1 truncate">
-            <i data-lucide="external-link" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"></i>
-            <span class="truncate">OJAS અરજી</span>
+      <!-- OJAS Fast Track Service Grid with Rich Icons & Hover Lift -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <a href="https://ojas.gujarat.gov.in" target="_blank" class="bg-white/90 backdrop-blur-md hover:bg-orange-50/70 p-4 rounded-2xl border border-orange-200/80 hover:border-orange-400 shadow-sm gujarat-card-hover group min-w-0 transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+              <i data-lucide="external-link" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-orange-800">OJAS મુખ્ય</span>
           </div>
-          <p class="text-[10px] sm:text-xs text-slate-500 font-sans truncate">ojas.gujarat.gov.in</p>
+          <div>
+            <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">OJAS ઓનલાઇન અરજી</div>
+            <p class="text-[11px] text-slate-500 font-sans truncate mt-0.5">ojas.gujarat.gov.in</p>
+          </div>
         </a>
 
-        <a href="https://gpsc-ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-amber-50/50 p-3 sm:p-4 rounded-xl border border-slate-200 hover:border-amber-300 shadow-xs group min-w-0 transition-all">
-          <div class="flex items-center gap-1.5 sm:gap-2 text-amber-700 font-bold text-xs sm:text-sm mb-1 truncate">
-            <i data-lucide="award" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"></i>
-            <span class="truncate">GPSC OJAS</span>
+        <a href="https://gpsc-ojas.gujarat.gov.in" target="_blank" class="bg-white/90 backdrop-blur-md hover:bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80 hover:border-amber-400 shadow-sm gujarat-card-hover group min-w-0 transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-500 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+              <i data-lucide="award" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">વર્ગ ૧-૨</span>
           </div>
-          <p class="text-[10px] sm:text-xs text-slate-500 font-sans truncate">gpsc-ojas.gujarat.gov.in</p>
+          <div>
+            <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-amber-700 transition-colors">GPSC OJAS પોર્ટલ</div>
+            <p class="text-[11px] text-slate-500 font-sans truncate mt-0.5">gpsc-ojas.gujarat.gov.in</p>
+          </div>
         </a>
 
-        <a href="https://hc-ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-yellow-50/50 p-3 sm:p-4 rounded-xl border border-slate-200 hover:border-yellow-300 shadow-xs group min-w-0 transition-all">
-          <div class="flex items-center gap-1.5 sm:gap-2 text-yellow-700 font-bold text-xs sm:text-sm mb-1 truncate">
-            <i data-lucide="scale" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"></i>
-            <span class="truncate">હાઇકોર્ટ OJAS</span>
+        <a href="https://hc-ojas.gujarat.gov.in" target="_blank" class="bg-white/90 backdrop-blur-md hover:bg-yellow-50/70 p-4 rounded-2xl border border-yellow-200/80 hover:border-yellow-400 shadow-sm gujarat-card-hover group min-w-0 transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 to-amber-600 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+              <i data-lucide="scale" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-100 text-yellow-800">હાઇકોર્ટ</span>
           </div>
-          <p class="text-[10px] sm:text-xs text-slate-500 font-sans truncate">hc-ojas.gujarat.gov.in</p>
+          <div>
+            <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-yellow-700 transition-colors">ગુજરાત હાઇકોર્ટ OJAS</div>
+            <p class="text-[11px] text-slate-500 font-sans truncate mt-0.5">hc-ojas.gujarat.gov.in</p>
+          </div>
         </a>
 
-        <a href="https://ojas.gujarat.gov.in/PrintApplForm.aspx" target="_blank" class="bg-white hover:bg-emerald-50/50 p-3 sm:p-4 rounded-xl border border-slate-200 hover:border-emerald-300 shadow-xs group min-w-0 transition-all">
-          <div class="flex items-center gap-1.5 sm:gap-2 text-emerald-700 font-bold text-xs sm:text-sm mb-1 truncate">
-            <i data-lucide="download" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"></i>
-            <span class="truncate">કોલ લેટર</span>
+        <a href="https://ojas.gujarat.gov.in/PrintApplForm.aspx" target="_blank" class="bg-white/90 backdrop-blur-md hover:bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200/80 hover:border-emerald-400 shadow-sm gujarat-card-hover group min-w-0 transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+              <i data-lucide="download" class="w-5 h-5"></i>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">કૉલ લેટર</span>
           </div>
-          <p class="text-[10px] sm:text-xs text-slate-500 font-sans truncate">હોલ ટિકિટ ડાઉનલોડ</p>
+          <div>
+            <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">હોલ ટિકિટ ડાઉનલોડ</div>
+            <p class="text-[11px] text-slate-500 font-sans truncate mt-0.5">પરીક્ષા પ્રવેશ પત્ર</p>
+          </div>
         </a>
       </div>
 
@@ -397,10 +422,10 @@
         <div id="radar-results-banner" class="mt-4 hidden"></div>
       </div>
 
-      <!-- Gujarat Comprehensive Filter Station -->
-      <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 space-y-3.5 shadow-xs">
-        <!-- Search Bar with Reset Button -->
-        <div class="flex flex-col sm:flex-row items-center gap-3">
+      <!-- Gujarat Comprehensive Filter Station (Stripe Light Standard) -->
+      <div class="filter-station-box rounded-2xl p-4 sm:p-6 mb-8 space-y-4 shadow-sm">
+        <!-- Search Bar with Reset Button & Active Filter Counter -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 pb-3 border-b border-slate-200/90">
           <div class="relative flex-1 w-full">
             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-orange-600">
               <i data-lucide="search" class="w-5 h-5"></i>
@@ -409,59 +434,64 @@
               type="text"
               id="search-input"
               placeholder="ગુજરાતી અથવા અંગ્રેજીમાં શોધો (દા.ત. કોન્સ્ટેબલ, ક્લાર્ક, GPSC, કંડક્ટર, વનરક્ષક)..."
-              class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm text-[#0a2540] placeholder-slate-400 outline-none focus:border-orange-500 focus:bg-white shadow-xs transition-colors"
+              class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-24 py-3 text-sm text-[#0a2540] placeholder-slate-400 outline-none focus:border-orange-500 focus:bg-white shadow-2xs transition-colors"
             >
+            <div class="absolute inset-y-0 right-2 flex items-center gap-1.5">
+              <button id="search-clear-btn" onclick="clearSearch()" class="p-1 rounded-full hover:bg-slate-200 text-slate-400 hover:text-slate-600 transition-colors" title="સાફ કરો">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
           </div>
           <div class="flex items-center gap-2 shrink-0 w-full sm:w-auto">
-            <button onclick="fetchJobs(); playAudioTick(800, 0.05);" class="flex-1 sm:flex-initial px-5 py-3 bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5">
+            <button onclick="executeSearch()" class="flex-1 sm:flex-initial px-5 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5">
               <span>શોધો</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="resetAllFilters()" class="px-3.5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5" title="બધા ફિલ્ટર્સ સાફ કરો">
-              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-rose-500"></i>
+            <button onclick="resetAllFilters()" class="px-3.5 py-3 rounded-xl bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-600 border border-slate-200 hover:border-rose-300 text-xs font-semibold shadow-2xs transition-all flex items-center gap-1.5 group" title="બધા ફિલ્ટર્સ સાફ કરો">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-rose-500 group-hover:-rotate-90 transition-transform"></i>
               <span>રીસેટ</span>
             </button>
           </div>
         </div>
 
         <!-- Sector Filter Pills (Gujarati) -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-1.5 pt-1">
           <span class="text-xs text-orange-700 font-semibold mr-1 flex items-center gap-1 shrink-0">
             <i data-lucide="layers" class="w-3.5 h-3.5"></i>
             <span>વિભાગ / ક્ષેત્ર:</span>
           </span>
           <button onclick="filterBySector('All', this)" class="filter-pill filter-pill-gujarat filter-pill-sector pill-default-all active">તમામ ક્ષેત્રો</button>
-          <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🏛️ વહીવટી સેવા (GPSC)</button>
-          <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">👮 પોલીસ &amp; જેલ સિપાહી</button>
-          <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">📝 સચિવાલય &amp; CCE ક્લાર્ક</button>
-          <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">⚙️ ઈજનેર (Engineering)</button>
-          <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🎓 શિક્ષણ &amp; વિદ્યાસહાયક</button>
-          <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🏥 આરોગ્ય &amp; નર્સિંગ</button>
-          <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🚌 GSRTC એસ.ટી. નિગમ</button>
-          <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">⚡ વીજ કંપનીઓ વિદ્યુત સહાયક</button>
-          <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">🌲 વનરક્ષક &amp; વનપાલ</button>
-          <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">📮 ટપાલ ખાતું (પોસ્ટ ઓફિસ)</button>
-          <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-gujarat filter-pill-sector">✈️ એરપોર્ટ અને ઉડ્ડયન (Aviation)</button>
+          <button onclick="filterBySector('civil', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="landmark" class="w-3.5 h-3.5 text-blue-600"></i><span>વહીવટી સેવા (GPSC)</span></button>
+          <button onclick="filterBySector('police', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="shield" class="w-3.5 h-3.5 text-amber-600"></i><span>પોલીસ &amp; જેલ સિપાહી</span></button>
+          <button onclick="filterBySector('clerk', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-600"></i><span>સચિવાલય &amp; CCE ક્લાર્ક</span></button>
+          <button onclick="filterBySector('engineering', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600"></i><span>ઈજનેર (Engineering)</span></button>
+          <button onclick="filterBySector('teaching', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-emerald-600"></i><span>શિક્ષણ &amp; વિદ્યાસહાયક</span></button>
+          <button onclick="filterBySector('medical', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="activity" class="w-3.5 h-3.5 text-rose-600"></i><span>આરોગ્ય &amp; નર્સિંગ</span></button>
+          <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="bus" class="w-3.5 h-3.5 text-amber-600"></i><span>GSRTC એસ.ટી. નિગમ</span></button>
+          <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="zap" class="w-3.5 h-3.5 text-yellow-600"></i><span>વીજ કંપનીઓ વિદ્યુત સહાયક</span></button>
+          <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-600"></i><span>વનરક્ષક &amp; વનપાલ</span></button>
+          <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="mail" class="w-3.5 h-3.5 text-red-600"></i><span>ટપાલ ખાતું (પોસ્ટ ઓફિસ)</span></button>
+          <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-gujarat filter-pill-sector"><i data-lucide="plane" class="w-3.5 h-3.5 text-sky-600"></i><span>એરપોર્ટ &amp; ઉડ્ડયન</span></button>
         </div>
 
         <!-- Selection Mode Filter Pills (Gujarati) -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
           <span class="text-xs text-emerald-700 font-semibold mr-1 flex items-center gap-1 shrink-0">
             <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
             <span>પસંદગી પદ્ધતિ:</span>
           </span>
           <button onclick="filterBySelectionMode('All', this)" class="filter-pill filter-pill-gujarat filter-pill-mode pill-default-all active">તમામ પદ્ધતિઓ</button>
-          <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-emerald-700 border-emerald-200">⚡ સીધી મેરીટ ભરતી (પરીક્ષા વગર)</button>
-          <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-orange-700 border-orange-200">🤝 વોક-ઇન ઇન્ટરવ્યુ</button>
-          <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-teal-700 border-teal-200">🛠️ એપ્રેન્ટિસ ભરતી</button>
-          <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-blue-700 border-blue-200">📝 લેખિત / CBT પરીક્ષા</button>
+          <button onclick="filterBySelectionMode('direct_merit', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-emerald-700 border-emerald-200"><i data-lucide="zap" class="w-3 h-3 text-emerald-600"></i><span>સીધી મેરીટ ભરતી (પરીક્ષા વગર)</span></button>
+          <button onclick="filterBySelectionMode('walk_in', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-orange-700 border-orange-200"><i data-lucide="users" class="w-3 h-3 text-orange-600"></i><span>વોક-ઇન ઇન્ટરવ્યુ</span></button>
+          <button onclick="filterBySelectionMode('apprenticeship', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-teal-700 border-teal-200"><i data-lucide="wrench" class="w-3 h-3 text-teal-600"></i><span>એપ્રેન્ટિસ ભરતી</span></button>
+          <button onclick="filterBySelectionMode('written_exam', this)" class="filter-pill filter-pill-gujarat filter-pill-mode text-blue-700 border-blue-200"><i data-lucide="edit-3" class="w-3 h-3 text-blue-600"></i><span>લેખિત / CBT પરીક્ષા</span></button>
           <a href="/btech-cse" class="filter-pill filter-pill-gujarat text-indigo-700 border-indigo-200 bg-indigo-50 font-bold flex items-center gap-1">
-            <i data-lucide="laptop" class="w-3 h-3"></i> 💻 B.Tech CSE / IT ભરતીઓ →
+            <i data-lucide="laptop" class="w-3 h-3 text-indigo-600"></i> <span>B.Tech CSE / IT ભરતીઓ →</span>
           </a>
         </div>
 
         <!-- Qualification Filter Pills (Gujarati) -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
           <span class="text-xs text-amber-700 font-semibold mr-1 flex items-center gap-1 shrink-0">
             <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
             <span>શૈક્ષણિક લાયકાત:</span>
@@ -478,45 +508,45 @@
         </div>
 
         <!-- Urgency & Fee Quick Filters (Gujarati) -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
           <span class="text-xs text-rose-700 font-semibold mr-1 flex items-center gap-1 shrink-0">
             <i data-lucide="clock" class="w-3.5 h-3.5"></i>
             <span>સમયસીમા &amp; ફી:</span>
           </span>
           <button onclick="filterByUrgency('All', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency pill-default-all active">તમામ સમયસીમા</button>
-          <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-rose-700 border-rose-200">⚡ ૪૮ કલાકમાં છેલ્લી તારીખ</button>
-          <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-amber-700 border-amber-200">⏰ આ અઠવાડિયે બંધ થતી</button>
-          <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-emerald-700 border-emerald-200">🟢 ફી મુક્ત (₹0 / Exempt)</button>
+          <button onclick="filterByUrgency('closing_48h', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-rose-700 border-rose-200 hover:border-rose-400">⚡ ૪૮ કલાકમાં છેલ્લી તારીખ</button>
+          <button onclick="filterByUrgency('closing_week', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-amber-700 border-amber-200 hover:border-amber-400">⏰ આ અઠવાડિયે બંધ થતી</button>
+          <button onclick="filterByUrgency('no_fee', this)" class="filter-pill filter-pill-gujarat filter-pill-urgency text-emerald-700 border-emerald-200 hover:border-emerald-400">🟢 ફી મુક્ત (₹0 / Exempt)</button>
         </div>
 
         <!-- Board Category Chips -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
           <span class="text-xs text-slate-500 mr-1 font-semibold shrink-0">ભરતી બોર્ડ:</span>
           <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white shadow-xs">
             તમામ ગુજરાત બોર્ડ
           </button>
           {% for b in boards_gujarat %}
-            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">
+            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-2xs">
               {{ b }}
             </button>
           {% endfor %}
         </div>
 
         <!-- Gujarat District-Wise Fast Filter Chips -->
-        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-slate-200/80">
           <span class="text-xs text-orange-700 font-semibold mr-1 flex items-center gap-1 shrink-0">
             <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
             <span>જિલ્લા વાર:</span>
           </span>
           <button onclick="filterByGujaratDistrict('All', this)" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white shadow-xs">તમામ જિલ્લા</button>
-          <button onclick="filterByGujaratDistrict('ગાંધીનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">ગાંધીનગર (સચિવાલય)</button>
-          <button onclick="filterByGujaratDistrict('અમદાવાદ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">અમદાવાદ</button>
-          <button onclick="filterByGujaratDistrict('સુરત', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">સુરત</button>
-          <button onclick="filterByGujaratDistrict('વડોદરા', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">વડોદરા</button>
-          <button onclick="filterByGujaratDistrict('રાજકોટ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">રાજકોટ</button>
-          <button onclick="filterByGujaratDistrict('ભાવનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">ભાવનગર</button>
-          <button onclick="filterByGujaratDistrict('જામનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">જામનગર</button>
-          <button onclick="filterByGujaratDistrict('કચ્છ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-xs">કચ્છ</button>
+          <button onclick="filterByGujaratDistrict('ગાંધીનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">ગાંધીનગર (સચિવાલય)</button>
+          <button onclick="filterByGujaratDistrict('અમદાવાદ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">અમદાવાદ</button>
+          <button onclick="filterByGujaratDistrict('સુરત', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">સુરત</button>
+          <button onclick="filterByGujaratDistrict('વડોદરા', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">વડોદરા</button>
+          <button onclick="filterByGujaratDistrict('રાજકોટ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">રાજકોટ</button>
+          <button onclick="filterByGujaratDistrict('ભાવનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">ભાવનગર</button>
+          <button onclick="filterByGujaratDistrict('જામનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">જામનગર</button>
+          <button onclick="filterByGujaratDistrict('કચ્છ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">કચ્છ</button>
         </div>
       </div>
     </div>

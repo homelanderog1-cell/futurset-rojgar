@@ -165,34 +165,12 @@ def init_db():
     );
     """)
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS pipeline_articles (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        title_gu TEXT,
-        stage TEXT NOT NULL DEFAULT 'ingested',
-        source TEXT DEFAULT 'Gujarat State Gazette',
-        category TEXT DEFAULT 'State Govt',
-        vacancies INTEGER DEFAULT 0,
-        qualification TEXT,
-        deadline TEXT,
-        apply_url TEXT,
-        summary TEXT,
-        content_md TEXT,
-        author TEXT DEFAULT 'FuturSet Editorial Engine',
-        priority TEXT DEFAULT 'high',
-        created_at TEXT NOT NULL,
-        updated_at TEXT NOT NULL
-    );
-    """)
-
     conn.commit()
     conn.close()
 
     # Seed initial authentic job datasets if empty
     seed_initial_jobs()
     sync_all_catalog_jobs()
-    seed_initial_pipeline_articles()
 
 def seed_initial_jobs():
     conn = get_db_connection()
@@ -909,8 +887,8 @@ def get_jobs(params: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
     if params:
         if params.get("q"):
             term = f"%{params['q'].strip()}%"
-            query += " AND (j.title LIKE ? OR j.title_gu LIKE ? OR j.organization LIKE ? OR j.department LIKE ? OR j.qualification LIKE ? OR j.notification_number LIKE ?)"
-            args.extend([term, term, term, term, term, term])
+            query += " AND (j.title LIKE ? OR j.title_gu LIKE ? OR j.organization LIKE ? OR j.department LIKE ? OR j.qualification LIKE ? OR j.notification_number LIKE ? OR j.board_category LIKE ? OR j.district LIKE ? OR j.state LIKE ?)"
+            args.extend([term, term, term, term, term, term, term, term, term])
 
         if params.get("gov_level"):
             query += " AND j.gov_level = ?"
@@ -1733,194 +1711,3 @@ def add_subscriber(name: str, email: str, phone: Optional[str] = None, state_pre
         success = False
     conn.close()
     return success
-
-def seed_initial_pipeline_articles():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) FROM pipeline_articles;")
-    count = cursor.fetchone()[0]
-    if count > 0:
-        conn.close()
-        return
-
-    now_iso = datetime.now().isoformat()
-    articles = [
-        {
-            "title": "GPSC Class 1 & 2 Officers Comprehensive Examination Gazette 2026",
-            "title_gu": "GPSC વર્ગ ૧ અને ૨ અધિકારીઓની પરીક્ષા ગેઝેટ વિસ્તૃત વિશ્લેષણ ૨૦૨૬",
-            "stage": "published",
-            "source": "GPSC Official Gazette No. 45/2026",
-            "category": "State Govt",
-            "vacancies": 293,
-            "qualification": "Any Bachelor's Degree",
-            "deadline": "2026-11-15",
-            "apply_url": "https://gpsc-ojas.gujarat.gov.in",
-            "summary": "Full gazette breakdown covering preliminary examination scheme, GS paper syllabus, interview weightage, and reservation quota matrices for Gujarat aspirants.",
-            "content_md": "# GPSC Class 1 & 2 Officers Gazette 2026\n\nOfficial notification for 293 Gujarat Administrative Service (GAS) and Gujarat Police Service (GPS) posts.",
-            "author": "Chief Editorial Desk",
-            "priority": "urgent"
-        },
-        {
-            "title": "GSSSB CCE Group A & B Combined Competitive Exam Stage-2 Mains Guide",
-            "title_gu": "GSSSB CCE ગ્રુપ A અને B મુખ્ય પરીક્ષા ગાઈડ તથા પેપર પદ્ધતિ",
-            "stage": "review",
-            "source": "GSSSB Official Notification 212/202526",
-            "category": "State Govt",
-            "vacancies": 5554,
-            "qualification": "Any Graduate / CCC",
-            "deadline": "2026-12-28",
-            "apply_url": "https://gsssb.gujarat.gov.in",
-            "summary": "Detailed editorial breakdown of descriptive Gujarati and English language papers with official scoring rubrics and time-allocation advice.",
-            "content_md": "# GSSSB CCE Mains Guide 2026\n\nComprehensive strategy for 5,554 Head Clerk, Senior Clerk, and Office Assistant positions.",
-            "author": "State Govt Bureau",
-            "priority": "high"
-        },
-        {
-            "title": "Gujarat Police LRD Constable & PSI Recruitment 2026: Physical Standards & Age Relaxation",
-            "title_gu": "ગુજરાત પોલીસ ભરતી ૨૦૨૬: શારીરિક કસોટી નિયમો અને વયમર્યાદા છૂટછાટ",
-            "stage": "drafting",
-            "source": "GPRB Recruitment Directorate",
-            "category": "Police & Defence",
-            "vacancies": 12472,
-            "qualification": "12th Pass (HSC)",
-            "deadline": "2026-10-31",
-            "apply_url": "https://ojas.gujarat.gov.in",
-            "summary": "Bilingual explainer on 5000m running benchmarks, chest/height relaxation for reserved categories, and written test preparation strategy.",
-            "content_md": "# Gujarat Police LRD 2026 Physical & Written Guide\n\nPhysical efficiency test (PET) standards and syllabus breakdown for 12,472 constables and sub-inspectors.",
-            "author": "Recruitment Verification Desk",
-            "priority": "high"
-        },
-        {
-            "title": "Railway Recruitment Board (RRB) Assistant Loco Pilot (ALP) CBT-1 Exam Pattern & Syllabus",
-            "title_gu": "રેલ્વે ભરતી બોર્ડ (RRB) આસિસ્ટન્ટ લોકો પાયલટ પરીક્ષા પદ્ધતિ અને સિલેબસ",
-            "stage": "parsing",
-            "source": "Employment News / RRB Central CEN 01/2026",
-            "category": "Central Govt",
-            "vacancies": 18799,
-            "qualification": "Matriculation + ITI / Diploma in Engineering",
-            "deadline": "2026-11-20",
-            "apply_url": "https://www.rrbapply.gov.in",
-            "summary": "AI parsing of 75-mark computer-based test, trade syllabus, and 1/3rd negative marking rules for Indian Railways.",
-            "content_md": "# RRB ALP CEN 01/2026 Recruitment Notice\n\nFull scheme of examination for 18,799 ALP posts across all Indian Railway zones.",
-            "author": "National Desk",
-            "priority": "normal"
-        },
-        {
-            "title": "Gujarat Secondary Education Board (GSEB) Vidhyasahayak Bharti 2026: Ingestion Raw Notice",
-            "title_gu": "ગુજરાત પ્રાથમિક શિક્ષણ વિદ્યાસહાયક ભરતી ૨૦૨૬: પ્રાથમિક પ્રેસ નોટ",
-            "stage": "ingested",
-            "source": "Education Dept Gandhinagar Press Note",
-            "category": "Education",
-            "vacancies": 7200,
-            "qualification": "B.Ed / TET-2 Certified",
-            "deadline": "2026-11-30",
-            "apply_url": "https://vsb.dpegujarat.in",
-            "summary": "Ingested press release regarding primary & upper-primary school teacher recruitments awaiting qualification verification and district quota parsing.",
-            "content_md": "# GSEB Vidhyasahayak Notice 2026\n\nRaw gazette feed ingested from Directorate of Primary Education Gandhinagar.",
-            "author": "Automated Feeds Bot",
-            "priority": "high"
-        },
-        {
-            "title": "Staff Selection Commission (SSC) CGL 2026 Tier-1 Admit Card & Exam Center Guidelines",
-            "title_gu": "સ્ટાફ સિલેક્શન કમિશન (SSC) CGL ૨૦૨૬ એડમિટ કાર્ડ અને પરીક્ષા કેન્દ્ર માર્ગદર્શિકા",
-            "stage": "published",
-            "source": "SSC Central Notice Board",
-            "category": "Central Govt",
-            "vacancies": 17727,
-            "qualification": "Graduate",
-            "deadline": "2026-10-25",
-            "apply_url": "https://ssc.gov.in",
-            "summary": "Critical reporting on reporting times, prohibited items, biometric verification, and shift distribution for SSC Combined Graduate Level examination.",
-            "content_md": "# SSC CGL Tier-1 Notice 2026\n\nAdmit card schedule and exam day protocols for 17,727 group B and C central appointments.",
-            "author": "Central Desk",
-            "priority": "urgent"
-        }
-    ]
-
-    for art in articles:
-        cursor.execute("""
-        INSERT INTO pipeline_articles (title, title_gu, stage, source, category, vacancies, qualification, deadline, apply_url, summary, content_md, author, priority, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            art["title"], art.get("title_gu"), art["stage"], art.get("source"),
-            art.get("category"), art.get("vacancies", 0), art.get("qualification"),
-            art.get("deadline"), art.get("apply_url"), art.get("summary"),
-            art.get("content_md"), art.get("author"), art.get("priority", "normal"),
-            now_iso, now_iso
-        ))
-
-    conn.commit()
-    conn.close()
-
-def get_pipeline_articles(stage: Optional[str] = None) -> List[Dict[str, Any]]:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    if stage and stage != "all":
-        cursor.execute("SELECT * FROM pipeline_articles WHERE stage = ? ORDER BY id DESC;", (stage,))
-    else:
-        cursor.execute("SELECT * FROM pipeline_articles ORDER BY id DESC;")
-    rows = cursor.fetchall()
-    conn.close()
-    return [dict(r) for r in rows]
-
-def get_pipeline_article_by_id(article_id: int) -> Optional[Dict[str, Any]]:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM pipeline_articles WHERE id = ?;", (article_id,))
-    row = cursor.fetchone()
-    conn.close()
-    return dict(row) if row else None
-
-def create_pipeline_article(data: Dict[str, Any]) -> int:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    now_iso = datetime.now().isoformat()
-    cursor.execute("""
-    INSERT INTO pipeline_articles (title, title_gu, stage, source, category, vacancies, qualification, deadline, apply_url, summary, content_md, author, priority, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        data.get("title", "Untitled Gazette Notice"),
-        data.get("title_gu"),
-        data.get("stage", "ingested"),
-        data.get("source", "FuturSet Ingestion"),
-        data.get("category", "General"),
-        int(data.get("vacancies", 0) or 0),
-        data.get("qualification", "Graduate"),
-        data.get("deadline", (datetime.now() + timedelta(days=30)).strftime("%Y-%m-%d")),
-        data.get("apply_url", "https://ojas.gujarat.gov.in"),
-        data.get("summary", ""),
-        data.get("content_md", ""),
-        data.get("author", "Editorial Desk"),
-        data.get("priority", "normal"),
-        now_iso, now_iso
-    ))
-    article_id = cursor.lastrowid
-    conn.commit()
-    conn.close()
-    return article_id
-
-def transition_pipeline_article(article_id: int, target_stage: str) -> bool:
-    valid_stages = ["ingested", "parsing", "drafting", "review", "published"]
-    if target_stage not in valid_stages:
-        return False
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    now_iso = datetime.now().isoformat()
-    cursor.execute("""
-    UPDATE pipeline_articles
-    SET stage = ?, updated_at = ?
-    WHERE id = ?;
-    """, (target_stage, now_iso, article_id))
-    rows_affected = cursor.rowcount
-    conn.commit()
-    conn.close()
-    return rows_affected > 0
-
-def publish_pipeline_article(article_id: int) -> Dict[str, Any]:
-    art = get_pipeline_article_by_id(article_id)
-    if not art:
-        return {"success": False, "error": "Article not found"}
-    
-    transition_pipeline_article(article_id, "published")
-    return {"success": True, "article_id": article_id, "stage": "published"}
-
