@@ -684,5 +684,184 @@
       <div id="job-modal-body" class="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-8"></div>
     </div>
   </div>
+
+  <!-- 7th Pay Commission Salary & Pension Calculator Modal -->
+  <div id="salary-calculator-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="calculator" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-base">7th Pay Salary Calculator</h3>
+            <p class="text-[11px] text-slate-400" id="calc-prefill-note">Gujarat Govt &amp; Central Pay Matrix</p>
+          </div>
+        </div>
+        <button onclick="closeSalaryCalculator()" class="text-slate-400 hover:text-white p-1.5 rounded-lg cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 my-5 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1.5 font-medium">Select Recruitment Post / Pay Scale</label>
+          <select id="salary-post-type" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400">
+            <option value="fix_clerk" selected>Gujarat Class-3 Fix-Pay (Police Constable, Talati, Clerk) - ₹26,000/mo</option>
+            <option value="fix_head">Gujarat Head Clerk / Sub-Accountant Fix-Pay - ₹40,800/mo</option>
+            <option value="lvl2">7th Pay Level 2 (RRB Group C, Junior Clerk regular) - Basic ₹19,900</option>
+            <option value="lvl4">7th Pay Level 4 (SSC CHSL, Assistant) - Basic ₹25,500</option>
+            <option value="lvl7">7th Pay Level 7 (GPSC Class-2, Mamlatdar, PI, DySO) - Basic ₹44,900</option>
+            <option value="lvl10">7th Pay Level 10 (UPSC / GPSC Class-1 Dy Collector, DSP) - Basic ₹56,100</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1.5 font-medium">City Classification (HRA Category)</label>
+          <select id="salary-city-tier" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400">
+            <option value="X" selected>Tier X City (Ahmedabad - 27% HRA)</option>
+            <option value="Y">Tier Y City (Surat, Vadodara, Rajkot, Gandhinagar - 18% HRA)</option>
+            <option value="Z">Tier Z Area (Districts &amp; Rural - 9% HRA)</option>
+          </select>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+          <div class="flex justify-between">
+            <span class="text-slate-400">Basic Pay:</span>
+            <span class="font-bold text-slate-200" id="sal-disp-basic">₹26,000</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Dearness Allowance (DA @ 50%):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-da">N/A (Fix Pay)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">House Rent Allowance (HRA):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-hra">N/A (Fix Pay)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Transport Allowance (TA):</span>
+            <span class="font-bold text-slate-200" id="sal-disp-ta">N/A (Fix Pay)</span>
+          </div>
+          <div class="flex justify-between pt-2 border-t border-slate-800">
+            <span class="text-slate-400">Gross Monthly Salary:</span>
+            <span class="font-bold text-cyan-300" id="sal-disp-gross">₹26,000</span>
+          </div>
+          <div class="flex justify-between text-rose-400/90">
+            <span>Deductions (NPS 10% + Prof Tax):</span>
+            <span class="font-medium" id="sal-disp-nps">₹200</span>
+          </div>
+          <div class="flex justify-between pt-2 border-t border-slate-800 items-center">
+            <span class="font-bold text-white text-sm">Estimated In-Hand Take Home:</span>
+            <span class="font-black text-emerald-400 text-base" id="sal-disp-net">₹25,800 / Month</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] text-slate-500 pt-2 border-t border-slate-800">
+        <span>*Based on 7th Pay guidelines.</span>
+        <button onclick="closeSalaryCalculator()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Eligibility & Career Navigator Modal -->
+  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto">
+    <div class="glass-modal w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl border border-cyan-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
+      <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/50">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-inner">
+            <i data-lucide="target" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-black text-white flex items-center gap-2">
+              Eligibility &amp; Career Matching Engine
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Official Gazettes 2026</span>
+            </h3>
+            <p class="text-xs text-slate-400">Instantly check all Gujarat State &amp; Central Govt recruitments matching your exact profile.</p>
+          </div>
+        </div>
+        <button onclick="closeMatcherModal()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="px-5 py-3 bg-slate-950/60 border-b border-slate-800/60 flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] mr-1">One-Click Presets:</span>
+        <button onclick="setMatcherPreset('btech_gujarat')" class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer">
+          <span>💻 B.Tech / BE (CSE / IT) Gujarat</span>
+        </button>
+        <button onclick="setMatcherPreset('graduate_gujarat')" class="px-3 py-1 rounded-xl bg-orange-950/70 hover:bg-orange-900 border border-orange-500/40 text-orange-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer">
+          <span>🏛️ Any Graduate (Gujarat)</span>
+        </button>
+        <button onclick="setMatcherPreset('12th_gujarat')" class="px-3 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer">
+          <span>⚡ 10th / 12th Pass (Merit &amp; LRD)</span>
+        </button>
+      </div>
+
+      <div class="p-5 border-b border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 bg-slate-900/30">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Highest Qualification</label>
+          <select id="matcher-edu-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
+            <option value="B.E. / B.Tech">B.E. / B.Tech (Engineering / CSE / IT)</option>
+            <option value="Graduate">Graduate (Any Stream / B.Sc / B.Com / B.A.)</option>
+            <option value="12th Pass">12th Pass (HSC / Higher Secondary)</option>
+            <option value="10th Pass">10th Pass (SSC / Matriculation)</option>
+            <option value="Diploma">Diploma / Polytechnic</option>
+            <option value="ITI">ITI Certified</option>
+            <option value="Post Graduate">Post Graduate (M.Tech / MCA / M.Sc / M.A.)</option>
+            <option value="MBBS">MBBS / Medical Degree</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Your Current Age (Years)</label>
+          <input type="number" id="matcher-age-input" value="23" min="16" max="55" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Category (Quota / Reservation)</label>
+          <select id="matcher-cat-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
+            <option value="General">General / Open Category</option>
+            <option value="SEBC">SEBC / OBC Gujarat (+3 to +5 yrs)</option>
+            <option value="EWS">EWS Gujarat (+5 yrs)</option>
+            <option value="SC">SC (+5 yrs)</option>
+            <option value="ST">ST (+5 yrs)</option>
+            <option value="Female">Female Candidates (+5 yrs)</option>
+            <option value="PwD">PwD / Divyang (+10 yrs)</option>
+            <option value="Ex-SM">Ex-Servicemen</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Domicile &amp; Preference</label>
+          <select id="matcher-state-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
+            <option value="Gujarat">Gujarat Resident (ગુજરાત વતની)</option>
+            <option value="All India">All India / Other States</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="px-5 py-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs">
+        <label class="inline-flex items-center gap-2 cursor-pointer text-slate-300">
+          <input type="checkbox" id="matcher-central-check" checked class="rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0">
+          <span>Include Central Government (All India) Opportunities</span>
+        </label>
+        <button onclick="calculateAIMatches()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-1.5 cursor-pointer">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellow-300"></i>
+          <span>Run Profile Evaluation</span>
+        </button>
+      </div>
+
+      <div id="matcher-results-container" class="p-5 flex-1 overflow-y-auto bg-slate-950/40">
+        <div class="text-center py-10 text-slate-400">
+          <i data-lucide="compass" class="w-12 h-12 mx-auto text-cyan-400/40 mb-3 animate-pulse"></i>
+          <h4 class="text-sm font-bold text-white mb-1">Click a preset or "Run Profile Evaluation"</h4>
+          <p class="text-xs text-slate-400 max-w-md mx-auto">
+            Our engine evaluates your age and qualifications against all 170+ official gazette notifications to show every recruitment you are eligible for.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -261,37 +261,44 @@ async function fetchJobs() {
   const container = document.getElementById("jobs-container");
   if (!container) return;
 
-  const skeletonCard = `
-    <div class="skeleton-card-light p-5 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl skeleton-shimmer-light"></div>
-            <div class="space-y-1.5">
-              <div class="w-28 h-3.5 rounded skeleton-shimmer-light"></div>
-              <div class="w-16 h-2.5 rounded skeleton-shimmer-light"></div>
+  const isGujarat = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+
+  // Only show skeleton cards if the container is currently empty
+  if (container.children.length === 0) {
+    const skeletonCard = `
+      <div class="skeleton-card-light p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl skeleton-shimmer-light"></div>
+              <div class="space-y-1.5">
+                <div class="w-28 h-3.5 rounded skeleton-shimmer-light"></div>
+                <div class="w-16 h-2.5 rounded skeleton-shimmer-light"></div>
+              </div>
             </div>
+            <div class="w-20 h-5 rounded-full skeleton-shimmer-light"></div>
           </div>
-          <div class="w-20 h-5 rounded-full skeleton-shimmer-light"></div>
+          <div class="w-full h-5 rounded skeleton-shimmer-light mb-2"></div>
+          <div class="w-3/4 h-4 rounded skeleton-shimmer-light mb-4"></div>
+          <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 mb-4">
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
+            <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
+          </div>
         </div>
-        <div class="w-full h-5 rounded skeleton-shimmer-light mb-2"></div>
-        <div class="w-3/4 h-4 rounded skeleton-shimmer-light mb-4"></div>
-        <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 mb-4">
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
-          <div class="space-y-1"><div class="w-10 h-2 rounded skeleton-shimmer-light"></div><div class="w-14 h-4 rounded skeleton-shimmer-light"></div></div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="w-20 h-3 rounded skeleton-shimmer-light"></div>
+          <div class="flex gap-2">
+            <div class="w-8 h-8 rounded-lg skeleton-shimmer-light"></div>
+            <div class="w-24 h-8 rounded-lg skeleton-shimmer-light"></div>
+          </div>
         </div>
       </div>
-      <div class="flex items-center justify-between pt-2">
-        <div class="w-20 h-3 rounded skeleton-shimmer-light"></div>
-        <div class="flex gap-2">
-          <div class="w-8 h-8 rounded-lg skeleton-shimmer-light"></div>
-          <div class="w-24 h-8 rounded-lg skeleton-shimmer-light"></div>
-        </div>
-      </div>
-    </div>
-  `;
-  container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
+    `;
+    container.innerHTML = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${skeletonCard.repeat(6)}</div>`;
+  } else {
+    container.style.opacity = "0.75";
+  }
 
   const queryParams = new URLSearchParams();
   if (currentFilters.q) queryParams.set("q", currentFilters.q);
@@ -305,11 +312,18 @@ async function fetchJobs() {
   if (currentFilters.selection_mode) queryParams.set("selection_mode", currentFilters.selection_mode);
   if (currentFilters.sort_by) queryParams.set("sort_by", currentFilters.sort_by);
 
-  const isGujarat = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+  if (isGujarat || currentFilters.state === "Gujarat") {
+    queryParams.set("limit", "300");
+  } else {
+    queryParams.set("limit", "150");
+  }
 
   try {
     const res = await fetch(`/api/jobs?${queryParams.toString()}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
+
+    container.style.opacity = "1";
 
     const countHeader = document.getElementById("filtered-results-count");
     if (countHeader) {
@@ -324,11 +338,11 @@ async function fetchJobs() {
       container.innerHTML = `
         <div class="col-span-full py-16 text-center bg-white rounded-2xl p-8 border border-slate-200 shadow-xs">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
-            <i data-lucide="search-x" class="w-8 h-8"></i>
+            <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </div>
           <h3 class="text-lg font-bold text-slate-800">${isGujarat ? 'કોઈ ભરતી પરિણામ મળ્યું નથી' : 'No recruitments match your filter criteria'}</h3>
           <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">${isGujarat ? 'કૃપા કરીને અન્ય બોર્ડ અથવા લાયકાત પસંદ કરો, અથવા લાઈવ સ્કેનર ચલાવો.' : 'Try clearing selected filters, changing qualifications, or running the Live Scanner to pull new feeds.'}</p>
-          <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 ${isGujarat ? 'bg-orange-600 hover:bg-orange-500' : 'bg-[#635bff] hover:bg-indigo-600'} text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">
+          <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 ${isGujarat ? 'bg-orange-600 hover:bg-orange-500' : 'bg-[#635bff] hover:bg-indigo-600'} text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer">
             ${isGujarat ? 'ફિલ્ટર્સ રીસેટ કરો' : 'Reset Filters'}
           </button>
         </div>
@@ -345,8 +359,43 @@ async function fetchJobs() {
 
     initLucide();
   } catch (err) {
-    console.error("Error fetching jobs:", err);
-    container.innerHTML = `<div class="col-span-full text-center text-rose-400 py-10">Failed to load jobs. Please try again.</div>`;
+    console.warn("Network error in fetchJobs, falling back to cached/initial jobs:", err);
+    container.style.opacity = "1";
+
+    if (window._allJobs && Array.isArray(window._allJobs) && window._allJobs.length > 0) {
+      let filtered = window._allJobs;
+      if (isGujarat || currentFilters.state === "Gujarat") {
+        filtered = filtered.filter(j => j.state === "Gujarat");
+      }
+      if (currentFilters.q) {
+        const qLower = currentFilters.q.toLowerCase();
+        filtered = filtered.filter(j => 
+          (j.title && j.title.toLowerCase().includes(qLower)) ||
+          (j.title_gu && j.title_gu.includes(currentFilters.q)) ||
+          (j.organization && j.organization.toLowerCase().includes(qLower)) ||
+          (j.department && j.department.toLowerCase().includes(qLower))
+        );
+      }
+      if (currentFilters.board) {
+        filtered = filtered.filter(j => j.board === currentFilters.board || j.organization === currentFilters.board);
+      }
+      if (currentFilters.district) {
+        filtered = filtered.filter(j => j.district === currentFilters.district);
+      }
+      if (currentView === "cards") {
+        renderCardsView(container, filtered);
+      } else {
+        renderTableView(container, filtered);
+      }
+      const countHeader = document.getElementById("filtered-results-count");
+      if (countHeader) {
+        countHeader.innerText = isGujarat ? `ગુજરાત રાજ્યની સક્રિય ભરતીઓ (${filtered.length} ઉપલબ્ધ)` : `${filtered.length} Verified Recruitments Available`;
+      }
+      initLucide();
+      return;
+    }
+
+    container.innerHTML = `<div class="col-span-full text-center text-slate-600 py-10">Recruitments are loading. Please refresh if this takes longer than 5 seconds.</div>`;
   }
 }
 
@@ -2120,14 +2169,18 @@ function resetFilters() {
 
 // AI Candidate Matcher Drawer
 function openMatcherModal() {
+  if (typeof playAudioTick === "function") playAudioTick(650, 0.05);
   const modal = document.getElementById("matcher-modal");
+  if (!modal) return;
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
 }
 
 function closeMatcherModal() {
+  if (typeof playAudioTick === "function") playAudioTick(450, 0.05);
   const modal = document.getElementById("matcher-modal");
+  if (!modal) return;
   modal.classList.add("hidden");
   modal.classList.remove("flex");
   document.body.style.overflow = "auto";
@@ -3489,6 +3542,7 @@ document.addEventListener("click", (e) => {
     { id: "compare-modal", close: closeCompareModal },
     { id: "command-palette-modal", close: closeCommandPalette },
     { id: "ojas-guide-modal", close: closeOjasGuideModal },
+    { id: "salary-calculator-modal", close: closeSalaryCalculator },
     { id: "salary-calc-modal", close: closeSalaryCalculator },
     { id: "tech-job-modal", close: closeTechModal }
   ];

@@ -53,7 +53,7 @@ async def home(request: Request):
     stats = get_stats()
     featured_jobs = get_jobs({"limit": 8, "sort_by": "vacancies"})
     gujarat_jobs = get_jobs({"state": "Gujarat", "limit": 6})
-    initial_jobs = get_jobs({"limit": 50})
+    initial_jobs = get_jobs({"limit": 100})
     import json
     return templates.TemplateResponse(
         request,
@@ -73,7 +73,7 @@ async def home(request: Request):
 @app.get("/gujarat", response_class=HTMLResponse)
 async def gujarat_portal(request: Request):
     stats = get_stats()
-    gujarat_all_jobs = get_jobs({"state": "Gujarat", "limit": 100})
+    gujarat_all_jobs = get_jobs({"state": "Gujarat", "limit": 300})
     import json
     return templates.TemplateResponse(
         request,
@@ -139,7 +139,7 @@ def api_get_jobs(
     is_btech_cse: Optional[int] = None,
     experience_level: Optional[str] = None,
     sort_by: Optional[str] = "deadline",
-    limit: int = Query(50, ge=1, le=200),
+    limit: int = Query(100, ge=1, le=500),
     offset: int = Query(0, ge=0)
 ):
     params = {
