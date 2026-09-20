@@ -1466,7 +1466,9 @@ async function openJobDetailModal(jobId) {
   const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
 
   // Check in-memory cache first for instant 0ms rendering!
-  const cachedJob = (window._jobsMap && window._jobsMap[jobId]) || (window._allJobs && window._allJobs.find(j => j.id == jobId));
+  const cachedJob = (window._jobsMap && window._jobsMap[jobId]) || 
+                    (window._allJobs && window._allJobs.find(j => j.id == jobId)) ||
+                    (window._corpJobs && window._corpJobs.find(j => j.id == jobId));
   if (cachedJob) {
     renderJobModalContent(modalBody, cachedJob, isGujaratPage);
   } else {
@@ -2101,6 +2103,27 @@ function closeTechModal() {
 }
 window.closeTechModal = closeTechModal;
 
+function closeCorpModal() {
+  const modal = document.getElementById("corp-detail-modal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  }
+  closeJobDetailModal();
+}
+window.closeCorpModal = closeCorpModal;
+
+if (typeof window.closeScannerModal !== "function") {
+  window.closeScannerModal = function() {
+    const modal = document.getElementById("scanner-modal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+    document.body.style.overflow = "auto";
+  };
+}
+
 function copyJobLink(url, btn) {
   navigator.clipboard.writeText(url).then(() => {
     const originalHtml = btn.innerHTML;
@@ -2126,7 +2149,15 @@ function updateSyllabusProgress(checkbox) {
 
 async function toggleBookmark(jobId, btnElement) {
   try {
-    const res = await fetch(`/api/bookmark/${jobId}`, { method: "POST" });
+    const res = await fetch(`/api/bookmark/${jobId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({})
+    });
+    if (!res.ok) {
+      console.warn(`Bookmark toggle failed: HTTP ${res.status}`);
+      return;
+    }
     const data = await res.json();
     
     if (data.is_bookmarked) {
@@ -2381,6 +2412,7 @@ async function calculateAIMatches() {
 function openBookmarksModal() {
   const modal = document.getElementById("bookmarks-modal");
   const listContainer = document.getElementById("bookmarks-list");
+  if (!modal || !listContainer) return;
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
@@ -2388,7 +2420,7 @@ function openBookmarksModal() {
   fetch("/api/bookmarks")
     .then(r => r.json())
     .then(data => {
-      if (data.bookmarks.length === 0) {
+      if (!data || !data.bookmarks || data.bookmarks.length === 0) {
         listContainer.innerHTML = `
           <div class="text-center py-12 text-slate-400">
             <i data-lucide="bookmark" class="w-10 h-10 mx-auto text-slate-600 mb-2"></i>
@@ -2419,11 +2451,13 @@ function openBookmarksModal() {
       html += `</div>`;
       listContainer.innerHTML = html;
       initLucide();
-    });
+    })
+    .catch(err => console.warn("Failed to fetch bookmarks:", err));
 }
 
 function closeBookmarksModal() {
   const modal = document.getElementById("bookmarks-modal");
+  if (!modal) return;
   modal.classList.add("hidden");
   modal.classList.remove("flex");
   document.body.style.overflow = "auto";
@@ -2432,12 +2466,14 @@ function closeBookmarksModal() {
 // Alert Subscription
 function openSubscribeModal() {
   const modal = document.getElementById("subscribe-modal");
+  if (!modal) return;
   modal.classList.remove("hidden");
   modal.classList.add("flex");
 }
 
 function closeSubscribeModal() {
   const modal = document.getElementById("subscribe-modal");
+  if (!modal) return;
   modal.classList.add("hidden");
   modal.classList.remove("flex");
 }
@@ -3552,13 +3588,15 @@ document.addEventListener("click", (e) => {
     { id: "ojas-guide-modal", close: closeOjasGuideModal },
     { id: "salary-calculator-modal", close: closeSalaryCalculator },
     { id: "salary-calc-modal", close: closeSalaryCalculator },
-    { id: "tech-job-modal", close: closeTechModal }
+    { id: "tech-job-modal", close: closeTechModal },
+    { id: "corp-detail-modal", close: closeCorpModal },
+    { id: "scanner-modal", close: typeof closeScannerModal === "function" ? closeScannerModal : () => {} }
   ];
 
   modalConfigs.forEach(({ id, close }) => {
     const modalEl = document.getElementById(id);
     if (modalEl && !modalEl.classList.contains("hidden")) {
-      const panel = modalEl.querySelector(".glass-panel, .glass-modal, .bg-slate-900, .bg-\\[\\#0b1227\\]");
+      const panel = modalEl.querySelector(".glass-panel, .glass-modal, .glass-panel-corp, .bg-slate-900, .bg-\\[\\#0b1227\\], .bg-white");
       if (panel && !panel.contains(e.target) && modalEl.contains(e.target)) {
         if (typeof close === "function") close();
       }
@@ -3580,6 +3618,8 @@ document.addEventListener("keydown", (e) => {
     if (typeof closeFeeGuideModal === "function") closeFeeGuideModal();
     if (typeof closeSubscribeModal === "function") closeSubscribeModal();
     if (typeof closeTechModal === "function") closeTechModal();
+    if (typeof closeCorpModal === "function") closeCorpModal();
+    if (typeof closeScannerModal === "function") closeScannerModal();
     document.body.style.overflow = "auto";
     document.documentElement.style.overflow = "auto";
   }

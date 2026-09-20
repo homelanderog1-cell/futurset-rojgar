@@ -676,7 +676,9 @@
 
         document.getElementById('modal-apply-btn').href = job.apply_url || '#';
         document.getElementById('tech-job-modal').classList.remove('hidden');
-        lucide.createIcons();
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
       } catch (err) {
         console.error('Error fetching job modal:', err);
       }
@@ -706,8 +708,10 @@
       }
     });
 
-    // Initialize Lucide icons
-    lucide.createIcons();
+    // Initialize Lucide icons defensively
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
   </script>
   <script src="/static/js/app.js"></script>
 

@@ -662,6 +662,18 @@
         return;
       }
     }
+
+    function closeCorpModal() {
+      const m = document.getElementById("corp-detail-modal");
+      if (m) {
+        m.classList.add("hidden");
+        m.classList.remove("flex");
+      }
+      if (typeof closeJobDetailModal === "function") closeJobDetailModal();
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    }
+    window.closeCorpModal = closeCorpModal;
   </script>
 
   <!-- Unified Job Dossier & Step-by-Step Modal -->
@@ -871,6 +883,24 @@
             Our engine evaluates your age and qualifications against all 170+ official gazette notifications to show every recruitment you are eligible for.
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookmarks Drawer Modal -->
+  <div id="bookmarks-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-slate-700 p-6 shadow-2xl relative flex flex-col max-h-[85vh] bg-slate-900">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="bookmark" class="w-5 h-5 text-cyan-400 fill-cyan-400"></i>
+          <h3 class="text-base font-bold text-white">Saved Careers & Opportunities</h3>
+        </div>
+        <button onclick="closeBookmarksModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="bookmarks-list" class="flex-1 overflow-y-auto pr-1">
+        <!-- Injected dynamically -->
       </div>
     </div>
   </div>
