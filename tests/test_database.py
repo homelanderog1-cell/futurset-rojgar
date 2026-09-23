@@ -85,6 +85,20 @@ def test_upsert_deduplication():
     action2 = upsert_job(test_job)
     assert action2 == "updated"
 
+    # Clean up test job immediately so it never leaks into production DB
+    from app.database import get_db_connection
+    c = get_db_connection()
+    c.execute("DELETE FROM jobs WHERE organization = 'Gujarat Testing Board';")
+    c.commit()
+    c.close()
+
+    # Clean up test job immediately so it never leaks into production DB
+    from app.database import get_db_connection
+    c = get_db_connection()
+    c.execute("DELETE FROM jobs WHERE organization = 'Gujarat Testing Board';")
+    c.commit()
+    c.close()
+
 def test_stats_accuracy():
     stats = get_stats()
     assert stats["total_jobs"] >= 14
