@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <script>window.__INITIAL_JOBS__ = {{ initial_jobs_json | safe }};</script>
 </head>
-<body class="min-h-screen flex flex-col gujarat-royal-mesh-bg text-[#0a2540] antialiased font-gujarati selection:bg-orange-500 selection:text-white relative">
+<body class="min-h-screen flex flex-col gujarat-royal-mesh-bg text-[#0a2540] antialiased font-gujarati selection:bg-orange-500 selection:text-slate-900 relative">
 
   <!-- Dynamic Cursor Spotlight Overlay -->
   <div class="cursor-spotlight"></div>
@@ -45,7 +45,7 @@
   <div class="bg-amber-50/90 border-b border-amber-200/80 py-2 px-4 text-xs no-print text-amber-900">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <div class="flex items-center gap-2 text-amber-700 font-bold shrink-0">
-        <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+        <span class="w-2 h-2 rounded-md bg-amber-500 animate-ping"></span>
         <span class="tracking-wider uppercase text-[11px]">ગુજરાત સરકારી નોકરીઓ ૨૦૨૬:</span>
       </div>
       <div class="overflow-hidden whitespace-nowrap flex-1">
@@ -119,15 +119,15 @@
         </button>
 
         <!-- Live Scanner Trigger -->
-        <button onclick="startLiveScan()" class="hidden sm:flex shrink-0 px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold shadow-sm transition-all items-center gap-1.5">
-          <svg class="w-4 h-4 text-white" id="scanner-radar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.63"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></svg>
+        <button onclick="startLiveScan()" class="hidden sm:flex shrink-0 px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-slate-900 text-xs font-bold shadow-sm transition-all items-center gap-1.5">
+          <svg class="w-4 h-4 text-slate-900" id="scanner-radar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.63"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></svg>
           <span>OJAS સ્કેન</span>
         </button>
 
         <!-- Bookmarks Modal Trigger -->
         <button onclick="openBookmarksModal()" class="relative p-2 sm:p-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 transition-colors shadow-xs" title="સાચવેલી ભરતીઓ">
           <svg class="w-4 h-4 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-orange-600 text-white font-black text-[10px] flex items-center justify-center">0</span>
+          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-md bg-orange-600 text-slate-900 font-black text-[10px] flex items-center justify-center">0</span>
         </button>
       </div>
     </div>
@@ -136,16 +136,16 @@
   <!-- Gujarat Hero & Fast-Track Service Links -->
   <section class="relative pt-8 sm:pt-14 pb-10 sm:pb-16 px-3 sm:px-6 lg:px-8 border-b border-amber-200/60 overflow-hidden bg-gradient-to-b from-amber-50/70 via-orange-50/30 to-transparent">
     <!-- Atmospheric Ambient Glows (Gujarat Saffron & Gold) -->
-    <div class="absolute top-0 left-1/4 w-[22rem] sm:w-[36rem] h-[22rem] sm:h-[36rem] bg-orange-500/[0.08] rounded-full blur-3xl pointer-events-none z-0"></div>
-    <div class="absolute top-10 right-1/4 w-[20rem] sm:w-[32rem] h-[20rem] sm:h-[32rem] bg-amber-400/[0.08] rounded-full blur-3xl pointer-events-none z-0"></div>
+    <div class="absolute top-0 left-1/4 w-[22rem] sm:w-[36rem] h-[22rem] sm:h-[36rem] bg-orange-500/[0.08] rounded-md blur-3xl pointer-events-none z-0"></div>
+    <div class="absolute top-10 right-1/4 w-[20rem] sm:w-[32rem] h-[20rem] sm:h-[32rem] bg-amber-400/[0.08] rounded-md blur-3xl pointer-events-none z-0"></div>
 
     <!-- Physics Particle Canvas Background for Gujarat -->
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-auto z-0 opacity-40"></canvas>
 
     <div class="max-w-6xl mx-auto relative z-10 px-1">
       <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
-        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-amber-300/80 text-[11px] sm:text-xs text-amber-900 font-bold mb-3 sm:mb-4 shadow-xs backdrop-blur-md max-w-full overflow-hidden">
-          <span class="w-2.5 h-2.5 rounded-full bg-orange-500 animate-ping shrink-0"></span>
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-md bg-white border border-amber-300/80 text-[11px] sm:text-xs text-amber-900 font-bold mb-3 sm:mb-4 shadow-xs  max-w-full overflow-hidden">
+          <span class="w-2.5 h-2.5 rounded-md bg-orange-500 animate-ping shrink-0"></span>
           <span class="truncate">🦁 અધિકૃત ગુજરાત રાજ્ય ભરતી પોર્ટલ ૨૦૨૬ (OJAS • GPSC • GSSSB)</span>
         </div>
         <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-[#0a2540] leading-tight break-words">
@@ -158,8 +158,8 @@
 
         <!-- Quick Tool Pills for Gujarat -->
         <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
-          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs">
-            <i data-lucide="target" class="w-3.5 h-3.5 text-white animate-pulse shrink-0"></i>
+          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:from-orange-600 hover:to-amber-600 text-slate-900 text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="target" class="w-3.5 h-3.5 text-slate-900  shrink-0"></i>
             <span>🎯 મારી લાયકાત તપાસો <span class="hidden sm:inline">(Check My Eligibility)</span></span>
           </button>
           <button onclick="openSalaryCalculator()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-800 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
@@ -191,12 +191,12 @@
 
       <!-- OJAS Fast Track Service Grid with Rich Icons & Hover Lift -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
-        <a href="https://ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-orange-50/70 p-4 rounded-2xl border-2 border-orange-200/90 border-t-4 border-t-orange-500 hover:border-orange-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
+        <a href="https://ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-orange-50/70 p-4 rounded-lg border-2 border-orange-200/90 border-t-4 border-t-orange-500 hover:border-orange-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-xs group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-orange-800">OJAS મુખ્ય</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-orange-100 text-orange-800">OJAS મુખ્ય</span>
           </div>
           <div>
             <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">OJAS ઓનલાઇન અરજી</div>
@@ -204,12 +204,12 @@
           </div>
         </a>
 
-        <a href="https://gpsc-ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-amber-50/70 p-4 rounded-2xl border-2 border-amber-200/90 border-t-4 border-t-amber-500 hover:border-amber-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
+        <a href="https://gpsc-ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-amber-50/70 p-4 rounded-lg border-2 border-amber-200/90 border-t-4 border-t-amber-500 hover:border-amber-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-500 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-xs group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">વર્ગ ૧-૨</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800">વર્ગ ૧-૨</span>
           </div>
           <div>
             <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-amber-700 transition-colors">GPSC OJAS પોર્ટલ</div>
@@ -217,12 +217,12 @@
           </div>
         </a>
 
-        <a href="https://hc-ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-yellow-50/70 p-4 rounded-2xl border-2 border-yellow-200/90 border-t-4 border-t-yellow-500 hover:border-yellow-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
+        <a href="https://hc-ojas.gujarat.gov.in" target="_blank" class="bg-white hover:bg-yellow-50/70 p-4 rounded-lg border-2 border-yellow-200/90 border-t-4 border-t-yellow-500 hover:border-yellow-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 to-amber-600 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-xs group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-100 text-yellow-800">હાઇકોર્ટ</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-yellow-100 text-yellow-800">હાઇકોર્ટ</span>
           </div>
           <div>
             <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-yellow-700 transition-colors">ગુજરાત હાઇકોર્ટ OJAS</div>
@@ -230,12 +230,12 @@
           </div>
         </a>
 
-        <a href="https://ojas.gujarat.gov.in/PrintApplForm.aspx" target="_blank" class="bg-white hover:bg-emerald-50/70 p-4 rounded-2xl border-2 border-emerald-200/90 border-t-4 border-t-emerald-500 hover:border-emerald-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
+        <a href="https://ojas.gujarat.gov.in/PrintApplForm.aspx" target="_blank" class="bg-white hover:bg-emerald-50/70 p-4 rounded-lg border-2 border-emerald-200/90 border-t-4 border-t-emerald-500 hover:border-emerald-500 shadow-sm card-hover-lift group min-w-0 transition-all flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-xs group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">કૉલ લેટર</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800">કૉલ લેટર</span>
           </div>
           <div>
             <div class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">હોલ ટિકિટ ડાઉનલોડ</div>
@@ -245,7 +245,7 @@
       </div>
 
       <!-- ગુજરાત પરીક્ષા સમય ચક્ર (Pariksha Samay Chakra Ticker - 144Hz Butter-Smooth Marquee) -->
-      <div class="bg-white rounded-2xl p-4 border-2 border-amber-200/90 flex flex-col md:flex-row items-center justify-between gap-3 shadow-sm mb-6">
+      <div class="bg-white rounded-lg p-4 border-2 border-amber-200/90 flex flex-col md:flex-row items-center justify-between gap-3 shadow-sm mb-6">
         <div class="flex items-center gap-2.5 shrink-0">
           <div class="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
             <svg class="w-4 h-4 text-amber-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg>
@@ -253,7 +253,7 @@
           <div>
             <span class="text-xs font-black text-[#0a2540] flex items-center gap-1.5 uppercase tracking-wide">
               <span>પરીક્ષા સમય ચક્ર (Pariksha Samay Chakra)</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-50 text-orange-700 border border-orange-200 animate-pulse">2026 લાઈવ</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-50 text-orange-700 border border-orange-200 ">2026 લાઈવ</span>
             </span>
             <p class="text-[11px] text-slate-500">કન્ફર્મ્ડ ગુજરાત સરકારી પરીક્ષા તારીખો અને કૉલ લેટર અપડેટ્સ</p>
           </div>
@@ -264,7 +264,7 @@
           <div class="timeline-ticker-track items-center gap-3">
             <!-- Item 1: GPSC Class 1-2 -->
             <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+              <span class="w-2 h-2 rounded-md bg-amber-500 animate-ping"></span>
               <span class="font-bold text-amber-800">GPSC વર્ગ ૧-૨:</span>
               <span class="text-slate-600">પ્રિલિમ્સ ૧૫ નવેમ્બર ૨૦૨૬</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-mono">૩૮૮ જગ્યાઓ</span>
@@ -272,7 +272,7 @@
 
             <!-- Item 2: Gujarat Police Constable -->
             <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-orange-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+              <span class="w-2 h-2 rounded-md bg-orange-500"></span>
               <span class="font-bold text-orange-800">પોલીસ કોન્સ્ટેબલ / SI:</span>
               <span class="text-slate-600">PET/PST શારીરિક કસોટી ૧૨ ઓક્ટોબર</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-100 text-orange-800 font-mono">૧૨,૪૭૨ જગ્યાઓ</span>
@@ -280,7 +280,7 @@
 
             <!-- Item 3: GSSSB CCE -->
             <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span class="w-2 h-2 rounded-md bg-blue-500"></span>
               <span class="font-bold text-blue-800">GSSSB CCE ગ્રૂપ A & B:</span>
               <span class="text-slate-600">મુખ્ય લેખિત પરીક્ષા ૨૮ ડિસેમ્બર</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-mono">૫,૫૫૪ જગ્યાઓ</span>
@@ -288,7 +288,7 @@
 
             <!-- Item 4: High Court DySO -->
             <div onclick="openJobDetailModal(7)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-purple-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+              <span class="w-2 h-2 rounded-md bg-purple-500"></span>
               <span class="font-bold text-purple-800">હાઇકોર્ટ આસિસ્ટન્ટ & DySO:</span>
               <span class="text-slate-600">પ્રાથમિક કસોટી ૨૪ નવેમ્બર ૨૦૨૬</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 font-mono">૧,૪૪૬ જગ્યાઓ</span>
@@ -296,7 +296,7 @@
 
             <!-- Item 5: GSRTC Conductor -->
             <div onclick="openJobDetailModal(4)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span class="w-2 h-2 rounded-md bg-emerald-500"></span>
               <span class="font-bold text-emerald-800">GSRTC એસ.ટી. કંડક્ટર/ડ્રાઈવર:</span>
               <span class="text-slate-600">OMR કસોટી શિડ્યુલ જાહેર</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono">૭,૪૧૯ જગ્યાઓ</span>
@@ -304,21 +304,21 @@
 
             <!-- Duplicate Set for Smooth Infinite Loop -->
             <div onclick="openJobDetailModal(2)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+              <span class="w-2 h-2 rounded-md bg-amber-500 animate-ping"></span>
               <span class="font-bold text-amber-800">GPSC વર્ગ ૧-૨:</span>
               <span class="text-slate-600">પ્રિલિમ્સ ૧૫ નવેમ્બર ૨૦૨૬</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-mono">૩૮૮ જગ્યાઓ</span>
             </div>
 
             <div onclick="openJobDetailModal(1)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-orange-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+              <span class="w-2 h-2 rounded-md bg-orange-500"></span>
               <span class="font-bold text-orange-800">પોલીસ કોન્સ્ટેબલ / SI:</span>
               <span class="text-slate-600">PET/PST શારીરિક કસોટી ૧૨ ઓક્ટોબર</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-100 text-orange-800 font-mono">૧૨,૪૭૨ જગ્યાઓ</span>
             </div>
 
             <div onclick="openJobDetailModal(3)" class="timeline-pill-chip cursor-pointer px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-300 flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span class="w-2 h-2 rounded-md bg-blue-500"></span>
               <span class="font-bold text-blue-800">GSSSB CCE ગ્રૂપ A & B:</span>
               <span class="text-slate-600">મુખ્ય લેખિત પરીક્ષા ૨૮ ડિસેમ્બર</span>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-mono">૫,૫૫૪ જગ્યાઓ</span>
@@ -333,16 +333,16 @@
       </div>
 
       <!-- ૧૦-સેકન્ડ ઝડપી યોગ્યતા રડાર (10-Second Instant Eligibility Radar - Gujarat Edition) -->
-      <div class="bg-gradient-to-br from-white via-amber-50/25 to-orange-50/20 rounded-2xl p-5 border-2 border-orange-200/90 shadow-sm relative overflow-hidden mb-6">
+      <div class="bg-gradient-to-br from-white via-amber-50/25 to-orange-50/20 rounded-lg p-5 border-2 border-orange-200/90 shadow-sm relative overflow-hidden mb-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-amber-200/60">
           <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 p-0.5 shadow-xs flex items-center justify-center text-white shrink-0">
-              <svg class="w-6 h-6 animate-pulse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+            <div class="w-11 h-11 rounded-lg bg-blue-600 p-0.5 shadow-xs flex items-center justify-center text-slate-900 shrink-0">
+              <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
             </div>
             <div>
               <div class="flex items-center gap-2">
                 <h2 class="text-base sm:text-lg font-black text-[#0a2540] tracking-tight">૧૦-સેકન્ડ ઝડપી યોગ્યતા રડાર</h2>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-orange-800 border border-orange-200">OJAS / GPSC સ્પેશિયલ</span>
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-orange-100 text-orange-800 border border-orange-200">OJAS / GPSC સ્પેશિયલ</span>
               </div>
               <p class="text-xs text-slate-500 mt-0.5">
                 તમારી ઉંમર, શિક્ષણ અને અનામત કેટેગરી પસંદ કરો - કઈ સરકારી ભરતી માટે તમે લાયક છો તે ત્વરિત જાણી લો.
@@ -418,7 +418,7 @@
                 <option value="Gujarat" selected>🦁 માત્ર ગુજરાત રાજ્ય (OJAS)</option>
                 <option value="All">ગુજરાત + કેન્દ્ર સરકાર બંને</option>
               </select>
-              <button id="radar-submit-btn" onclick="runQuickEligibilityRadar(); playAudioTick(780, 0.05);" class="px-4 py-2.5 bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center gap-1.5 shrink-0 cursor-pointer">
+              <button id="radar-submit-btn" onclick="runQuickEligibilityRadar(); playAudioTick(780, 0.05);" class="px-4 py-2.5 bg-orange-600 hover:bg-orange-500 text-slate-900 text-xs font-bold rounded-xl shadow-xs transition-all flex items-center gap-1.5 shrink-0 cursor-pointer">
                 <svg class="w-4 h-4 text-amber-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 <span>યોગ્યતા તપાસો</span>
               </button>
@@ -431,7 +431,7 @@
       </div>
 
       <!-- Gujarat Comprehensive Filter Station (Modular Containers Standard) -->
-      <div class="filter-station-box rounded-2xl p-4 sm:p-6 mb-8 space-y-3 shadow-sm">
+      <div class="filter-station-box rounded-lg p-4 sm:p-6 mb-8 space-y-3 shadow-sm">
         <!-- Search Bar with Reset Button & Active Filter Counter -->
         <div class="flex flex-col sm:flex-row items-center gap-3 pb-3 border-b border-amber-200/80">
           <div class="relative flex-1 w-full">
@@ -445,13 +445,13 @@
               class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-24 py-3 text-sm text-[#0a2540] placeholder-slate-400 outline-none focus:border-orange-500 focus:bg-white shadow-2xs transition-colors"
             >
             <div class="absolute inset-y-0 right-2 flex items-center gap-1.5">
-              <button id="search-clear-btn" onclick="clearSearch()" class="p-1 rounded-full hover:bg-slate-200 text-slate-400 hover:text-slate-600 transition-colors" title="સાફ કરો">
+              <button id="search-clear-btn" onclick="clearSearch()" class="p-1 rounded-md hover:bg-slate-200 text-slate-600 hover:text-slate-600 transition-colors" title="સાફ કરો">
                 <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
               </button>
             </div>
           </div>
           <div class="flex items-center gap-2 shrink-0 w-full sm:w-auto">
-            <button onclick="executeSearch()" class="flex-1 sm:flex-initial px-5 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+            <button onclick="executeSearch()" class="flex-1 sm:flex-initial px-5 py-3 bg-blue-600 hover:from-orange-600 hover:to-amber-600 text-slate-900 text-xs font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer">
               <span>શોધો</span>
               <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
@@ -594,7 +594,7 @@
         <div class="filter-module-row">
           <div class="flex flex-wrap items-center gap-1.5">
             <span class="text-xs text-slate-700 font-bold mr-1 shrink-0">ભરતી બોર્ડ:</span>
-            <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white shadow-xs">
+            <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3 py-1 rounded-lg text-xs font-bold bg-orange-600 text-slate-900 shadow-xs">
               તમામ ગુજરાત બોર્ડ
             </button>
             {% for b in boards_gujarat %}
@@ -612,7 +612,7 @@
               <svg class="w-3.5 h-3.5 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               <span>જિલ્લા વાર:</span>
             </span>
-            <button onclick="filterByGujaratDistrict('All', this)" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white shadow-xs">તમામ જિલ્લા</button>
+            <button onclick="filterByGujaratDistrict('All', this)" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-slate-900 shadow-xs">તમામ જિલ્લા</button>
             <button onclick="filterByGujaratDistrict('ગાંધીનગર', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">ગાંધીનગર (સચિવાલય)</button>
             <button onclick="filterByGujaratDistrict('અમદાવાદ', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">અમદાવાદ</button>
             <button onclick="filterByGujaratDistrict('સુરત', this)" class="px-2.5 py-1 rounded-lg text-xs bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-200 hover:border-orange-300 transition-colors shadow-2xs">સુરત</button>
@@ -650,7 +650,7 @@
           <button id="btn-view-cards" class="p-1.5 rounded-md bg-orange-50 text-orange-600 border border-orange-200 transition-colors" title="કાર્ડ વ્યુ">
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
           </button>
-          <button id="btn-view-table" class="p-1.5 rounded-md text-slate-400 hover:text-slate-700 transition-colors" title="ટેબલ વ્યુ">
+          <button id="btn-view-table" class="p-1.5 rounded-md text-slate-600 hover:text-slate-700 transition-colors" title="ટેબલ વ્યુ">
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
           </button>
         </div>
@@ -664,17 +664,17 @@
   </main>
 
   <!-- Live Scanner Telemetry Modal -->
-  <div id="scanner-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-orange-500/40 p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
+  <div id="scanner-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900  p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-lg border border-orange-500/40 p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div class="flex items-center gap-3">
-          <i data-lucide="radar" class="w-6 h-6 text-orange-400 radar-ping"></i>
+          <i data-lucide="radar" class="w-6 h-6 text-orange-400 "></i>
           <div>
-            <h3 class="text-base font-bold text-white">OJAS અને ગુજરાત સરકાર ભરતી સ્કેનર</h3>
-            <p class="text-xs text-slate-400 font-mono" id="scan-current-source">કનેક્ટ થઈ રહ્યું છે...</p>
+            <h3 class="text-base font-bold text-slate-900">OJAS અને ગુજરાત સરકાર ભરતી સ્કેનર</h3>
+            <p class="text-xs text-slate-600 font-mono" id="scan-current-source">કનેક્ટ થઈ રહ્યું છે...</p>
           </div>
         </div>
-        <button onclick="closeScannerModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+        <button onclick="closeScannerModal()" class="p-2 rounded-lg bg-white text-slate-600 hover:text-slate-900">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -682,26 +682,26 @@
       <!-- Telemetry Stats Strip -->
       <div class="grid grid-cols-3 gap-3 my-4">
         <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
-          <div class="text-xs text-slate-400 font-medium">તપાસેલ જાહેરાતો</div>
+          <div class="text-xs text-slate-600 font-medium">તપાસેલ જાહેરાતો</div>
           <div class="text-lg font-bold text-orange-400 mt-0.5" id="stat-scanned-count">0</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
-          <div class="text-xs text-slate-400 font-medium">નવી ભરતીઓ ઉમેરાઈ</div>
+          <div class="text-xs text-slate-600 font-medium">નવી ભરતીઓ ઉમેરાઈ</div>
           <div class="text-lg font-bold text-emerald-400 mt-0.5" id="stat-added-count">0</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
-          <div class="text-xs text-slate-400 font-medium">ઝીરો ડુપ્લિકેશન</div>
+          <div class="text-xs text-slate-600 font-medium">ઝીરો ડુપ્લિકેશન</div>
           <div class="text-lg font-bold text-amber-400 mt-0.5">૧૦૦% સચોટ</div>
         </div>
       </div>
 
       <div class="mb-4">
-        <div class="flex justify-between text-xs text-slate-400 mb-1">
+        <div class="flex justify-between text-xs text-slate-600 mb-1">
           <span>સ્કેન પ્રગતિ</span>
           <span id="scan-progress-percent" class="font-bold text-orange-400">0%</span>
         </div>
-        <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
-          <div id="scan-progress-bar" class="bg-gradient-to-r from-orange-500 to-amber-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+        <div class="w-full bg-slate-900 rounded-md h-2.5 overflow-hidden border border-slate-800">
+          <div id="scan-progress-bar" class="bg-blue-600 h-2.5 rounded-md transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
 
@@ -710,7 +710,7 @@
       </div>
 
       <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-        <button onclick="closeScannerModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg">
+        <button onclick="closeScannerModal()" class="px-4 py-2 bg-white hover:bg-slate-700 text-slate-900 text-xs font-semibold rounded-lg">
           બંધ કરો
         </button>
       </div>
@@ -721,25 +721,25 @@
 
   <!-- Job Detail Modal -->
   <div id="job-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-xl p-2 sm:p-4 md:p-6 transition-all duration-300">
-    <div class="glass-panel w-full max-w-5xl rounded-3xl border border-orange-500/40 shadow-[0_0_60px_rgba(0,0,0,0.95)] relative flex flex-col max-h-[94vh] overflow-hidden bg-[#090e1a]/98">
+    <div class="glass-panel w-full max-w-5xl rounded-lg border border-orange-500/40 shadow-[0_0_60px_rgba(0,0,0,0.95)] relative flex flex-col max-h-[94vh] overflow-hidden bg-[#090e1a]/98">
       <!-- Permanent Fixed Top Bar (Always Visible, Never Scrolls Away) -->
       <div class="px-4 sm:px-6 py-3 border-b border-slate-800 bg-slate-900/95 backdrop-blur flex items-center justify-between z-30 shrink-0 select-none">
         <div class="flex items-center gap-2 sm:gap-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-orange-400 animate-pulse"></span>
+          <span class="w-2.5 h-2.5 rounded-md bg-orange-400 "></span>
           <div class="flex flex-col">
-            <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
+            <span class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-wide flex items-center gap-1.5">
               <i data-lucide="file-check-2" class="w-4 h-4 text-orange-400"></i>
               <span>ગુજરાત ભરતી વિગતવાર ડોઝિયર અને અરજી પદ્ધતિ</span>
             </span>
-            <span class="text-[10px] text-slate-400 sm:hidden">Close બટન અથવા ESC દબાવી પાછા જાઓ</span>
+            <span class="text-[10px] text-slate-600 sm:hidden">Close બટન અથવા ESC દબાવી પાછા જાઓ</span>
           </div>
-          <span class="text-[11px] font-medium text-slate-400 hidden sm:inline">• પાછા જવા માટે <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-mono border border-slate-700">ESC</kbd> અથવા Close બટન દબાવો</span>
+          <span class="text-[11px] font-medium text-slate-600 hidden sm:inline">• પાછા જવા માટે <kbd class="px-1.5 py-0.5 rounded bg-white text-slate-300 text-[10px] font-mono border border-slate-700">ESC</kbd> અથવા Close બટન દબાવો</span>
         </div>
 
         <!-- Prominent Sticky Close Button -->
         <button
           onclick="closeJobDetailModal()"
-          class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/30 transition-all transform hover:scale-105 cursor-pointer z-50 shrink-0"
+          class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-slate-900 font-extrabold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/30 transition-all transform hover:scale-105 cursor-pointer z-50 shrink-0"
           title="Close Recruitment Details (Esc)"
         >
           <i data-lucide="x" class="w-4 h-4 stroke-[3]"></i>
@@ -752,14 +752,14 @@
   </div>
 
   <!-- Bookmarks Modal -->
-  <div id="bookmarks-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-orange-500/30 p-6 shadow-2xl relative flex flex-col max-h-[85vh]">
+  <div id="bookmarks-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900  p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-lg border border-orange-500/30 p-6 shadow-2xl relative flex flex-col max-h-[85vh]">
       <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
         <div class="flex items-center gap-2">
           <i data-lucide="bookmark" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
-          <h3 class="text-base font-bold text-white">સાચવેલી ભરતીઓ (Saved Gujarat Bookmarks)</h3>
+          <h3 class="text-base font-bold text-slate-900">સાચવેલી ભરતીઓ (Saved Gujarat Bookmarks)</h3>
         </div>
-        <button onclick="closeBookmarksModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+        <button onclick="closeBookmarksModal()" class="p-2 rounded-lg bg-white text-slate-600 hover:text-slate-900">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -768,19 +768,19 @@
   </div>
 
   <!-- Syllabus & Exam Pattern Modal -->
-  <div id="syllabus-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 font-gujarati">
-    <div class="glass-modal w-full max-w-2xl rounded-2xl p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-orange-500/40">
+  <div id="syllabus-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900  p-4 font-gujarati">
+    <div class="glass-modal w-full max-w-2xl rounded-lg p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-orange-500/40">
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400">
             <i data-lucide="book-open" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-white">પરીક્ષા પદ્ધતિ, ગુણભાર અને સિલેબસ વિગત</h3>
-            <p class="text-xs text-slate-400 font-sans">Official Scheme of Examination, Subject Weightage &amp; Negative Marking</p>
+            <h3 class="text-base font-bold text-slate-900">પરીક્ષા પદ્ધતિ, ગુણભાર અને સિલેબસ વિગત</h3>
+            <p class="text-xs text-slate-600 font-sans">Official Scheme of Examination, Subject Weightage &amp; Negative Marking</p>
           </div>
         </div>
-        <button onclick="closeSyllabusModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors">
+        <button onclick="closeSyllabusModal()" class="p-2 rounded-xl bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-700 transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -791,19 +791,19 @@
   </div>
 
   <!-- Application Fee & Exemption Guide Modal -->
-  <div id="fee-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 font-gujarati">
-    <div class="glass-modal w-full max-w-2xl rounded-2xl p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-emerald-500/40">
+  <div id="fee-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900  p-4 font-gujarati">
+    <div class="glass-modal w-full max-w-2xl rounded-lg p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-emerald-500/40">
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
             <i data-lucide="credit-card" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-white">અરજી ફી અને ફી માફી નિયમો</h3>
-            <p class="text-xs text-slate-400 font-sans">Gujarat Government Application Fee, Post Office Challan &amp; Exemption Guide</p>
+            <h3 class="text-base font-bold text-slate-900">અરજી ફી અને ફી માફી નિયમો</h3>
+            <p class="text-xs text-slate-600 font-sans">Gujarat Government Application Fee, Post Office Challan &amp; Exemption Guide</p>
           </div>
         </div>
-        <button onclick="closeFeeGuideModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+        <button onclick="closeFeeGuideModal()" class="p-2 rounded-xl bg-white text-slate-600 hover:text-slate-900">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -811,7 +811,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-white text-sm font-gujarati">ગુજરાત સરકાર સીધી ભરતી (OJAS)</span>
+              <span class="font-bold text-slate-900 text-sm font-gujarati">ગુજરાત સરકાર સીધી ભરતી (OJAS)</span>
               <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">GPSC / GSSSB / LRD</span>
             </div>
             <ul class="space-y-1.5 text-slate-300 font-gujarati">
@@ -825,7 +825,7 @@
 
           <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-white text-sm font-gujarati">પોસ્ટ ઓફિસ ચલણ &amp; ઓનલાઇન ચુકવણી</span>
+              <span class="font-bold text-slate-900 text-sm font-gujarati">પોસ્ટ ઓફિસ ચલણ &amp; ઓનલાઇન ચુકવણી</span>
               <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">Payment Mode</span>
             </div>
             <ul class="space-y-1.5 text-slate-300 font-gujarati">
@@ -851,19 +851,19 @@
   </div>
 
   <!-- Exam Dates & Timeline Modal -->
-  <div id="timeline-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 font-gujarati">
-    <div class="glass-modal w-full max-w-2xl rounded-2xl p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-amber-500/40">
+  <div id="timeline-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900  p-4 font-gujarati">
+    <div class="glass-modal w-full max-w-2xl rounded-lg p-6 relative flex flex-col max-h-[90vh] overflow-hidden border border-amber-500/40">
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
             <i data-lucide="calendar" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-white">પરીક્ષા તારીખો, કોલ લેટર &amp; સમયપત્રક</h3>
-            <p class="text-xs text-slate-400 font-sans">Official Examination Calendar &amp; Admit Card Schedule</p>
+            <h3 class="text-base font-bold text-slate-900">પરીક્ષા તારીખો, કોલ લેટર &amp; સમયપત્રક</h3>
+            <p class="text-xs text-slate-600 font-sans">Official Examination Calendar &amp; Admit Card Schedule</p>
           </div>
         </div>
-        <button onclick="closeTimelineModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+        <button onclick="closeTimelineModal()" class="p-2 rounded-xl bg-white text-slate-600 hover:text-slate-900">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -874,34 +874,34 @@
   </div>
 
   <!-- Free Job Alert Subscription Modal -->
-  <div id="subscribe-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-    <div class="glass-panel w-full max-w-md rounded-2xl border border-orange-500/30 p-6 shadow-2xl relative">
+  <div id="subscribe-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900  p-4">
+    <div class="glass-panel w-full max-w-md rounded-lg border border-orange-500/30 p-6 shadow-2xl relative">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
           <i data-lucide="bell" class="w-5 h-5 text-orange-400"></i>
           ગુજરાત નોકરી એલર્ટ્સ સબસ્ક્રિપ્શન
         </h3>
-        <button onclick="closeSubscribeModal()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+        <button onclick="closeSubscribeModal()" class="p-1.5 rounded-lg bg-white text-slate-600 hover:text-slate-900">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
       <form onsubmit="handleSubscribe(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">તમારું પૂરું નામ</label>
-          <input type="text" id="sub-name" required placeholder="ઉદા. રમેશ પટેલ" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <label class="block text-xs font-medium text-slate-600 mb-1">તમારું પૂરું નામ</label>
+          <input type="text" id="sub-name" required placeholder="ઉદા. રમેશ પટેલ" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
         </div>
         <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">ઈમેઇલ એડ્રેસ</label>
-          <input type="email" id="sub-email" required placeholder="ramesh@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <label class="block text-xs font-medium text-slate-600 mb-1">ઈમેઇલ એડ્રેસ</label>
+          <input type="email" id="sub-email" required placeholder="ramesh@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
         </div>
         <div>
-          <label class="block text-xs font-medium text-slate-400 mb-1">પસંદગી</label>
-          <select id="sub-state" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <label class="block text-xs font-medium text-slate-600 mb-1">પસંદગી</label>
+          <select id="sub-state" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
             <option value="Gujarat" selected>ગુજરાત સરકાર (OJAS / GPSC / GSSSB)</option>
             <option value="Both">ગુજરાત અને કેન્દ્ર સરકાર બંને</option>
           </select>
         </div>
-        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all">
+        <button type="submit" class="w-full py-2.5 bg-blue-600 hover:from-orange-500 hover:to-amber-500 text-slate-900 font-bold text-xs rounded-xl shadow-lg transition-all">
           ફ્રી એલર્ટ સક્રિય કરો
         </button>
       </form>
@@ -909,18 +909,18 @@
   </div>
 
   <!-- Floating Job Compare Dock Bar -->
-  <div id="compare-floating-bar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-xl border border-orange-500/50 shadow-2xl rounded-2xl px-5 py-3 items-center gap-4 text-xs font-gujarati">
+  <div id="compare-floating-bar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-xl border border-orange-500/50 shadow-2xl rounded-lg px-5 py-3 items-center gap-4 text-xs font-gujarati">
     <div class="flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-orange-400 animate-pulse"></span>
-      <span class="font-bold text-white" id="compare-selected-count">0/2 પસંદ થયેલ</span>
-      <span class="text-slate-400 hidden sm:inline">સરખામણી માટે</span>
+      <span class="w-2.5 h-2.5 rounded-md bg-orange-400 "></span>
+      <span class="font-bold text-slate-900" id="compare-selected-count">0/2 પસંદ થયેલ</span>
+      <span class="text-slate-600 hidden sm:inline">સરખામણી માટે</span>
     </div>
     <div class="flex items-center gap-2">
-      <button onclick="openCompareModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold shadow-lg shadow-orange-500/30 transition-all flex items-center gap-1.5">
+      <button onclick="openCompareModal()" class="px-4 py-2 rounded-xl bg-blue-600 hover:from-orange-500 hover:to-amber-500 text-slate-900 font-bold shadow-lg shadow-orange-500/30 transition-all flex items-center gap-1.5">
         <span>સરખામણી કરો</span>
         <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
       </button>
-      <button onclick="selectedCompareIds=[]; updateCompareFloatingBar(); fetchJobs();" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white" title="પસંદગી રદ કરો">
+      <button onclick="selectedCompareIds=[]; updateCompareFloatingBar(); fetchJobs();" class="p-2 rounded-xl bg-white hover:bg-slate-700 text-slate-600 hover:text-slate-900" title="પસંદગી રદ કરો">
         <i data-lucide="x" class="w-3.5 h-3.5"></i>
       </button>
     </div>
@@ -928,17 +928,17 @@
 
   <!-- Command Palette Modal (Ctrl+K or ⌘K) -->
   <div id="command-palette-modal" class="hidden fixed inset-0 z-50 command-palette-backdrop flex items-start justify-center pt-20 px-4 font-gujarati">
-    <div class="bg-slate-900 border border-orange-500/40 rounded-2xl max-w-xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+    <div class="bg-slate-900 border border-orange-500/40 rounded-lg max-w-xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
       <div class="p-3.5 border-b border-slate-800 flex items-center gap-3">
         <i data-lucide="search" class="w-5 h-5 text-orange-400"></i>
         <input
           type="text"
           id="palette-input"
           placeholder="ભરતી, બોર્ડ, લાયકાત અથવા ટૂલ શોધો (દા.ત. પોલીસ, GPSC, કંડક્ટર)..."
-          class="bg-transparent text-white text-sm w-full outline-none placeholder-slate-500"
+          class="bg-transparent text-slate-900 text-sm w-full outline-none placeholder-slate-500"
         >
-        <button onclick="closeCommandPalette()" class="text-slate-400 hover:text-white p-1 rounded-lg">
-          <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400 font-mono">ESC</kbd>
+        <button onclick="closeCommandPalette()" class="text-slate-600 hover:text-slate-900 p-1 rounded-lg">
+          <kbd class="px-1.5 py-0.5 rounded bg-white text-[10px] text-slate-600 font-mono">ESC</kbd>
         </button>
       </div>
 
@@ -946,7 +946,7 @@
         <!-- Filled dynamically -->
       </div>
 
-      <div class="px-4 py-2.5 bg-slate-950/80 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-sans">
+      <div class="px-4 py-2.5 bg-slate-900 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-sans">
         <span>Enter દબાવીને સીધું ઓપન કરો</span>
         <span>FuturSet ગુજરાત કમાન્ડ પેલેટ</span>
       </div>
@@ -954,27 +954,27 @@
   </div>
 
   <!-- 7th Pay Commission Salary & Pension Calculator Modal -->
-  <div id="salary-calculator-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
-    <div class="bg-slate-900 border border-orange-500/30 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+  <div id="salary-calculator-modal" class="hidden fixed inset-0 z-50 bg-slate-900 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/30 rounded-lg max-w-lg w-full p-6 shadow-2xl relative">
       <div class="flex items-center justify-between pb-4 border-b border-slate-800">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
             <i data-lucide="calculator" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-extrabold text-white text-base">ગુજરાત ૭મું પગાર પંચ કેલ્ક્યુલેટર</h3>
-            <p class="text-[11px] text-slate-400 font-sans" id="calc-prefill-note">Gujarat Govt Fix-Pay & Regular Scales</p>
+            <h3 class="font-extrabold text-slate-900 text-base">ગુજરાત ૭મું પગાર પંચ કેલ્ક્યુલેટર</h3>
+            <p class="text-[11px] text-slate-600 font-sans" id="calc-prefill-note">Gujarat Govt Fix-Pay & Regular Scales</p>
           </div>
         </div>
-        <button onclick="closeSalaryCalculator()" class="text-slate-400 hover:text-white p-1.5 rounded-lg">
+        <button onclick="closeSalaryCalculator()" class="text-slate-600 hover:text-slate-900 p-1.5 rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <div class="space-y-4 my-5 text-xs font-sans">
         <div>
-          <label class="block text-slate-400 mb-1.5 font-medium font-gujarati">ભરતી સંવર્ગ / હોદ્દો પસંદ કરો</label>
-          <select id="salary-post-type" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-orange-400">
+          <label class="block text-slate-600 mb-1.5 font-medium font-gujarati">ભરતી સંવર્ગ / હોદ્દો પસંદ કરો</label>
+          <select id="salary-post-type" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-900 outline-none focus:border-orange-400">
             <option value="fix_clerk" selected>ગુજરાત વર્ગ-૩ ફિક્સ પગાર (પોલીસ કોન્સ્ટેબલ, તલાટી, જુનિયર ક્લાર્ક) - ₹26,000/માસ</option>
             <option value="fix_head">ગુજરાત હેડ ક્લાર્ક / સબ-ઓડિટર ફિક્સ પગાર - ₹40,800/માસ</option>
             <option value="lvl2">લેવલ ૨ રેગ્યુલર પે સ્કેલ (જુનિયર ક્લાર્ક) - બેઝિક ₹19,900</option>
@@ -985,8 +985,8 @@
         </div>
 
         <div>
-          <label class="block text-slate-400 mb-1.5 font-medium font-gujarati">શહેર વર્ગીકરણ (HRA કેટેગરી)</label>
-          <select id="salary-city-tier" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-orange-400">
+          <label class="block text-slate-600 mb-1.5 font-medium font-gujarati">શહેર વર્ગીકરણ (HRA કેટેગરી)</label>
+          <select id="salary-city-tier" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-900 outline-none focus:border-orange-400">
             <option value="X" selected>Tier X શહેર (અમદાવાદ - 27% HRA)</option>
             <option value="Y">Tier Y શહેર (સુરત, વડોદરા, રાજકોટ, ગાંધીનગર - 18% HRA)</option>
             <option value="Z">Tier Z વિસ્તાર (અન્ય જિલ્લાઓ અને ગ્રામ્ય - 9% HRA)</option>
@@ -994,25 +994,25 @@
         </div>
 
         <!-- Calculated Matrix Breakdown -->
-        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2.5">
           <div class="flex justify-between">
-            <span class="text-slate-400 font-gujarati">મૂળ પગાર (Basic Pay):</span>
+            <span class="text-slate-600 font-gujarati">મૂળ પગાર (Basic Pay):</span>
             <span class="font-bold text-slate-200" id="sal-disp-basic">₹26,000</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-400 font-gujarati">મોંઘવારી ભથ્થું (DA @ 50%):</span>
+            <span class="text-slate-600 font-gujarati">મોંઘવારી ભથ્થું (DA @ 50%):</span>
             <span class="font-bold text-slate-200" id="sal-disp-da">N/A (ફિક્સ પગાર)</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-400 font-gujarati">ઘરભાડું ભથ્થું (HRA):</span>
+            <span class="text-slate-600 font-gujarati">ઘરભાડું ભથ્થું (HRA):</span>
             <span class="font-bold text-slate-200" id="sal-disp-hra">N/A (ફિક્સ પગાર)</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-400 font-gujarati">વાહન ભથ્થું (TA):</span>
+            <span class="text-slate-600 font-gujarati">વાહન ભથ્થું (TA):</span>
             <span class="font-bold text-slate-200" id="sal-disp-ta">N/A (ફિક્સ પગાર)</span>
           </div>
           <div class="flex justify-between pt-2 border-t border-slate-800">
-            <span class="text-slate-400 font-gujarati">કુલ માસિક પગાર (Gross):</span>
+            <span class="text-slate-600 font-gujarati">કુલ માસિક પગાર (Gross):</span>
             <span class="font-bold text-amber-400" id="sal-disp-gross">₹26,000</span>
           </div>
           <div class="flex justify-between text-rose-400/90 font-gujarati">
@@ -1020,7 +1020,7 @@
             <span class="font-medium" id="sal-disp-nps">₹200</span>
           </div>
           <div class="flex justify-between pt-2 border-t border-slate-800 items-center">
-            <span class="font-bold text-white text-sm font-gujarati">ચોખ્ખો હાથમાં આવતો પગાર (In-Hand):</span>
+            <span class="font-bold text-slate-900 text-sm font-gujarati">ચોખ્ખો હાથમાં આવતો પગાર (In-Hand):</span>
             <span class="font-black text-emerald-400 text-base" id="sal-disp-net">₹25,800 / Month</span>
           </div>
         </div>
@@ -1028,20 +1028,20 @@
 
       <div class="flex items-center justify-between text-[11px] text-slate-500 pt-2 border-t border-slate-800 font-gujarati">
         <span>*ગુજરાત નાણા વિભાગના ૭મા પગાર પંચ મુજબ.</span>
-        <button onclick="closeSalaryCalculator()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-semibold">બંધ કરો</button>
+        <button onclick="closeSalaryCalculator()" class="px-4 py-1.5 rounded-lg bg-white text-slate-300 hover:text-slate-900 font-semibold">બંધ કરો</button>
       </div>
     </div>
   </div>
 
   <!-- Side-by-Side Job Comparison Modal -->
-  <div id="compare-drawer-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
-    <div class="bg-slate-900 border border-orange-500/40 rounded-2xl max-w-3xl w-full shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
+  <div id="compare-drawer-modal" class="hidden fixed inset-0 z-50 bg-slate-900 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/40 rounded-lg max-w-3xl w-full shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
       <div class="p-4 border-b border-slate-800 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <i data-lucide="split" class="w-5 h-5 text-orange-400"></i>
-          <h3 class="font-extrabold text-white text-base">બે ભરતીઓની સામસામે સરખામણી</h3>
+          <h3 class="font-extrabold text-slate-900 text-base">બે ભરતીઓની સામસામે સરખામણી</h3>
         </div>
-        <button onclick="closeCompareModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+        <button onclick="closeCompareModal()" class="text-slate-600 hover:text-slate-900 p-1 rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -1053,94 +1053,94 @@
   </div>
 
   <!-- OJAS OTR Step-by-Step Guide Modal -->
-  <div id="ojas-guide-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
-    <div class="bg-slate-900 border border-orange-500/40 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+  <div id="ojas-guide-modal" class="hidden fixed inset-0 z-50 bg-slate-900 backdrop-blur-xl flex items-center justify-center p-4 font-gujarati">
+    <div class="bg-slate-900 border border-orange-500/40 rounded-lg max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-4 border-b border-slate-800">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center">
             <i data-lucide="book-open" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-extrabold text-white text-base">OJAS ગુજરાત ઓનલાઇન અરજી માર્ગદર્શિકા</h3>
-            <p class="text-[11px] text-slate-400 font-sans">ojas.gujarat.gov.in Official Walkthrough</p>
+            <h3 class="font-extrabold text-slate-900 text-base">OJAS ગુજરાત ઓનલાઇન અરજી માર્ગદર્શિકા</h3>
+            <p class="text-[11px] text-slate-600 font-sans">ojas.gujarat.gov.in Official Walkthrough</p>
           </div>
         </div>
-        <button onclick="closeOjasGuideModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg">
+        <button onclick="closeOjasGuideModal()" class="text-slate-600 hover:text-slate-900 p-1.5 rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <div class="space-y-4 my-5 text-xs text-slate-300 leading-relaxed">
-        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
-          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૧</div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૧</div>
           <div>
-            <h4 class="font-bold text-white text-sm mb-1">વન ટાઈમ રજીસ્ટ્રેશન (OTR)</h4>
+            <h4 class="font-bold text-slate-900 text-sm mb-1">વન ટાઈમ રજીસ્ટ્રેશન (OTR)</h4>
             <p><a href="https://ojas.gujarat.gov.in" target="_blank" class="text-orange-400 underline">ojas.gujarat.gov.in</a> પર જાઓ અને <strong>"Registration" &rarr; "Apply"</strong> પર ક્લિક કરો. તમારી વ્યક્તિગત વિગતો, જાતિ (SEBC/SC/ST/EWS), જન્મ તારીખ અને મોબાઈલ નંબર નાખીને OTR રજીસ્ટ્રેશન નંબર મેળવો.</p>
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
-          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૨</div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૨</div>
           <div>
-            <h4 class="font-bold text-white text-sm mb-1">ફોટો અને સહી અપલોડ કરવાના નિયમો</h4>
+            <h4 class="font-bold text-slate-900 text-sm mb-1">ફોટો અને સહી અપલોડ કરવાના નિયમો</h4>
             <p><strong>પાસપોર્ટ ફોટોગ્રાફ:</strong> ફાઇલ સાઈઝ <strong>15 KB થી ઓછી</strong> હોવી જોઈએ, JPG ફોર્મેટ, સાઈઝ: 5 cm ઊંચાઈ x 3.6 cm પહોળાઈ.<br>
             <strong>સહી (Signature):</strong> ફાઇલ સાઈઝ <strong>15 KB થી ઓછી</strong> હોવી જોઈએ, સફેદ કાગળ પર કાળી/વાદળી પેનથી સહી, સાઈઝ: 2.5 cm ઊંચાઈ x 7.5 cm પહોળાઈ.</p>
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
-          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૩</div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૩</div>
           <div>
-            <h4 class="font-bold text-white text-sm mb-1">ઓનલાઇન અરજી અને કન્ફર્મેશન</h4>
+            <h4 class="font-bold text-slate-900 text-sm mb-1">ઓનલાઇન અરજી અને કન્ફર્મેશન</h4>
             <p><strong>"Online Application" &rarr; "Apply"</strong> માં જઈને વિભાગ (દા.ત. GPRB પોલીસ, GSSSB, GPSC) પસંદ કરો. શૈક્ષણિક વિગતો ભરો અને <strong>"Confirm Application"</strong> બટન દબાવો. કન્ફર્મેશન નંબર સાચવી રાખો.</p>
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex gap-3">
-          <div class="w-6 h-6 rounded-full bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૪</div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
+          <div class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-300 font-bold flex items-center justify-center shrink-0">૪</div>
           <div>
-            <h4 class="font-bold text-white text-sm mb-1">ફી ભરવી અને હોલ ટિકિટ</h4>
+            <h4 class="font-bold text-slate-900 text-sm mb-1">ફી ભરવી અને હોલ ટિકિટ</h4>
             <p>સામાન્ય વર્ગના ઉમેદવારો ઓનલાઇન UPI/NetBanking અથવા પોસ્ટ ઓફિસ ચલણથી ₹૧૦૦ + ચાર્જ ભરી શકે છે. અનામત વર્ગના ઉમેદવારો માટે મોટાભાગની ભરતીઓમાં ફી માફ છે. પરીક્ષાના ૭ દિવસ પહેલા OJAS પરથી કોલ લેટર ડાઉનલોડ કરો.</p>
           </div>
         </div>
       </div>
 
       <div class="flex items-center justify-between pt-3 border-t border-slate-800">
-        <a href="https://ojas.gujarat.gov.in" target="_blank" class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5">
+        <a href="https://ojas.gujarat.gov.in" target="_blank" class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-slate-900 font-bold text-xs shadow-md transition-all flex items-center gap-1.5">
           <span>OJAS પોર્ટલ ખોલો</span>
           <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
         </a>
-        <button onclick="closeOjasGuideModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold">બંધ કરો</button>
+        <button onclick="closeOjasGuideModal()" class="px-4 py-2 rounded-xl bg-white text-slate-300 hover:text-slate-900 text-xs font-semibold">બંધ કરો</button>
       </div>
     </div>
   </div>
 
   <!-- Smart Eligibility & Career Navigator Modal (ગુજરાતી સ્પેશિયલ) -->
-  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto">
-    <div class="glass-modal w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl border border-orange-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
+  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto">
+    <div class="glass-modal w-full max-w-4xl max-h-[92vh] flex flex-col rounded-lg border border-orange-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
       <!-- Header -->
       <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/50">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-orange-500/20 to-indigo-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 shadow-inner">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-indigo-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 shadow-inner">
             <i data-lucide="target" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-lg font-black text-white flex items-center gap-2">
+            <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
               AI લાયકાત મૂલ્યાંકન &amp; સરકારી નોકરી માર્ગદર્શક
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">૧૦૦% સચોટ</span>
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">૧૦૦% સચોટ</span>
             </h3>
-            <p class="text-xs text-slate-400">તમારી ડિગ્રી અને ઉંમર અનુસાર ગુજરાત અને કેન્દ્ર સરકારની તમામ યોગ્ય ભરતીઓ તાત્કાલિક મેળવો.</p>
+            <p class="text-xs text-slate-600">તમારી ડિગ્રી અને ઉંમર અનુસાર ગુજરાત અને કેન્દ્ર સરકારની તમામ યોગ્ય ભરતીઓ તાત્કાલિક મેળવો.</p>
           </div>
         </div>
-        <button onclick="closeMatcherModal()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+        <button onclick="closeMatcherModal()" class="w-8 h-8 rounded-xl bg-white/80 hover:bg-slate-700 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
       <!-- Quick Profile Presets -->
       <div class="px-5 py-3 bg-slate-950/60 border-b border-slate-800/60 flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] mr-1">ઝડપી પ્રોફાઇલ પસંદ કરો:</span>
-        <button onclick="setMatcherPreset('btech_gujarat')" class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow">
+        <span class="text-slate-600 font-bold uppercase tracking-wider text-[10px] mr-1">ઝડપી પ્રોફાઇલ પસંદ કરો:</span>
+        <button onclick="setMatcherPreset('btech_gujarat')" class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-slate-300 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow">
           <span>💻 B.Tech / BE (CSE / IT) ગુજરાત</span>
         </button>
         <button onclick="setMatcherPreset('graduate_gujarat')" class="px-3 py-1 rounded-xl bg-orange-950/70 hover:bg-orange-900 border border-orange-500/40 text-orange-300 font-semibold transition-all flex items-center gap-1.5 shadow">
@@ -1155,7 +1155,7 @@
       <div class="p-5 border-b border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 bg-slate-900/30">
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">શિક્ષણ લાયકાત (Qualification)</label>
-          <select id="matcher-edu-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <select id="matcher-edu-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
             <option value="B.E. / B.Tech">B.E. / B.Tech (એન્જિનિયરિંગ / CSE / IT)</option>
             <option value="Graduate">સ્નાતક (કોઈપણ ફેકલ્ટી - Arts/Commerce/Science)</option>
             <option value="12th Pass">ધોરણ ૧૨ પાસ (HSC)</option>
@@ -1169,12 +1169,12 @@
 
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">તમારી ઉંમર (વર્ષમાં)</label>
-          <input type="number" id="matcher-age-input" value="23" min="16" max="55" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <input type="number" id="matcher-age-input" value="23" min="16" max="55" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">અનામત વર્ગ (Category)</label>
-          <select id="matcher-cat-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <select id="matcher-cat-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
             <option value="General">જનરલ (સામાન્ય વર્ગ)</option>
             <option value="SEBC">SEBC / OBC સા.શૈ.પ. (+૩ થી +૫ વર્ષ)</option>
             <option value="EWS">EWS આર્થિક નબળા વર્ગ (+૫ વર્ષ)</option>
@@ -1188,19 +1188,19 @@
 
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">રાજ્ય વતની (State)</label>
-          <select id="matcher-state-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-orange-400">
+          <select id="matcher-state-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-orange-400">
             <option value="Gujarat">ગુજરાત રાજ્યના વતની (Domicile)</option>
             <option value="All India">ઓલ ઇન્ડિયા</option>
           </select>
         </div>
       </div>
 
-      <div class="px-5 py-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs">
+      <div class="px-5 py-2.5 bg-slate-900 border-b border-slate-800/80 flex items-center justify-between text-xs">
         <label class="inline-flex items-center gap-2 cursor-pointer text-slate-300">
-          <input type="checkbox" id="matcher-central-check" checked class="rounded bg-slate-800 border-slate-700 text-orange-500 focus:ring-0">
+          <input type="checkbox" id="matcher-central-check" checked class="rounded bg-white border-slate-700 text-orange-500 focus:ring-0">
           <span>કેન્દ્ર સરકાર (Central Govt) ની ભરતીઓ પણ સામેલ કરો</span>
         </label>
-        <button onclick="calculateAIMatches()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-orange-600 to-indigo-600 hover:from-orange-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-orange-500/20 transition-all flex items-center gap-1.5">
+        <button onclick="calculateAIMatches()" class="px-4 py-1.5 rounded-xl bg-blue-600 hover:from-orange-500 hover:to-indigo-500 text-slate-900 font-bold text-xs shadow-lg shadow-orange-500/20 transition-all flex items-center gap-1.5">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellow-300"></i>
           <span>યોગ્યતા ચકાસો (Find My Jobs)</span>
         </button>
@@ -1208,10 +1208,10 @@
 
       <!-- Results Container -->
       <div id="matcher-results-container" class="p-5 flex-1 overflow-y-auto bg-slate-950/40">
-        <div class="text-center py-10 text-slate-400">
-          <i data-lucide="compass" class="w-12 h-12 mx-auto text-orange-400/40 mb-3 animate-pulse"></i>
-          <h4 class="text-sm font-bold text-white mb-1">"B.Tech / BE (CSE / IT) ગુજરાત" અથવા "યોગ્યતા ચકાસો" પર ક્લિક કરો</h4>
-          <p class="text-xs text-slate-400 max-w-md mx-auto">
+        <div class="text-center py-10 text-slate-600">
+          <i data-lucide="compass" class="w-12 h-12 mx-auto text-orange-400/40 mb-3 "></i>
+          <h4 class="text-sm font-bold text-slate-900 mb-1">"B.Tech / BE (CSE / IT) ગુજરાત" અથવા "યોગ્યતા ચકાસો" પર ક્લિક કરો</h4>
+          <p class="text-xs text-slate-600 max-w-md mx-auto">
             તમારું શિક્ષણ અને ઉંમર તમામ ૧૭૨ ભરતીઓ સામે ચકાસીને ૧૦૦% યોગ્ય નોકરીઓની યાદી સીધી અરજી લિંક સાથે બતાવવામાં આવશે.
           </p>
         </div>
@@ -1220,10 +1220,10 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-[#050914] border-t border-slate-800/80 py-8 px-4 text-center text-xs text-slate-400 mt-auto">
+  <footer class="bg-[#050914] border-t border-slate-800/80 py-8 px-4 text-center text-xs text-slate-600 mt-auto">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <p>© ૨૦૨૬ FuturSet ગુજરાત ભરતી પોર્ટલ. ઉમેદવારોની સુવિધા માટે અધિકૃત સરકારી માહિતી.</p>
-      <div class="flex items-center gap-4 text-slate-400">
+      <div class="flex items-center gap-4 text-slate-600">
         <a href="/" class="hover:text-orange-400">All India Portal</a>
         <span>•</span>
         <button onclick="openMatcherModal()" class="hover:text-orange-400">Smart Matcher</button>
