@@ -324,6 +324,7 @@ async function fetchJobs() {
     const res = await fetch(`/api/jobs?${queryParams.toString()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
+    window._jobsRenderLimit = 12;
 
     container.style.opacity = "1";
 
@@ -363,6 +364,7 @@ async function fetchJobs() {
   } catch (err) {
     console.warn("Network error in fetchJobs, falling back to cached/initial jobs:", err);
     container.style.opacity = "1";
+    window._jobsRenderLimit = 12;
 
     if (window._allJobs && Array.isArray(window._allJobs) && window._allJobs.length > 0) {
       let filtered = window._allJobs;
@@ -404,123 +406,166 @@ async function fetchJobs() {
 function renderCardsView(container, jobs) {
   try {
     const isGujaratPage = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
+    window._lastRenderedJobs = jobs;
+    const limit = window._jobsRenderLimit || 12;
+    const visibleJobs = jobs.slice(0, limit);
+
     let html = `<div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
 
-  jobs.forEach(job => {
-    const isBookmarked = bookmarkedJobIds.has(job.id);
-    const isGujaratJob = job.state === "Gujarat";
-    const initialLetter = (job.organization || "G").charAt(0).toUpperCase();
+    visibleJobs.forEach(job => {
+      const isBookmarked = bookmarkedJobIds.has(job.id);
+      const isGujaratJob = job.state === "Gujarat";
+      const initialLetter = (job.organization || "G").charAt(0).toUpperCase();
 
-    let urgencyBadgeHtml = "";
-    if (job.urgency_badge === "closed" || job.days_left < 0) {
-      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
-    } else if (job.days_left === 0) {
-      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-300 animate-pulse flex items-center gap-1"><svg class="w-3 h-3 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
-    } else if (job.urgency_badge === "urgent" || job.days_left <= 3) {
-      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
-    } else {
-      urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1"><svg class="w-3 h-3 text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${job.last_date || 'Closing Soon'}</span>`;
-    }
+      let urgencyBadgeHtml = "";
+      if (job.urgency_badge === "closed" || job.days_left < 0) {
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
+      } else if (job.days_left === 0) {
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-300 animate-pulse flex items-center gap-1"><svg class="w-3 h-3 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
+      } else if (job.urgency_badge === "urgent" || job.days_left <= 3) {
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
+      } else {
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1"><svg class="w-3 h-3 text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${job.last_date || 'Closing Soon'}</span>`;
+      }
 
-    const isCompareSelected = selectedCompareIds.includes(job.id);
-    const qualDisplay = (job.qualification || 'Degree / Diploma').split('+')[0].trim();
-    const salaryDisplay = job.salary_text ? job.salary_text.split('->')[0].trim() : (job.ctc_lpa ? `₹${job.ctc_lpa} LPA` : '7th Pay Matrix');
+      const isCompareSelected = selectedCompareIds.includes(job.id);
+      
+      // Clean salary string for concise, non-overflowing display
+      const rawSalary = job.salary_text || (job.ctc_lpa ? `₹${job.ctc_lpa} LPA` : '7th Pay Matrix');
+      const cleanSalary = rawSalary
+        .replace(/\/- Fix Pay for \d+ Years?/i, ' (Fix Pay)')
+        .replace(/\/-\s*per month/i, '/mo')
+        .replace(/Seventh Pay Matrix Level \d+ \((.*?)\)/i, '$1')
+        .split('->')[0]
+        .trim();
 
-    html += `
-      <div class="otta-job-card p-5 group animate-card-entrance flex flex-col justify-between">
-        <div>
-          <!-- Header: Org Avatar + Badges + Actions -->
-          <div class="flex items-start justify-between gap-3 mb-3.5">
-            <div class="flex items-center gap-2.5">
-              <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center font-bold text-[#635bff] text-sm shrink-0 group-hover:scale-105 transition-transform shadow-xs">
-                ${initialLetter}
+      // Clean qualification string for concise display
+      const rawQual = job.qualification || 'Degree / Diploma';
+      const cleanQual = rawQual
+        .replace(/Recognized by UGC.*$/i, '')
+        .split('+')[0]
+        .trim();
+
+      html += `
+        <div class="otta-job-card p-5 group animate-card-entrance flex flex-col justify-between">
+          <div>
+            <!-- Header: Org Avatar + Badges + Actions -->
+            <div class="flex items-start justify-between gap-3 mb-3.5">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center font-bold text-[#635bff] text-sm shrink-0 group-hover:scale-105 transition-transform shadow-xs">
+                  ${initialLetter}
+                </div>
+                <div class="min-w-0">
+                  <span class="text-xs font-bold text-[#0a2540] block line-clamp-2 leading-snug group-hover:text-[#635bff] transition-colors" title="${job.organization}">${job.organization}</span>
+                  <span class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                    <svg class="w-3 h-3 text-slate-400 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span class="truncate">${job.district || job.state || 'All India'}</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Top-right Compare & Bookmark: Standardized h-7 (28px) aligned -->
+              <div class="flex items-center gap-1.5 shrink-0">
+                <label class="cursor-pointer h-7 px-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-[#635bff] inline-flex items-center gap-1.5 transition-colors box-border" title="Compare side-by-side">
+                  <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300 m-0">
+                  <span class="hidden sm:inline text-[11px] font-medium leading-none">Compare</span>
+                </label>
+                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 inline-flex items-center justify-center transition-colors box-border" title="Bookmark">
+                  <svg class="w-3.5 h-3.5 ${isBookmarked ? 'fill-[#635bff] text-[#635bff]' : 'text-slate-400'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${isBookmarked ? '#635bff' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Authority & Status Pills: Clean text without mismatched emojis -->
+            <div class="flex flex-wrap items-center gap-1.5 mb-3">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${isGujaratJob ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}">
+                ${job.gov_level === 'Central' ? 'Central Govt' : 'Gujarat State'}
+              </span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                ${job.board_category || 'Board'}
+              </span>
+              ${job.is_btech_cse ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">B.Tech CSE</span>' : ''}
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-[0.95rem] font-bold text-[#0a2540] group-hover:text-[#635bff] transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
+              ${job.title}
+            </h3>
+
+            ${job.title_gu ? `
+              <p class="font-gujarati text-xs text-amber-700 font-medium mb-3 line-clamp-1">
+                ${job.title_gu}
+              </p>
+            ` : ''}
+
+            <!-- Clean 3-Item Metrics Bar with High Contrast Labels & Multi-line clamp -->
+            <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-50 border border-slate-100 text-xs mb-4">
+              <div class="min-w-0">
+                <span class="text-slate-600 block text-[11px] font-bold uppercase tracking-wider">Vacancies</span>
+                <span class="font-bold text-emerald-600 text-xs mt-0.5 block tabular-nums">${job.vacancies.toLocaleString()}</span>
               </div>
               <div class="min-w-0">
-                <span class="text-xs font-bold text-[#0a2540] block truncate group-hover:text-[#635bff] transition-colors">${job.organization}</span>
-                <span class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
-                  <svg class="w-3 h-3 text-slate-400 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span class="truncate">${job.district || job.state || 'All India'}</span>
-                </span>
+                <span class="text-slate-600 block text-[11px] font-bold uppercase tracking-wider">Pay Scale</span>
+                <span class="font-semibold text-slate-800 text-xs mt-0.5 block line-clamp-2 leading-tight break-words" title="${job.salary_text || cleanSalary}">${cleanSalary}</span>
+              </div>
+              <div class="min-w-0">
+                <span class="text-slate-600 block text-[11px] font-bold uppercase tracking-wider">Eligibility</span>
+                <span class="font-semibold text-slate-700 text-xs mt-0.5 block line-clamp-2 leading-tight break-words" title="${job.qualification || cleanQual}">${cleanQual}</span>
               </div>
             </div>
+          </div>
 
-            <div class="flex items-center gap-1.5 shrink-0">
-              <label class="cursor-pointer text-[11px] font-medium text-slate-600 hover:text-[#635bff] flex items-center gap-1 bg-slate-50 hover:bg-slate-100 px-2 py-1 rounded-lg border border-slate-200 transition-colors" title="Compare side-by-side">
-                <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300">
-                <span class="hidden sm:inline text-[10px]">Compare</span>
-              </label>
-              <button onclick="toggleBookmark(${job.id}, this)" class="p-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 transition-colors" title="Bookmark">
-                <svg class="w-3.5 h-3.5 ${isBookmarked ? 'fill-[#635bff] text-[#635bff]' : 'text-slate-400'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${isBookmarked ? '#635bff' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          <!-- Card Footer: Urgency Pill + Tactile Actions: Standardized h-8 (32px) -->
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 mt-auto">
+            <div class="shrink-0">
+              ${urgencyBadgeHtml}
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="openJobDetailModal(${job.id})" class="h-8 px-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold inline-flex items-center justify-center gap-1 transition-colors cursor-pointer box-border" title="View Full Dossier">
+                <span>Dossier</span>
               </button>
-            </div>
-          </div>
-
-          <!-- Authority & Status Pills -->
-          <div class="flex flex-wrap items-center gap-1.5 mb-3">
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${isGujaratJob ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}">
-              ${job.gov_level === 'Central' ? '🇮🇳 Central Govt' : '🦁 Gujarat State'}
-            </span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
-              ${job.board_category || 'Board'}
-            </span>
-            ${job.is_btech_cse ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">💻 B.Tech CSE</span>' : ''}
-          </div>
-
-          <!-- Title -->
-          <h3 class="text-[0.95rem] font-bold text-[#0a2540] group-hover:text-[#635bff] transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
-            ${job.title}
-          </h3>
-
-          ${job.title_gu ? `
-            <p class="font-gujarati text-xs text-amber-700 font-medium mb-3 line-clamp-1">
-              ${job.title_gu}
-            </p>
-          ` : ''}
-
-          <!-- Clean 3-Item Metrics Bar (Otta Standard) -->
-          <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-50 border border-slate-100 text-xs mb-4">
-            <div>
-              <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Vacancies</span>
-              <span class="font-bold text-emerald-600 text-xs mt-0.5 block tabular-nums">${job.vacancies.toLocaleString()}</span>
-            </div>
-            <div>
-              <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Pay Scale</span>
-              <span class="font-semibold text-slate-800 text-xs mt-0.5 block truncate" title="${job.salary_text}">${salaryDisplay}</span>
-            </div>
-            <div>
-              <span class="text-slate-500 block text-[10px] font-medium uppercase tracking-wider">Eligibility</span>
-              <span class="font-semibold text-slate-700 text-xs mt-0.5 block truncate" title="${job.qualification}">${qualDisplay}</span>
+              <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="h-8 px-3.5 rounded-lg ${isGujaratPage ? 'bg-orange-600 hover:bg-orange-700' : 'bg-[#635bff] hover:bg-indigo-600'} text-white text-xs font-semibold inline-flex items-center justify-center gap-1 shadow-xs transition-colors cursor-pointer box-border">
+                <span>Apply</span>
+                <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
             </div>
           </div>
         </div>
+      `;
+    });
 
-        <!-- Card Footer: Urgency Pill + Tactile Actions -->
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 mt-auto">
-          <div class="shrink-0">
-            ${urgencyBadgeHtml}
-          </div>
+    html += `</div>`;
 
-          <div class="flex items-center gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-secondary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 cursor-pointer" title="View Full Dossier">
-              <span>Dossier</span>
-            </button>
-            <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="btn-stripe-primary text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1 shadow-xs cursor-pointer">
-              <span>Apply</span>
-              <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
-          </div>
+    // Progressive Chunking / Pagination (Issue 27)
+    if (jobs.length > limit) {
+      const remaining = jobs.length - limit;
+      const nextChunk = Math.min(12, remaining);
+      html += `
+        <div class="col-span-full flex flex-col items-center justify-center py-6 gap-2 no-print">
+          <p class="text-xs text-slate-500">${limit} / ${jobs.length} ${isGujaratPage ? 'ભરતીઓ દર્શાવેલ છે' : 'recruitments displayed'}</p>
+          <button onclick="window.loadMoreJobs()" class="h-10 px-6 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 hover:border-orange-500 text-slate-800 text-xs font-bold shadow-2xs transition-colors inline-flex items-center gap-2 cursor-pointer">
+            <span>${isGujaratPage ? `વધુ ભરતીઓ જુઓ (+${nextChunk} Load More)` : `Load More Recruitments (+${nextChunk})`}</span>
+            <svg class="w-4 h-4 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
         </div>
-      </div>
-    `;
-  });
+      `;
+    }
 
-  html += `</div>`;
-  container.innerHTML = html;
-  initLucide();
+    container.innerHTML = html;
+    initLucide();
   } catch (e) {
     console.error("Fatal error in renderCardsView:", e);
   }
 }
+
+window.loadMoreJobs = function() {
+  window._jobsRenderLimit = (window._jobsRenderLimit || 12) + 12;
+  const container = document.getElementById("jobs-container");
+  if (container && window._lastRenderedJobs) {
+    renderCardsView(container, window._lastRenderedJobs);
+  }
+};
 
 function renderTableView(container, jobs) {
   try {
@@ -3346,6 +3391,7 @@ function resetAllFilters() {
     urgency: "",
     sort_by: "deadline"
   };
+  window._jobsRenderLimit = 12;
 
   const isGu = window.location.pathname.includes("/gujarat") || document.documentElement.lang === "gu";
   if (isGu) {
