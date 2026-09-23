@@ -1,14 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>{{ title }}</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = {
       theme: {
         extend: {
@@ -32,16 +30,16 @@
       }
     }
   </script>
-  <!-- Lucide Icons with Anycast CDN & Fallback -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>
+<!-- Lucide Icons with Anycast CDN & Fallback -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
     if (!window.lucide) {
       document.write('<script src="https://unpkg.com/lucide@latest"><\/script>');
     }
   </script>
-  <link rel="stylesheet" href="/static/css/style.css">
-  <script>window.__INITIAL_JOBS__ = {{ initial_jobs_json | safe }};</script>
-  <style>
+<link href="/static/css/style.css" rel="stylesheet"/>
+<script>window.__INITIAL_JOBS__ = {{ initial_jobs_json | safe }};</script>
+<style>
     .glass-panel-corp {
       background: rgba(255, 255, 255, 0.98);
       border: 1.5px solid #cbd5e1;
@@ -80,325 +78,302 @@
       box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
     }
   </style>
+<!-- Luxury Typography & Editorial Font System -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 </head>
 <body class="stripe-mesh-bg bg-[#f8fafc] text-[#0a2540] min-h-screen flex flex-col antialiased selection:bg-[#635bff] selection:text-white relative">
-  <!-- Interactive Ambient Backdrop Glows -->
-  <div class="fixed top-0 left-1/3 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed bottom-10 right-1/4 w-[30rem] h-[30rem] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed top-1/2 left-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
-
-  <!-- Header Navigation -->
-  <header class="sticky top-0 z-40 w-full glass-panel-corp border-b border-slate-200/80 shadow-sm">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
-      <div class="flex items-center gap-2 sm:gap-4">
-        <a href="/" class="flex items-center gap-2 group shrink-0">
-          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#635bff] via-[#00d4b8] to-emerald-400 p-0.5 flex items-center justify-center shadow-lg shadow-[#635bff]/20 group-hover:scale-105 transition-transform">
-            <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-              <i data-lucide="building-2" class="w-4 h-4 text-[#635bff]"></i>
-            </div>
-          </div>
-          <div>
-            <span class="text-base sm:text-lg font-black tracking-tight text-[#0a2540] flex items-center gap-1">
+<!-- Interactive Ambient Backdrop Glows -->
+<div class="fixed top-0 left-1/3 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+<div class="fixed bottom-10 right-1/4 w-[30rem] h-[30rem] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+<div class="fixed top-1/2 left-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+<!-- Header Navigation -->
+<header class="sticky top-0 z-40 w-full glass-panel-corp border-b border-slate-200/80 shadow-sm">
+<div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+<div class="flex items-center gap-2 sm:gap-4">
+<a class="flex items-center gap-2 group shrink-0" href="/">
+<div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#635bff] via-[#00d4b8] to-emerald-400 p-0.5 flex items-center justify-center shadow-lg shadow-[#635bff]/20 group-hover:scale-105 transition-transform">
+<div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+<i aria-hidden="true" class="w-4 h-4 text-[#635bff]" data-lucide="building-2"></i>
+</div>
+</div>
+<div>
+<span class="text-base sm:text-lg font-black tracking-tight text-[#0a2540] flex items-center gap-1">
               FuturSet <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#635bff] to-[#00d4b8]">Enterprise</span>
-            </span>
-          </div>
-        </a>
-
-        <!-- Portal Switcher Links (Desktop) -->
-        <nav class="hidden md:flex items-center gap-1.5 text-xs font-semibold">
-          <a href="/" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-[#0a2540] hover:bg-slate-100 transition-colors">
+</span>
+</div>
+</a>
+<!-- Portal Switcher Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-1.5 text-xs font-semibold">
+<a class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-[#0a2540] hover:bg-slate-100 transition-colors" href="/">
             All India Govt Hub
           </a>
-          <a href="/gujarat" class="px-3 py-1.5 rounded-lg text-orange-600 hover:bg-orange-50 transition-colors flex items-center gap-1">
-            <span>🦁 ગુજરાત રોજગાર</span>
-          </a>
-          <a href="/btech-cse" class="px-3 py-1.5 rounded-lg text-indigo-600 hover:bg-indigo-50 transition-colors flex items-center gap-1">
-            <i data-lucide="laptop" class="w-3.5 h-3.5"></i>
-            <span>B.Tech CSE Hub</span>
-          </a>
-          <span class="px-3 py-1.5 rounded-lg bg-[#635bff]/10 text-[#635bff] border border-[#635bff]/30 font-bold flex items-center gap-1">
-            <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>
-            <span>Corporate Hub</span>
-          </span>
-        </nav>
-      </div>
-
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <a href="/" class="md:hidden px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#0a2540] text-xs font-semibold">
+<a class="px-3 py-1.5 rounded-lg text-orange-600 hover:bg-orange-50 transition-colors flex items-center gap-1" href="/gujarat">
+<span>🦁 ગુજરાત રોજગાર</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-indigo-600 hover:bg-indigo-50 transition-colors flex items-center gap-1" href="/btech-cse">
+<i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="laptop"></i>
+<span>B.Tech CSE Hub</span>
+</a>
+<span class="px-3 py-1.5 rounded-lg bg-[#635bff]/10 text-[#635bff] border border-[#635bff]/30 font-bold flex items-center gap-1">
+<i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="briefcase"></i>
+<span>Corporate Hub</span>
+</span>
+</nav>
+</div>
+<div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+<a class="md:hidden px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#0a2540] text-xs font-semibold" href="/">
           Govt Hub
         </a>
-        <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#635bff]/10 hover:bg-[#635bff]/20 border border-[#635bff]/30 text-[#635bff] text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
-          <i data-lucide="target" class="w-3.5 h-3.5 text-[#635bff] animate-pulse"></i>
-          <span class="hidden sm:inline">Check Eligibility</span>
-        </button>
-        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="hidden sm:flex p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 hover:text-[#0a2540] transition-colors" title="Toggle Sound">
-          <i data-lucide="volume-2" class="w-4 h-4 text-[#635bff]"></i>
-        </button>
-        <button onclick="openBookmarksModal()" class="relative p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 hover:text-[#0a2540] transition-colors" title="Saved Jobs">
-          <i data-lucide="bookmark" class="w-4 h-4 text-[#00d4b8]"></i>
-          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#635bff] text-white font-black text-[10px] flex items-center justify-center">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="relative pt-8 sm:pt-10 pb-10 sm:pb-12 px-3 sm:px-6 lg:px-8 border-b border-slate-200 overflow-hidden">
-    <div class="max-w-6xl mx-auto text-center relative z-10 px-1">
-      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[11px] sm:text-xs font-semibold text-[#635bff] mb-3 sm:mb-4 shadow-sm backdrop-blur-md max-w-full overflow-hidden">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0"></span>
-        <span class="truncate">Adani • BHEL • Linde • Amazon • Flipkart • NPCI/UPI • Reliance</span>
-      </div>
-
-      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-[#0a2540] tracking-tight leading-tight mb-3 break-words">
-        Large, Medium &amp; Semi-Private <br class="hidden sm:inline">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#635bff] via-[#7c3aed] to-[#00d4b8] block sm:inline mt-1 sm:mt-0">
+<button class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#635bff]/10 hover:bg-[#635bff]/20 border border-[#635bff]/30 text-[#635bff] text-xs font-bold transition-all flex items-center gap-1 shadow-sm" onclick="openMatcherModal(); setTimeout(() =&gt; setMatcherPreset('btech_gujarat'), 50);">
+<i aria-hidden="true" class="w-3.5 h-3.5 text-[#635bff] animate-pulse" data-lucide="target"></i>
+<span class="hidden sm:inline">Check Eligibility</span>
+</button>
+<button aria-label="Toggle Sound Feedback" class="hidden sm:flex p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600" id="sound-toggle-btn" onclick="toggleThemeSound()">
+<i aria-hidden="true" class="w-4 h-4 text-[#635bff]" data-lucide="volume-2"></i>
+</button>
+<button class="relative p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 hover:text-[#0a2540] transition-colors" onclick="openBookmarksModal()" title="Saved Jobs">
+<i aria-hidden="true" class="w-4 h-4 text-[#00d4b8]" data-lucide="bookmark"></i>
+<span class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#635bff] text-white font-black text-xs flex items-center justify-center" id="bookmark-count-badge">0</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-8 sm:pt-10 pb-10 sm:pb-12 px-3 sm:px-6 lg:px-8 border-b border-slate-200 overflow-hidden">
+<div class="max-w-6xl mx-auto text-center relative z-10 px-1">
+<div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs sm:text-xs font-semibold text-[#635bff] mb-3 sm:mb-4 shadow-sm backdrop-blur-md max-w-full overflow-hidden">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0"></span>
+<span class="truncate">Adani • BHEL • Linde • Amazon • Flipkart • NPCI/UPI • Reliance</span>
+</div>
+<h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-[#0a2540] tracking-tight leading-tight mb-3 break-words">
+        Large, Medium &amp; Semi-Private <br class="hidden sm:inline"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#635bff] via-[#7c3aed] to-[#00d4b8] block sm:inline mt-1 sm:mt-0">
           Enterprise &amp; Corporate Careers 2026
         </span>
-      </h1>
-
-      <p class="text-xs sm:text-sm text-slate-600 max-w-3xl mx-auto leading-relaxed font-normal px-2">
+</h1>
+<p class="text-xs sm:text-sm text-slate-600 max-w-3xl mx-auto leading-relaxed font-normal px-2">
         All active corporate drives across Indian Conglomerates, Govt-Backed PSUs &amp; Joint Ventures, Global Tech Giants, and GIFT City FinTech. Filter specifically for B.Tech &amp; Graduate eligible roles with verified direct apply links.
       </p>
-
-      <!-- Metrics Radar Stats Grid -->
-      <div class="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-4xl mx-auto">
-        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-          <div class="text-lg sm:text-2xl font-black text-[#635bff]" id="stat-corp-jobs">{{ corp_stats.total_corporate_jobs }}+</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5">Enterprise Drives</div>
-        </div>
-        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-          <div class="text-lg sm:text-2xl font-black text-[#008774]" id="stat-corp-vacancies">{{ corp_stats.total_corporate_vacancies | format_vacancies }}</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5">Openings</div>
-        </div>
-        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-          <div class="text-lg sm:text-2xl font-black text-orange-600" id="stat-corp-gujarat">{{ corp_stats.gujarat_corporate_jobs }}</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5">Gujarat Roles</div>
-        </div>
-        <div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-          <div class="text-base sm:text-2xl font-black text-emerald-600 truncate">₹{{ corp_stats.highest_ctc_lpa }} LPA</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5">Top CTC</div>
-        </div>
-      </div>
-
-      <!-- Live Search Bar -->
-      <div class="mt-6 max-w-2xl mx-auto relative flex items-center">
-        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-          <i data-lucide="search" class="w-4 h-4 text-[#635bff]"></i>
-        </div>
-        <input
-          type="text"
-          id="corp-search-input"
-          placeholder="Search by company (Adani, BHEL, Linde, Amazon, Flipkart, UPI), role, skills..."
-          class="w-full pl-10 pr-24 py-3 bg-white text-[#0a2540] rounded-xl border border-slate-200 focus:border-[#635bff] focus:ring-2 focus:ring-[#635bff]/20 text-xs sm:text-sm outline-none shadow-sm transition-all placeholder-slate-400"
-        >
-        <button onclick="fetchCorporateJobs(); playAudioTick(750, 0.05);" class="absolute right-1.5 px-3 py-1.5 rounded-lg bg-[#635bff] hover:bg-[#5349e0] text-white text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
-          <span>Filter</span>
-        </button>
-      </div>
-
-      <!-- Trending Company Tags -->
-      <div class="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-[11px]">
-        <span class="font-bold text-slate-500 uppercase tracking-wider text-[10px]">Top Employers:</span>
-        <button onclick="setCorpSearch('Adani')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Adani Group</button>
-        <button onclick="setCorpSearch('BHEL')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">BHEL</button>
-        <button onclick="setCorpSearch('Linde')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Linde India</button>
-        <button onclick="setCorpSearch('Microsoft')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Microsoft IDC</button>
-        <button onclick="setCorpSearch('Google')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Google India</button>
-        <button onclick="setCorpSearch('Amazon')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Amazon AWS</button>
-        <button onclick="setCorpSearch('Swiggy')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Swiggy</button>
-        <button onclick="setCorpSearch('TCS')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">TCS NQT</button>
-        <button onclick="setCorpSearch('HDFC')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">HDFC Bank</button>
-        <button onclick="setCorpSearch('Sun Pharma')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Sun Pharma</button>
-        <button onclick="setCorpSearch('Maruti')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Maruti Suzuki</button>
-        <button onclick="setCorpSearch('Torrent')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">Torrent Power</button>
-        <button onclick="setCorpSearch('UPI')" class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs">NPCI / UPI</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filter & Listing Section -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-    <!-- Comprehensive Corporate Filter Station -->
-    <div class="glass-panel-corp rounded-2xl p-4 sm:p-5 mb-8 space-y-3.5 shadow-sm border border-slate-200">
-      <!-- Row 1: Company Type / Industry Sector Pills -->
-      <div class="flex flex-wrap items-center gap-1.5">
-        <span class="text-xs font-bold text-[#635bff] mr-1 flex items-center gap-1 shrink-0">
-          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-          <span>Industry Sector:</span>
-        </span>
-        <button onclick="filterCorpType('all', this)" class="filter-pill-corp active">All Companies</button>
-        <button onclick="filterCorpType('global_tech', this)" class="filter-pill-corp">🌐 Big Tech (Microsoft, Google, Amazon, Apple, Meta)</button>
-        <button onclick="filterCorpType('unicorns', this)" class="filter-pill-corp">🦄 Unicorns (Swiggy, Zomato, Razorpay, CRED, Groww)</button>
-        <button onclick="filterCorpType('it_services', this)" class="filter-pill-corp">💻 IT Services (TCS, Infosys, Wipro, Cognizant, Accenture, HCL)</button>
-        <button onclick="filterCorpType('bfsi', this)" class="filter-pill-corp">🏦 Banking &amp; BFSI (HDFC, ICICI, Axis, Kotak, Bajaj)</button>
-        <button onclick="filterCorpType('conglomerate', this)" class="filter-pill-corp">🏢 Conglomerates (Adani, Reliance, Tata, L&amp;T, JSW, Vedanta)</button>
-        <button onclick="filterCorpType('semi_private', this)" class="filter-pill-corp">🏛️ Semi-Private &amp; Govt-Backed (BHEL, Linde, GSFC, NPCI/UPI)</button>
-        <button onclick="filterCorpType('auto_ev', this)" class="filter-pill-corp">🚗 Automobile &amp; EV (Maruti, Tata Motors, Ola, Ather, Hyundai)</button>
-        <button onclick="filterCorpType('pharma', this)" class="filter-pill-corp">💊 Pharma &amp; Healthcare (Sun Pharma, Zydus, Torrent, Dr. Reddy's)</button>
-        <button onclick="filterCorpType('fmcg', this)" class="filter-pill-corp">🛒 FMCG &amp; Consumer (HUL, ITC, Nestlé, Asian Paints)</button>
-        <button onclick="filterCorpType('gujarat_champions', this)" class="filter-pill-corp text-orange-600 font-bold">🦁 Gujarat Industrial Leaders (Torrent Power, Nirma, Arvind, Astral, Welspun)</button>
-      </div>
-
-      <!-- Row 2: Location & Eligibility Toggle -->
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-2.5 border-t border-slate-200">
-        <!-- Location Pills -->
-        <div class="flex flex-wrap items-center gap-1.5">
-          <span class="text-xs font-semibold text-[#635bff] mr-1 flex items-center gap-1 shrink-0">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-            <span>Location:</span>
-          </span>
-          <button onclick="filterCorpLocation('all', this)" class="filter-pill-corp active">All Locations</button>
-          <button onclick="filterCorpLocation('gujarat', this)" class="filter-pill-corp text-orange-600 font-bold">🦁 Gujarat (Ahmedabad, GIFT City, Mundra, Vadodara)</button>
-          <button onclick="filterCorpLocation('remote', this)" class="filter-pill-corp text-emerald-600 font-bold">🌐 Remote / Hybrid</button>
-          <button onclick="filterCorpLocation('metros', this)" class="filter-pill-corp">🏙️ Metro Hubs (Bengaluru, Mumbai, Pune)</button>
-        </div>
-
-        <!-- 1-Click "My Eligible Companies" Toggle -->
-        <div class="flex items-center gap-2">
-          <button id="btn-eligible-toggle" onclick="toggleEligibleOnly()" class="px-3.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 ring-1 ring-emerald-500/20">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
-            <span id="eligible-toggle-text">🎯 All My Eligible Companies (B.Tech / Graduate)</span>
-          </button>
-          <button onclick="resetCorpFilters()" class="px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-[#0a2540] text-xs font-medium transition-colors" title="Reset Filters">
-            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Row 3: CTC Brackets & Experience -->
-      <div class="flex flex-wrap items-center gap-3 pt-2.5 border-t border-slate-200 text-xs">
-        <div class="flex flex-wrap items-center gap-1.5">
-          <span class="text-xs font-semibold text-emerald-700 mr-1">CTC Range:</span>
-          <button onclick="filterCorpCTC('0', this)" class="filter-pill-corp active">All Packages</button>
-          <button onclick="filterCorpCTC('6', this)" class="filter-pill-corp">₹6+ LPA</button>
-          <button onclick="filterCorpCTC('10', this)" class="filter-pill-corp">₹10+ LPA</button>
-          <button onclick="filterCorpCTC('18', this)" class="filter-pill-corp">₹18+ LPA (High Pay)</button>
-        </div>
-
-        <div class="flex items-center gap-1.5 ml-auto">
-          <span class="text-slate-500">Experience:</span>
-          <select id="corp-exp-select" onchange="fetchCorporateJobs()" class="bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-[#0a2540] outline-none focus:border-[#635bff]">
-            <option value="">All Experience</option>
-            <option value="fresher" selected>Freshers (2024 - 2026 Batch)</option>
-            <option value="experienced">Experienced (1-3+ Years)</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Active Filter Status Bar -->
-    <div class="flex items-center justify-between mb-4 px-1 text-xs text-slate-500">
-      <div id="corp-results-count" class="font-semibold text-[#0a2540]">
+<!-- Metrics Radar Stats Grid -->
+<div class="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-4xl mx-auto">
+<div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+<div class="text-lg sm:text-2xl font-black text-[#635bff]" id="stat-corp-jobs">{{ corp_stats.total_corporate_jobs }}+</div>
+<div class="text-xs sm:text-xs text-slate-500 font-medium mt-0.5">Enterprise Drives</div>
+</div>
+<div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+<div class="text-lg sm:text-2xl font-black text-[#008774]" id="stat-corp-vacancies">{{ corp_stats.total_corporate_vacancies | format_vacancies }}</div>
+<div class="text-xs sm:text-xs text-slate-500 font-medium mt-0.5">Openings</div>
+</div>
+<div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+<div class="text-lg sm:text-2xl font-black text-orange-600" id="stat-corp-gujarat">{{ corp_stats.gujarat_corporate_jobs }}</div>
+<div class="text-xs sm:text-xs text-slate-500 font-medium mt-0.5">Gujarat Roles</div>
+</div>
+<div class="glass-panel-corp p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+<div class="text-base sm:text-2xl font-black text-emerald-600 truncate">₹{{ corp_stats.highest_ctc_lpa }} LPA</div>
+<div class="text-xs sm:text-xs text-slate-500 font-medium mt-0.5">Top CTC</div>
+</div>
+</div>
+<!-- Live Search Bar -->
+<div class="mt-6 max-w-2xl mx-auto relative flex items-center">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<i aria-hidden="true" class="w-4 h-4 text-[#635bff]" data-lucide="search"></i>
+</div>
+<label class="sr-only" for="corp-search-input">Search corporate careers</label>
+<input aria-label="Search corporate openings by title, company, or tech stack" class="w-full pl-10 pr-24 py-3 bg-white text-[#0a2540] rounded-xl border border-slate-200 focus:border-[#635bff] focus:ring-2 focus:ring-[#635bff]/20 text-xs sm:text-sm outline-none shadow-sm transition-all placeholder-slate-400" id="corp-search-input" placeholder="Search by company (Adani, BHEL, Linde, Amazon, Flipkart, UPI), role, skills..." type="text"/>
+<button class="absolute right-1.5 px-3 py-1.5 rounded-lg bg-[#635bff] hover:bg-[#5349e0] text-white text-xs font-bold transition-all flex items-center gap-1 shadow-sm" onclick="fetchCorporateJobs(); playAudioTick(750, 0.05);">
+<span>Filter</span>
+</button>
+</div>
+<!-- Trending Company Tags -->
+<div class="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-xs">
+<span class="font-bold text-slate-500 uppercase tracking-wider text-xs">Top Employers:</span>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Adani')">Adani Group</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('BHEL')">BHEL</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Linde')">Linde India</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Microsoft')">Microsoft IDC</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Google')">Google India</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Amazon')">Amazon AWS</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Swiggy')">Swiggy</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('TCS')">TCS NQT</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('HDFC')">HDFC Bank</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Sun Pharma')">Sun Pharma</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Maruti')">Maruti Suzuki</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('Torrent')">Torrent Power</button>
+<button class="px-2 py-0.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 shadow-xs" onclick="setCorpSearch('UPI')">NPCI / UPI</button>
+</div>
+</div>
+</section>
+<!-- Filter & Listing Section -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+<!-- Comprehensive Corporate Filter Station -->
+<div class="glass-panel-corp rounded-2xl p-4 sm:p-5 mb-8 space-y-3.5 shadow-sm border border-slate-200">
+<!-- Row 1: Company Type / Industry Sector Pills -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="text-xs font-bold text-[#635bff] mr-1 flex items-center gap-1 shrink-0">
+<i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="layers"></i>
+<span>Industry Sector:</span>
+</span>
+<button class="filter-pill-corp active" onclick="filterCorpType('all', this)">All Companies</button>
+<button class="filter-pill-corp" onclick="filterCorpType('global_tech', this)">🌐 Big Tech (Microsoft, Google, Amazon, Apple, Meta)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('unicorns', this)">🦄 Unicorns (Swiggy, Zomato, Razorpay, CRED, Groww)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('it_services', this)">💻 IT Services (TCS, Infosys, Wipro, Cognizant, Accenture, HCL)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('bfsi', this)">🏦 Banking &amp; BFSI (HDFC, ICICI, Axis, Kotak, Bajaj)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('conglomerate', this)">🏢 Conglomerates (Adani, Reliance, Tata, L&amp;T, JSW, Vedanta)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('semi_private', this)">🏛️ Semi-Private &amp; Govt-Backed (BHEL, Linde, GSFC, NPCI/UPI)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('auto_ev', this)">🚗 Automobile &amp; EV (Maruti, Tata Motors, Ola, Ather, Hyundai)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('pharma', this)">💊 Pharma &amp; Healthcare (Sun Pharma, Zydus, Torrent, Dr. Reddy's)</button>
+<button class="filter-pill-corp" onclick="filterCorpType('fmcg', this)">🛒 FMCG &amp; Consumer (HUL, ITC, Nestlé, Asian Paints)</button>
+<button class="filter-pill-corp text-orange-600 font-bold" onclick="filterCorpType('gujarat_champions', this)">🦁 Gujarat Industrial Leaders (Torrent Power, Nirma, Arvind, Astral, Welspun)</button>
+</div>
+<!-- Row 2: Location & Eligibility Toggle -->
+<div class="flex flex-wrap items-center justify-between gap-3 pt-2.5 border-t border-slate-200">
+<!-- Location Pills -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="text-xs font-semibold text-[#635bff] mr-1 flex items-center gap-1 shrink-0">
+<i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="map-pin"></i>
+<span>Location:</span>
+</span>
+<button class="filter-pill-corp active" onclick="filterCorpLocation('all', this)">All Locations</button>
+<button class="filter-pill-corp text-orange-600 font-bold" onclick="filterCorpLocation('gujarat', this)">🦁 Gujarat (Ahmedabad, GIFT City, Mundra, Vadodara)</button>
+<button class="filter-pill-corp text-emerald-600 font-bold" onclick="filterCorpLocation('remote', this)">🌐 Remote / Hybrid</button>
+<button class="filter-pill-corp" onclick="filterCorpLocation('metros', this)">🏙️ Metro Hubs (Bengaluru, Mumbai, Pune)</button>
+</div>
+<!-- 1-Click "My Eligible Companies" Toggle -->
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 ring-1 ring-emerald-500/20" id="btn-eligible-toggle" onclick="toggleEligibleOnly()">
+<i aria-hidden="true" class="w-3.5 h-3.5 text-emerald-600" data-lucide="check-circle-2"></i>
+<span id="eligible-toggle-text">🎯 All My Eligible Companies (B.Tech / Graduate)</span>
+</button>
+<button aria-label="Reset Filters" class="px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-[#0a2540] text-xs font-medium transition-colors" onclick="resetCorpFilters()">
+<i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="rotate-ccw"></i>
+</button>
+</div>
+</div>
+<!-- Row 3: CTC Brackets & Experience -->
+<div class="flex flex-wrap items-center gap-3 pt-2.5 border-t border-slate-200 text-xs">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="text-xs font-semibold text-emerald-700 mr-1">CTC Range:</span>
+<button class="filter-pill-corp active" onclick="filterCorpCTC('0', this)">All Packages</button>
+<button class="filter-pill-corp" onclick="filterCorpCTC('6', this)">₹6+ LPA</button>
+<button class="filter-pill-corp" onclick="filterCorpCTC('10', this)">₹10+ LPA</button>
+<button class="filter-pill-corp" onclick="filterCorpCTC('18', this)">₹18+ LPA (High Pay)</button>
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<span class="text-slate-500">Experience:</span>
+<label class="sr-only" for="corp-exp-select">Filter by Experience</label>
+<select aria-label="Filter by Experience Level" class="bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-[#0a2540] outline-none focus:border-[#635bff]" id="corp-exp-select" onchange="fetchCorporateJobs()">
+<option value="">All Experience</option>
+<option selected="" value="fresher">Freshers (2024 - 2026 Batch)</option>
+<option value="experienced">Experienced (1-3+ Years)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Active Filter Status Bar -->
+<div class="flex items-center justify-between mb-4 px-1 text-xs text-slate-500">
+<div class="font-semibold text-[#0a2540]" id="corp-results-count">
         Showing all corporate &amp; enterprise openings
       </div>
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="text-emerald-700 font-medium">Direct Official Apply Links Active</span>
-      </div>
-    </div>
-
-    <!-- Corporate Jobs Grid -->
-    <div id="corp-jobs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="col-span-full text-center py-16 text-slate-500">
-        <div class="inline-block w-8 h-8 border-4 border-[#635bff] border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-3 text-xs">Loading corporate &amp; enterprise openings...</p>
-      </div>
-    </div>
-  </main>
-
-  <!-- Detailed Corporate Job Modal -->
-  <div id="corp-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto">
-    <div class="glass-panel-corp w-full max-w-2xl rounded-3xl border border-slate-200 shadow-2xl overflow-hidden bg-white flex flex-col max-h-[90vh]">
-      <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
-        <div class="flex items-center gap-3">
-          <div id="modal-corp-badge" class="w-10 h-10 rounded-2xl bg-[#635bff]/10 border border-[#635bff]/20 flex items-center justify-center font-black text-[#635bff] text-base">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-emerald-700 font-medium">Direct Official Apply Links Active</span>
+</div>
+</div>
+<!-- Corporate Jobs Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="corp-jobs-grid">
+<div class="col-span-full text-center py-16 text-slate-500">
+<div class="inline-block w-8 h-8 border-4 border-[#635bff] border-t-transparent rounded-full animate-spin"></div>
+<p class="mt-3 text-xs">Loading corporate &amp; enterprise openings...</p>
+</div>
+</div>
+</main>
+<!-- Detailed Corporate Job Modal -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto" id="corp-detail-modal">
+<div class="glass-panel-corp w-full max-w-2xl rounded-3xl border border-slate-200 shadow-2xl overflow-hidden bg-white flex flex-col max-h-[90vh]">
+<div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-[#635bff]/10 border border-[#635bff]/20 flex items-center justify-center font-black text-[#635bff] text-base" id="modal-corp-badge">
             C
           </div>
-          <div>
-            <h3 id="modal-corp-title" class="text-base font-bold text-[#0a2540]">Job Title</h3>
-            <p id="modal-corp-org" class="text-xs text-[#635bff] font-semibold">Company Name</p>
-          </div>
-        </div>
-        <button onclick="closeCorpModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-[#0a2540] flex items-center justify-center transition-colors">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-      <div class="p-5 overflow-y-auto space-y-4 text-xs">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-          <div>
-            <span class="text-slate-500 block">Package (CTC):</span>
-            <span id="modal-corp-ctc" class="font-bold text-emerald-700 text-sm">₹8.0 LPA</span>
-          </div>
-          <div>
-            <span class="text-slate-500 block">Location:</span>
-            <span id="modal-corp-loc" class="font-semibold text-slate-700">Ahmedabad</span>
-          </div>
-          <div>
-            <span class="text-slate-500 block">Eligible Batch:</span>
-            <span class="font-semibold text-[#635bff]">2024, 2025, 2026 Batch</span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-[#635bff]"></i>
-            <span>Educational Qualification Criteria</span>
-          </h4>
-          <p id="modal-corp-qual" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></p>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="git-merge" class="w-3.5 h-3.5 text-[#008774]"></i>
-            <span>Selection Process &amp; Interview Rounds</span>
-          </h4>
-          <p id="modal-corp-process" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></p>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="code-2" class="w-3.5 h-3.5 text-emerald-600"></i>
-            <span>Tech Stack &amp; Skills Assessed</span>
-          </h4>
-          <div id="modal-corp-skills" class="flex flex-wrap gap-1.5"></div>
-        </div>
-      </div>
-
-      <div class="p-4 border-t border-slate-200 bg-slate-50/80 flex items-center justify-between">
-        <span class="text-[11px] text-slate-500">Apply via Official Careers Portal</span>
-        <div class="flex items-center gap-2">
-          <button onclick="closeCorpModal()" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#0a2540] font-medium text-xs">Close</button>
-          <a id="modal-corp-apply-btn" href="#" target="_blank" class="px-4 py-1.5 rounded-xl bg-[#635bff] hover:bg-[#5349e0] text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5">
-            <span>Apply on Official Website</span>
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Smart Eligibility & Career Navigator Modal (Reusable) -->
+<div>
+<h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Corporate &amp; Tech Career Station</h2><h3 class="text-base font-bold text-[#0a2540]" id="modal-corp-title">Job Title</h3>
+<p class="text-xs text-[#635bff] font-semibold" id="modal-corp-org">Company Name</p>
+</div>
+</div>
+<button aria-label="Close Corporate Details Dialog" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-[#0a2540] flex items-center justify-center transition-colors" onclick="closeCorpModal()">
+<i aria-hidden="true" class="w-4 h-4" data-lucide="x"></i>
+</button>
+</div>
+<div class="p-5 overflow-y-auto space-y-4 text-xs">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+<div>
+<span class="text-slate-500 block">Package (CTC):</span>
+<span class="font-bold text-emerald-700 text-sm" id="modal-corp-ctc">₹8.0 LPA</span>
+</div>
+<div>
+<span class="text-slate-500 block">Location:</span>
+<span class="font-semibold text-slate-700" id="modal-corp-loc">Ahmedabad</span>
+</div>
+<div>
+<span class="text-slate-500 block">Eligible Batch:</span>
+<span class="font-semibold text-[#635bff]">2024, 2025, 2026 Batch</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-700 uppercase tracking-wider text-xs mb-1.5 flex items-center gap-1.5">
+<i aria-hidden="true" class="w-3.5 h-3.5 text-[#635bff]" data-lucide="graduation-cap"></i>
+<span>Educational Qualification Criteria</span>
+</h4>
+<p class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed" id="modal-corp-qual"></p>
+</div>
+<div>
+<h4 class="font-bold text-slate-700 uppercase tracking-wider text-xs mb-1.5 flex items-center gap-1.5">
+<i aria-hidden="true" class="w-3.5 h-3.5 text-[#008774]" data-lucide="git-merge"></i>
+<span>Selection Process &amp; Interview Rounds</span>
+</h4>
+<p class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed" id="modal-corp-process"></p>
+</div>
+<div>
+<h4 class="font-bold text-slate-700 uppercase tracking-wider text-xs mb-1.5 flex items-center gap-1.5">
+<i aria-hidden="true" class="w-3.5 h-3.5 text-emerald-600" data-lucide="code-2"></i>
+<span>Tech Stack &amp; Skills Assessed</span>
+</h4>
+<div class="flex flex-wrap gap-1.5" id="modal-corp-skills"></div>
+</div>
+</div>
+<div class="p-4 border-t border-slate-200 bg-slate-50/80 flex items-center justify-between">
+<span class="text-xs text-slate-500">Apply via Official Careers Portal</span>
+<div class="flex items-center gap-2">
+<button aria-label="Close Corporate Details Dialog" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#0a2540] font-medium text-xs" onclick="closeCorpModal()">Close</button>
+<a class="px-4 py-1.5 rounded-xl bg-[#635bff] hover:bg-[#5349e0] text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5" href="#" id="modal-corp-apply-btn" target="_blank">
+<span>Apply on Official Website</span>
+<i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="external-link"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Smart Eligibility & Career Navigator Modal (Reusable) -->
   {% include 'components/eligibility_modal.html' ignore missing %}
 
   <!-- Professional Footer -->
-  <footer class="bg-white border-t border-slate-200 py-8 px-4 text-center text-xs text-slate-500 mt-auto">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p>&copy; 2026 FuturSet Enterprise &amp; Corporate Careers Radar. Curated for Indian &amp; Gujarat graduates.</p>
-      <div class="flex items-center gap-4 text-slate-500">
-        <a href="/" class="hover:text-[#635bff]">All India Govt</a>
-        <span>•</span>
-        <a href="/gujarat" class="hover:text-orange-600">ગુજરાત રોજગાર</a>
-        <span>•</span>
-        <a href="/btech-cse" class="hover:text-[#635bff]">B.Tech CSE Hub</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Corporate JavaScript Engine -->
-  <script src="/static/js/app.js"></script>
-  <script>
+<footer class="bg-white border-t border-slate-200 py-8 px-4 text-center text-xs text-slate-500 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<p>© 2026 FuturSet Enterprise &amp; Corporate Careers Radar. Curated for Indian &amp; Gujarat graduates.</p>
+<div class="flex items-center gap-4 text-slate-500">
+<a class="hover:text-[#635bff]" href="/">All India Govt</a>
+<span>•</span>
+<a class="hover:text-orange-600" href="/gujarat">ગુજરાત રોજગાર</a>
+<span>•</span>
+<a class="hover:text-[#635bff]" href="/btech-cse">B.Tech CSE Hub</a>
+</div>
+</div>
+</footer>
+<!-- Corporate JavaScript Engine -->
+<script src="/static/js/app.js"></script>
+<script>
     if (typeof window.initLucide !== 'function') {
       window.initLucide = function() {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -566,27 +541,27 @@
         const isGujarat = cat === 'gujarat_champions';
         const isAdani = (job.organization || '').toLowerCase().includes('adani');
 
-        let typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">🏢 Corporate</span>`;
+        let typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">🏢 Corporate</span>`;
         if (isSemiPrivate) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">🏛️ Semi-Private / PSU</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">🏛️ Semi-Private / PSU</span>`;
         } else if (isTechGiant) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-[#635bff] border border-indigo-200">🌐 Big Tech</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-indigo-50 text-[#635bff] border border-indigo-200">🌐 Big Tech</span>`;
         } else if (isUnicorn) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200">🦄 Unicorn</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-purple-50 text-purple-800 border border-purple-200">🦄 Unicorn</span>`;
         } else if (isITServices) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">💻 IT Services</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">💻 IT Services</span>`;
         } else if (isBFSI) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">🏦 Banking/BFSI</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">🏦 Banking/BFSI</span>`;
         } else if (isAuto) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-800 border border-rose-200">🚗 Auto &amp; EV</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-rose-50 text-rose-800 border border-rose-200">🚗 Auto &amp; EV</span>`;
         } else if (isPharma) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 text-teal-800 border border-teal-200">💊 Pharma</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200">💊 Pharma</span>`;
         } else if (isFMCG) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-50 text-yellow-800 border border-yellow-200">🛒 FMCG</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-yellow-50 text-yellow-800 border border-yellow-200">🛒 FMCG</span>`;
         } else if (isGujarat) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-50 text-orange-800 border border-orange-200">🦁 Gujarat Leader</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-orange-50 text-orange-800 border border-orange-200">🦁 Gujarat Leader</span>`;
         } else if (isAdani) {
-          typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-[#635bff] border border-indigo-200">🏢 Adani Group</span>`;
+          typeBadge = `<span class="px-2 py-0.5 rounded text-xs font-bold bg-indigo-50 text-[#635bff] border border-indigo-200">🏢 Adani Group</span>`;
         }
 
         const isBTechEligible = job.is_btech_cse === 1 || (job.qualification_level || '').toLowerCase() === 'engineering' || (job.qualification_level || '').toLowerCase() === 'graduate';
@@ -603,7 +578,7 @@
                   </div>
                   <div>
                     <span class="text-xs font-bold text-[#635bff] block leading-tight truncate max-w-[180px]">${job.organization}</span>
-                    <span class="text-[10px] text-slate-500 block">${job.district || job.state || 'All India'}</span>
+                    <span class="text-xs text-slate-500 block">${job.district || job.state || 'All India'}</span>
                   </div>
                 </div>
                 ${typeBadge}
@@ -613,7 +588,7 @@
                 ${job.title}
               </h4>
 
-              <div class="flex flex-wrap items-center gap-1.5 mb-2.5 text-[11px]">
+              <div class="flex flex-wrap items-center gap-1.5 mb-2.5 text-xs">
                 <span class="px-2 py-0.5 rounded-md font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
                   ₹${job.ctc_lpa ? job.ctc_lpa + ' LPA' : 'Competitive'}
                 </span>
@@ -628,13 +603,13 @@
                 ` : ''}
               </div>
 
-              <p class="text-[11px] text-slate-600 line-clamp-2 mb-3 leading-relaxed">
+              <p class="text-xs text-slate-600 line-clamp-2 mb-3 leading-relaxed">
                 ${job.qualification}
               </p>
 
               ${job.tech_stack ? `
                 <div class="flex flex-wrap gap-1 mb-3">
-                  ${job.tech_stack.split(',').slice(0, 3).map(s => `<span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">${s.trim()}</span>`).join('')}
+                  ${job.tech_stack.split(',').slice(0, 3).map(s => `<span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">${s.trim()}</span>`).join('')}
                 </div>
               ` : ''}
             </div>
@@ -675,234 +650,213 @@
     }
     window.closeCorpModal = closeCorpModal;
   </script>
-
-  <!-- Unified Job Dossier & Step-by-Step Modal -->
-  <div id="job-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-2 sm:p-4 md:p-6 transition-all duration-300">
-    <div class="w-full max-w-5xl rounded-3xl border border-slate-200 shadow-2xl relative flex flex-col max-h-[94vh] overflow-hidden bg-white">
-      <!-- Permanent Fixed Top Bar (Always Visible, Never Scrolls Away) -->
-      <div class="px-4 sm:px-6 py-3 border-b border-slate-200 bg-slate-50/95 backdrop-blur flex items-center justify-between z-30 shrink-0 select-none">
-        <div class="flex items-center gap-2 sm:gap-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#635bff] animate-pulse"></span>
-          <div class="flex flex-col">
-            <span class="text-xs sm:text-sm font-extrabold text-[#0a2540] tracking-wide flex items-center gap-1.5">
-              <i data-lucide="file-check-2" class="w-4 h-4 text-[#635bff]"></i>
-              <span>Corporate Recruitment Dossier &amp; Selection Guide</span>
-            </span>
-            <span class="text-[10px] text-slate-500 sm:hidden">Click Close button or ESC to exit</span>
-          </div>
-          <span class="text-[11px] font-medium text-slate-500 hidden sm:inline">• Press <kbd class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-mono border border-slate-200">ESC</kbd> or click Close to return</span>
-        </div>
-
-        <!-- Prominent Sticky Close Button -->
-        <button
-          onclick="closeJobDetailModal()"
-          class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-md shadow-rose-600/30 transition-all transform hover:scale-105 cursor-pointer z-50 shrink-0"
-          title="Close Recruitment Details (Esc)"
-        >
-          <i data-lucide="x" class="w-4 h-4 stroke-[3]"></i>
-          <span>Close / બંધ કરો (Esc)</span>
-        </button>
-      </div>
-
-      <div id="job-modal-body" class="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-8"></div>
-    </div>
-  </div>
-
-  <!-- 7th Pay Commission Salary & Pension Calculator Modal -->
-  <div id="salary-calculator-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-            <i data-lucide="calculator" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h3 class="font-extrabold text-white text-base">7th Pay Salary Calculator</h3>
-            <p class="text-[11px] text-slate-400" id="calc-prefill-note">Gujarat Govt &amp; Central Pay Matrix</p>
-          </div>
-        </div>
-        <button onclick="closeSalaryCalculator()" class="text-slate-400 hover:text-white p-1.5 rounded-lg cursor-pointer">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <div class="space-y-4 my-5 text-xs">
-        <div>
-          <label class="block text-slate-400 mb-1.5 font-medium">Select Recruitment Post / Pay Scale</label>
-          <select id="salary-post-type" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400">
-            <option value="fix_clerk" selected>Gujarat Class-3 Fix-Pay (Police Constable, Talati, Clerk) - ₹26,000/mo</option>
-            <option value="fix_head">Gujarat Head Clerk / Sub-Accountant Fix-Pay - ₹40,800/mo</option>
-            <option value="lvl2">7th Pay Level 2 (RRB Group C, Junior Clerk regular) - Basic ₹19,900</option>
-            <option value="lvl4">7th Pay Level 4 (SSC CHSL, Assistant) - Basic ₹25,500</option>
-            <option value="lvl7">7th Pay Level 7 (GPSC Class-2, Mamlatdar, PI, DySO) - Basic ₹44,900</option>
-            <option value="lvl10">7th Pay Level 10 (UPSC / GPSC Class-1 Dy Collector, DSP) - Basic ₹56,100</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-slate-400 mb-1.5 font-medium">City Classification (HRA Category)</label>
-          <select id="salary-city-tier" onchange="calculateSalary()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400">
-            <option value="X" selected>Tier X City (Ahmedabad - 27% HRA)</option>
-            <option value="Y">Tier Y City (Surat, Vadodara, Rajkot, Gandhinagar - 18% HRA)</option>
-            <option value="Z">Tier Z Area (Districts &amp; Rural - 9% HRA)</option>
-          </select>
-        </div>
-
-        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
-          <div class="flex justify-between">
-            <span class="text-slate-400">Basic Pay:</span>
-            <span class="font-bold text-slate-200" id="sal-disp-basic">₹26,000</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">Dearness Allowance (DA @ 50%):</span>
-            <span class="font-bold text-slate-200" id="sal-disp-da">N/A (Fix Pay)</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">House Rent Allowance (HRA):</span>
-            <span class="font-bold text-slate-200" id="sal-disp-hra">N/A (Fix Pay)</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">Transport Allowance (TA):</span>
-            <span class="font-bold text-slate-200" id="sal-disp-ta">N/A (Fix Pay)</span>
-          </div>
-          <div class="flex justify-between pt-2 border-t border-slate-800">
-            <span class="text-slate-400">Gross Monthly Salary:</span>
-            <span class="font-bold text-cyan-300" id="sal-disp-gross">₹26,000</span>
-          </div>
-          <div class="flex justify-between text-rose-400/90">
-            <span>Deductions (NPS 10% + Prof Tax):</span>
-            <span class="font-medium" id="sal-disp-nps">₹200</span>
-          </div>
-          <div class="flex justify-between pt-2 border-t border-slate-800 items-center">
-            <span class="font-bold text-white text-sm">Estimated In-Hand Take Home:</span>
-            <span class="font-black text-emerald-400 text-base" id="sal-disp-net">₹25,800 / Month</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-between text-[11px] text-slate-500 pt-2 border-t border-slate-800">
-        <span>*Based on 7th Pay guidelines.</span>
-        <button onclick="closeSalaryCalculator()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer">Done</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Smart Eligibility & Career Navigator Modal -->
-  <div id="matcher-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto">
-    <div class="glass-modal w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl border border-cyan-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
-      <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/50">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-inner">
-            <i data-lucide="target" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h3 class="text-lg font-black text-white flex items-center gap-2">
+<!-- Unified Job Dossier & Step-by-Step Modal -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-2 sm:p-4 md:p-6 transition-all duration-300" id="job-detail-modal">
+<div class="w-full max-w-5xl rounded-3xl border border-slate-200 shadow-2xl relative flex flex-col max-h-[94vh] overflow-hidden bg-white">
+<!-- Permanent Fixed Top Bar (Always Visible, Never Scrolls Away) -->
+<div class="px-4 sm:px-6 py-3 border-b border-slate-200 bg-slate-50/95 backdrop-blur flex items-center justify-between z-30 shrink-0 select-none">
+<div class="flex items-center gap-2 sm:gap-3">
+<span class="w-2.5 h-2.5 rounded-full bg-[#635bff] animate-pulse"></span>
+<div class="flex flex-col">
+<span class="text-xs sm:text-sm font-extrabold text-[#0a2540] tracking-wide flex items-center gap-1.5">
+<i aria-hidden="true" class="w-4 h-4 text-[#635bff]" data-lucide="file-check-2"></i>
+<span>Corporate Recruitment Dossier &amp; Selection Guide</span>
+</span>
+<span class="text-xs text-slate-500 sm:hidden">Click Close button or ESC to exit</span>
+</div>
+<span class="text-xs font-medium text-slate-500 hidden sm:inline">• Press <kbd class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-mono border border-slate-200">ESC</kbd> or click Close to return</span>
+</div>
+<!-- Prominent Sticky Close Button -->
+<button class="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-md shadow-rose-600/30 transition-all transform hover:scale-105 cursor-pointer z-50 shrink-0" onclick="closeJobDetailModal()" title="Close Recruitment Details (Esc)">
+<i aria-hidden="true" class="w-4 h-4 stroke-[3]" data-lucide="x"></i>
+<span>Close / બંધ કરો (Esc)</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-8" id="job-modal-body"></div>
+</div>
+</div>
+<!-- 7th Pay Commission Salary & Pension Calculator Modal -->
+<div class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4" id="salary-calculator-modal">
+<div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+<div class="flex items-center justify-between pb-4 border-b border-slate-800">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+<i aria-hidden="true" class="w-5 h-5" data-lucide="calculator"></i>
+</div>
+<div>
+<h3 class="font-extrabold text-white text-base">7th Pay Salary Calculator</h3>
+<p class="text-xs text-slate-400" id="calc-prefill-note">Gujarat Govt &amp; Central Pay Matrix</p>
+</div>
+</div>
+<button aria-label="Close Salary Calculator" class="text-slate-400 hover:text-white p-1.5 rounded-lg cursor-pointer" onclick="closeSalaryCalculator()">
+<i aria-hidden="true" class="w-5 h-5" data-lucide="x"></i>
+</button>
+</div>
+<div class="space-y-4 my-5 text-xs">
+<div>
+<label class="block text-slate-200 mb-1.5 font-semibold text-xs" for="salary-post-type">Select Recruitment Post / Pay Scale</label>
+<select aria-label="Select Recruitment Post or Pay Scale" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400" id="salary-post-type" onchange="calculateSalary()">
+<option selected="" value="fix_clerk">Gujarat Class-3 Fix-Pay (Police Constable, Talati, Clerk) - ₹26,000/mo</option>
+<option value="fix_head">Gujarat Head Clerk / Sub-Accountant Fix-Pay - ₹40,800/mo</option>
+<option value="lvl2">7th Pay Level 2 (RRB Group C, Junior Clerk regular) - Basic ₹19,900</option>
+<option value="lvl4">7th Pay Level 4 (SSC CHSL, Assistant) - Basic ₹25,500</option>
+<option value="lvl7">7th Pay Level 7 (GPSC Class-2, Mamlatdar, PI, DySO) - Basic ₹44,900</option>
+<option value="lvl10">7th Pay Level 10 (UPSC / GPSC Class-1 Dy Collector, DSP) - Basic ₹56,100</option>
+</select>
+</div>
+<div>
+<label class="block text-slate-200 mb-1.5 font-semibold text-xs" for="salary-city-tier">City Classification (HRA Category)</label>
+<select aria-label="City Classification HRA Category" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400" id="salary-city-tier" onchange="calculateSalary()">
+<option selected="" value="X">Tier X City (Ahmedabad - 27% HRA)</option>
+<option value="Y">Tier Y City (Surat, Vadodara, Rajkot, Gandhinagar - 18% HRA)</option>
+<option value="Z">Tier Z Area (Districts &amp; Rural - 9% HRA)</option>
+</select>
+</div>
+<div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+<div class="flex justify-between">
+<span class="text-slate-400">Basic Pay:</span>
+<span class="font-bold text-slate-200" id="sal-disp-basic">₹26,000</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">Dearness Allowance (DA @ 50%):</span>
+<span class="font-bold text-slate-200" id="sal-disp-da">N/A (Fix Pay)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">House Rent Allowance (HRA):</span>
+<span class="font-bold text-slate-200" id="sal-disp-hra">N/A (Fix Pay)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">Transport Allowance (TA):</span>
+<span class="font-bold text-slate-200" id="sal-disp-ta">N/A (Fix Pay)</span>
+</div>
+<div class="flex justify-between pt-2 border-t border-slate-800">
+<span class="text-slate-400">Gross Monthly Salary:</span>
+<span class="font-bold text-cyan-300" id="sal-disp-gross">₹26,000</span>
+</div>
+<div class="flex justify-between text-rose-400/90">
+<span>Deductions (NPS 10% + Prof Tax):</span>
+<span class="font-medium" id="sal-disp-nps">₹200</span>
+</div>
+<div class="flex justify-between pt-2 border-t border-slate-800 items-center">
+<span class="font-bold text-white text-sm">Estimated In-Hand Take Home:</span>
+<span class="font-black text-emerald-400 text-base" id="sal-disp-net">₹25,800 / Month</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800">
+<span>*Based on 7th Pay guidelines.</span>
+<button aria-label="Close Salary Calculator" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer" onclick="closeSalaryCalculator()">Done</button>
+</div>
+</div>
+</div>
+<!-- Smart Eligibility & Career Navigator Modal -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-xl p-4 sm:p-6 overflow-y-auto" id="matcher-modal">
+<div class="glass-modal w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl border border-cyan-500/30 shadow-2xl overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-950/98 to-slate-950">
+<div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-inner">
+<i aria-hidden="true" class="w-5 h-5" data-lucide="target"></i>
+</div>
+<div>
+<h3 class="text-lg font-black text-white flex items-center gap-2">
               Eligibility &amp; Career Matching Engine
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Official Gazettes 2026</span>
-            </h3>
-            <p class="text-xs text-slate-400">Instantly check all Gujarat State &amp; Central Govt recruitments matching your exact profile.</p>
-          </div>
-        </div>
-        <button onclick="closeMatcherModal()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-      <div class="px-5 py-3 bg-slate-950/60 border-b border-slate-800/60 flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] mr-1">One-Click Presets:</span>
-        <button onclick="setMatcherPreset('btech_gujarat')" class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer">
-          <span>💻 B.Tech / BE (CSE / IT) Gujarat</span>
-        </button>
-        <button onclick="setMatcherPreset('graduate_gujarat')" class="px-3 py-1 rounded-xl bg-orange-950/70 hover:bg-orange-900 border border-orange-500/40 text-orange-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer">
-          <span>🏛️ Any Graduate (Gujarat)</span>
-        </button>
-        <button onclick="setMatcherPreset('12th_gujarat')" class="px-3 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer">
-          <span>⚡ 10th / 12th Pass (Merit &amp; LRD)</span>
-        </button>
-      </div>
-
-      <div class="p-5 border-b border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 bg-slate-900/30">
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Highest Qualification</label>
-          <select id="matcher-edu-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
-            <option value="B.E. / B.Tech">B.E. / B.Tech (Engineering / CSE / IT)</option>
-            <option value="Graduate">Graduate (Any Stream / B.Sc / B.Com / B.A.)</option>
-            <option value="12th Pass">12th Pass (HSC / Higher Secondary)</option>
-            <option value="10th Pass">10th Pass (SSC / Matriculation)</option>
-            <option value="Diploma">Diploma / Polytechnic</option>
-            <option value="ITI">ITI Certified</option>
-            <option value="Post Graduate">Post Graduate (M.Tech / MCA / M.Sc / M.A.)</option>
-            <option value="MBBS">MBBS / Medical Degree</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Your Current Age (Years)</label>
-          <input type="number" id="matcher-age-input" value="23" min="16" max="55" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Category (Quota / Reservation)</label>
-          <select id="matcher-cat-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
-            <option value="General">General / Open Category</option>
-            <option value="SEBC">SEBC / OBC Gujarat (+3 to +5 yrs)</option>
-            <option value="EWS">EWS Gujarat (+5 yrs)</option>
-            <option value="SC">SC (+5 yrs)</option>
-            <option value="ST">ST (+5 yrs)</option>
-            <option value="Female">Female Candidates (+5 yrs)</option>
-            <option value="PwD">PwD / Divyang (+10 yrs)</option>
-            <option value="Ex-SM">Ex-Servicemen</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Domicile &amp; Preference</label>
-          <select id="matcher-state-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400">
-            <option value="Gujarat">Gujarat Resident (ગુજરાત વતની)</option>
-            <option value="All India">All India / Other States</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="px-5 py-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs">
-        <label class="inline-flex items-center gap-2 cursor-pointer text-slate-300">
-          <input type="checkbox" id="matcher-central-check" checked class="rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0">
-          <span>Include Central Government (All India) Opportunities</span>
-        </label>
-        <button onclick="calculateAIMatches()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-1.5 cursor-pointer">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellow-300"></i>
-          <span>Run Profile Evaluation</span>
-        </button>
-      </div>
-
-      <div id="matcher-results-container" class="p-5 flex-1 overflow-y-auto bg-slate-950/40">
-        <div class="text-center py-10 text-slate-400">
-          <i data-lucide="compass" class="w-12 h-12 mx-auto text-cyan-400/40 mb-3 animate-pulse"></i>
-          <h4 class="text-sm font-bold text-white mb-1">Click a preset or "Run Profile Evaluation"</h4>
-          <p class="text-xs text-slate-400 max-w-md mx-auto">
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Official Gazettes 2026</span>
+</h3>
+<p class="text-xs text-slate-400">Instantly check all Gujarat State &amp; Central Govt recruitments matching your exact profile.</p>
+</div>
+</div>
+<button aria-label="Close Matcher Dialog" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer" onclick="closeMatcherModal()">
+<i aria-hidden="true" class="w-4 h-4" data-lucide="x"></i>
+</button>
+</div>
+<div class="px-5 py-3 bg-slate-950/60 border-b border-slate-800/60 flex flex-wrap items-center gap-2 text-xs">
+<span class="text-slate-400 font-bold uppercase tracking-wider text-xs mr-1">One-Click Presets:</span>
+<button class="px-3 py-1 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer" onclick="setMatcherPreset('btech_gujarat')">
+<span>💻 B.Tech / BE (CSE / IT) Gujarat</span>
+</button>
+<button class="px-3 py-1 rounded-xl bg-orange-950/70 hover:bg-orange-900 border border-orange-500/40 text-orange-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer" onclick="setMatcherPreset('graduate_gujarat')">
+<span>🏛️ Any Graduate (Gujarat)</span>
+</button>
+<button class="px-3 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold transition-all flex items-center gap-1.5 shadow cursor-pointer" onclick="setMatcherPreset('12th_gujarat')">
+<span>⚡ 10th / 12th Pass (Merit &amp; LRD)</span>
+</button>
+</div>
+<div class="p-5 border-b border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 bg-slate-900/30">
+<div>
+<label class="block text-xs font-semibold text-slate-300 mb-1" for="matcher-edu-select">Highest Qualification</label>
+<select aria-label="Select Highest Educational Qualification" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400" id="matcher-edu-select">
+<option value="B.E. / B.Tech">B.E. / B.Tech (Engineering / CSE / IT)</option>
+<option value="Graduate">Graduate (Any Stream / B.Sc / B.Com / B.A.)</option>
+<option value="12th Pass">12th Pass (HSC / Higher Secondary)</option>
+<option value="10th Pass">10th Pass (SSC / Matriculation)</option>
+<option value="Diploma">Diploma / Polytechnic</option>
+<option value="ITI">ITI Certified</option>
+<option value="Post Graduate">Post Graduate (M.Tech / MCA / M.Sc / M.A.)</option>
+<option value="MBBS">MBBS / Medical Degree</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-300 mb-1" for="matcher-age-input">Your Current Age (Years)</label>
+<input aria-label="Your Current Age in Years" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400" id="matcher-age-input" max="55" min="16" type="number" value="23"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-300 mb-1" for="matcher-cat-select">Category (Quota / Reservation)</label>
+<select aria-label="Category Quota or Reservation" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400" id="matcher-cat-select">
+<option value="General">General / Open Category</option>
+<option value="SEBC">SEBC / OBC Gujarat (+3 to +5 yrs)</option>
+<option value="EWS">EWS Gujarat (+5 yrs)</option>
+<option value="SC">SC (+5 yrs)</option>
+<option value="ST">ST (+5 yrs)</option>
+<option value="Female">Female Candidates (+5 yrs)</option>
+<option value="PwD">PwD / Divyang (+10 yrs)</option>
+<option value="Ex-SM">Ex-Servicemen</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-300 mb-1" for="matcher-state-select">Domicile &amp; Preference</label>
+<select aria-label="Domicile State and Regional Preference" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-400" id="matcher-state-select">
+<option value="Gujarat">Gujarat Resident (ગુજરાત વતની)</option>
+<option value="All India">All India / Other States</option>
+</select>
+</div>
+</div>
+<div class="px-5 py-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs">
+<label class="inline-flex items-center gap-2 cursor-pointer text-slate-300" for="matcher-central-check">
+<input aria-label="Include Central Opportunities" checked="" class="rounded bg-slate-800 border-slate-700 text-cyan-400 focus:ring-0 w-4 h-4 cursor-pointer" id="matcher-central-check" type="checkbox"/>
+<span>Include Central Government (All India) Opportunities</span>
+</label>
+<button class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-1.5 cursor-pointer" onclick="calculateAIMatches()">
+<i aria-hidden="true" class="w-3.5 h-3.5 text-yellow-300" data-lucide="sparkles"></i>
+<span>Run Profile Evaluation</span>
+</button>
+</div>
+<div class="p-5 flex-1 overflow-y-auto bg-slate-950/40" id="matcher-results-container">
+<div class="text-center py-10 text-slate-400">
+<i aria-hidden="true" class="w-12 h-12 mx-auto text-cyan-400/40 mb-3 animate-pulse" data-lucide="compass"></i>
+<h4 class="text-sm font-bold text-white mb-1">Click a preset or "Run Profile Evaluation"</h4>
+<p class="text-xs text-slate-400 max-w-md mx-auto">
             Our engine evaluates your age and qualifications against all 170+ official gazette notifications to show every recruitment you are eligible for.
           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bookmarks Drawer Modal -->
-  <div id="bookmarks-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-slate-700 p-6 shadow-2xl relative flex flex-col max-h-[85vh] bg-slate-900">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-        <div class="flex items-center gap-2">
-          <i data-lucide="bookmark" class="w-5 h-5 text-cyan-400 fill-cyan-400"></i>
-          <h3 class="text-base font-bold text-white">Saved Careers & Opportunities</h3>
-        </div>
-        <button onclick="closeBookmarksModal()" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-      <div id="bookmarks-list" class="flex-1 overflow-y-auto pr-1">
-        <!-- Injected dynamically -->
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bookmarks Drawer Modal -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4" id="bookmarks-modal">
+<div class="glass-panel w-full max-w-2xl rounded-2xl border border-slate-700 p-6 shadow-2xl relative flex flex-col max-h-[85vh] bg-slate-900">
+<div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+<div class="flex items-center gap-2">
+<i aria-hidden="true" class="w-5 h-5 text-cyan-400 fill-cyan-400" data-lucide="bookmark"></i>
+<h3 class="text-base font-bold text-white">Saved Careers &amp; Opportunities</h3>
+</div>
+<button aria-label="Close Bookmarks Dialog" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="closeBookmarksModal()">
+<i aria-hidden="true" class="w-5 h-5" data-lucide="x"></i>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto pr-1" id="bookmarks-list">
+<!-- Injected dynamically -->
+</div>
+</div>
+</div>
 </body>
 </html>

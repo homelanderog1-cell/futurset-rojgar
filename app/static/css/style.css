@@ -1,7 +1,11 @@
 /* FuturSet Custom Cyber-Glass & Government Recruitment Portal Styling */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Anek+Gujarati:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
+  --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-gujarati: 'Anek Gujarati', 'Noto Sans Gujarati', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
   --primary-navy: #0a1128;
   --secondary-navy: #1c2541;
   --accent-cyan: #00b4d8;
@@ -88,7 +92,11 @@ html {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Anek Gujarati', 'Noto Sans Gujarati', sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
   background-color: #070d1e;
   color: #e2e8f0;
   overflow-x: hidden !important;
@@ -96,6 +104,11 @@ body {
   width: 100% !important;
   margin: 0;
   padding: 0;
+}
+
+[lang="gu"], .font-gujarati, .gujarati-text {
+  font-family: 'Anek Gujarati', 'Noto Sans Gujarati', sans-serif;
+  letter-spacing: normal;
 }
 
 /* Hide scrollbars for smooth touch swipe chip bars */
@@ -1454,4 +1467,122 @@ body {
   border-color: #10b981;
   color: #a7f3d0;
 }
+
+/* ======================================================================
+   12. WCAG 2.1 AA/AAA ACCESSIBILITY & CONTRAST RE-ENGINEERING
+   ====================================================================== */
+
+/* Focus Visible Indicators for Keyboard Navigation (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid #6366f1 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Screen Reader Only Utility (WCAG 1.3.1 / 4.1.2) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Pay Commission Modal High-Contrast Dark Surface (WCAG 1.4.3) */
+#salary-calculator-modal {
+  color: #f8fafc !important;
+}
+#salary-calculator-modal h3 {
+  color: #ffffff !important;
+}
+#salary-calculator-modal label {
+  color: #e2e8f0 !important;
+  font-weight: 600 !important;
+}
+#salary-calculator-modal select,
+#salary-calculator-modal input {
+  color: #f8fafc !important;
+  background-color: #020617 !important;
+  border-color: #475569 !important;
+}
+#salary-calculator-modal select:focus,
+#salary-calculator-modal input:focus {
+  border-color: #38bdf8 !important;
+  outline: 2px solid #38bdf8 !important;
+}
+#salary-calculator-modal .text-slate-400,
+#salary-calculator-modal .text-slate-500,
+#salary-calculator-modal .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+#salary-calculator-modal #calc-inhand-pay {
+  color: #34d399 !important;
+  text-shadow: 0 0 16px rgba(52, 211, 153, 0.3);
+}
+
+/* Unified Matcher Modal Dark Surface Contrast */
+#matcher-modal {
+  color: #f8fafc !important;
+}
+#matcher-modal h3, #matcher-modal h4 {
+  color: #ffffff !important;
+}
+#matcher-modal label {
+  color: #e2e8f0 !important;
+  font-weight: 600 !important;
+}
+#matcher-modal select,
+#matcher-modal input {
+  color: #f8fafc !important;
+  background-color: #020617 !important;
+  border-color: #475569 !important;
+}
+#matcher-modal .text-slate-400,
+#matcher-modal .text-slate-500,
+#matcher-modal .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+/* Light Card High-Contrast Typography */
+.card-text-primary {
+  color: #0f172a !important;
+}
+.card-text-secondary {
+  color: #334155 !important;
+}
+.card-text-muted {
+  color: #475569 !important;
+}
+
+/* Tech Stack & Board Pill Contrast */
+.tech-tag-pill {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* Footer Contrast Protection */
+footer a {
+  color: #cbd5e1;
+  transition: color 0.15s ease;
+}
+footer a:hover {
+  color: #ffffff;
+}
+footer p, footer span {
+  color: #94a3b8;
+}
+
 

@@ -74,7 +74,7 @@ window.initLucide = initLucide;
 
 // Global Search Helper Functions with Smooth Results Scroll
 window.executeSearch = function() {
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
   if (searchInput) {
     currentFilters.q = searchInput.value.trim();
     fetchJobs();
@@ -87,7 +87,7 @@ window.executeSearch = function() {
 };
 
 window.clearSearch = function() {
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
   if (searchInput) {
     searchInput.value = "";
     currentFilters.q = "";
@@ -97,7 +97,7 @@ window.clearSearch = function() {
 };
 
 window.setQuickSearch = function(term) {
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
   if (searchInput) {
     searchInput.value = term;
     currentFilters.q = term;
@@ -112,7 +112,7 @@ window.setQuickSearch = function(term) {
 
 function initEventListeners() {
   // Search input with debounce + Enter key support & auto-scroll
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
   if (searchInput) {
     let timeout = null;
     searchInput.addEventListener("input", (e) => {
@@ -419,13 +419,13 @@ function renderCardsView(container, jobs) {
 
       let urgencyBadgeHtml = "";
       if (job.urgency_badge === "closed" || job.days_left < 0) {
-        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> ${isGujaratPage ? 'અરજી બંધ' : 'Closed'}</span>`;
       } else if (job.days_left === 0) {
-        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-300 animate-pulse flex items-center gap-1"><svg class="w-3 h-3 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300 animate-pulse flex items-center gap-1"><svg class="w-3 h-3 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> ${isGujaratPage ? 'આજે છેલ્લો દિવસ!' : 'Closes Today!'}</span>`;
       } else if (job.urgency_badge === "urgent" || job.days_left <= 3) {
-        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1"><svg class="w-3 h-3 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${job.days_left} ${isGujaratPage ? 'દિવસ બાકી' : 'Days Left'}</span>`;
       } else {
-        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1"><svg class="w-3 h-3 text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${job.last_date || 'Closing Soon'}</span>`;
+        urgencyBadgeHtml = `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1"><svg class="w-3 h-3 text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${job.last_date || 'Closing Soon'}</span>`;
       }
 
       const isCompareSelected = selectedCompareIds.includes(job.id);
@@ -457,7 +457,7 @@ function renderCardsView(container, jobs) {
                 </div>
                 <div class="min-w-0">
                   <span class="text-xs font-bold text-[#0a2540] block line-clamp-2 leading-snug group-hover:text-[#635bff] transition-colors" title="${job.organization}">${job.organization}</span>
-                  <span class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                  <span class="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
                     <svg class="w-3 h-3 text-slate-400 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                     <span class="truncate">${job.district || job.state || 'All India'}</span>
                   </span>
@@ -467,10 +467,10 @@ function renderCardsView(container, jobs) {
               <!-- Top-right Compare & Bookmark: Standardized h-7 (28px) aligned -->
               <div class="flex items-center gap-1.5 shrink-0">
                 <label class="cursor-pointer h-7 px-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-[#635bff] inline-flex items-center gap-1.5 transition-colors box-border" title="Compare side-by-side">
-                  <input type="checkbox" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300 m-0">
-                  <span class="hidden sm:inline text-[11px] font-medium leading-none">Compare</span>
+                  <input type="checkbox" id="compare-job-${job.id}" aria-label="Compare ${escapeHtml(job.title)}" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300 m-0">
+                  <span class="hidden sm:inline text-xs font-medium leading-none">Compare</span>
                 </label>
-                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 inline-flex items-center justify-center transition-colors box-border" title="Bookmark">
+                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 inline-flex items-center justify-center transition-colors box-border" aria-label="${isBookmarked ? \'Remove bookmark for\' : \'Bookmark\'} ${escapeHtml(job.title)}">
                   <svg class="w-3.5 h-3.5 ${isBookmarked ? 'fill-[#635bff] text-[#635bff]' : 'text-slate-400'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${isBookmarked ? '#635bff' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
@@ -478,13 +478,13 @@ function renderCardsView(container, jobs) {
 
             <!-- Authority & Status Pills: Clean text without mismatched emojis -->
             <div class="flex flex-wrap items-center gap-1.5 mb-3">
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${isGujaratJob ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}">
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold ${isGujaratJob ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}">
                 ${job.gov_level === 'Central' ? 'Central Govt' : 'Gujarat State'}
               </span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+              <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
                 ${job.board_category || 'Board'}
               </span>
-              ${job.is_btech_cse ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">B.Tech CSE</span>' : ''}
+              ${job.is_btech_cse ? '<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">B.Tech CSE</span>' : ''}
             </div>
 
             <!-- Title -->
@@ -502,16 +502,16 @@ function renderCardsView(container, jobs) {
             <div class="rounded-xl bg-slate-50 border border-slate-100 p-2.5 text-xs mb-4 space-y-2">
               <div class="grid grid-cols-2 gap-2.5 pb-2 border-b border-slate-200/60">
                 <div class="min-w-0">
-                  <span class="text-slate-500 block text-[11px] font-bold uppercase tracking-wider">Vacancies</span>
+                  <span class="text-slate-500 block text-xs font-bold uppercase tracking-wider">Vacancies</span>
                   <span class="font-bold text-emerald-600 text-xs mt-0.5 block tabular-nums">${job.vacancies.toLocaleString()}</span>
                 </div>
                 <div class="min-w-0">
-                  <span class="text-slate-500 block text-[11px] font-bold uppercase tracking-wider">Pay Scale</span>
+                  <span class="text-slate-500 block text-xs font-bold uppercase tracking-wider">Pay Scale</span>
                   <span class="font-semibold text-slate-800 text-xs mt-0.5 block line-clamp-1 leading-tight truncate" title="${job.salary_text || cleanSalary}">${cleanSalary}</span>
                 </div>
               </div>
               <div class="min-w-0">
-                <span class="text-slate-500 block text-[11px] font-bold uppercase tracking-wider">Eligibility</span>
+                <span class="text-slate-500 block text-xs font-bold uppercase tracking-wider">Eligibility</span>
                 <span class="font-medium text-slate-700 text-xs mt-0.5 block line-clamp-2 leading-tight break-words" title="${job.qualification || cleanQual}">${cleanQual}</span>
               </div>
             </div>
@@ -524,10 +524,10 @@ function renderCardsView(container, jobs) {
             </div>
 
             <div class="flex items-center gap-2">
-              <button onclick="openJobDetailModal(${job.id})" class="h-8 px-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold inline-flex items-center justify-center gap-1 transition-colors cursor-pointer box-border" title="View Full Dossier">
+              <button onclick="openJobDetailModal(${job.id})" class="h-8 px-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold inline-flex items-center justify-center gap-1 transition-colors cursor-pointer box-border" aria-label="View Full Dossier for ${escapeHtml(job.title)}">
                 <span>Dossier</span>
               </button>
-              <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="h-8 px-3.5 rounded-lg ${isGujaratPage ? 'bg-orange-600 hover:bg-orange-700' : 'bg-[#635bff] hover:bg-indigo-600'} text-white text-xs font-semibold inline-flex items-center justify-center gap-1 shadow-xs transition-colors cursor-pointer box-border">
+              <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="h-8 px-3.5 rounded-lg ${isGujaratPage ? 'bg-orange-600 hover:bg-orange-700' : 'bg-[#635bff] hover:bg-indigo-600'} text-white text-xs font-semibold inline-flex items-center justify-center gap-1 shadow-xs transition-colors cursor-pointer box-border" aria-label="Direct Apply for ${escapeHtml(job.title)}">
                 <span>Apply</span>
                 <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </a>
@@ -619,7 +619,7 @@ function renderTableView(container, jobs) {
         </td>
         <td class="px-4 py-4 text-xs">
           <div class="font-semibold text-slate-800 leading-snug">${job.qualification || 'Graduate / 10th / 12th'}</div>
-          <div class="text-slate-500 text-[11px] mt-1 flex items-center gap-1">
+          <div class="text-slate-500 text-xs mt-1 flex items-center gap-1">
             <i data-lucide="calendar" class="w-3 h-3 text-amber-600"></i>
             <span>Age: <strong class="text-slate-700">${minAge}-${maxAge} Yrs</strong></span>
           </div>
@@ -632,13 +632,13 @@ function renderTableView(container, jobs) {
         </td>
         <td class="px-4 py-4 text-xs">
           <span class="font-bold ${daysLeft <= 3 ? 'text-rose-600' : 'text-slate-800'}">${job.last_date || 'Closing Soon'}</span>
-          <span class="block text-[11px] font-semibold mt-0.5 ${daysLeft <= 3 ? 'text-rose-600' : 'text-amber-700'}">
+          <span class="block text-xs font-semibold mt-0.5 ${daysLeft <= 3 ? 'text-rose-600' : 'text-amber-700'}">
             ${daysLeft <= 0 ? 'Closed' : daysLeft + ' days left'}
           </span>
         </td>
         <td class="px-5 py-4 text-right sticky-action-col">
           <div class="flex items-center justify-end gap-2">
-            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-secondary text-xs px-2.5 py-1.5 rounded-lg flex items-center gap-1" title="View Full Dossier">
+            <button onclick="openJobDetailModal(${job.id})" class="btn-stripe-secondary text-xs px-2.5 py-1.5 rounded-lg flex items-center gap-1" aria-label="View Full Dossier for ${escapeHtml(job.title)}">
               <i data-lucide="info" class="w-3.5 h-3.5 text-[#635bff]"></i>
               <span>Details</span>
             </button>
@@ -944,7 +944,7 @@ function generateStepByStepGuide(job, isGujaratPage) {
     <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/10">
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-800">
         <div>
-          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wide">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wide">
             Official Application Procedure
           </span>
           <h3 class="text-base sm:text-lg font-black text-white mt-1 flex items-center gap-2">
@@ -988,11 +988,11 @@ function generateStepByStepGuide(job, isGujaratPage) {
       </div>
 
       <div class="mt-5 p-4 rounded-xl bg-amber-950/20 border border-amber-500/40 text-xs text-amber-200 space-y-2">
-        <div class="font-extrabold text-amber-300 flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
+        <div class="font-extrabold text-amber-300 flex items-center gap-1.5 uppercase tracking-wider text-xs">
           <i data-lucide="alert-triangle" class="w-4 h-4"></i>
           <span>${isGujaratPage ? 'અરજી કરતી વખતે ધ્યાનમાં રાખવાની મહત્વપૂર્ણ બાબતો' : 'Critical Rules & Instructions for Applicants'}</span>
         </div>
-        <ul class="list-disc list-inside space-y-1 text-[11px] text-slate-300">
+        <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
           <li><strong>Confirmation Number Mandatory:</strong> Once you submit the form, do NOT forget to click 'Confirm Application' and note down the confirmation number. An unconfirmed application is automatically rejected.</li>
           <li><strong>Name Spelling Match:</strong> Ensure your full name matches your Class 10 (SSC) Board Certificate character-for-character. Any variation will lead to rejection at Document Verification.</li>
           <li><strong>Valid Category Certificate:</strong> For OBC/SEBC candidates in Gujarat, ensure your Non-Creamy Layer Certificate (Parishisht-K) has valid validity for the current financial year.</li>
@@ -1370,7 +1370,7 @@ function generateJobPYQVault(job, isGujaratPage) {
             <i data-lucide="book-marked" class="w-4 h-4"></i>
             ${isGujaratPage ? 'ગત ૫ વર્ષના અધિકૃત પ્રશ્નપત્રો અને આન્સર કી ભંડાર' : '5-Year Official Question Papers (PYQ) & Answer Key Vault'}
           </h4>
-          <p class="text-[11px] text-slate-400 mt-0.5">
+          <p class="text-xs text-slate-400 mt-0.5">
             Download authentic past examination papers and official final answer keys verified by statutory boards.
           </p>
         </div>
@@ -1382,7 +1382,7 @@ function generateJobPYQVault(job, isGujaratPage) {
 
       <!-- Quick PYQ Year Filter Pills -->
       <div class="flex flex-wrap items-center gap-1.5 text-xs">
-        <span class="text-[11px] font-bold text-slate-400 uppercase mr-1">Filter Year:</span>
+        <span class="text-xs font-bold text-slate-400 uppercase mr-1">Filter Year:</span>
         <button onclick="filterPYQYear('all', this)" class="pyq-year-pill active px-3 py-1 rounded-lg font-semibold bg-purple-600 text-white shadow">All Papers (${papers.length})</button>
         <button onclick="filterPYQYear('2025', this)" class="pyq-year-pill px-3 py-1 rounded-lg font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800">2025/2026</button>
         <button onclick="filterPYQYear('2024', this)" class="pyq-year-pill px-3 py-1 rounded-lg font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800">2024</button>
@@ -1397,15 +1397,15 @@ function generateJobPYQVault(job, isGujaratPage) {
           <div class="pyq-paper-item p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 hover:border-purple-500/40 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 group" data-year="${p.yearFilter || 'all'}">
             <div class="flex-1 min-w-0">
               <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                <span class="px-2 py-0.5 rounded text-[10px] font-black ${p.badge_color}">${p.year}</span>
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">${p.stage}</span>
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 flex items-center gap-1">
+                <span class="px-2 py-0.5 rounded text-xs font-black ${p.badge_color}">${p.year}</span>
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700">${p.stage}</span>
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 flex items-center gap-1">
                   <i data-lucide="check-circle" class="w-3 h-3 text-emerald-400"></i> ${p.key_status}
                 </span>
               </div>
               <h4 class="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">${p.title}</h4>
               ${p.title_gu ? `<p class="font-gujarati text-xs text-amber-300/90 mt-0.5">${p.title_gu}</p>` : ''}
-              <p class="text-[11px] text-slate-400 mt-1 flex items-center gap-2">
+              <p class="text-xs text-slate-400 mt-1 flex items-center gap-2">
                 <span><i data-lucide="clock" class="w-3 h-3 inline text-cyan-400"></i> ${p.questions}</span>
                 <span>•</span>
                 <span class="text-emerald-400 font-medium">Bilingual (English & Gujarati)</span>
@@ -1639,27 +1639,27 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
         <!-- Quick Summary Metrics Matrix -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-inner">
           <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
-            <span class="text-[11px] font-semibold text-slate-400 block">${isGujaratPage ? 'અરજી છેલ્લી તારીખ' : 'Application Deadline'}</span>
+            <span class="text-xs font-semibold text-slate-400 block">${isGujaratPage ? 'અરજી છેલ્લી તારીખ' : 'Application Deadline'}</span>
             <span class="text-sm font-black text-rose-400 block mt-0.5">${job.last_date}</span>
-            <span class="text-[10px] text-slate-400">${job.days_left <= 0 ? 'Closed' : job.days_left + ' days remaining'}</span>
+            <span class="text-xs text-slate-400">${job.days_left <= 0 ? 'Closed' : job.days_left + ' days remaining'}</span>
           </div>
 
           <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
-            <span class="text-[11px] font-semibold text-slate-400 block">${isGujaratPage ? 'વય મર્યાદા' : 'Age Eligibility'}</span>
+            <span class="text-xs font-semibold text-slate-400 block">${isGujaratPage ? 'વય મર્યાદા' : 'Age Eligibility'}</span>
             <span class="text-sm font-black text-slate-100 block mt-0.5">${minAge} - ${maxAge} Years</span>
-            <span class="text-[10px] text-emerald-400">+Relaxation Applicable</span>
+            <span class="text-xs text-emerald-400">+Relaxation Applicable</span>
           </div>
 
           <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
-            <span class="text-[11px] font-semibold text-slate-400 block">${isGujaratPage ? 'પગાર ધોરણ / CTC' : 'Pay Scale / CTC'}</span>
+            <span class="text-xs font-semibold text-slate-400 block">${isGujaratPage ? 'પગાર ધોરણ / CTC' : 'Pay Scale / CTC'}</span>
             <span class="text-sm font-black text-emerald-400 block mt-0.5 truncate" title="${job.salary_text}">${job.salary_text ? job.salary_text.split('->')[0] : (job.ctc_lpa ? '₹' + job.ctc_lpa + ' LPA' : '7th Pay Matrix')}</span>
-            <span class="text-[10px] text-slate-400">${isGovt ? 'Govt 7th Pay Scale' : 'Annual Package'}</span>
+            <span class="text-xs text-slate-400">${isGovt ? 'Govt 7th Pay Scale' : 'Annual Package'}</span>
           </div>
 
           <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
-            <span class="text-[11px] font-semibold text-slate-400 block">${isGujaratPage ? 'અરજી ફી' : 'Application Fee'}</span>
+            <span class="text-xs font-semibold text-slate-400 block">${isGujaratPage ? 'અરજી ફી' : 'Application Fee'}</span>
             <span class="text-sm font-black text-amber-300 block mt-0.5 truncate">${job.application_fee ? job.application_fee.split(';')[0] : '₹100 (Reserved: Nil)'}</span>
-            <span class="text-[10px] text-slate-400">Online / Post Office</span>
+            <span class="text-xs text-slate-400">Online / Post Office</span>
           </div>
         </div>
 
@@ -1776,7 +1776,7 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                 </tbody>
               </table>
             </div>
-            <p class="text-[11px] text-slate-400 mt-2.5 italic">
+            <p class="text-xs text-slate-400 mt-2.5 italic">
               * Note: ${job.age_relaxation_text || 'Relaxations applicable as per General Administration Department (GAD), Govt of Gujarat or Central DoPT rules.'}
             </p>
           </div>
@@ -1787,24 +1787,24 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
             </h4>
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center text-xs">
               <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/30 relative">
-                <span class="w-5 h-5 rounded-full bg-cyan-600 text-white font-bold inline-flex items-center justify-center text-[10px] mb-1.5">1</span>
+                <span class="w-5 h-5 rounded-full bg-cyan-600 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">1</span>
                 <span class="font-bold text-white block">Stage 1: Screening</span>
-                <span class="text-[11px] text-slate-400 mt-0.5 block">${job.selection_mode === 'direct_merit' ? '100% Merit Evaluation' : 'Written / CBRT Test'}</span>
+                <span class="text-xs text-slate-400 mt-0.5 block">${job.selection_mode === 'direct_merit' ? '100% Merit Evaluation' : 'Written / CBRT Test'}</span>
               </div>
               <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 relative">
-                <span class="w-5 h-5 rounded-full bg-slate-700 text-white font-bold inline-flex items-center justify-center text-[10px] mb-1.5">2</span>
+                <span class="w-5 h-5 rounded-full bg-slate-700 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">2</span>
                 <span class="font-bold text-white block">Stage 2: Skill / Trade</span>
-                <span class="text-[11px] text-slate-400 mt-0.5 block">${job.selection_mode === 'physical_test' ? 'Physical Efficiency Test' : 'Practical / Skill Test'}</span>
+                <span class="text-xs text-slate-400 mt-0.5 block">${job.selection_mode === 'physical_test' ? 'Physical Efficiency Test' : 'Practical / Skill Test'}</span>
               </div>
               <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 relative">
-                <span class="w-5 h-5 rounded-full bg-slate-700 text-white font-bold inline-flex items-center justify-center text-[10px] mb-1.5">3</span>
+                <span class="w-5 h-5 rounded-full bg-slate-700 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">3</span>
                 <span class="font-bold text-white block">Stage 3: Verification</span>
-                <span class="text-[11px] text-slate-400 mt-0.5 block">Document Verification (DV)</span>
+                <span class="text-xs text-slate-400 mt-0.5 block">Document Verification (DV)</span>
               </div>
               <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 relative">
-                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold inline-flex items-center justify-center text-[10px] mb-1.5">4</span>
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">4</span>
                 <span class="font-bold text-white block">Stage 4: Final Merit</span>
-                <span class="text-[11px] text-emerald-400 mt-0.5 block">Medical & Appointment Order</span>
+                <span class="text-xs text-emerald-400 mt-0.5 block">Medical & Appointment Order</span>
               </div>
             </div>
             <div class="mt-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300">
@@ -1849,7 +1849,7 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                 <h4 class="text-xs uppercase tracking-wider text-amber-400 font-extrabold flex items-center gap-2">
                   <i data-lucide="book-marked" class="w-4 h-4"></i> ${isGujaratPage ? 'સિલેબસ અને પ્રિપેરેશન ચેકલિસ્ટ' : 'Exam Structure & Interactive Topic Checklist'}
                 </h4>
-                <p class="text-[11px] text-slate-400 mt-0.5">Check off syllabus modules as you prepare to calculate your readiness percentage.</p>
+                <p class="text-xs text-slate-400 mt-0.5">Check off syllabus modules as you prepare to calculate your readiness percentage.</p>
               </div>
               <span class="text-xs font-bold text-amber-300 bg-amber-500/20 px-2.5 py-1 rounded-full" id="syllabus-progress-counter">0% Ready</span>
             </div>
@@ -1864,7 +1864,7 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" onchange="updateSyllabusModule(this)" class="syllabus-topic-cb mt-0.5 rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="font-bold text-white group-hover:text-amber-300 transition-colors">${topic.trim()}</span>
-                    <span class="block text-[10px] text-slate-400 mt-0.5">Module ${idx + 1} • High Scoring Priority</span>
+                    <span class="block text-xs text-slate-400 mt-0.5">Module ${idx + 1} • High Scoring Priority</span>
                   </div>
                 </label>
               `).join('')}
@@ -1873,15 +1873,15 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
-              <span class="text-[11px] text-slate-400 block font-semibold">Total Questions</span>
+              <span class="text-xs text-slate-400 block font-semibold">Total Questions</span>
               <span class="text-lg font-black text-white mt-1 block">100 - 200 MCQs</span>
             </div>
             <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
-              <span class="text-[11px] text-slate-400 block font-semibold">Exam Duration</span>
+              <span class="text-xs text-slate-400 block font-semibold">Exam Duration</span>
               <span class="text-lg font-black text-cyan-400 mt-1 block">120 - 180 Mins</span>
             </div>
             <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
-              <span class="text-[11px] text-slate-400 block font-semibold">Negative Marking</span>
+              <span class="text-xs text-slate-400 block font-semibold">Negative Marking</span>
               <span class="text-lg font-black text-rose-400 mt-1 block">-0.25 Marks</span>
             </div>
           </div>
@@ -1915,10 +1915,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" class="mt-1 rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="text-xs font-bold text-white block">1. Recent Passport Size Color Photograph</span>
-                    <span class="text-[11px] text-slate-400 block">Plain white/light background, taken within last 3 months. No sunglasses or caps.</span>
+                    <span class="text-xs text-slate-400 block">Plain white/light background, taken within last 3 months. No sunglasses or caps.</span>
                   </div>
                 </div>
-                <span class="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/60 shrink-0">10 KB - 15 KB (JPG)</span>
+                <span class="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/60 shrink-0">10 KB - 15 KB (JPG)</span>
               </div>
 
               <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start justify-between gap-3">
@@ -1926,10 +1926,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" class="mt-1 rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="text-xs font-bold text-white block">2. Candidate Official Signature</span>
-                    <span class="text-[11px] text-slate-400 block">Black or dark blue ink pen on clean white paper. Do NOT sign in capital letters.</span>
+                    <span class="text-xs text-slate-400 block">Black or dark blue ink pen on clean white paper. Do NOT sign in capital letters.</span>
                   </div>
                 </div>
-                <span class="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/60 shrink-0">10 KB - 15 KB (JPG)</span>
+                <span class="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/60 shrink-0">10 KB - 15 KB (JPG)</span>
               </div>
 
               <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start justify-between gap-3">
@@ -1937,10 +1937,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" class="mt-1 rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="text-xs font-bold text-white block">3. 10th / SSC Board Marksheet & Certificate</span>
-                    <span class="text-[11px] text-slate-400 block">Mandatory proof for Date of Birth (DOB) and candidate's exact legal spelling.</span>
+                    <span class="text-xs text-slate-400 block">Mandatory proof for Date of Birth (DOB) and candidate's exact legal spelling.</span>
                   </div>
                 </div>
-                <span class="text-[11px] font-mono text-slate-300 bg-slate-800 px-2 py-0.5 rounded shrink-0">PDF / JPG</span>
+                <span class="text-xs font-mono text-slate-300 bg-slate-800 px-2 py-0.5 rounded shrink-0">PDF / JPG</span>
               </div>
 
               <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start justify-between gap-3">
@@ -1948,10 +1948,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" class="mt-1 rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="text-xs font-bold text-white block">4. Degree / Diploma / ITI Final Marksheet & Certificate</span>
-                    <span class="text-[11px] text-slate-400 block">All semester marksheets + Degree / Provisional Certificate from recognized board.</span>
+                    <span class="text-xs text-slate-400 block">All semester marksheets + Degree / Provisional Certificate from recognized board.</span>
                   </div>
                 </div>
-                <span class="text-[11px] font-mono text-slate-300 bg-slate-800 px-2 py-0.5 rounded shrink-0">PDF</span>
+                <span class="text-xs font-mono text-slate-300 bg-slate-800 px-2 py-0.5 rounded shrink-0">PDF</span>
               </div>
 
               <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start justify-between gap-3">
@@ -1959,10 +1959,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" class="mt-1 rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="text-xs font-bold text-white block">5. Caste / Category Certificate & NCLC (Parishisht-K)</span>
-                    <span class="text-[11px] text-slate-400 block">For Gujarat SEBC/OBC, Non-Creamy Layer Certificate must be valid for the current financial year.</span>
+                    <span class="text-xs text-slate-400 block">For Gujarat SEBC/OBC, Non-Creamy Layer Certificate must be valid for the current financial year.</span>
                   </div>
                 </div>
-                <span class="text-[11px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60 shrink-0">Mandatory for Reserved</span>
+                <span class="text-xs font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60 shrink-0">Mandatory for Reserved</span>
               </div>
 
               <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start justify-between gap-3">
@@ -1970,10 +1970,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <input type="checkbox" class="mt-1 rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0 w-4 h-4">
                   <div>
                     <span class="text-xs font-bold text-white block">6. Valid Photo Identity Card</span>
-                    <span class="text-[11px] text-slate-400 block">Aadhaar Card, Election Voter ID Card, Driving License, or Passport.</span>
+                    <span class="text-xs text-slate-400 block">Aadhaar Card, Election Voter ID Card, Driving License, or Passport.</span>
                   </div>
                 </div>
-                <span class="text-[11px] font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60 shrink-0">Carry to Exam</span>
+                <span class="text-xs font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60 shrink-0">Carry to Exam</span>
               </div>
             </div>
 
@@ -1999,37 +1999,37 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                 <h4 class="text-xs uppercase tracking-wider text-emerald-400 font-extrabold flex items-center gap-2">
                   <i data-lucide="wallet" class="w-4 h-4"></i> ${isGovt ? '7th Pay In-Hand Salary Simulator' : 'Corporate CTC & Compensation Structure'}
                 </h4>
-                <p class="text-[11px] text-slate-400 mt-0.5">Estimated take-home monthly payout based on official DA & HRA rates.</p>
+                <p class="text-xs text-slate-400 mt-0.5">Estimated take-home monthly payout based on official DA & HRA rates.</p>
               </div>
               <div class="text-right">
-                <span class="text-[11px] text-slate-400 block font-semibold">Net Take-Home Salary</span>
+                <span class="text-xs text-slate-400 block font-semibold">Net Take-Home Salary</span>
                 <span class="text-lg font-black text-emerald-400">~₹${inHandEst.toLocaleString()} / mo</span>
               </div>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs mb-4">
               <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span class="text-[11px] text-slate-400 block">Basic Pay</span>
+                <span class="text-xs text-slate-400 block">Basic Pay</span>
                 <span class="text-sm font-extrabold text-white mt-1 block">₹${basePay.toLocaleString()}</span>
-                <span class="text-[10px] text-slate-400">7th Pay Band</span>
+                <span class="text-xs text-slate-400">7th Pay Band</span>
               </div>
 
               <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span class="text-[11px] text-slate-400 block">DA (Dearness Allowance)</span>
+                <span class="text-xs text-slate-400 block">DA (Dearness Allowance)</span>
                 <span class="text-sm font-extrabold text-cyan-400 mt-1 block">+₹${daEstimate.toLocaleString()}</span>
-                <span class="text-[10px] text-cyan-300">50% Central/State Rate</span>
+                <span class="text-xs text-cyan-300">50% Central/State Rate</span>
               </div>
 
               <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span class="text-[11px] text-slate-400 block">HRA (House Rent)</span>
+                <span class="text-xs text-slate-400 block">HRA (House Rent)</span>
                 <span class="text-sm font-extrabold text-cyan-400 mt-1 block">+₹${hraEstimate.toLocaleString()}</span>
-                <span class="text-[10px] text-cyan-300">18% (Class-Y City)</span>
+                <span class="text-xs text-cyan-300">18% (Class-Y City)</span>
               </div>
 
               <div class="p-3 rounded-xl bg-slate-900/80 border border-emerald-500/40">
-                <span class="text-[11px] text-emerald-400 block font-bold">Gross Monthly Pay</span>
+                <span class="text-xs text-emerald-400 block font-bold">Gross Monthly Pay</span>
                 <span class="text-sm font-black text-emerald-400 mt-1 block">₹${grossEst.toLocaleString()}</span>
-                <span class="text-[10px] text-emerald-300">Before Deductions</span>
+                <span class="text-xs text-emerald-300">Before Deductions</span>
               </div>
             </div>
 
@@ -2242,7 +2242,7 @@ function resetFilters() {
     qualification: "",
     sort_by: "deadline"
   };
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
   if (searchInput) searchInput.value = "";
   
   document.querySelectorAll(".filter-btn-chip").forEach(b => {
@@ -2341,7 +2341,7 @@ function renderMatchList() {
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div>
           <span class="text-xs text-cyan-200 font-semibold">Eligibility Profile: <strong>Age ${age} • ${qualification} • ${category} (Gujarat)</strong></span>
-          <p class="text-[11px] text-slate-400 mt-0.5">Total Matching Openings: <strong class="text-emerald-400 font-bold">${totalVacancies.toLocaleString()} vacancies</strong> across ${filtered.length} recruitments</p>
+          <p class="text-xs text-slate-400 mt-0.5">Total Matching Openings: <strong class="text-emerald-400 font-bold">${totalVacancies.toLocaleString()} vacancies</strong> across ${filtered.length} recruitments</p>
         </div>
         <span class="px-3 py-1 rounded-full text-xs font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
           ${filtered.length} Jobs Match
@@ -2376,18 +2376,18 @@ function renderMatchList() {
         <div class="glass-panel p-3.5 rounded-xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <div class="flex-1">
             <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
-              <span class="px-2 py-0.5 rounded text-[11px] font-black ${scoreColor}">${m.match_score}% Match</span>
+              <span class="px-2 py-0.5 rounded text-xs font-black ${scoreColor}">${m.match_score}% Match</span>
               <span class="text-xs font-semibold text-slate-300">${m.eligibility_status}</span>
-              ${job.state === 'Gujarat' ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">ગુજરાત</span>` : `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">Central</span>`}
-              ${isTech ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">💻 Tech Role</span>` : ''}
-              ${m.relaxation_applied ? `<span class="text-[10px] font-bold text-amber-300 bg-amber-500/20 px-1.5 py-0.5 rounded">${m.relaxation_applied}</span>` : ''}
+              ${job.state === 'Gujarat' ? `<span class="px-1.5 py-0.5 rounded text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">ગુજરાત</span>` : `<span class="px-1.5 py-0.5 rounded text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">Central</span>`}
+              ${isTech ? `<span class="px-1.5 py-0.5 rounded text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">💻 Tech Role</span>` : ''}
+              ${m.relaxation_applied ? `<span class="text-xs font-bold text-amber-300 bg-amber-500/20 px-1.5 py-0.5 rounded">${m.relaxation_applied}</span>` : ''}
             </div>
             <h4 class="text-sm font-bold text-white hover:text-cyan-300 cursor-pointer" onclick="openJobDetailModal(${job.id})">${job.title}</h4>
             <p class="text-xs text-slate-400 mt-0.5">
               <strong class="text-slate-300">${job.organization}</strong> • <span class="text-emerald-400 font-semibold">${job.vacancies.toLocaleString()} Posts</span> • Deadline: <span class="text-amber-300">${job.last_date}</span>
             </p>
             <div class="mt-2 flex flex-wrap gap-1">
-              ${m.reasons.map(r => `<span class="text-[10px] text-slate-300 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-800">✓ ${r}</span>`).join('')}
+              ${m.reasons.map(r => `<span class="text-xs text-slate-300 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-800">✓ ${r}</span>`).join('')}
             </div>
           </div>
 
@@ -2728,8 +2728,8 @@ function toggleThemeSound() {
   const btn = document.getElementById("sound-toggle-btn");
   if (btn) {
     btn.innerHTML = audioEnabled
-      ? '<i data-lucide="volume-2" class="w-4 h-4 text-cyan-400"></i><span class="hidden sm:inline text-[11px] text-cyan-300">Sound: On</span>'
-      : '<i data-lucide="volume-x" class="w-4 h-4 text-slate-500"></i><span class="hidden sm:inline text-[11px] text-slate-500">Muted</span>';
+      ? '<i data-lucide="volume-2" class="w-4 h-4 text-cyan-400"></i><span class="hidden sm:inline text-xs text-cyan-300">Sound: On</span>'
+      : '<i data-lucide="volume-x" class="w-4 h-4 text-slate-500"></i><span class="hidden sm:inline text-xs text-slate-500">Muted</span>';
     initLucide();
   }
   if (audioEnabled) playAudioTick(850, 0.08);
@@ -2798,11 +2798,11 @@ function filterPaletteCommands(q) {
 
   const actions = [
     { title: "ગુજરાત રોજગાર પોર્ટલ (Gujarat Hub)", category: "Portal View", icon: "map-pin", action: () => { window.location.href = "/gujarat"; } },
-    { title: "Gujarat Police Bharti 2026 (12,472 Posts)", category: "Recruitment", icon: "shield", action: () => { document.getElementById("search-input").value = "Police"; currentFilters.q = "Police"; fetchJobs(); closeCommandPalette(); } },
-    { title: "GPSC Class 1 & 2 Administrative Services", category: "Recruitment", icon: "award", action: () => { document.getElementById("search-input").value = "GPSC"; currentFilters.q = "GPSC"; fetchJobs(); closeCommandPalette(); } },
-    { title: "GSSSB CCE Clerk & Office Assistant (5,554 Posts)", category: "Recruitment", icon: "file-text", action: () => { document.getElementById("search-input").value = "CCE"; currentFilters.q = "CCE"; fetchJobs(); closeCommandPalette(); } },
-    { title: "Railway RRB ALP & Technician (18,799 Posts)", category: "Central Govt", icon: "train", action: () => { document.getElementById("search-input").value = "Railway"; currentFilters.q = "Railway"; fetchJobs(); closeCommandPalette(); } },
-    { title: "SSC Combined Graduate Level (CGL 2026)", category: "Central Govt", icon: "landmark", action: () => { document.getElementById("search-input").value = "SSC"; currentFilters.q = "SSC"; fetchJobs(); closeCommandPalette(); } },
+    { title: "Gujarat Police Bharti 2026 (12,472 Posts)", category: "Recruitment", icon: "shield", action: () => { (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input")).value = "Police"; currentFilters.q = "Police"; fetchJobs(); closeCommandPalette(); } },
+    { title: "GPSC Class 1 & 2 Administrative Services", category: "Recruitment", icon: "award", action: () => { (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input")).value = "GPSC"; currentFilters.q = "GPSC"; fetchJobs(); closeCommandPalette(); } },
+    { title: "GSSSB CCE Clerk & Office Assistant (5,554 Posts)", category: "Recruitment", icon: "file-text", action: () => { (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input")).value = "CCE"; currentFilters.q = "CCE"; fetchJobs(); closeCommandPalette(); } },
+    { title: "Railway RRB ALP & Technician (18,799 Posts)", category: "Central Govt", icon: "train", action: () => { (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input")).value = "Railway"; currentFilters.q = "Railway"; fetchJobs(); closeCommandPalette(); } },
+    { title: "SSC Combined Graduate Level (CGL 2026)", category: "Central Govt", icon: "landmark", action: () => { (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input")).value = "SSC"; currentFilters.q = "SSC"; fetchJobs(); closeCommandPalette(); } },
     { title: "7th Pay Commission Salary & Pension Calculator", category: "Financial Tool", icon: "calculator", action: () => { closeCommandPalette(); openSalaryCalculator(); } },
     { title: "Smart Career & Eligibility Matcher", category: "Smart Tool", icon: "sparkles", action: () => { closeCommandPalette(); openMatcherModal(); } },
     { title: "OJAS One-Time Registration (OTR) Guide", category: "Official Guide", icon: "help-circle", action: () => { closeCommandPalette(); openOjasGuideModal(); } },
@@ -2820,10 +2820,10 @@ function filterPaletteCommands(q) {
         </div>
         <div>
           <div class="font-bold text-slate-100">${item.title}</div>
-          <div class="text-[10px] text-slate-400">${item.category}</div>
+          <div class="text-xs text-slate-400">${item.category}</div>
         </div>
       </div>
-      <kbd class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400 font-mono">Enter</kbd>
+      <kbd class="px-2 py-0.5 rounded bg-slate-800 text-xs text-slate-400 font-mono">Enter</kbd>
     </div>
   `).join("");
 
@@ -3010,7 +3010,7 @@ function renderCompareContent(j1, j2) {
       <div class="bg-slate-900/95 border border-cyan-500/40 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
         <div>
           <div class="flex items-center justify-between gap-2 mb-2">
-            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">${j1.board_category || 'Recruitment'}</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">${j1.board_category || 'Recruitment'}</span>
             <span class="text-xs font-bold text-emerald-400">${vac1} Posts</span>
           </div>
           <h4 class="font-black text-base text-white mt-1 leading-snug">${j1.title}</h4>
@@ -3050,7 +3050,7 @@ function renderCompareContent(j1, j2) {
       <div class="bg-slate-900/95 border border-orange-500/40 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
         <div>
           <div class="flex items-center justify-between gap-2 mb-2">
-            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 uppercase">${j2.board_category || 'Recruitment'}</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 uppercase">${j2.board_category || 'Recruitment'}</span>
             <span class="text-xs font-bold text-emerald-400">${vac2} Posts</span>
           </div>
           <h4 class="font-black text-base text-white mt-1 leading-snug">${j2.title}</h4>
@@ -3182,9 +3182,9 @@ async function openSyllabusModal(jobId) {
       <div class="space-y-4 text-xs">
         <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
           <div class="flex flex-wrap items-center gap-2 mb-2">
-            <span class="px-2 py-0.5 rounded text-[11px] font-bold ${isGu ? 'bg-orange-500/20 text-orange-300' : 'bg-blue-500/20 text-blue-300'}">${job.gov_level} (${job.state})</span>
-            <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-800 text-slate-300">${job.board_category}</span>
-            <span class="text-slate-400 font-mono text-[11px]">${job.notification_number || 'Official Gazette'}</span>
+            <span class="px-2 py-0.5 rounded text-xs font-bold ${isGu ? 'bg-orange-500/20 text-orange-300' : 'bg-blue-500/20 text-blue-300'}">${job.gov_level} (${job.state})</span>
+            <span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-800 text-slate-300">${job.board_category}</span>
+            <span class="text-slate-400 font-mono text-xs">${job.notification_number || 'Official Gazette'}</span>
           </div>
           <h3 class="text-base font-bold text-white">${job.title}</h3>
           ${job.title_gu ? `<p class="font-gujarati text-amber-400/90 font-medium mt-0.5">${job.title_gu}</p>` : ''}
@@ -3192,7 +3192,7 @@ async function openSyllabusModal(jobId) {
 
         <!-- Selection Process Stages -->
         <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-2.5 flex items-center gap-2 text-cyan-400">
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-xs mb-2.5 flex items-center gap-2 text-cyan-400">
             <i data-lucide="layers" class="w-4 h-4"></i>
             <span>Selection Process & Examination Stages</span>
           </h4>
@@ -3203,7 +3203,7 @@ async function openSyllabusModal(jobId) {
 
         <!-- Detailed Syllabus Breakdown -->
         <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-2.5 flex items-center gap-2 text-indigo-400">
+          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-xs mb-2.5 flex items-center gap-2 text-indigo-400">
             <i data-lucide="book-marked" class="w-4 h-4"></i>
             <span>Detailed Subject Syllabus & Marks Pattern</span>
           </h4>
@@ -3214,7 +3214,7 @@ async function openSyllabusModal(jobId) {
 
         <!-- Official Actions & Links -->
         <div class="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800/80">
-          <div class="text-slate-400 text-[11px]">
+          <div class="text-slate-400 text-xs">
             <span>Exam Date: </span>
             <span class="text-amber-400 font-bold">${job.exam_date || 'To be announced on board portal'}</span>
           </div>
@@ -3300,7 +3300,7 @@ async function openTimelineModal() {
         <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 flex items-center justify-between gap-3 hover:border-amber-500/30 transition-colors">
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-1">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isGu ? 'bg-orange-500/20 text-orange-300' : 'bg-blue-500/20 text-blue-300'}">${j.board_category}</span>
+              <span class="px-2 py-0.5 rounded text-xs font-bold ${isGu ? 'bg-orange-500/20 text-orange-300' : 'bg-blue-500/20 text-blue-300'}">${j.board_category}</span>
               <span class="text-xs text-slate-400 truncate">${j.organization}</span>
             </div>
             <h4 class="text-xs font-bold text-white truncate cursor-pointer hover:text-cyan-300" onclick="closeTimelineModal(); openJobDetailModal(${j.id});">${j.title}</h4>
@@ -3401,7 +3401,7 @@ function resetAllFilters() {
     currentFilters.gov_level = "State";
   }
 
-  const sInput = document.getElementById("search-input");
+  const sInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
   if (sInput) sInput.value = "";
 
   document.querySelectorAll(".filter-pill, .filter-btn-chip").forEach(b => {
@@ -3528,7 +3528,7 @@ async function runQuickEligibilityRadar() {
               <button onclick="openJobDetailModal(${m.job.id})" class="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-cyan-950/70 border border-slate-700 hover:border-cyan-500/50 text-xs text-slate-200 hover:text-cyan-300 flex items-center gap-1.5 transition-all">
                 <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                 <span class="font-bold truncate max-w-[200px]">${m.job.title}</span>
-                <span class="text-[10px] text-emerald-400 font-mono">(${m.match_score}% Match)</span>
+                <span class="text-xs text-emerald-400 font-mono">(${m.match_score}% Match)</span>
               </button>
             `).join('')}
           </div>
