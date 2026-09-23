@@ -46,7 +46,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
       <div class="flex items-center gap-2 text-indigo-700 font-bold shrink-0 pr-3 sm:pr-4 border-r border-slate-200/90 mr-1 sm:mr-2">
         <span class="w-2 h-2 rounded-md bg-indigo-600 animate-ping"></span>
-        <span class="tracking-wider uppercase text-[11px] font-mono whitespace-nowrap">Live Gazettes 2026:</span>
+        <span class="tracking-normal font-bold text-xs text-indigo-900 whitespace-nowrap">Live Gazettes 2026:</span>
       </div>
 
       <div class="overflow-hidden flex-1 relative">
@@ -70,8 +70,8 @@
         </div>
       </div>
 
-      <div class="hidden sm:flex items-center gap-3 text-[11px] text-slate-500 shrink-0 font-medium">
-        <span class="flex items-center gap-1 text-emerald-600 font-bold">
+      <div class="hidden sm:flex items-center gap-3 text-xs text-slate-600 shrink-0 font-medium">
+        <span class="flex items-center gap-1 text-emerald-700 font-bold">
           <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> 100% Official Gazettes
         </span>
         <span>•</span>
@@ -97,7 +97,7 @@
               <span class="text-lg sm:text-xl font-light text-[#635bff]">Rojgar</span>
               <span class="hidden sm:inline-block px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200/80 uppercase tracking-widest font-mono">Public Service</span>
             </div>
-            <p class="text-[10px] sm:text-[11px] text-slate-500 font-medium tracking-wide hidden lg:block">Official Central &amp; State Public Recruitment Notice Board</p>
+            <p class="text-xs text-slate-500 font-medium tracking-normal hidden lg:block">Official Central &amp; State Public Recruitment Notice Board</p>
           </div>
         </a>
 
@@ -112,59 +112,56 @@
         </div>
       </div>
 
-      <!-- Quick Action Buttons (Touch-scrollable on mobile/tablet, flex on desktop) -->
+      <!-- Standardized Cohesive Navigation Header Actions (Issues 17, 19, 22) -->
       <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar w-full lg:w-auto pb-1 lg:pb-0 shrink-0">
-        <!-- Dedicated Gujarat Govt Jobs Hub Button -->
-        <a href="/gujarat" class="shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-blue-600 hover:from-orange-600 hover:to-amber-600 text-slate-900 text-xs font-bold shadow-sm transition-all flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-md bg-white "></span>
+        <!-- Dedicated Gujarat Hub Button -->
+        <a href="/gujarat" class="shrink-0 h-9 px-3 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-800 border border-orange-200 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-orange-500"></span>
           <span>ગુજરાત રોજગાર</span>
-          <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
 
-        <!-- Dedicated B.Tech CSE Hub Button -->
-        <a href="/btech-cse" class="shrink-0 px-3 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/70 text-indigo-700 text-xs font-bold transition-all flex items-center gap-1.5">
+        <!-- Tech & IT Hub (Standardized from B.Tech CSE) -->
+        <a href="/btech-cse" class="shrink-0 h-9 px-3 rounded-lg bg-white hover:bg-indigo-50 border border-slate-200 text-indigo-700 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-          <span>B.Tech CSE</span>
+          <span>Tech &amp; IT Hub</span>
         </a>
 
-        <!-- Dedicated Corporate & Enterprise Hub Button -->
-        <a href="/corporate" class="shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200/70 text-purple-700 text-xs font-bold transition-all flex items-center gap-1.5">
+        <!-- Corporate Careers Hub Button -->
+        <a href="/corporate" class="shrink-0 h-9 px-3 rounded-lg bg-white hover:bg-purple-50 border border-slate-200 text-purple-700 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-purple-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-          <span>🏢 All Companies</span>
-          <span class="w-2 h-2 rounded-md bg-emerald-500 animate-ping"></span>
+          <span>🏢 Companies</span>
         </a>
 
         <!-- 7th Pay Calculator Trigger -->
-        <button onclick="openSalaryCalculator()" class="btn-stripe-secondary shrink-0 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Salary Calculator">
-          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="16" y1="18" x2="16" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>
-          <span class="hidden sm:inline">Salary</span>
+        <button onclick="openSalaryCalculator()" class="shrink-0 h-9 px-3 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer" title="Salary Calculator">
+          <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="16" y1="18" x2="16" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>
+          <span>Salary</span>
         </button>
 
         <!-- Eligibility Matcher Trigger -->
-        <button onclick="openMatcherModal()" class="btn-stripe-primary shrink-0 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Eligibility Matcher">
-          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+        <button onclick="openMatcherModal()" class="shrink-0 h-9 px-3 rounded-lg bg-white hover:bg-amber-50 border border-slate-200 text-amber-800 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer" title="Eligibility Matcher">
+          <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
           <span>Eligibility</span>
         </button>
 
-        <!-- Live Scanner Trigger -->
-        <button onclick="startLiveScan()" class="btn-stripe-secondary hidden sm:flex shrink-0 px-3 py-2 rounded-xl text-xs font-semibold items-center gap-1.5" title="Live Gazette Sync">
+        <!-- Live Scanner Trigger (Icon-only matching adjacent buttons, Issue 22) -->
+        <button onclick="startLiveScan()" class="hidden sm:inline-flex shrink-0 h-9 w-9 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 items-center justify-center transition-colors shadow-2xs cursor-pointer" title="Live Gazette Sync">
           <svg class="w-4 h-4 text-indigo-600" id="scanner-radar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.63"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></svg>
-          <span>Sync</span>
         </button>
 
         <!-- Audio Feedback Toggle -->
-        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="btn-stripe-secondary hidden sm:flex p-2.5 rounded-xl transition-colors" title="Toggle Tactile UI Sound">
+        <button id="sound-toggle-btn" onclick="toggleThemeSound()" class="hidden sm:inline-flex shrink-0 h-9 w-9 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 items-center justify-center transition-colors shadow-2xs cursor-pointer" title="Toggle Sound Feedback">
           <svg class="w-4 h-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
         </button>
 
-        <!-- Bookmarks Drawer Trigger (Desktop) -->
-        <button onclick="openBookmarksModal()" class="btn-stripe-secondary hidden md:flex relative p-2.5 rounded-xl transition-colors" title="Saved Jobs">
+        <!-- Bookmarks Drawer Trigger -->
+        <button onclick="openBookmarksModal()" class="hidden md:inline-flex relative shrink-0 h-9 w-9 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 items-center justify-center transition-colors shadow-2xs cursor-pointer" title="Saved Jobs">
           <svg class="w-4 h-4 text-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-md bg-[#635bff] text-slate-900 font-black text-[10px] flex items-center justify-center">0</span>
+          <span id="bookmark-count-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center">0</span>
         </button>
 
         <!-- Export CSV Button -->
-        <a href="/api/export" download class="btn-stripe-secondary hidden sm:flex p-2.5 rounded-xl transition-colors" title="Export CSV">
+        <a href="/api/export" download class="hidden sm:inline-flex shrink-0 h-9 w-9 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 items-center justify-center transition-colors shadow-2xs" title="Export CSV">
           <svg class="w-4 h-4 text-slate-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </a>
       </div>
@@ -218,49 +215,51 @@
           </div>
         </div>
 
-        <!-- Quick Trending Keywords & Interactive Feature Pills -->
-        <div class="mt-3.5 flex flex-wrap items-center justify-center gap-2 text-xs">
-          <span class="font-bold text-slate-600 uppercase tracking-wider text-[10px] font-mono">Trending:</span>
-          <button onclick="setQuickSearch('Police')" class="hover:text-indigo-600 hover:border-indigo-300 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 transition-all shadow-xs">LRD Police 12,472</button>
-          <button onclick="setQuickSearch('GPSC')" class="hover:text-indigo-600 hover:border-indigo-300 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 transition-all shadow-xs">GPSC Class 1-2</button>
-          <button onclick="setQuickSearch('CCE')" class="hover:text-indigo-600 hover:border-indigo-300 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 transition-all shadow-xs">GSSSB Clerk</button>
-          <button onclick="setQuickSearch('Railway')" class="hover:text-indigo-600 hover:border-indigo-300 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 transition-all shadow-xs">RRB ALP 18,799</button>
-          <button onclick="setQuickSearch('SSC')" class="hover:text-indigo-600 hover:border-indigo-300 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 transition-all shadow-xs">SSC CGL 17,727</button>
+        <!-- Quick Trending Keywords (Issue 21: Subtle Pill Tags clearly distinct from buttons) -->
+        <div class="mt-3.5 flex flex-wrap items-center justify-center gap-1.5 text-xs">
+          <span class="font-bold text-slate-500 uppercase tracking-wider text-[11px]">Trending:</span>
+          <button onclick="setQuickSearch('Police')" class="px-2.5 py-0.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-[11px] font-medium transition-colors border-0 cursor-pointer">LRD Police 12,472</button>
+          <button onclick="setQuickSearch('GPSC')" class="px-2.5 py-0.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-[11px] font-medium transition-colors border-0 cursor-pointer">GPSC Class 1-2</button>
+          <button onclick="setQuickSearch('CCE')" class="px-2.5 py-0.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-[11px] font-medium transition-colors border-0 cursor-pointer">GSSSB Clerk</button>
+          <button onclick="setQuickSearch('Railway')" class="px-2.5 py-0.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-[11px] font-medium transition-colors border-0 cursor-pointer">RRB ALP 18,799</button>
+          <button onclick="setQuickSearch('SSC')" class="px-2.5 py-0.5 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-[11px] font-medium transition-colors border-0 cursor-pointer">SSC CGL 17,727</button>
         </div>
 
-        <!-- Essential Candidate Tools Quick Launchers -->
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-2 pt-4 border-t border-slate-200/80">
-          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="btn-stripe-primary px-3 sm:px-3.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5">
-            <i data-lucide="target" class="w-3.5 h-3.5 text-slate-900  shrink-0"></i>
-            <span>🎯 Check My Eligibility <span class="hidden sm:inline">(હું કઈ ભરતી માટે લાયક છું?)</span></span>
+        <!-- Candidate Tools Visual Hierarchy (Issues 11, 20: Primary & Secondary CTAs with clear focus) -->
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button onclick="openMatcherModal(); setTimeout(() => setMatcherPreset('btech_gujarat'), 50);" class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 text-xs sm:text-sm font-bold shadow-2xs transition-colors flex items-center justify-center gap-2 cursor-pointer">
+            <i data-lucide="target" class="w-4 h-4 text-indigo-600 shrink-0"></i>
+            <span>🎯 Check My Eligibility <span class="hidden sm:inline">(લાયકાત ચકાસો)</span></span>
           </button>
-
-          <button onclick="openSalaryCalculator()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 text-emerald-700 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
-            <i data-lucide="calculator" class="w-3.5 h-3.5 text-emerald-600"></i>
-            <span>7th Pay Salary Calc</span>
+          <button onclick="openSalaryCalculator()" class="w-full sm:w-auto px-4 py-2.5 rounded-lg bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs sm:text-sm font-semibold shadow-2xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+            <i data-lucide="calculator" class="w-4 h-4 text-emerald-600"></i>
+            <span>7th Pay Salary Calculator</span>
           </button>
+        </div>
 
-          <button onclick="openOjasGuideModal()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-amber-700 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
+        <!-- Auxiliary Reference Tools (Clean Spaced Secondary Row, Issue 11) -->
+        <div class="mt-3.5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-600 font-medium">
+          <button onclick="openOjasGuideModal()" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer">
             <i data-lucide="book-open" class="w-3.5 h-3.5 text-amber-600"></i>
             <span>OJAS Apply Guide</span>
           </button>
-
-          <button onclick="openSyllabusModal(1)" class="px-3 py-1.5 rounded-xl bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-indigo-700 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
+          <span class="text-slate-300 hidden sm:inline">•</span>
+          <button onclick="openSyllabusModal(1)" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer">
             <i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-600"></i>
             <span>Syllabus &amp; Pattern</span>
           </button>
-
-          <button onclick="openFeeGuideModal()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-teal-50 border border-slate-200 hover:border-teal-300 text-teal-700 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
+          <span class="text-slate-300 hidden sm:inline">•</span>
+          <button onclick="openFeeGuideModal()" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer">
             <i data-lucide="credit-card" class="w-3.5 h-3.5 text-teal-600"></i>
             <span>Fee &amp; Exemption Guide</span>
           </button>
-
-          <button onclick="openTimelineModal()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-amber-700 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
+          <span class="text-slate-300 hidden sm:inline">•</span>
+          <button onclick="openTimelineModal()" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer">
             <i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-600"></i>
             <span>Exam Dates Tracker</span>
           </button>
-
-          <button onclick="openCommandPalette()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-indigo-700 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-xs">
+          <span class="text-slate-300 hidden sm:inline">•</span>
+          <button onclick="openCommandPalette()" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer">
             <i data-lucide="command" class="w-3.5 h-3.5 text-indigo-600"></i>
             <span>Command Palette (Ctrl+K)</span>
           </button>
@@ -330,7 +329,7 @@
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-base sm:text-lg font-black text-[#0a2540] tracking-tight">Recruitment Filter Station</h3>
+              <h2 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">Recruitment Filter Station</h2>
               <span id="active-filters-badge" class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold bg-indigo-100 text-indigo-800 border border-indigo-300 shadow-2xs">Active: 0</span>
             </div>
             <p class="text-xs text-slate-500 font-medium">Refine vacancies by jurisdiction, sector, qualification, and selection mode</p>
@@ -377,18 +376,18 @@
           <button onclick="applyQuickFilter('level', 'All', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#635bff] text-slate-900 shadow-xs transition-all cursor-pointer">
             All Openings
           </button>
-          <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-300 hover:border-orange-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
-            <span class="w-2 h-2 rounded-md bg-orange-500 "></span>
-            <span>🦁 Gujarat State (ગુજરાત)</span>
+          <button onclick="applyQuickFilter('gujarat', 'All', this)" class="filter-pill filter-btn-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-300 hover:border-orange-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Gujarat State (ગુજરાત)</span>
           </button>
-          <button onclick="applyQuickFilter('level', 'Central', this)" class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-300 hover:border-blue-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
-            <span class="w-2 h-2 rounded-md bg-blue-500"></span>
-            <span>🇮🇳 Central Govt (All India)</span>
+          <button onclick="applyQuickFilter('level', 'Central', this)" class="filter-pill filter-btn-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-300 hover:border-blue-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+            <span>Central Govt (All India)</span>
           </button>
         </div>
       </div>
 
-      <!-- Module 2: Sector Filters (14 Modern Categories with 100% Inline SVGs) -->
+      <!-- Module 2: Sector Filters with Progressive Disclosure (Issue 16) -->
       <div class="filter-module-row">
         <div class="flex flex-wrap items-center gap-1.5">
           <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
@@ -424,38 +423,48 @@
             <svg class="w-3.5 h-3.5 text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>
             <span>Railways</span>
           </button>
-          <button onclick="filterBySector('banking', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
-            <span>Banking &amp; Finance</span>
-          </button>
-          <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.6-.2-1.2-.5-1.6L20 9l-2-4H5L3 9l-1.5 3.4c-.3.4-.5 1-.5 1.6 0 .4.1.8.2 1.2l.8 2.8H5"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-            <span>GSRTC &amp; Transport</span>
-          </button>
-          <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <span>Electricity Boards</span>
-          </button>
-          <button onclick="filterBySector('defence', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Defence Forces</span>
-          </button>
-          <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>
-            <span>Forest &amp; Wildlife</span>
-          </button>
-          <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <span>Postal &amp; Post Office</span>
-          </button>
-          <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
-            <span>Airport &amp; Aviation</span>
+
+          <!-- Collapsible Auxiliary Sectors -->
+          <div id="extra-sectors-home" class="hidden flex-wrap items-center gap-1.5">
+            <button onclick="filterBySector('banking', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+              <span>Banking &amp; Finance</span>
+            </button>
+            <button onclick="filterBySector('transport', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.6-.2-1.2-.5-1.6L20 9l-2-4H5L3 9l-1.5 3.4c-.3.4-.5 1-.5 1.6 0 .4.1.8.2 1.2l.8 2.8H5"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+              <span>GSRTC &amp; Transport</span>
+            </button>
+            <button onclick="filterBySector('electricity', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>Electricity Boards</span>
+            </button>
+            <button onclick="filterBySector('defence', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>Defence Forces</span>
+            </button>
+            <button onclick="filterBySector('forest', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>
+              <span>Forest &amp; Wildlife</span>
+            </button>
+            <button onclick="filterBySector('postal', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>Postal &amp; Post Office</span>
+            </button>
+            <button onclick="filterBySector('aviation', this)" class="filter-pill filter-pill-sector flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+              <span>Airport &amp; Aviation</span>
+            </button>
+          </div>
+
+          <!-- Progressive Disclosure Toggle Button -->
+          <button type="button" onclick="const e = document.getElementById('extra-sectors-home'); const isH = e.classList.toggle('hidden'); this.querySelector('span').innerText = isH ? 'More Sectors (+7)' : 'Show Less'; this.querySelector('svg').classList.toggle('rotate-180');" class="filter-pill text-indigo-700 border-indigo-200 bg-indigo-50 hover:bg-indigo-100 font-semibold inline-flex items-center gap-1 cursor-pointer">
+            <span>More Sectors (+7)</span>
+            <svg class="w-3.5 h-3.5 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- Module 3: Selection Process / Mode Filters -->
+      <!-- Module 3: Selection Process / Mode Filters (Clean filter affordance, Issue 23) -->
       <div class="filter-module-row">
         <div class="flex flex-wrap items-center gap-1.5">
           <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
@@ -479,33 +488,52 @@
             <svg class="w-3.5 h-3.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             <span>Written Exam (CBT)</span>
           </button>
-          <a href="/btech-cse" class="filter-pill text-indigo-700 border-indigo-300 bg-indigo-50 hover:bg-indigo-100 font-bold flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-            <span>B.Tech CSE Hub &rarr;</span>
-          </a>
-          <a href="/corporate" class="filter-pill text-purple-700 border-purple-300 bg-purple-50 hover:bg-purple-100 font-bold flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-purple-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-            <span>Corporate Careers (TCS, Adani, L&amp;T) &rarr;</span>
-          </a>
         </div>
       </div>
 
-      <!-- Module 4: Qualification Filters -->
+      <!-- Module 4: Qualification Filters with Line-Art Icons (Issue 24) -->
       <div class="filter-module-row">
         <div class="flex flex-wrap items-center gap-1.5">
           <span class="text-xs font-bold text-slate-700 mr-2 flex items-center gap-1.5 shrink-0 uppercase tracking-wider text-[11px]">
             <svg class="w-4 h-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             <span>Qualification:</span>
           </span>
-          <button onclick="filterByQualification('All', this)" class="filter-pill filter-pill-qual pill-default-all active">All Qualifications</button>
-          <button onclick="filterByQualification('10th', this)" class="filter-pill filter-pill-qual">10th Pass (SSC)</button>
-          <button onclick="filterByQualification('12th', this)" class="filter-pill filter-pill-qual">12th Pass (HSC)</button>
-          <button onclick="filterByQualification('Diploma', this)" class="filter-pill filter-pill-qual">ITI / Diploma</button>
-          <button onclick="filterByQualification('Graduate', this)" class="filter-pill filter-pill-qual">Graduate (Any Degree)</button>
-          <button onclick="filterByQualification('Engineering', this)" class="filter-pill filter-pill-qual">B.E. / B.Tech</button>
-          <button onclick="filterByQualification('Post Graduate', this)" class="filter-pill filter-pill-qual">Post Graduate</button>
-          <button onclick="filterByQualification('Medical', this)" class="filter-pill filter-pill-qual">MBBS / Nursing</button>
-          <button onclick="filterByQualification('Teaching', this)" class="filter-pill filter-pill-qual">B.Ed / TET / TAT</button>
+          <button onclick="filterByQualification('All', this)" class="filter-pill filter-pill-qual pill-default-all active inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <span>All Qualifications</span>
+          </button>
+          <button onclick="filterByQualification('10th', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+            <span>10th Pass (SSC)</span>
+          </button>
+          <button onclick="filterByQualification('12th', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>12th Pass (HSC)</span>
+          </button>
+          <button onclick="filterByQualification('Diploma', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-teal-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <span>ITI / Diploma</span>
+          </button>
+          <button onclick="filterByQualification('Graduate', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span>Graduate (Any Degree)</span>
+          </button>
+          <button onclick="filterByQualification('Engineering', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-purple-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+            <span>B.E. / B.Tech</span>
+          </button>
+          <button onclick="filterByQualification('Post Graduate', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span>Post Graduate</span>
+          </button>
+          <button onclick="filterByQualification('Medical', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span>MBBS / Nursing</span>
+          </button>
+          <button onclick="filterByQualification('Teaching', this)" class="filter-pill filter-pill-qual inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+            <span>B.Ed / TET / TAT</span>
+          </button>
         </div>
       </div>
 
@@ -532,20 +560,38 @@
         </div>
       </div>
 
-      <!-- Module 6: Board Category Chips -->
+      <!-- Module 6: Board Category Chips (Standardized to .filter-pill, Issue 12) -->
       <div class="filter-module-row mb-0">
         <div class="flex flex-wrap items-center gap-1.5">
-          <span class="text-xs font-bold text-slate-700 mr-2 shrink-0 uppercase tracking-wider text-[11px] font-mono">Key Boards:</span>
+          <span class="text-xs font-bold text-slate-700 mr-2 shrink-0 uppercase tracking-wider text-[11px]">Key Boards:</span>
           {% for b in boards_gujarat %}
-            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 hover:border-indigo-400 transition-colors shadow-2xs cursor-pointer">
+            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-pill font-medium text-xs">
               {{ b }}
             </button>
           {% endfor %}
           {% for b in boards_central %}
-            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-btn-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 hover:border-indigo-400 transition-colors shadow-2xs cursor-pointer">
+            <button onclick="applyQuickFilter('board', '{{ b }}', this)" class="filter-pill font-medium text-xs">
               {{ b }}
             </button>
           {% endfor %}
+        </div>
+      </div>
+
+      <!-- Dedicated Specialized Portals & Career Tracks Banner (Issue 23: Clean affordance outside filter tools) -->
+      <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <span class="text-slate-500 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          <span>Dedicated Specialized Hubs:</span>
+        </span>
+        <div class="flex items-center gap-2">
+          <a href="/btech-cse" class="h-8 px-3 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 font-semibold transition-colors inline-flex items-center gap-1.5 shadow-2xs">
+            <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+            <span>B.Tech &amp; IT Recruitment Hub &rarr;</span>
+          </a>
+          <a href="/corporate" class="h-8 px-3 rounded-lg bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 font-semibold transition-colors inline-flex items-center gap-1.5 shadow-2xs">
+            <svg class="w-3.5 h-3.5 text-purple-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+            <span>Corporate Careers (TCS, Adani, L&amp;T) &rarr;</span>
+          </a>
         </div>
       </div>
     </div>
@@ -726,7 +772,7 @@
           <div>
             <div class="flex items-center gap-2 flex-wrap">
               <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">Unified Eligibility &amp; Career Matching Engine</h2>
-              <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-slate-300 font-mono uppercase tracking-wider">Official Gazettes 2026</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">Official Gazettes 2026</span>
             </div>
             <p class="text-xs text-slate-600 mt-0.5">
               Verify your qualifications, age relaxations, and quota rules across 216+ Gujarat State &amp; Central recruitment notifications.
@@ -734,38 +780,38 @@
           </div>
         </div>
 
-        <!-- Wizard Step Indicators -->
-        <div class="flex items-center gap-2.5 sm:gap-3 bg-slate-900/80 px-3.5 py-2 rounded-lg border border-slate-800 shadow-inner">
+        <!-- Wizard Step Indicators (Issue 15: High-contrast legible step dots) -->
+        <div class="flex items-center gap-2.5 sm:gap-3 bg-white px-3.5 py-2 rounded-lg border border-slate-200 shadow-xs">
           <div class="flex items-center gap-2">
-            <div id="wizard-step-dot-1" class="wizard-step-dot active">1</div>
-            <span class="text-xs font-semibold text-slate-900 hidden sm:inline">Qualification</span>
+            <div id="wizard-step-dot-1" class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">1</div>
+            <span class="text-xs font-bold text-slate-900 hidden sm:inline">Qualification</span>
           </div>
-          <div class="w-4 sm:w-6 h-px bg-slate-700"></div>
+          <div class="w-4 sm:w-6 h-px bg-slate-300"></div>
           <div class="flex items-center gap-2">
-            <div id="wizard-step-dot-2" class="wizard-step-dot">2</div>
-            <span class="text-xs font-semibold text-slate-600 hidden sm:inline">Demographics</span>
+            <div id="wizard-step-dot-2" class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 border border-slate-300 font-bold text-xs flex items-center justify-center">2</div>
+            <span class="text-xs font-semibold text-slate-700 hidden sm:inline">Demographics</span>
           </div>
-          <div class="w-4 sm:w-6 h-px bg-slate-700"></div>
+          <div class="w-4 sm:w-6 h-px bg-slate-300"></div>
           <div class="flex items-center gap-2">
-            <div id="wizard-step-dot-3" class="wizard-step-dot">3</div>
-            <span class="text-xs font-semibold text-slate-600 hidden sm:inline">Verified Openings</span>
+            <div id="wizard-step-dot-3" class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 border border-slate-300 font-bold text-xs flex items-center justify-center">3</div>
+            <span class="text-xs font-semibold text-slate-700 hidden sm:inline">Verified Openings</span>
           </div>
         </div>
       </div>
 
-      <!-- Quick Preset Triggers -->
-      <div class="py-3 px-1 flex flex-wrap items-center gap-2 text-xs border-b border-slate-800/80 relative z-10">
-        <span class="text-slate-600 font-bold uppercase tracking-wider text-[10px] mr-1 font-mono">One-Click Presets:</span>
-        <button onclick="setMatcherPreset('btech_gujarat'); goToWizardStep(2);" class="px-3 py-1.5 rounded-xl bg-indigo-950/70 hover:bg-indigo-900 border border-slate-300 text-indigo-300 font-semibold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer">
-          <svg class="w-3.5 h-3.5 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+      <!-- Quick Preset Triggers (Issue 14: Unified cohesive neutral brand style) -->
+      <div class="py-3 px-1 flex flex-wrap items-center gap-2 text-xs border-b border-slate-200 relative z-10">
+        <span class="text-slate-500 font-bold uppercase tracking-wider text-[11px]">One-Click Presets:</span>
+        <button onclick="setMatcherPreset('btech_gujarat'); goToWizardStep(2);" class="h-8 px-3 rounded-lg bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-700 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
           <span>B.Tech CSE Gujarat</span>
         </button>
-        <button onclick="setMatcherPreset('graduate_gujarat'); goToWizardStep(2);" class="px-3 py-1.5 rounded-xl bg-amber-950/70 hover:bg-amber-900 border border-amber-500/40 text-amber-300 font-semibold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer">
-          <svg class="w-3.5 h-3.5 text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="22" x2="22" y2="22"/><line x1="12" y1="2" x2="12" y2="18"/><polygon points="2 7 12 2 22 7"/></svg>
+        <button onclick="setMatcherPreset('graduate_gujarat'); goToWizardStep(2);" class="h-8 px-3 rounded-lg bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-700 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="22" x2="22" y2="22"/><line x1="12" y1="2" x2="12" y2="18"/><polygon points="2 7 12 2 22 7"/></svg>
           <span>Gujarat Graduate (GPSC/CCE)</span>
         </button>
-        <button onclick="setMatcherPreset('12th_gujarat'); goToWizardStep(2);" class="px-3 py-1.5 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer">
-          <svg class="w-3.5 h-3.5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <button onclick="setMatcherPreset('12th_gujarat'); goToWizardStep(2);" class="h-8 px-3 rounded-lg bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-700 text-xs font-semibold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <span>12th Pass (Police &amp; Forest)</span>
         </button>
       </div>
@@ -789,8 +835,8 @@
           </select>
         </div>
 
-        <div class="pt-4 flex justify-end">
-          <button onclick="goToWizardStep(2); playAudioTick(750, 0.05);" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-slate-900 font-bold text-xs shadow-lg shadow-indigo-500/30 transition-all flex items-center gap-2 cursor-pointer">
+        <div class="pt-3 flex justify-start">
+          <button onclick="goToWizardStep(2); playAudioTick(750, 0.05);" class="h-10 px-5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-2 cursor-pointer">
             <span>Next: Demographics &amp; Quota</span>
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
@@ -1612,7 +1658,7 @@
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Gujarat Special</h4>
+        <h4 class="text-xs font-bold text-slate-200 mb-3">Gujarat Special</h4>
         <ul class="space-y-1.5 text-xs text-slate-600">
           <li><a href="/gujarat" class="hover:text-cyan-400 transition-colors">OJAS Gujarat Online Jobs</a></li>
           <li><a href="/gujarat" class="hover:text-cyan-400 transition-colors">GPSC Class 1 & 2 Officers</a></li>
@@ -1623,7 +1669,7 @@
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Central Portals</h4>
+        <h4 class="text-xs font-bold text-slate-200 mb-3">Central Portals</h4>
         <ul class="space-y-1.5 text-xs text-slate-600">
           <li><a href="/?board=SSC" class="hover:text-cyan-400 transition-colors">Staff Selection Commission (SSC)</a></li>
           <li><a href="/?board=UPSC" class="hover:text-cyan-400 transition-colors">Union Public Service Commission</a></li>
@@ -1634,7 +1680,7 @@
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Tools & Transparency</h4>
+        <h4 class="text-xs font-bold text-slate-200 mb-3">Tools & Transparency</h4>
         <ul class="space-y-1.5 text-xs text-slate-600">
           <li><button onclick="openMatcherModal()" class="hover:text-cyan-400 transition-colors">Smart Eligibility Matcher</button></li>
           <li><button onclick="startLiveScan()" class="hover:text-cyan-400 transition-colors">Live Feeds Aggregator</button></li>

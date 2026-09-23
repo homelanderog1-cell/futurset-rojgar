@@ -488,29 +488,31 @@ function renderCardsView(container, jobs) {
             </div>
 
             <!-- Title -->
-            <h3 class="text-[0.95rem] font-bold text-[#0a2540] group-hover:text-[#635bff] transition-colors line-clamp-2 leading-snug cursor-pointer mb-1.5" onclick="openJobDetailModal(${job.id})">
+            <h3 class="text-[0.95rem] font-bold text-[#0a2540] group-hover:text-[#635bff] transition-colors line-clamp-2 leading-snug cursor-pointer mb-1" onclick="openJobDetailModal(${job.id})">
               ${job.title}
             </h3>
 
             ${job.title_gu ? `
-              <p class="font-gujarati text-xs text-amber-700 font-medium mb-3 line-clamp-1">
+              <p class="font-gujarati text-xs text-slate-500 font-normal mt-0.5 mb-3 line-clamp-1 normal-case">
                 ${job.title_gu}
               </p>
             ` : ''}
 
-            <!-- Clean 3-Item Metrics Bar with High Contrast Labels & Multi-line clamp -->
-            <div class="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-slate-50 border border-slate-100 text-xs mb-4">
-              <div class="min-w-0">
-                <span class="text-slate-600 block text-[11px] font-bold uppercase tracking-wider">Vacancies</span>
-                <span class="font-bold text-emerald-600 text-xs mt-0.5 block tabular-nums">${job.vacancies.toLocaleString()}</span>
+            <!-- Structured Metrics: Top 2-cols + Full-Width Eligibility Row (Issue 13) -->
+            <div class="rounded-xl bg-slate-50 border border-slate-100 p-2.5 text-xs mb-4 space-y-2">
+              <div class="grid grid-cols-2 gap-2.5 pb-2 border-b border-slate-200/60">
+                <div class="min-w-0">
+                  <span class="text-slate-500 block text-[11px] font-bold uppercase tracking-wider">Vacancies</span>
+                  <span class="font-bold text-emerald-600 text-xs mt-0.5 block tabular-nums">${job.vacancies.toLocaleString()}</span>
+                </div>
+                <div class="min-w-0">
+                  <span class="text-slate-500 block text-[11px] font-bold uppercase tracking-wider">Pay Scale</span>
+                  <span class="font-semibold text-slate-800 text-xs mt-0.5 block line-clamp-1 leading-tight truncate" title="${job.salary_text || cleanSalary}">${cleanSalary}</span>
+                </div>
               </div>
               <div class="min-w-0">
-                <span class="text-slate-600 block text-[11px] font-bold uppercase tracking-wider">Pay Scale</span>
-                <span class="font-semibold text-slate-800 text-xs mt-0.5 block line-clamp-2 leading-tight break-words" title="${job.salary_text || cleanSalary}">${cleanSalary}</span>
-              </div>
-              <div class="min-w-0">
-                <span class="text-slate-600 block text-[11px] font-bold uppercase tracking-wider">Eligibility</span>
-                <span class="font-semibold text-slate-700 text-xs mt-0.5 block line-clamp-2 leading-tight break-words" title="${job.qualification || cleanQual}">${cleanQual}</span>
+                <span class="text-slate-500 block text-[11px] font-bold uppercase tracking-wider">Eligibility</span>
+                <span class="font-medium text-slate-700 text-xs mt-0.5 block line-clamp-2 leading-tight break-words" title="${job.qualification || cleanQual}">${cleanQual}</span>
               </div>
             </div>
           </div>
