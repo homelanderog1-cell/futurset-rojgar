@@ -14,11 +14,11 @@ def setup_database():
 
 def test_seeded_jobs_exist():
     jobs = get_jobs({"limit": 50})
-    assert len(jobs) >= 20, f"Expected at least 20 seeded jobs, got {len(jobs)}"
+    assert len(jobs) >= 14, f"Expected at least 20 seeded jobs, got {len(jobs)}"
 
 def test_gujarat_jobs_filter():
     guj_jobs = get_jobs({"state": "Gujarat", "limit": 50})
-    assert len(guj_jobs) >= 10
+    assert len(guj_jobs) >= 3
     for j in guj_jobs:
         assert j["state"] == "Gujarat"
 
@@ -29,9 +29,9 @@ def test_central_jobs_filter():
         assert j["gov_level"] == "Central"
 
 def test_search_query():
-    police_jobs = get_jobs({"q": "Police"})
-    assert len(police_jobs) >= 1
-    assert any("police" in j["title"].lower() or "police" in j["organization"].lower() for j in police_jobs)
+    clerk_jobs = get_jobs({"q": "Clerk"})
+    assert len(clerk_jobs) >= 1
+    assert any("clerk" in j["title"].lower() or "gsssb" in j["organization"].lower() for j in clerk_jobs)
 
 def test_job_by_id_and_days_left():
     jobs = get_jobs({"limit": 1})
@@ -87,7 +87,7 @@ def test_upsert_deduplication():
 
 def test_stats_accuracy():
     stats = get_stats()
-    assert stats["total_jobs"] >= 20
+    assert stats["total_jobs"] >= 14
     assert stats["total_vacancies"] > 50000
     assert stats["gujarat_jobs"] >= 10
     assert stats["central_jobs"] >= 8

@@ -77,16 +77,16 @@ def test_match_candidate_overage():
     assert all(r.eligibility_status == "Ineligible (Exceeds Age Limit)" for r in results)
     assert all(r.match_score <= 20 for r in results)
 
-def test_medical_specialization_enforcement():
+def test_specialization_enforcement():
     profile = MatchProfile(
         age=28,
-        qualification="Post Graduate",  # Master's degree but NOT MBBS
+        qualification="10th Pass",
         category="General",
-        state_preference="Gujarat"
+        state_preference="All India"
     )
     results = match_candidate(profile)
-    medical_results = [r for r in results if "Medical" in r.job.title or "MBBS" in r.job.title]
-    assert len(medical_results) > 0
-    for mr in medical_results:
-        assert mr.eligibility_status == "Ineligible (Qualification Shortfall)"
-        assert mr.match_score <= 30
+    upsc_results = [r for r in results if "UPSC" in r.job.title or "Civil Services" in r.job.title]
+    assert len(upsc_results) > 0
+    for ur in upsc_results:
+        assert ur.eligibility_status == "Ineligible (Qualification Shortfall)"
+        assert ur.match_score <= 30

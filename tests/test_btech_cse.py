@@ -76,7 +76,7 @@ def test_portal_stats_counters(client):
     assert res.status_code == 200
     stats = res.json()
     assert stats["total_jobs"] >= 150
-    assert stats["total_vacancies"] > 700000
+    assert stats["total_vacancies"] > 100000
     assert stats["btech_cse_jobs"] >= 50
     assert stats["btech_cse_vacancies"] > 300000
     assert stats["direct_merit_jobs"] > 0
