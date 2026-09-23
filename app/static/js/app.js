@@ -72,9 +72,16 @@ function initLucide() {
 }
 window.initLucide = initLucide;
 
+function getSearchInputElement() {
+  return document.getElementById("global-search-input") ||
+         document.getElementById("gujarat-search-input") ||
+         document.getElementById("search-input");
+}
+window.getSearchInputElement = getSearchInputElement;
+
 // Global Search Helper Functions with Smooth Results Scroll
 window.executeSearch = function() {
-  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
+  const searchInput = getSearchInputElement();
   if (searchInput) {
     currentFilters.q = searchInput.value.trim();
     fetchJobs();
@@ -87,7 +94,7 @@ window.executeSearch = function() {
 };
 
 window.clearSearch = function() {
-  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
+  const searchInput = getSearchInputElement();
   if (searchInput) {
     searchInput.value = "";
     currentFilters.q = "";
@@ -97,7 +104,7 @@ window.clearSearch = function() {
 };
 
 window.setQuickSearch = function(term) {
-  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
+  const searchInput = getSearchInputElement();
   if (searchInput) {
     searchInput.value = term;
     currentFilters.q = term;
@@ -112,7 +119,7 @@ window.setQuickSearch = function(term) {
 
 function initEventListeners() {
   // Search input with debounce + Enter key support & auto-scroll
-  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
+  const searchInput = getSearchInputElement();
   if (searchInput) {
     let timeout = null;
     searchInput.addEventListener("input", (e) => {
@@ -470,7 +477,7 @@ function renderCardsView(container, jobs) {
                   <input type="checkbox" id="compare-job-${job.id}" aria-label="Compare ${escapeHtml(job.title)}" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300 m-0">
                   <span class="hidden sm:inline text-xs font-medium leading-none">Compare</span>
                 </label>
-                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 inline-flex items-center justify-center transition-colors box-border" aria-label="${isBookmarked ? \'Remove bookmark for\' : \'Bookmark\'} ${escapeHtml(job.title)}">
+                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 inline-flex items-center justify-center transition-colors box-border" aria-label="${isBookmarked ? 'Remove bookmark for' : 'Bookmark'} ${escapeHtml(job.title)}">
                   <svg class="w-3.5 h-3.5 ${isBookmarked ? 'fill-[#635bff] text-[#635bff]' : 'text-slate-400'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${isBookmarked ? '#635bff' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
@@ -2242,7 +2249,7 @@ function resetFilters() {
     qualification: "",
     sort_by: "deadline"
   };
-  const searchInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
+  const searchInput = getSearchInputElement();
   if (searchInput) searchInput.value = "";
   
   document.querySelectorAll(".filter-btn-chip").forEach(b => {
@@ -3401,7 +3408,7 @@ function resetAllFilters() {
     currentFilters.gov_level = "State";
   }
 
-  const sInput = document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || (document.getElementById("global-search-input") || document.getElementById("gujarat-search-input") || document.getElementById("search-input"));
+  const sInput = getSearchInputElement();
   if (sInput) sInput.value = "";
 
   document.querySelectorAll(".filter-pill, .filter-btn-chip").forEach(b => {
