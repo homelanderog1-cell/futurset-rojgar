@@ -20,6 +20,17 @@ let selectedCompareIds = [];
 let audioEnabled = true;
 let audioCtx = null;
 
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+window.escapeHtml = escapeHtml;
+
 document.addEventListener("DOMContentLoaded", () => {
   try { initLucide(); } catch (e) { console.warn("Lucide init:", e); }
   try { initEventListeners(); } catch (e) { console.warn("EventListeners init:", e); }
