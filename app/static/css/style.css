@@ -32,6 +32,19 @@
   --btn-h-prominent: 44px;             /* h-11 - Hero CTAs & primary search controls */
 }
 
+/* Document & Canvas Base Layout - Prevent Horizontal Overflow */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+.timeline-ticker-viewport {
+  overflow: hidden !important;
+  max-width: 100% !important;
+  contain: paint;
+}
+
 /* Unified Government Action Buttons (Issue 3) */
 .btn-gov-primary {
   height: var(--btn-h-standard);

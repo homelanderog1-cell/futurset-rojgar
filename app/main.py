@@ -66,6 +66,23 @@ app.add_middleware(
 # Mount static files
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
+FAVICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <circle cx="32" cy="32" r="14" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <path d="M32 18 L32 46 M18 32 L46 32 M22 22 L42 42 M22 42 L42 22" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="32" cy="32" r="3" fill="#ffffff"/>
+</svg>"""
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(content=FAVICON_SVG, media_type="image/svg+xml")
+
 # Templates
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["format_vacancies"] = lambda val: f"{val:,}" if isinstance(val, (int, float)) else str(val)

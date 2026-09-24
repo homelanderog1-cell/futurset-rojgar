@@ -19,6 +19,12 @@ def test_health_endpoint(client):
     assert data["status"] == "healthy"
     assert data["brand"] == "FuturSet"
 
+def test_favicon_endpoint(client):
+    res = client.get("/favicon.ico")
+    assert res.status_code == 200
+    assert "image/svg+xml" in res.headers["content-type"]
+    assert "<svg" in res.text
+
 def test_homepage_html(client):
     res = client.get("/")
     assert res.status_code == 200
