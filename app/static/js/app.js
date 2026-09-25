@@ -488,7 +488,7 @@ function renderCardsView(container, jobs) {
                   <input type="checkbox" id="compare-job-${job.id}" aria-label="Compare ${escapeHtml(job.title)}" onchange="toggleCompareJob(${job.id}, this)" ${isCompareSelected ? 'checked' : ''} class="rounded text-[#635bff] focus:ring-0 w-3.5 h-3.5 bg-white border-slate-300 m-0">
                   <span class="hidden sm:inline text-xs font-medium leading-none">Compare</span>
                 </label>
-                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-[#635bff] border border-slate-200 inline-flex items-center justify-center transition-colors box-border" aria-label="${isBookmarked ? 'Remove bookmark for' : 'Bookmark'} ${escapeHtml(job.title)}">
+                <button onclick="toggleBookmark(${job.id}, this)" class="h-7 w-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 ${isGujaratPage ? 'hover:text-orange-600' : 'hover:text-[#635bff]'} border border-slate-200 inline-flex items-center justify-center transition-colors box-border" aria-label="${isBookmarked ? 'Remove bookmark for' : 'Bookmark'} ${escapeHtml(job.title)}">
                   <svg class="w-3.5 h-3.5 ${isBookmarked ? 'fill-[#635bff] text-[#635bff]' : 'text-slate-400'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${isBookmarked ? '#635bff' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
@@ -525,7 +525,7 @@ function renderCardsView(container, jobs) {
                 </div>
                 <div class="min-w-0">
                   <span class="text-slate-500 block text-xs font-bold uppercase tracking-wider">Pay Scale</span>
-                  <span class="font-semibold text-slate-800 text-xs mt-0.5 block line-clamp-1 leading-tight truncate" title="${job.salary_text || cleanSalary}">${cleanSalary}</span>
+                  <span class="font-semibold text-slate-800 text-xs mt-0.5 block line-clamp-2 leading-snug break-words" title="${job.salary_text || cleanSalary}">${cleanSalary}</span>
                 </div>
               </div>
               <div class="min-w-0">

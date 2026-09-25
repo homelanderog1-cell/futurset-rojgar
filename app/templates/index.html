@@ -184,7 +184,7 @@
 <label class="sr-only" for="global-search-input">Search vacancies by post, department, or keyword</label>
 <input aria-label="Search vacancies by post, department, or keyword" class="w-full pl-11 sm:pl-14 pr-28 sm:pr-36 py-3 sm:py-3.5 bg-transparent text-slate-900 rounded-md text-xs sm:text-sm placeholder-slate-400 font-medium outline-none" id="global-search-input" placeholder="Search Police, Clerk, GPSC, RRB, High Court, SBI..." type="text"/>
 <div class="absolute inset-y-0 right-1.5 sm:right-2 flex items-center gap-1.5">
-<button aria-label="Clear Search Input" class="p-1 rounded-md hover:bg-slate-100 text-slate-600 hover:text-slate-600 transition-colors" id="search-clear-btn" onclick="clearSearch()" title="Clear Search">
+<button aria-label="Clear Search Input" class="w-8 h-8 rounded-md hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors flex items-center justify-center" id="search-clear-btn" onclick="clearSearch()" title="Clear Search">
 <i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="x"></i>
 </button>
 <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 text-xs font-mono text-slate-500 border border-slate-200">Ctrl K</kbd>
@@ -216,27 +216,27 @@
 </div>
 <!-- Auxiliary Reference Tools (Clean Spaced Secondary Row, Issue 11) -->
 <div class="mt-3.5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-600 font-medium">
-<button class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openOjasGuideModal()">
+<button class="py-1 px-2 rounded-md hover:bg-slate-100 hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openOjasGuideModal()">
 <i aria-hidden="true" class="w-3.5 h-3.5 text-amber-600" data-lucide="book-open"></i>
 <span>OJAS Apply Guide</span>
 </button>
 <span class="text-slate-300 hidden sm:inline">•</span>
-<button class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openSyllabusModal(1)">
+<button class="py-1 px-2 rounded-md hover:bg-slate-100 hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openSyllabusModal(1)">
 <i aria-hidden="true" class="w-3.5 h-3.5 text-indigo-600" data-lucide="file-text"></i>
 <span>Syllabus &amp; Pattern</span>
 </button>
 <span class="text-slate-300 hidden sm:inline">•</span>
-<button class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openFeeGuideModal()">
+<button class="py-1 px-2 rounded-md hover:bg-slate-100 hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openFeeGuideModal()">
 <i aria-hidden="true" class="w-3.5 h-3.5 text-teal-600" data-lucide="credit-card"></i>
 <span>Fee &amp; Exemption Guide</span>
 </button>
 <span class="text-slate-300 hidden sm:inline">•</span>
-<button class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openTimelineModal()">
+<button class="py-1 px-2 rounded-md hover:bg-slate-100 hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openTimelineModal()">
 <i aria-hidden="true" class="w-3.5 h-3.5 text-amber-600" data-lucide="calendar"></i>
 <span>Exam Dates Tracker</span>
 </button>
 <span class="text-slate-300 hidden sm:inline">•</span>
-<button class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openCommandPalette()">
+<button class="py-1 px-2 rounded-md hover:bg-slate-100 hover:text-indigo-600 transition-colors flex items-center gap-1.5 cursor-pointer" onclick="openCommandPalette()">
 <i aria-hidden="true" class="w-3.5 h-3.5 text-indigo-600" data-lucide="command"></i>
 <span>Command Palette (Ctrl+K)</span>
 </button>
@@ -249,7 +249,7 @@
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
 <!-- Total Vacancies -->
 <div class="stat-card-stripe p-4 sm:p-5 rounded-lg bg-white border-t-4 border-t-indigo-600 flex items-center gap-3.5 min-w-0">
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-md shadow-indigo-500/20 shrink-0">
+<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 shrink-0">
 <svg aria-hidden="true" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="14" rx="2" ry="2" width="20" x="2" y="7"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
 </div>
 <div class="min-w-0 flex-1">
@@ -259,7 +259,7 @@
 </div>
 <!-- Gujarat Posts -->
 <div class="stat-card-stripe p-4 sm:p-5 rounded-lg bg-white border-t-4 border-t-orange-500 flex items-center gap-3.5 min-w-0">
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-md shadow-orange-500/20 shrink-0">
+<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-orange-500/20 shrink-0">
 <svg aria-hidden="true" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 </div>
 <div class="min-w-0 flex-1">
@@ -269,7 +269,7 @@
 </div>
 <!-- Central Govt -->
 <div class="stat-card-stripe p-4 sm:p-5 rounded-lg bg-white border-t-4 border-t-blue-600 flex items-center gap-3.5 min-w-0">
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-md shadow-blue-500/20 shrink-0">
+<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 shrink-0">
 <svg aria-hidden="true" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg>
 </div>
 <div class="min-w-0 flex-1">
@@ -279,7 +279,7 @@
 </div>
 <!-- Closing Soon -->
 <div class="stat-card-stripe p-4 sm:p-5 rounded-lg bg-white border-t-4 border-t-rose-600 flex items-center gap-3.5 min-w-0">
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-slate-900 shadow-md shadow-rose-500/20 shrink-0">
+<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-rose-500/20 shrink-0">
 <svg aria-hidden="true" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
 </div>
 <div class="min-w-0 flex-1">
@@ -296,7 +296,7 @@
 <!-- Filter Station Header: Title, Active Badge, Reset, Sort & View -->
 <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-200">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#635bff] to-[#00d4ff] flex items-center justify-center text-slate-900 shadow-md shadow-indigo-500/20 shrink-0">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#635bff] to-[#00d4ff] flex items-center justify-center text-white shadow-md shadow-indigo-500/20 shrink-0">
 <svg aria-hidden="true" class="w-5 h-5" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="4" y1="21" y2="14"></line><line x1="4" x2="4" y1="10" y2="3"></line><line x1="12" x2="12" y1="21" y2="12"></line><line x1="12" x2="12" y1="8" y2="3"></line><line x1="20" x2="20" y1="21" y2="16"></line><line x1="20" x2="20" y1="12" y2="3"></line><line x1="1" x2="7" y1="14" y2="14"></line><line x1="9" x2="15" y1="8" y2="8"></line><line x1="17" x2="23" y1="16" y2="16"></line></svg>
 </div>
 <div>
@@ -342,7 +342,7 @@
 <svg aria-hidden="true" class="w-4 h-4 text-indigo-600" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
 <span>Jurisdiction:</span>
 </span>
-<button class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#635bff] text-slate-900 shadow-xs transition-all cursor-pointer" onclick="applyQuickFilter('level', 'All', this)">
+<button class="filter-btn-chip px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#635bff] text-white shadow-xs transition-all cursor-pointer" onclick="applyQuickFilter('level', 'All', this)">
             All Openings
           </button>
 <button class="filter-pill filter-btn-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-700 border border-slate-300 hover:border-orange-400 transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer" onclick="applyQuickFilter('gujarat', 'All', this)">
@@ -775,14 +775,14 @@
 <span>Select Your Highest Educational Qualification</span>
 </label>
 <select aria-label="Select Your Highest Educational Qualification" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 font-medium outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 transition-all shadow-inner" id="radar-qualification">
-<option class="bg-slate-900 text-slate-900" selected="" value="Graduate">Any Graduate Degree (BA, B.Com, B.Sc, BCA, BBA)</option>
-<option class="bg-slate-900 text-slate-900" value="12th Pass">12th Pass (HSC / Higher Secondary)</option>
-<option class="bg-slate-900 text-slate-900" value="10th Pass">10th Pass (SSC / Matriculation)</option>
-<option class="bg-slate-900 text-slate-900" value="B.Tech / B.E. / MCA">B.Tech / B.E. / MCA (Computer Science, IT, Engineering)</option>
-<option class="bg-slate-900 text-slate-900" value="Post Graduate">Post Graduate / Master's Degree (M.Sc, M.Com, M.Tech)</option>
-<option class="bg-slate-900 text-slate-900" value="Diploma / ITI">Diploma / ITI Technical Certification</option>
-<option class="bg-slate-900 text-slate-900" value="Medical">MBBS / BAMS / Nursing / Healthcare</option>
-<option class="bg-slate-900 text-slate-900" value="All">View All Openings (No Filter)</option>
+<option class="bg-slate-900 text-white" selected="" value="Graduate">Any Graduate Degree (BA, B.Com, B.Sc, BCA, BBA)</option>
+<option class="bg-slate-900 text-white" value="12th Pass">12th Pass (HSC / Higher Secondary)</option>
+<option class="bg-slate-900 text-white" value="10th Pass">10th Pass (SSC / Matriculation)</option>
+<option class="bg-slate-900 text-white" value="B.Tech / B.E. / MCA">B.Tech / B.E. / MCA (Computer Science, IT, Engineering)</option>
+<option class="bg-slate-900 text-white" value="Post Graduate">Post Graduate / Master's Degree (M.Sc, M.Com, M.Tech)</option>
+<option class="bg-slate-900 text-white" value="Diploma / ITI">Diploma / ITI Technical Certification</option>
+<option class="bg-slate-900 text-white" value="Medical">MBBS / BAMS / Nursing / Healthcare</option>
+<option class="bg-slate-900 text-white" value="All">View All Openings (No Filter)</option>
 </select>
 </div>
 <div class="pt-3 flex justify-start">
@@ -810,12 +810,12 @@
 <span>Category / Quota</span>
 </label>
 <select aria-label="Category Quota or Reservation" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900 font-semibold outline-none focus:border-indigo-400 shadow-inner" id="radar-category">
-<option class="bg-slate-900 text-slate-900" value="General">General / Open (Standard Limits)</option>
-<option class="bg-slate-900 text-slate-900" selected="" value="OBC">OBC / SEBC (+3 Years Relaxation)</option>
-<option class="bg-slate-900 text-slate-900" value="SC">SC / ST (+5 Years Relaxation)</option>
-<option class="bg-slate-900 text-slate-900" value="EWS">EWS (+5 Years in Gujarat)</option>
-<option class="bg-slate-900 text-slate-900" value="Female">Female Candidates (+5 Years)</option>
-<option class="bg-slate-900 text-slate-900" value="PwD">PwD / Divyang (+10 Years)</option>
+<option class="bg-slate-900 text-white" value="General">General / Open (Standard Limits)</option>
+<option class="bg-slate-900 text-white" selected="" value="OBC">OBC / SEBC (+3 Years Relaxation)</option>
+<option class="bg-slate-900 text-white" value="SC">SC / ST (+5 Years Relaxation)</option>
+<option class="bg-slate-900 text-white" value="EWS">EWS (+5 Years in Gujarat)</option>
+<option class="bg-slate-900 text-white" value="Female">Female Candidates (+5 Years)</option>
+<option class="bg-slate-900 text-white" value="PwD">PwD / Divyang (+10 Years)</option>
 </select>
 </div>
 <!-- Domicile / Region Target -->
@@ -825,9 +825,9 @@
 <span>Jurisdiction Target</span>
 </label>
 <select aria-label="Jurisdiction Target" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900 font-semibold outline-none focus:border-indigo-400 shadow-inner" id="radar-target">
-<option class="bg-slate-900 text-slate-900" selected="" value="All">All (Gujarat State + Central Govt)</option>
-<option class="bg-slate-900 text-slate-900" value="Gujarat">Gujarat State Only (OJAS / GPSC)</option>
-<option class="bg-slate-900 text-slate-900" value="Central">Central Govt Only (SSC / RRB / UPSC)</option>
+<option class="bg-slate-900 text-white" selected="" value="All">All (Gujarat State + Central Govt)</option>
+<option class="bg-slate-900 text-white" value="Gujarat">Gujarat State Only (OJAS / GPSC)</option>
+<option class="bg-slate-900 text-white" value="Central">Central Govt Only (SSC / RRB / UPSC)</option>
 </select>
 </div>
 </div>
@@ -1246,11 +1246,11 @@
 <div class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 backdrop-blur-xl border border-cyan-500/50 shadow-2xl rounded-lg px-5 py-3 items-center gap-4 text-xs" id="compare-floating-bar">
 <div class="flex items-center gap-2">
 <span class="w-2.5 h-2.5 rounded-md bg-cyan-400"></span>
-<span class="font-bold text-slate-900" id="compare-selected-count">0/2 Selected</span>
+<span class="font-bold text-white" id="compare-selected-count">0/2 Selected</span>
 <span class="text-slate-600 hidden sm:inline">to compare side-by-side</span>
 </div>
 <div class="flex items-center gap-2">
-<button class="px-4 py-2 rounded-xl bg-blue-600 hover:from-cyan-500 hover:to-blue-500 text-slate-900 font-bold shadow-lg shadow-cyan-500/30 transition-all flex items-center gap-1.5" onclick="openCompareModal()">
+<button class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-lg shadow-blue-500/30 transition-all flex items-center gap-1.5" onclick="openCompareModal()">
 <span>Compare Now</span>
 <i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="arrow-right"></i>
 </button>
@@ -1265,7 +1265,7 @@
 <div class="p-3.5 border-b border-slate-800 flex items-center gap-3">
 <i aria-hidden="true" class="w-5 h-5 text-cyan-400" data-lucide="search"></i>
 <label class="sr-only" for="palette-input">Quick Search Command Palette</label>
-<input aria-label="Type a command or recruitment search" class="bg-transparent text-slate-900 text-sm w-full outline-none placeholder-slate-500" id="palette-input" placeholder="Type to search recruitments, boards, tools, actions..." type="text"/>
+<input aria-label="Type a command or recruitment search" class="bg-transparent text-white text-sm w-full outline-none placeholder-slate-400" id="palette-input" placeholder="Type to search recruitments, boards, tools, actions..." type="text"/>
 <button class="text-slate-600 hover:text-slate-900 p-1 rounded-lg" onclick="closeCommandPalette()">
 <kbd class="px-1.5 py-0.5 rounded bg-white text-xs text-slate-600 font-mono">ESC</kbd>
 </button>
@@ -1288,18 +1288,18 @@
 <i aria-hidden="true" class="w-5 h-5" data-lucide="calculator"></i>
 </div>
 <div>
-<h3 class="font-extrabold text-slate-900 text-base">7th Pay Salary Calculator</h3>
-<p class="text-xs text-slate-600" id="calc-prefill-note">Gujarat Govt &amp; Central Pay Matrix</p>
+<h3 class="font-extrabold text-white text-base">7th Pay Salary Calculator</h3>
+<p class="text-xs text-slate-300" id="calc-prefill-note">Gujarat Govt &amp; Central Pay Matrix</p>
 </div>
 </div>
-<button aria-label="Close Salary Calculator" class="text-slate-600 hover:text-slate-900 p-1.5 rounded-lg" onclick="closeSalaryCalculator()">
+<button aria-label="Close Salary Calculator" class="text-slate-400 hover:text-white p-1.5 rounded-lg" onclick="closeSalaryCalculator()">
 <i aria-hidden="true" class="w-5 h-5" data-lucide="x"></i>
 </button>
 </div>
 <div class="space-y-4 my-5 text-xs">
 <div>
 <label class="block text-slate-200 mb-1.5 font-semibold text-xs" for="salary-post-type">Select Recruitment Post / Pay Scale</label>
-<select aria-label="Select Recruitment Post or Pay Scale" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-900 outline-none focus:border-cyan-400" id="salary-post-type" onchange="calculateSalary()">
+<select aria-label="Select Recruitment Post or Pay Scale" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400" id="salary-post-type" onchange="calculateSalary()">
 <option selected="" value="fix_clerk">Gujarat Class-3 Fix-Pay (Police Constable, Talati, Clerk) - ₹26,000/mo</option>
 <option value="fix_head">Gujarat Head Clerk / Sub-Accountant Fix-Pay - ₹40,800/mo</option>
 <option value="lvl2">7th Pay Level 2 (RRB Group C, Junior Clerk regular) - Basic ₹19,900</option>
@@ -1310,7 +1310,7 @@
 </div>
 <div>
 <label class="block text-slate-200 mb-1.5 font-semibold text-xs" for="salary-city-tier">City Classification (HRA Category)</label>
-<select aria-label="City Classification HRA Category" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-900 outline-none focus:border-cyan-400" id="salary-city-tier" onchange="calculateSalary()">
+<select aria-label="City Classification HRA Category" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white outline-none focus:border-cyan-400" id="salary-city-tier" onchange="calculateSalary()">
 <option selected="" value="X">Tier X City (Ahmedabad - 27% HRA)</option>
 <option value="Y">Tier Y City (Surat, Vadodara, Rajkot, Gandhinagar - 18% HRA)</option>
 <option value="Z">Tier Z Area (Districts &amp; Rural - 9% HRA)</option>
@@ -1343,14 +1343,14 @@
 <span class="font-medium" id="sal-disp-nps">₹200</span>
 </div>
 <div class="flex justify-between pt-2 border-t border-slate-800 items-center">
-<span class="font-bold text-slate-900 text-sm">Estimated In-Hand Take Home:</span>
+<span class="font-bold text-white text-sm">Estimated In-Hand Take Home:</span>
 <span class="font-black text-emerald-400 text-base" id="sal-disp-net">₹25,800 / Month</span>
 </div>
 </div>
 </div>
 <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800">
 <span>*Based on Finance Dept Gujarat 7th Pay guidelines.</span>
-<button aria-label="Close Salary Calculator" class="px-4 py-1.5 rounded-lg bg-white text-slate-300 hover:text-slate-900 font-semibold" onclick="closeSalaryCalculator()">Done</button>
+<button aria-label="Close Salary Calculator" class="px-4 py-1.5 rounded-lg bg-white text-slate-900 hover:bg-slate-100 font-bold" onclick="closeSalaryCalculator()">Done</button>
 </div>
 </div>
 </div>
@@ -1360,9 +1360,9 @@
 <div class="p-4 border-b border-slate-800 flex items-center justify-between">
 <div class="flex items-center gap-2">
 <i aria-hidden="true" class="w-5 h-5 text-cyan-400" data-lucide="split"></i>
-<h3 class="font-extrabold text-slate-900 text-base">Side-by-Side Recruitment Comparison</h3>
+<h3 class="font-extrabold text-white text-base">Side-by-Side Recruitment Comparison</h3>
 </div>
-<button aria-label="Close Compare Dialog" class="text-slate-600 hover:text-slate-900 p-1 rounded-lg" onclick="closeCompareModal()">
+<button aria-label="Close Compare Dialog" class="text-slate-400 hover:text-white p-1 rounded-lg" onclick="closeCompareModal()">
 <i aria-hidden="true" class="w-5 h-5" data-lucide="x"></i>
 </button>
 </div>
@@ -1380,11 +1380,11 @@
 <i aria-hidden="true" class="w-5 h-5" data-lucide="book-open"></i>
 </div>
 <div>
-<h3 class="font-extrabold text-slate-900 text-base">OJAS Gujarat Online Application Guide</h3>
-<p class="text-xs text-slate-600">Official step-by-step instructions for ojas.gujarat.gov.in</p>
+<h3 class="font-extrabold text-white text-base">OJAS Gujarat Online Application Guide</h3>
+<p class="text-xs text-slate-300">Official step-by-step instructions for ojas.gujarat.gov.in</p>
 </div>
 </div>
-<button aria-label="Close OJAS Guide Dialog" class="text-slate-600 hover:text-slate-900 p-1.5 rounded-lg" onclick="closeOjasGuideModal()">
+<button aria-label="Close OJAS Guide Dialog" class="text-slate-400 hover:text-white p-1.5 rounded-lg" onclick="closeOjasGuideModal()">
 <i aria-hidden="true" class="w-5 h-5" data-lucide="x"></i>
 </button>
 </div>
@@ -1392,14 +1392,14 @@
 <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
 <div class="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-300 font-bold flex items-center justify-center shrink-0">1</div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm mb-1">One-Time Registration (OTR)</h4>
+<h4 class="font-bold text-white text-sm mb-1">One-Time Registration (OTR)</h4>
 <p>Visit <a class="text-cyan-400 underline" href="https://ojas.gujarat.gov.in" target="_blank">ojas.gujarat.gov.in</a> and click on <strong>"Registration" → "Apply"</strong>. Enter your full name as per SSC Marksheet, Date of Birth, Gender, Category (SEBC/SC/ST/EWS), Mobile Number, and Aadhaar card details.</p>
 </div>
 </div>
 <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
 <div class="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-300 font-bold flex items-center justify-center shrink-0">2</div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm mb-1">Upload Photo &amp; Signature (Strict Specifications)</h4>
+<h4 class="font-bold text-white text-sm mb-1">Upload Photo &amp; Signature (Strict Specifications)</h4>
 <p><strong>Passport Photograph:</strong> File size must be under <strong>15 KB</strong>, JPG format, Dimensions: 5 cm height x 3.6 cm width.<br/>
 <strong>Signature:</strong> File size must be under <strong>15 KB</strong>, JPG format, Dimensions: 2.5 cm height x 7.5 cm width.</p>
 </div>
@@ -1407,24 +1407,24 @@
 <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
 <div class="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-300 font-bold flex items-center justify-center shrink-0">3</div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm mb-1">Apply for Advertisement &amp; Confirm</h4>
+<h4 class="font-bold text-white text-sm mb-1">Apply for Advertisement &amp; Confirm</h4>
 <p>Go to <strong>"Online Application" → "Apply"</strong>. Select the Department (e.g. GPRB for Police, GSSSB, GPSC). Fill in educational qualifications. Click <strong>"Confirm Application"</strong> to generate your unique 8-digit Confirmation Number.</p>
 </div>
 </div>
 <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3">
 <div class="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-300 font-bold flex items-center justify-center shrink-0">4</div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm mb-1">Fee Payment &amp; Print Hall Ticket</h4>
+<h4 class="font-bold text-white text-sm mb-1">Fee Payment &amp; Print Hall Ticket</h4>
 <p>For General category candidates, pay ₹100 + bank charges online via NetBanking/UPI or Post Office Challan. SC/ST/SEBC/EWS/Ex-SM are exempted from examination fee in most Gujarat boards.</p>
 </div>
 </div>
 </div>
 <div class="flex items-center justify-between pt-3 border-t border-slate-800">
-<a class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-slate-900 font-bold text-xs shadow-md transition-all flex items-center gap-1.5" href="https://ojas.gujarat.gov.in" target="_blank">
+<a class="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5" href="https://ojas.gujarat.gov.in" target="_blank">
 <span>Open OJAS Gujarat Portal</span>
 <i aria-hidden="true" class="w-3.5 h-3.5" data-lucide="external-link"></i>
 </a>
-<button aria-label="Close OJAS Guide Dialog" class="px-4 py-2 rounded-xl bg-white text-slate-300 hover:text-slate-900 text-xs font-semibold" onclick="closeOjasGuideModal()">Close Guide</button>
+<button aria-label="Close OJAS Guide Dialog" class="px-4 py-2 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-xs font-bold" onclick="closeOjasGuideModal()">Close Guide</button>
 </div>
 </div>
 </div>
@@ -1438,14 +1438,14 @@
 <i aria-hidden="true" class="w-5 h-5" data-lucide="target"></i>
 </div>
 <div>
-<h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
+<h3 class="text-lg font-black text-white flex items-center gap-2">
               Eligibility &amp; Career Matching Engine
               <span class="px-2 py-0.5 rounded-md text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Official Gazettes 2026</span>
 </h3>
-<p class="text-xs text-slate-600">Instantly check all Gujarat State &amp; Central Govt recruitments matching your exact profile.</p>
+<p class="text-xs text-slate-300">Instantly check all Gujarat State &amp; Central Govt recruitments matching your exact profile.</p>
 </div>
 </div>
-<button aria-label="Close Matcher Dialog" class="w-8 h-8 rounded-xl bg-white/80 hover:bg-slate-700 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors" onclick="closeMatcherModal()">
+<button aria-label="Close Matcher Dialog" class="w-8 h-8 rounded-xl bg-white/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors" onclick="closeMatcherModal()">
 <i aria-hidden="true" class="w-4 h-4" data-lucide="x"></i>
 </button>
 </div>
