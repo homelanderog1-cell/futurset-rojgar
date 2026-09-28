@@ -98,7 +98,7 @@ def generate_all_authentic_jobs() -> List[Dict[str, Any]]:
             "exam_date": "November 2026 (Preliminary Test) & January 2027 (Mains Test)",
             "notification_number": "SEB/TAT-S/2026",
             "notification_pdf_url": "",
-            "apply_url": "https://ojas.gujarat.gov.in/AdvtList.aspx",
+            "apply_url": "https://sebexam.org",
             "official_website": "https://sebexam.org",
             "application_fee": "General: ₹350; Reserved categories: ₹250",
             "selection_process": "1. Prelims Examination (MCQ 200 Marks) -> 2. Mains Descriptive Examination (200 Marks)",
