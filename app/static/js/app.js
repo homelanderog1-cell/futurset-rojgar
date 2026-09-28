@@ -682,12 +682,210 @@ function generateStepByStepGuide(job, isGujaratPage) {
   const url = (job.apply_url || "").toLowerCase();
   const org = (job.organization || "").toLowerCase();
   const board = (job.board_category || "").toLowerCase();
+  const title = (job.title || "").toLowerCase();
+  const selectionMode = (job.selection_mode || "").toLowerCase();
+  const examDate = (job.exam_date || "").toLowerCase();
   const isGov = job.gov_level !== 'Private';
+
+  const isWalkIn = selectionMode === 'walk_in' || title.includes("walk-in") || examDate.includes("walk-in") || title.includes("guest lecturer");
 
   let portalName = "Official Recruitment Portal";
   let steps = [];
 
-  if (url.includes("ojas.gujarat.gov.in") || board.includes("ojas") || board.includes("gsssb") || board.includes("gsrtc") || board.includes("police")) {
+  if (isWalkIn) {
+    portalName = url.includes("dte.gujarat.gov.in") ? "Directorate of Technical Education (dte.gujarat.gov.in)" : `${job.organization} Walk-in Portal`;
+    steps = [
+      {
+        num: 1,
+        title: isGujaratPage ? "સત્તાવાર અરજી ફોર્મેટ અને માર્ગદર્શિકા ડાઉનલોડ (Download Application Format)" : "Download Official Prescribed Application Format & Guidelines",
+        desc: `Visit the official department portal (${job.apply_url || 'dte.gujarat.gov.in'}). Download the prescribed Walk-in Application/Biodata Form and detailed guidelines for ${job.title}.`,
+        icon: "download"
+      },
+      {
+        num: 2,
+        title: isGujaratPage ? "દસ્તાવેજો અને પ્રમાણપત્રોનો સેટ તૈયાર કરવો (Prepare Document Dossier)" : "Prepare Document Dossier (Originals + 2 Self-Attested Sets)",
+        desc: `Assemble your original documents along with 2 self-attested sets of photocopies: Degree Certificates (${job.qualification}), all Semester Marksheets, School Leaving Certificate (DOB proof), Valid Photo ID (Aadhaar/PAN), and Caste/Category Certificate if applicable.`,
+        icon: "folder-check"
+      },
+      {
+        num: 3,
+        title: isGujaratPage ? "માઇક્રો-ટીચિંગ ડેમો અને વિષય તૈયારી (Micro-Teaching Demo & Subject Viva)" : "Prepare 15-Min Micro-Teaching Demo & Technical Subject Viva",
+        desc: "Prepare a 15-minute classroom teaching demonstration on a core technical topic from your discipline (e.g. Engineering/Polytechnic syllabus) along with thorough preparation for the expert panel viva-voce.",
+        icon: "presentation",
+        highlight: true
+      },
+      {
+        num: 4,
+        title: isGujaratPage ? "રૂબરૂ કેન્દ્ર પર હાજરી આપવી (Report In-Person at Designated Walk-in Center)" : "Report In-Person at Designated Govt Engineering College / Walk-in Center",
+        desc: `Report on the scheduled date before 10:00 AM at the designated venue (${job.exam_date || 'Government Engineering Colleges: Ahmedabad, Surat, Rajkot, Bhavnagar'}). Complete spot biometric/attendance registration.`,
+        icon: "map-pin"
+      },
+      {
+        num: 5,
+        title: isGujaratPage ? "દસ્તાવેજ ચકાસણી અને મૂલ્યાંકન (Document Verification & Demonstration)" : "Document Verification & Panel Evaluation (₹0 Application Fee)",
+        desc: "Undergo spot document scrutiny by the verification committee followed by your presentation before the Selection Committee. Note: Walk-in interviews have ₹0 (Nil) application fee.",
+        icon: "check-circle"
+      },
+      {
+        num: 6,
+        title: isGujaratPage ? "મેરિટ યાદી અને કોલેજ ફાળવણી (Merit Empanelment & Order)" : "Merit List Empanelment & Order of Engagement",
+        desc: `The selection committee prepares a merit rank based on academic score and interview demo performance. Empaneled candidates receive engagement orders with honorarium (${job.salary_text || '₹1,500/- per lecture'}).`,
+        icon: "award"
+      }
+    ];
+  } else if (url.includes("sebexam.org") || board.includes("seb") || org.includes("state examination board")) {
+    portalName = "State Examination Board Gujarat (sebexam.org)";
+    steps = [
+      {
+        num: 1,
+        title: isGujaratPage ? "SEB પોર્ટલ પર ઓનલાઇન અરજી (SEB Portal Online Apply)" : "Visit SEB Portal & Select Examination",
+        desc: `Visit sebexam.org. On the homepage, locate '${job.title}' (Advt No: ${job.notification_number || 'SEB/2026'}) and click 'Apply Online' (ઓનલાઇન અરજી).`,
+        icon: "globe"
+      },
+      {
+        num: 2,
+        title: isGujaratPage ? "શૈક્ષણિક અને B.Ed વિગતો ભરો (Academic & Professional Details)" : "Fill Personal & Academic Details (B.Ed / Graduation)",
+        desc: `Enter your full candidate particulars matching Class 10 SSC marksheet, along with B.Ed / Graduation / Post Graduation degrees and passing percentages (${job.qualification}).`,
+        icon: "file-text"
+      },
+      {
+        num: 3,
+        title: isGujaratPage ? "ફોટો અને સહી અપલોડ (Upload Photograph & Signature)" : "Upload Photograph & Signature",
+        desc: "Upload recent scanned passport photograph (JPG format, under 15 KB) and signature on white paper with dark ink (JPG format, under 15 KB).",
+        icon: "camera"
+      },
+      {
+        num: 4,
+        title: isGujaratPage ? "અરજી કન્ફર્મ કરો અને કન્ફર્મેશન નંબર મેળવો (Confirm Application)" : "Confirm Application & Secure Confirmation Number",
+        desc: "Review all entered information carefully. Click 'Confirm Application'. Note down the generated Confirmation Number safely for Hall Ticket download.",
+        icon: "check-circle",
+        highlight: true
+      },
+      {
+        num: 5,
+        title: isGujaratPage ? "પરીક્ષા ફી ની ઓનલાઇન ચૂકવણી (Fee Payment)" : "Examination Fee Payment & Receipt Print",
+        desc: `Pay the examination fee (${job.application_fee || '₹350 for General; ₹250 for Reserved'}) online through Net Banking / Debit Card / UPI, or generate Computerized Post Office Challan.`,
+        icon: "credit-card"
+      },
+      {
+        num: 6,
+        title: isGujaratPage ? "પ્રિન્ટ સાચવી રાખવી (Download & Print Summary)" : "Download & Print Confirmed Application",
+        desc: "Download and print 2 copies of the confirmed application and fee payment receipt for examination entry and document verification.",
+        icon: "printer"
+      }
+    ];
+  } else if (url.includes("hc-ojas.gujarat.gov.in") || org.includes("high court of gujarat")) {
+    portalName = "High Court of Gujarat OJAS Portal (hc-ojas.gujarat.gov.in)";
+    steps = [
+      {
+        num: 1,
+        title: "Access High Court OJAS Portal",
+        desc: `Visit hc-ojas.gujarat.gov.in. Under 'Current Openings', locate '${job.title}' and click 'Apply Online'.`,
+        icon: "landmark"
+      },
+      {
+        num: 2,
+        title: "Fill Detailed Candidature Form",
+        desc: `Enter complete personal, educational (${job.qualification}), and legal/clerical typing speed particulars. Ensure accuracy in name and date of birth.`,
+        icon: "file-text"
+      },
+      {
+        num: 3,
+        title: "Upload Photo & Signature",
+        desc: "Upload recent photograph (less than 15 KB, JPG) and signature (less than 15 KB, JPG) conforming to High Court specifications.",
+        icon: "upload"
+      },
+      {
+        num: 4,
+        title: "Confirm Application & Get Confirmation No",
+        desc: "Confirm your application. Save the 8-digit High Court Confirmation Number immediately; it is required for fee payment and hall ticket.",
+        icon: "check-circle",
+        highlight: true
+      },
+      {
+        num: 5,
+        title: "Online Examination Fee via SBI e-Pay",
+        desc: `Pay fee (${job.application_fee || 'as per advertisement'}) online through SBI e-Pay payment gateway. Reserved categories receive fee concession.`,
+        icon: "credit-card"
+      },
+      {
+        num: 6,
+        title: "Download Confirmation Slip",
+        desc: "Print and preserve the final application printout with e-receipt for scrutiny during the elimination test and typing test.",
+        icon: "printer"
+      }
+    ];
+  } else if (url.includes("gujhealth.gujarat.gov.in") || (org.includes("health") && (title.includes("merit") || title.includes("nurse")))) {
+    portalName = "Gujarat Health & Family Welfare Portal (gujhealth.gujarat.gov.in)";
+    steps = [
+      {
+        num: 1,
+        title: isGujaratPage ? "આરોગ્ય વિભાગ સત્તાવાર પોર્ટલ (Health Portal Access)" : "Access Health Department Recruitment Portal",
+        desc: `Visit gujhealth.gujarat.gov.in / arogyasathi portal. Select '${job.title}' (Advt: ${job.notification_number || '2026'}).`,
+        icon: "globe"
+      },
+      {
+        num: 2,
+        title: isGujaratPage ? "કાઉન્સિલ રજીસ્ટ્રેશન અને લાયકાત વિગતો (Council Registration & Marks)" : "Enter Professional Council Registration & Academic Scores",
+        desc: `Enter valid Gujarat Nursing Council (GNC) / Gujarat Medical Council registration number and total aggregate marks across all years (${job.qualification}) for 100% merit calculation.`,
+        icon: "award",
+        highlight: true
+      },
+      {
+        num: 3,
+        title: isGujaratPage ? "પ્રમાણપત્રો અપલોડ (Upload Certificates & Registration)" : "Upload Registration Certificate & Degree Transcripts",
+        desc: "Upload scanned copies of Council Registration certificate, degree transcripts, Class 10 proof of birth date, and caste/EWS certificate.",
+        icon: "upload"
+      },
+      {
+        num: 4,
+        title: isGujaratPage ? "સીધી મેરિટ અરજી સબમિટ (Submit Direct Merit Application)" : "Submit Merit Application (No Exam Required)",
+        desc: "Review and submit your application. This recruitment is selected 100% on degree merit without any competitive written exam. Note down your Application ID.",
+        icon: "check-circle"
+      },
+      {
+        num: 5,
+        title: isGujaratPage ? "મેરિટ યાદી અને DV ટ્રેકિંગ (Document Verification Tracking)" : "Monitor Provisional Merit List & Document Verification (DV)",
+        desc: `Check gujhealth.gujarat.gov.in regularly for provisional merit rankings. Shortlisted candidates will be invited for Document Verification (${job.exam_date || 'November 2026'}).`,
+        icon: "file-check"
+      }
+    ];
+  } else if (url.includes("gpcb.gujarat.gov.in") || org.includes("pollution control board")) {
+    portalName = "Gujarat Pollution Control Board Portal (gpcb.gujarat.gov.in)";
+    steps = [
+      {
+        num: 1,
+        title: "Visit GPCB Official Portal",
+        desc: `Visit gpcb.gujarat.gov.in -> Recruitment section. Select '${job.title}' (Advt No: ${job.notification_number || 'GPCB/2026'}).`,
+        icon: "globe"
+      },
+      {
+        num: 2,
+        title: "Fill Application & Technical Credentials",
+        desc: `Input your engineering / science qualification (${job.qualification}), gate score / graduation percentage, and personal details.`,
+        icon: "file-text"
+      },
+      {
+        num: 3,
+        title: "Upload Documents & Certificates",
+        desc: "Upload photo, signature, degree certificates, experience certificates, and valid caste certificate if seeking reservation.",
+        icon: "upload"
+      },
+      {
+        num: 4,
+        title: "Application Fee & Submission",
+        desc: `Pay application fee (${job.application_fee || '₹500 for General / ₹250 for Reserved'}) online and obtain your submission acknowledgment.`,
+        icon: "credit-card",
+        highlight: true
+      },
+      {
+        num: 5,
+        title: "Print Confirmation & Exam Prep",
+        desc: `Print application copy for written examination entry (${job.exam_date || 'December 2026'}).`,
+        icon: "printer"
+      }
+    ];
+  } else if (url.includes("ojas.gujarat.gov.in") || board.includes("ojas") || board.includes("gsssb") || board.includes("gsrtc") || board.includes("police")) {
     portalName = "OJAS Gujarat (ojas.gujarat.gov.in)";
     steps = [
       {
@@ -975,7 +1173,7 @@ function generateStepByStepGuide(job, isGujaratPage) {
         </div>
 
         <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition-transform transform hover:scale-105">
-          <span>Launch Official Portal</span>
+          <span>${isWalkIn ? (isGujaratPage ? 'સત્તાવાર પોર્ટલ (વોક-ઇન)' : 'Launch Official Walk-in Portal') : (isGujaratPage ? 'સત્તાવાર પોર્ટલ ખોલો' : 'Launch Official Portal')}</span>
           <i data-lucide="external-link" class="w-4 h-4"></i>
         </a>
       </div>
@@ -1008,13 +1206,20 @@ function generateStepByStepGuide(job, isGujaratPage) {
       <div class="mt-5 p-4 rounded-xl bg-amber-950/20 border border-amber-500/40 text-xs text-amber-200 space-y-2">
         <div class="font-extrabold text-amber-300 flex items-center gap-1.5 uppercase tracking-wider text-xs">
           <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-          <span>${isGujaratPage ? 'અરજી કરતી વખતે ધ્યાનમાં રાખવાની મહત્વપૂર્ણ બાબતો' : 'Critical Rules & Instructions for Applicants'}</span>
+          <span>${isGujaratPage ? (isWalkIn ? 'વોક-ઇન ઇન્ટરવ્યુ માટે મહત્વપૂર્ણ સૂચનાઓ' : 'અરજી કરતી વખતે ધ્યાનમાં રાખવાની મહત્વપૂર્ણ બાબતો') : (isWalkIn ? 'Critical Walk-in Interview Guidelines' : 'Critical Rules & Instructions for Applicants')}</span>
         </div>
         <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
-          <li><strong>Confirmation Number Mandatory:</strong> Once you submit the form, do NOT forget to click 'Confirm Application' and note down the confirmation number. An unconfirmed application is automatically rejected.</li>
-          <li><strong>Name Spelling Match:</strong> Ensure your full name matches your Class 10 (SSC) Board Certificate character-for-character. Any variation will lead to rejection at Document Verification.</li>
-          <li><strong>Valid Category Certificate:</strong> For OBC/SEBC candidates in Gujarat, ensure your Non-Creamy Layer Certificate (Parishisht-K) has valid validity for the current financial year.</li>
-          <li><strong>Deadline Protection:</strong> Avoid submitting on the last date to prevent server timeouts due to heavy portal traffic.</li>
+          ${isWalkIn ? `
+            <li><strong>Reporting Time & Venue:</strong> Candidates must report in person at the designated Government Engineering College / Centre before 10:00 AM on the scheduled walk-in date. Late reporting may result in disqualification.</li>
+            <li><strong>Two Complete Document Sets:</strong> Bring all original marksheets/degrees along with 2 full sets of self-attested photocopies and passport photos for spot document verification.</li>
+            <li><strong>Micro-Teaching Demonstration:</strong> Prepare a 15-minute lecture presentation on core technical fundamentals of your engineering discipline for the expert evaluation panel.</li>
+            <li><strong>₹0 Application Fee:</strong> Walk-in selection has zero application fee. Beware of unauthorized agents claiming recruitment charges.</li>
+          ` : `
+            <li><strong>Confirmation Number Mandatory:</strong> Once you submit the form, do NOT forget to click 'Confirm Application' and note down the confirmation number. An unconfirmed application is automatically rejected.</li>
+            <li><strong>Name Spelling Match:</strong> Ensure your full name matches your Class 10 (SSC) Board Certificate character-for-character. Any variation will lead to rejection at Document Verification.</li>
+            <li><strong>Valid Category Certificate:</strong> For OBC/SEBC candidates in Gujarat, ensure your Non-Creamy Layer Certificate (Parishisht-K) has valid validity for the current financial year.</li>
+            <li><strong>Deadline Protection:</strong> Avoid submitting on the last date to prevent server timeouts due to heavy portal traffic.</li>
+          `}
         </ul>
       </div>
     </div>
@@ -1591,6 +1796,10 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
   const isBookmarked = bookmarkedJobIds.has(job.id);
   const isGovt = job.gov_level !== 'Private';
   const isGujaratJob = job.state === 'Gujarat';
+  const isWalkIn = (job.selection_mode || '').toLowerCase() === 'walk_in' || 
+                   (job.title || '').toLowerCase().includes('walk-in') || 
+                   (job.exam_date || '').toLowerCase().includes('walk-in') || 
+                   (job.title || '').toLowerCase().includes('guest lecturer');
 
   const minAge = parseInt(job.age_min, 10) || 18;
   const maxAge = parseInt(job.age_max, 10) || 35;
@@ -1806,23 +2015,23 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center text-xs">
               <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/30 relative">
                 <span class="w-5 h-5 rounded-full bg-cyan-600 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">1</span>
-                <span class="font-bold text-white block">Stage 1: Screening</span>
-                <span class="text-xs text-slate-400 mt-0.5 block">${job.selection_mode === 'direct_merit' ? '100% Merit Evaluation' : 'Written / CBRT Test'}</span>
+                <span class="font-bold text-white block">Stage 1: ${isWalkIn ? 'Verification' : 'Screening'}</span>
+                <span class="text-xs text-slate-400 mt-0.5 block">${job.selection_mode === 'direct_merit' ? '100% Merit Evaluation' : (isWalkIn ? 'Spot Document Scrutiny' : 'Written / CBRT Test')}</span>
               </div>
               <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 relative">
                 <span class="w-5 h-5 rounded-full bg-slate-700 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">2</span>
-                <span class="font-bold text-white block">Stage 2: Skill / Trade</span>
-                <span class="text-xs text-slate-400 mt-0.5 block">${job.selection_mode === 'physical_test' ? 'Physical Efficiency Test' : 'Practical / Skill Test'}</span>
+                <span class="font-bold text-white block">Stage 2: ${isWalkIn ? 'Teaching Demo' : 'Skill / Trade'}</span>
+                <span class="text-xs text-slate-400 mt-0.5 block">${isWalkIn ? '15-Min Micro-Teaching Demo' : (job.selection_mode === 'physical_test' ? 'Physical Efficiency Test' : 'Practical / Skill Test')}</span>
               </div>
               <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 relative">
                 <span class="w-5 h-5 rounded-full bg-slate-700 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">3</span>
-                <span class="font-bold text-white block">Stage 3: Verification</span>
-                <span class="text-xs text-slate-400 mt-0.5 block">Document Verification (DV)</span>
+                <span class="font-bold text-white block">Stage 3: ${isWalkIn ? 'Interview' : 'Verification'}</span>
+                <span class="text-xs text-slate-400 mt-0.5 block">${isWalkIn ? 'Technical Viva Panel' : 'Document Verification (DV)'}</span>
               </div>
               <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 relative">
                 <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold inline-flex items-center justify-center text-xs mb-1.5">4</span>
                 <span class="font-bold text-white block">Stage 4: Final Merit</span>
-                <span class="text-xs text-emerald-400 mt-0.5 block">Medical & Appointment Order</span>
+                <span class="text-xs text-emerald-400 mt-0.5 block">${isWalkIn ? 'Merit Empanelment & Order' : 'Medical & Appointment Order'}</span>
               </div>
             </div>
             <div class="mt-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300">
@@ -1853,7 +2062,7 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
               <span>Close / બંધ કરો (Esc)</span>
             </button>
             <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow transition-all">
-              <span>Open Official Portal &amp; Apply</span>
+              <span>${isWalkIn ? (isGujaratPage ? 'સત્તાવાર પોર્ટલ ખોલો (વોક-ઇન)' : 'Open Official Walk-in Portal') : (isGujaratPage ? 'સત્તાવાર પોર્ટલ ખોલો & અરજી કરો' : 'Open Official Portal & Apply')}</span>
               <i data-lucide="external-link" class="w-4 h-4"></i>
             </a>
           </div>
@@ -2079,7 +2288,7 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
                   <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
                 <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-xs font-black flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition-all">
-                  <span>Apply on Official Portal</span>
+                  <span>${isWalkIn ? (isGujaratPage ? 'વોક-ઇન / સત્તાવાર પોર્ટલ' : 'Attend Walk-in / Official Portal') : (isGujaratPage ? 'સત્તાવાર પોર્ટલ પર અરજી કરો' : 'Apply on Official Portal')}</span>
                   <i data-lucide="external-link" class="w-4 h-4"></i>
                 </a>
               </div>
@@ -2123,7 +2332,7 @@ function renderJobModalContent(modalBody, job, isGujaratPage) {
             ` : ''}
 
             <a href="${job.apply_url}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-xs font-black flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition-all transform hover:scale-[1.02]">
-              <span>Apply on Official Portal</span>
+              <span>${isWalkIn ? (isGujaratPage ? 'વોક-ઇન / સત્તાવાર પોર્ટલ' : 'Attend Walk-in / Official Portal') : (isGujaratPage ? 'સત્તાવાર પોર્ટલ પર અરજી કરો' : 'Apply on Official Portal')}</span>
               <i data-lucide="external-link" class="w-4 h-4"></i>
             </a>
           </div>
