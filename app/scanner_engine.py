@@ -724,12 +724,24 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
     soup = BeautifulSoup(html_content, "html.parser")
     found_jobs = []
 
+    NOISE_KEYWORDS = [
+        'calendar', 'speed post', 'postal life', 'current advertisement', 
+        'notice regarding', 'provisional list', 'verification schedule', 
+        'selection for the post of member', 'promotion for the post',
+        'clarification for the post', 'e-affidavit', 'updated vacancies',
+        'detailed advertisement for the posts of librarian', 'tender',
+        'quotation', 'corrigendum', 'archive', 'disclaimer', 'contact us',
+        'terms of use', 'privacy policy', 'sitemap'
+    ]
+
     # Look for table rows in recruitment/advt tables
     tables = soup.find_all("table")
     for table in tables:
         rows = table.find_all("tr")
         for r in rows:
             text = r.get_text(separator=" ", strip=True)
+            if any(n in text.lower() for n in NOISE_KEYWORDS):
+                continue
             if any(k in text.lower() for k in ["bharti", "recruitment", "advt", "post", "constable", "clerk", "officer", "inspector", "vacancy", "driver", "dak sevak"]):
                 cols = r.find_all(["td", "th"])
                 if len(cols) >= 2:
@@ -743,6 +755,9 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
                     if len(title) < 10 and len(cols) > 1:
                         title = cols[1].get_text(strip=True)
 
+                    if any(n in title.lower() for n in NOISE_KEYWORDS):
+                        continue
+
                     vac_match = re.search(r'(\d+[\d,]*)\s*(?:vacanc|posts|જગ્યા|પદ)', text, re.IGNORECASE)
                     vacancies = int(vac_match.group(1).replace(",", "")) if vac_match else 50
 
@@ -755,6 +770,7 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
                     found_jobs.append({
                         "title": title[:140],
                         "organization": source_meta.get("name", "Government Portal"),
+                        "department": source_meta.get("name", "Government Department"),
                         "gov_level": gov_lvl,
                         "state": "Gujarat" if source_meta.get("type") == "gujarat" else "All India",
                         "board_category": board_cat,
@@ -762,9 +778,12 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
                         "qualification": "Graduate / Relevant Discipline",
                         "age_min": 18,
                         "age_max": 35,
+                        "salary_text": "Government 7th Pay Scale as per Official Gazette",
                         "last_date": (datetime.now() + timedelta(days=20)).strftime("%Y-%m-%d"),
                         "apply_url": apply_url,
+                        "official_website": source_meta.get("url", apply_url),
                         "notification_number": notif_num,
+                        "selection_process": "Written Examination followed by Document Verification.",
                         "source": f"Live HTML Crawler ({source_meta.get('id', 'feed')})"
                     })
 
@@ -774,6 +793,8 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
         for a in anchors:
             text = a.get_text(strip=True)
             href = a["href"]
+            if any(n in text.lower() for n in NOISE_KEYWORDS):
+                continue
             if len(text) > 18 and any(k in text.lower() for k in ["recruitment", "bharti", "advertisement", "vacancy", "post", "dak"]):
                 if href.startswith("/"):
                     base = source_meta.get("url", "").rstrip("/")
@@ -790,6 +811,7 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
                 found_jobs.append({
                     "title": text[:140],
                     "organization": source_meta.get("name", "State Portal"),
+                    "department": source_meta.get("name", "Government Department"),
                     "gov_level": gov_lvl,
                     "state": "Gujarat" if source_meta.get("type") == "gujarat" else "All India",
                     "board_category": board_cat,
@@ -797,8 +819,11 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
                     "qualification": "Graduate / As per Gazetted Norms",
                     "age_min": 18,
                     "age_max": 35,
+                    "salary_text": "Government 7th Pay Scale as per Official Gazette",
                     "last_date": (datetime.now() + timedelta(days=21)).strftime("%Y-%m-%d"),
                     "apply_url": href,
+                    "official_website": source_meta.get("url", href),
+                    "selection_process": "Written Examination followed by Document Verification.",
                     "source": f"Live HTML Link Parser ({source_meta.get('id', 'web')})"
                 })
                 if len(found_jobs) >= 3:
@@ -863,6 +888,12 @@ def execute_scan_stream() -> Generator[str, None, None]:
         src_updated = 0
 
         for item in source_items:
+            if not item.get("official_website"):
+                item["official_website"] = src.get("url", item.get("apply_url"))
+            if not item.get("salary_text"):
+                item["salary_text"] = "Government 7th Pay Scale as per Official Gazette"
+            if not item.get("department"):
+                item["department"] = src.get("name", "Government Department")
             res = upsert_job(item)
             if res == "added":
                 src_added += 1
@@ -929,6 +960,12 @@ def run_scan_sync() -> Dict[str, Any]:
             source_items.extend(parsed_live)
 
         for item in source_items:
+            if not item.get("official_website"):
+                item["official_website"] = src.get("url", item.get("apply_url"))
+            if not item.get("salary_text"):
+                item["salary_text"] = "Government 7th Pay Scale as per Official Gazette"
+            if not item.get("department"):
+                item["department"] = src.get("name", "Government Department")
             res = upsert_job(item)
             if res == "added":
                 total_added += 1
