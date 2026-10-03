@@ -22,7 +22,7 @@ logger = logging.getLogger("futurset.scanner")
 
 SCAN_SOURCES = [
     # -------------------------------------------------------------------------
-    # 1. OJAS GUJARAT (State Police, GSSSB, GSRTC)
+    # 1. OJAS GUJARAT (Live Open Advertisements)
     # -------------------------------------------------------------------------
     {
         "id": "ojas_gujarat",
@@ -31,55 +31,38 @@ SCAN_SOURCES = [
         "url": "https://ojas.gujarat.gov.in",
         "feed_data": [
             {
-                "title": "Gujarat Police Unarmed Constable & SRPF Armed Constable 2026",
-                "title_gu": "ગુજરાત પોલીસ બિનહથિયારી અને એસઆરપીએફ હથિયારી કોન્સ્ટેબલ ભરતી ૨૦૨૬",
-                "organization": "Gujarat Police Recruitment Board (GPRB)",
-                "department": "Home Department",
-                "gov_level": "State",
-                "state": "Gujarat",
-                "board_category": "Police",
-                "vacancies": 12472,
-                "qualification": "12th Pass (Higher Secondary)",
-                "age_min": 18,
-                "age_max": 33,
-                "salary_text": "₹26,000/- Fix Pay for 5 Years",
-                "last_date": (datetime.now() + timedelta(days=18)).strftime("%Y-%m-%d"),
-                "apply_url": "https://ojas.gujarat.gov.in",
-                "notification_number": "GPRB/202627/01"
-            },
-            {
-                "title": "GSSSB Combined Competitive Examination (CCE) Group-A & Group-B 2026",
-                "title_gu": "GSSSB સંયુક્ત સ્પર્ધાત્મક પરીક્ષા (CCE) ગ્રૂપ-A & ગ્રૂપ-B ક્લાર્ક ભરતી",
-                "organization": "Gujarat Subordinate Service Selection Board (GSSSB)",
-                "department": "General Administration Department",
-                "gov_level": "State",
-                "state": "Gujarat",
-                "board_category": "GSSSB",
-                "vacancies": 5554,
-                "qualification": "Any Bachelor's Degree + Basic Computer (CCC)",
-                "age_min": 20,
-                "age_max": 35,
-                "salary_text": "₹26,000/- to ₹40,800/- Fix Pay",
-                "last_date": (datetime.now() + timedelta(days=6)).strftime("%Y-%m-%d"),
-                "apply_url": "https://ojas.gujarat.gov.in",
-                "notification_number": "GSSSB/202627/212"
-            },
-            {
-                "title": "GSRTC 7,419 Conductor & Driver Mega Recruitment 2026",
-                "title_gu": "GSRTC કંડક્ટર અને ડ્રાઇવર મેગા ભરતી ૨૦૨૬ (૭,૪૧૯ જગ્યાઓ)",
-                "organization": "Gujarat State Road Transport Corporation",
-                "department": "Transport Department",
+                "title": "GSRTC Helper (હેલ્પર) Class-4 Technical Staff Recruitment 2026-27",
+                "title_gu": "GSRTC હેલ્પર (વર્ગ-૪ ટેકનિકલ સ્ટાફ) ઓજસ સીધી ભરતી ૨૦૨૬-૨૭",
+                "organization": "Gujarat State Road Transport Corporation (GSRTC)",
+                "department": "Transport Department, Govt of Gujarat",
                 "gov_level": "State",
                 "state": "Gujarat",
                 "board_category": "GSRTC",
-                "vacancies": 7419,
-                "qualification": "10th Pass / 12th Pass + Conductor Licence",
+                "vacancies": 1420,
+                "qualification": "10th Pass (SSC) + ITI Mechanic Motor Vehicle / Diesel Mechanic / Fitter",
                 "age_min": 18,
-                "age_max": 34,
-                "salary_text": "₹18,500/- Fix Pay for 5 Years",
-                "last_date": (datetime.now() + timedelta(days=4)).strftime("%Y-%m-%d"),
-                "apply_url": "https://ojas.gujarat.gov.in",
-                "notification_number": "GSRTC/202627/04-05"
+                "age_max": 35,
+                "salary_text": "Fixed Pay ₹18,500/- per month as per GSRTC / Govt norms",
+                "last_date": "2026-10-06",
+                "apply_url": "https://ojas.gujarat.gov.in/AdvtDetails.aspx?sid=zlkvQxSZgjY=&yr=iNSQ32x8ipg=&ano=lbbXJHoy3aQ=",
+                "notification_number": "GSRTC/202627/HELPER"
+            },
+            {
+                "title": "GSSSB Staff Nurse Class-3 Medical & Health Recruitment 2026",
+                "title_gu": "GSSSB સ્ટાફ નર્સ વર્ગ-૩ આરોગ્ય અને પરિવાર કલ્યાણ વિભાગ ભરતી ૨૦૨૬",
+                "organization": "Gujarat Subordinate Service Selection Board (GSSSB)",
+                "department": "Health & Family Welfare Department, Govt of Gujarat",
+                "gov_level": "State",
+                "state": "Gujarat",
+                "board_category": "GSSSB",
+                "vacancies": 450,
+                "qualification": "GNM Diploma or B.Sc Nursing from a recognized institution with Gujarat Nursing Council Registration",
+                "age_min": 20,
+                "age_max": 40,
+                "salary_text": "₹26,000/- Fix Pay for 5 years -> 7th CPC Level-7 (₹39,900 - ₹1,26,600)",
+                "last_date": "2026-10-12",
+                "apply_url": "https://ojas.gujarat.gov.in/AdvtDetails.aspx?sid=K3JOsteln/k=&yr=iNSQ32x8ipg=&ano=oyMBWX7W8Rc=",
+                "notification_number": "GSSSB/202627/NURSE"
             }
         ]
     },
@@ -94,38 +77,38 @@ SCAN_SOURCES = [
         "url": "https://gpsc.gujarat.gov.in",
         "feed_data": [
             {
-                "title": "GPSC Gujarat Administrative Service Class-1 & Civil Service Class-2 (GAS/GCS 2026)",
-                "title_gu": "GPSC ગુજરાત વહીવટી સેવા વર્ગ-૧ અને સિવિલ સર્વિસ વર્ગ-૨ ભરતી ૨૦૨૬",
+                "title": "GPSC Marine Engineer Class-1 Gujarat Maritime Board (Special Recruitment Drive) 2026",
+                "title_gu": "GPSC મરીન એન્જિનિયર વર્ગ-૧ ગુજરાત મેરીટાઇમ બોર્ડ વિશેષ ભરતી ૨૦૨૬",
                 "organization": "Gujarat Public Service Commission (GPSC)",
-                "department": "General Administration Department (GAD)",
+                "department": "Gujarat Maritime Board (GMB) / Ports & Transport",
                 "gov_level": "State",
                 "state": "Gujarat",
                 "board_category": "GPSC",
-                "vacancies": 388,
-                "qualification": "Graduate Degree in any stream",
-                "age_min": 20,
-                "age_max": 36,
-                "salary_text": "Class-1: Level 10 (₹56,100 - ₹1,77,500)",
-                "last_date": (datetime.now() + timedelta(days=22)).strftime("%Y-%m-%d"),
-                "apply_url": "https://gpsc-ojas.gujarat.gov.in",
-                "notification_number": "GPSC/202627/47"
+                "vacancies": 12,
+                "qualification": "Degree in Marine Engineering with M.O.T. Certificate of Competency",
+                "age_min": 21,
+                "age_max": 42,
+                "salary_text": "Class-1: Pay Level 10 (₹56,100 - ₹1,77,500)",
+                "last_date": "2026-10-08",
+                "apply_url": "https://gpsc-ojas.gujarat.gov.in/AdvtDetails.aspx?sid=a2GSpnDbruI=&yr=iNSQ32x8ipg=&ano=htU+J1cfztE=",
+                "notification_number": "GPSC/202627/SRD-ME"
             },
             {
-                "title": "GPSC Gujarat Medical Service Class-2 Medical Officer",
-                "title_gu": "GPSC મેડિકલ ઓફિસર (ગુજરાત આરોગ્ય સેવા વર્ગ-૨) ભરતી ૨૦૨૬",
+                "title": "GPSC Engineer Surveyor Class-1 Gujarat Maritime Board (Special Recruitment Drive) 2026",
+                "title_gu": "GPSC એન્જિનિયર સર્વેયર વર્ગ-૧ ગુજરાત મેરીટાઇમ બોર્ડ ભરતી ૨૦૨૬",
                 "organization": "Gujarat Public Service Commission (GPSC)",
-                "department": "Health & Family Welfare",
+                "department": "Gujarat Maritime Board (GMB) / Ports & Transport",
                 "gov_level": "State",
                 "state": "Gujarat",
                 "board_category": "GPSC",
-                "vacancies": 850,
-                "qualification": "MBBS Degree + Medical Council Registration",
+                "vacancies": 18,
+                "qualification": "Degree in Marine Engineering / Naval Architecture from a recognized University",
                 "age_min": 21,
-                "age_max": 36,
-                "salary_text": "Level 9 (₹53,100 - ₹1,67,800) + NPA",
-                "last_date": (datetime.now() + timedelta(days=19)).strftime("%Y-%m-%d"),
-                "apply_url": "https://gpsc-ojas.gujarat.gov.in",
-                "notification_number": "GPSC/202627/62"
+                "age_max": 42,
+                "salary_text": "Pay Level 10 (₹56,100 - ₹1,77,500)",
+                "last_date": "2026-10-08",
+                "apply_url": "https://gpsc-ojas.gujarat.gov.in/AdvtDetails.aspx?sid=a2GSpnDbruI=&yr=iNSQ32x8ipg=&ano=e6dKxUuObx0=",
+                "notification_number": "GPSC/202627/SRD-ES"
             }
         ]
     },
@@ -140,38 +123,21 @@ SCAN_SOURCES = [
         "url": "https://gujarathighcourt.nic.in",
         "feed_data": [
             {
-                "title": "Gujarat High Court Assistant & DySO Recruitment 2026",
-                "title_gu": "ગુજરાત હાઈકોર્ટ આસિસ્ટન્ટ અને નાયબ સેક્શન ઓફિસર (DySO) ભરતી ૨૦૨૬",
+                "title": "Gujarat High Court Librarian & Librarian cum Research Assistant 2026 (CRP-II)",
+                "title_gu": "ગુજરાત હાઇકોર્ટ ગ્રંથપાલ અને રિસર્ચ આસિસ્ટન્ટ સીધી ભરતી ૨૦૨૬ (CRP-II)",
                 "organization": "High Court of Gujarat, Ahmedabad",
-                "department": "Judiciary Administration",
+                "department": "Judiciary Administration (High Court Legal Library Cell)",
                 "gov_level": "State",
                 "state": "Gujarat",
                 "board_category": "High Court",
-                "vacancies": 1318,
-                "qualification": "Graduation in any discipline + English/Gujarati Typing",
+                "vacancies": 35,
+                "qualification": "Master / Bachelor in Library and Information Science (M.Lib.I.Sc / B.Lib.I.Sc)",
                 "age_min": 21,
                 "age_max": 35,
-                "salary_text": "Level 2 (₹19,900 - ₹63,200)",
-                "last_date": (datetime.now() + timedelta(days=12)).strftime("%Y-%m-%d"),
-                "apply_url": "https://hc-ojas.gujarat.gov.in",
-                "notification_number": "HCG/RC/1434/2026"
-            },
-            {
-                "title": "Gujarat High Court Peon & Court Attendant (Class-4) 2026",
-                "title_gu": "ગુજરાત હાઈકોર્ટ પટાવાળા / ચોકીદાર (વર્ગ-૪) ભરતી ૨૦૨૬",
-                "organization": "High Court of Gujarat, Ahmedabad",
-                "department": "District Courts of Gujarat",
-                "gov_level": "State",
-                "state": "Gujarat",
-                "board_category": "High Court",
-                "vacancies": 1490,
-                "qualification": "10th Standard (SSC) Pass",
-                "age_min": 18,
-                "age_max": 33,
-                "salary_text": "Level 1 (₹14,800 - ₹47,100)",
-                "last_date": (datetime.now() + timedelta(days=15)).strftime("%Y-%m-%d"),
-                "apply_url": "https://hc-ojas.gujarat.gov.in",
-                "notification_number": "HCG/RC/1435/2026"
+                "salary_text": "Pay Matrix Level 7 (₹39,900 - ₹1,26,600)",
+                "last_date": "2026-10-20",
+                "apply_url": "https://hc-ojas.gujarat.gov.in/AdvtDetails.aspx?sid=eTi6irwmOuQ=&yr=yuQSFcpV2UU=&ano=TEOwcf1aepc=",
+                "notification_number": "HCG/CRP-II/202627/LIB"
             }
         ]
     },
@@ -240,11 +206,11 @@ SCAN_SOURCES = [
     },
 
     # -------------------------------------------------------------------------
-    # 5. AIRPORTS AUTHORITY OF INDIA & AVIATION ENTERPRISES (AIRPORT JOBS)
+    # 5. AIRPORTS AUTHORITY OF INDIA (AAI RECRUITMENT)
     # -------------------------------------------------------------------------
     {
         "id": "aai_aero",
-        "name": "Airports Authority of India & Aviation (aai.aero & aaiclas.aero)",
+        "name": "Airports Authority of India (aai.aero)",
         "type": "central",
         "url": "https://www.aai.aero",
         "feed_data": [
@@ -261,43 +227,26 @@ SCAN_SOURCES = [
                 "age_min": 18,
                 "age_max": 27,
                 "salary_text": "Pay Scale ₹40,000 - ₹1,40,000 (E-1 Grade, CTC Approx ₹13.0 LPA)",
-                "last_date": (datetime.now() + timedelta(days=22)).strftime("%Y-%m-%d"),
+                "last_date": "2026-10-25",
                 "apply_url": "https://www.aai.aero/en/careers/recruitment",
                 "notification_number": "AAI/DR/02/2026"
             },
             {
-                "title": "AAI Cargo Logistics & Allied Services (AAICLAS) Security Screener & Cargo Handlers 2026 (450 Posts)",
-                "title_gu": "AAI કાર્ગો લોજિસ્ટિક્સ (AAICLAS) સિક્યુરિટી સ્ક્રીનર અને કાર્ગો હેન્ડલર્સ ૨૦૨૬ (૪૫૦ જગ્યાઓ - અમદાવાદ / સુરત)",
-                "organization": "AAI Cargo Logistics and Allied Services Company Limited (AAICLAS)",
-                "department": "Aviation Security & Air Cargo Operations (Sardar Vallabhbhai Patel International Airport Ahmedabad)",
+                "title": "Airports Authority of India (AAI) Junior Executive (Information Technology) 2026 (120 Posts)",
+                "title_gu": "એરપોર્ટ્સ ઓથોરિટી ઓફ ઇન્ડિયા (AAI) જુનિયર એક્ઝિક્યુટિવ (આઇટી / કોમ્પ્યુટર સાયન્સ) ભરતી ૨૦૨૬",
+                "organization": "Airports Authority of India (AAI)",
+                "department": "Information Technology Directorate, New Delhi & Airports",
                 "gov_level": "Central",
                 "state": "All India",
                 "board_category": "Aviation",
-                "vacancies": 450,
-                "qualification": "Any Graduate with 60% marks + Ability to speak English & Hindi + BCAS Basic AVSEC Certificate preferred",
+                "vacancies": 120,
+                "qualification": "Full Time Regular B.E. / B.Tech / B.Sc (Engg) in Computer Science / Computer Engineering / IT or MCA",
                 "age_min": 18,
                 "age_max": 27,
-                "salary_text": "Fixed monthly stipend ₹30,000 to ₹34,000/mo + Airport Shift Allowances",
-                "last_date": (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d"),
-                "apply_url": "https://aaiclas.aero/career",
-                "notification_number": "AAICLAS/RECT/SEC/2026"
-            },
-            {
-                "title": "AI Airport Services Limited (AIASL) Customer Service Executive & Ramp Handlers 2026 (380 Posts)",
-                "title_gu": "એઆઈ એરપોર્ટ સર્વિસીસ લિમિટેડ (AIASL) કસ્ટમર સર્વિસ એક્ઝિક્યુટિવ ૨૦૨૬ (૩૮૦ જગ્યાઓ - અમદાવાદ એરપોર્ટ)",
-                "organization": "AI Airport Services Limited (Govt. of India Aviation Enterprise)",
-                "department": "Ground Handling Services, Ahmedabad SVP International Airport & Surat Airport",
-                "gov_level": "Central",
-                "state": "Gujarat",
-                "board_category": "Aviation",
-                "vacancies": 380,
-                "qualification": "Any Graduate for Customer Executive; 10th/ITI for Ramp Driver / Utility Handyman",
-                "age_min": 18,
-                "age_max": 28,
-                "salary_text": "₹24,960 to ₹32,000/mo + Airport Pass & Medical Cover",
-                "last_date": (datetime.now() + timedelta(days=12)).strftime("%Y-%m-%d"),
-                "apply_url": "https://www.aiasl.in/careers",
-                "notification_number": "AIASL/AMD/2026/03"
+                "salary_text": "Pay Scale ₹40,000 - ₹1,40,000 (E-1 Grade, CTC Approx ₹13.0 LPA)",
+                "last_date": "2026-10-28",
+                "apply_url": "https://www.aai.aero/en/careers/recruitment",
+                "notification_number": "AAI/DR/IT/2026"
             }
         ]
     },
@@ -513,8 +462,8 @@ SCAN_SOURCES = [
                 "age_min": 18,
                 "age_max": 35,
                 "salary_text": "1st Year: ₹37,000/mo; then Regular Scale ₹45,400 - ₹1,01,200",
-                "last_date": (datetime.now() + timedelta(days=25)).strftime("%Y-%m-%d"),
-                "apply_url": "https://www.getcogujarat.com/careers",
+                "last_date": "2026-10-24",
+                "apply_url": "https://www.getcogujarat.com/getco_newsite/Career.php",
                 "notification_number": "GETCO/VS-JE/2026/01"
             },
             {
@@ -530,7 +479,7 @@ SCAN_SOURCES = [
                 "age_min": 18,
                 "age_max": 30,
                 "salary_text": "₹26,000/mo fix pay, then Regular Level 4",
-                "last_date": (datetime.now() + timedelta(days=19)).strftime("%Y-%m-%d"),
+                "last_date": "2026-10-20",
                 "apply_url": "https://www.dgvcl.com",
                 "notification_number": "DGVCL/JA/2026/01"
             }
@@ -538,7 +487,7 @@ SCAN_SOURCES = [
     },
 
     # -------------------------------------------------------------------------
-    # 10. GUJARAT MUNICIPAL CORPORATIONS (AMC, SMC, GMC)
+    # 10. GUJARAT MUNICIPAL CORPORATIONS (AMC & SMC)
     # -------------------------------------------------------------------------
     {
         "id": "municipal_gujarat",
@@ -559,26 +508,26 @@ SCAN_SOURCES = [
                 "age_min": 18,
                 "age_max": 35,
                 "salary_text": "Fixed Pay ₹26,000/mo for 3 years, then 7th Pay Level 2",
-                "last_date": (datetime.now() + timedelta(days=17)).strftime("%Y-%m-%d"),
+                "last_date": "2026-10-22",
                 "apply_url": "https://ahmedabadcity.gov.in",
                 "notification_number": "AMC/EST/2026/01"
             },
             {
-                "title": "Gandhinagar Municipal Corporation (GMC) Junior Clerk & Tax Inspector 2026 (245 Posts)",
-                "title_gu": "ગાંધીનગર મહાનગરપાલિકા (GMC) જુનિયર ક્લાર્ક અને ટેક્સ ઇન્સ્પેક્ટર ૨૦૨૬ (૨૪૫ જગ્યાઓ)",
-                "organization": "Gandhinagar Municipal Corporation (GMC)",
-                "department": "Urban Administration & Public Health",
+                "title": "Surat Municipal Corporation (SMC) Junior Engineer & Clerk Bharti 2026 (340 Posts)",
+                "title_gu": "સુરત મહાનગરપાલિકા (SMC) જુનિયર એન્જિનિયર અને ક્લાર્ક ભરતી ૨૦૨૬",
+                "organization": "Surat Municipal Corporation (SMC)",
+                "department": "Engineering & Public Works Department, Surat",
                 "gov_level": "State",
                 "state": "Gujarat",
                 "board_category": "AMC/SMC",
-                "vacancies": 245,
-                "qualification": "Bachelor's Degree in any stream",
+                "vacancies": 340,
+                "qualification": "Degree / Diploma in Civil/Mech/Electrical or Bachelor's Degree",
                 "age_min": 18,
-                "age_max": 36,
-                "salary_text": "Fixed Pay ₹26,000/mo for 5 years",
-                "last_date": (datetime.now() + timedelta(days=22)).strftime("%Y-%m-%d"),
-                "apply_url": "https://ojas.gujarat.gov.in",
-                "notification_number": "GMC/REC/2026/03"
+                "age_max": 35,
+                "salary_text": "Fixed Pay ₹26,000/mo for initial 3 years, then 7th CPC Level 4",
+                "last_date": "2026-10-25",
+                "apply_url": "https://www.suratmunicipal.gov.in",
+                "notification_number": "SMC/REC/2026/02"
             }
         ]
     },
@@ -605,7 +554,7 @@ SCAN_SOURCES = [
                 "age_min": 21,
                 "age_max": 32,
                 "salary_text": "Pay Level 10 (₹56,100 - ₹1,77,500)",
-                "last_date": (datetime.now() + timedelta(days=17)).strftime("%Y-%m-%d"),
+                "last_date": "2026-10-20",
                 "apply_url": "https://upsconline.nic.in",
                 "notification_number": "UPSC/CSE/2026/01"
             }
@@ -634,7 +583,7 @@ SCAN_SOURCES = [
                 "age_min": 18,
                 "age_max": 22,
                 "salary_text": "Pay Level 3 (₹21,700 - ₹69,100)",
-                "last_date": (datetime.now() + timedelta(days=22)).strftime("%Y-%m-%d"),
+                "last_date": "2026-10-22",
                 "apply_url": "https://joinindiancoastguard.cdac.in",
                 "notification_number": "ICG/CGEPT/01/2027"
             }
@@ -663,8 +612,8 @@ SCAN_SOURCES = [
                 "age_min": 18,
                 "age_max": 35,
                 "salary_text": "Pay Level 7 (₹44,900 - ₹1,42,400)",
-                "last_date": (datetime.now() + timedelta(days=26)).strftime("%Y-%m-%d"),
-                "apply_url": "https://www.prl.res.in/careers",
+                "last_date": "2026-10-26",
+                "apply_url": "https://www.prl.res.in/prl-eng/job_vacancies",
                 "notification_number": "PRL/RECT/2026/01"
             }
         ]
@@ -731,7 +680,16 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
         'clarification for the post', 'e-affidavit', 'updated vacancies',
         'detailed advertisement for the posts of librarian', 'tender',
         'quotation', 'corrigendum', 'archive', 'disclaimer', 'contact us',
-        'terms of use', 'privacy policy', 'sitemap'
+        'terms of use', 'privacy policy', 'sitemap', 'passport seva',
+        'savings scheme', 'saving scheme', 'popsk', 'call letter',
+        'interview call letter', 'wait list', 'waitlist', 'wait-list',
+        'syllabus', 'ineligible', 'lateral recruitment', 'status of recruitment',
+        'online recruitment application', 'personnel selection services',
+        'services for recruitment', 'result', 'answer key', 'admit card',
+        'hall ticket', 'marks', 'cutoff', 'cut-off', 'scrutiny', 'instruction',
+        'circular', 'guideline', 'faq', 'dashboard', 'about us', 'home page',
+        'department of posts', 'download interview', 'wait list dated',
+        'centralized wait'
     ]
 
     # Look for table rows in recruitment/advt tables
@@ -795,7 +753,10 @@ def parse_portal_html_for_jobs(html_content: str, source_meta: Dict[str, Any]) -
             href = a["href"]
             if any(n in text.lower() for n in NOISE_KEYWORDS):
                 continue
-            if len(text) > 18 and any(k in text.lower() for k in ["recruitment", "bharti", "advertisement", "vacancy", "post", "dak"]):
+            # Must contain actual job keywords AND specific role indicators
+            has_job_kw = any(k in text.lower() for k in ["recruitment", "bharti", "advertisement", "vacancy", "vacancies"])
+            has_role_kw = any(r in text.lower() for r in ["officer", "clerk", "engineer", "assistant", "nurse", "constable", "trainee", "professor", "lecturer", "executive", "associate", "inspector", "driver", "attendant", "peon", "specialist", "screener", "handler", "manager", "scientist", "fellow", "apprentice", "helper", "ડાક સેવક", "હેલ્પર", "સહાયક", "અધ્યાપક", "નર્સ"])
+            if len(text) > 18 and has_job_kw and has_role_kw:
                 if href.startswith("/"):
                     base = source_meta.get("url", "").rstrip("/")
                     href = f"{base}{href}"
